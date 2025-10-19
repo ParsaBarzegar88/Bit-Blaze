@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import ResponsiveHeader from "./ResponsiveHeader/ResponsiveHeader";
+import ToggleLightAndDark from "../ToggleTheme/ToggoleTheme";
 
 const Header = () => {
   const pathName = usePathname();
@@ -140,6 +141,8 @@ const Header = () => {
             <IoMenu className="w-full h-full" />
           </button>
         </div>
+        <div className="flex flex-row items-center justify-center gap-4">
+        <ToggleLightAndDark />
         <Link
           href="/login"
           className="flex flex-row gap-2.5 items-center text-[#ffffff] ml-6 font-[500] text-[16px]"
@@ -162,6 +165,7 @@ const Header = () => {
           </svg>
           ورود / ثبت نام
         </Link>
+        </div>
       </div>
       <ResponsiveHeader open={isOpen} setOpen={setIsOpen} />
     </header>
