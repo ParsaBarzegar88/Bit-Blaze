@@ -21,7 +21,7 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="lg:hidden fixed top-0 right-0 w-72 h-screen bg-[#363636] z-40"
+          className="lg:hidden fixed top-0 right-0 w-72 h-screen bg-[#FFFFFF] dark:bg-[#363636] z-40"
           initial={{ x: "100%", opacity: 0 }}
           animate={{ x: 0, opacity: 1, transition: { duration: 0.3, ease: "easeInOut" } }}
           exit={{ x: "100%", opacity: 0, transition: { duration: 0.3, ease: "easeInOut" } }}
@@ -30,32 +30,32 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             <Link href="/" onClick={handleClose}>
                 <Image
                   src="/assets/LandingPage/DeltaIcon.png"
-                  className="bg-[#FFFFFF] rounded-full"
+                  className="dark:bg-[#FFFFFF] rounded-full"
                   alt="DeltaIcon"
                   width={50}
                   height={30}
                 />
               </Link>
             <button
-              className="text-[#AAAAAA] text-2xl cursor-pointer"
+              className="dark:text-[#AAAAAA] text-[#565656]  text-2xl cursor-pointer"
               onClick={() => setOpen(false)}
               aria-label="بستن منو"
             >
-              <IoClose className="hover:text-[#8CFF45]" />
+              <IoClose className="dark:hover:text-[#8CFF45] hover:text-[#6fc539]" />
             </button>
           </div>
-          <nav className="flex flex-col gap-10 text-[#AAAAAA] px-4">
+          <nav className="flex flex-col gap-10 text-[#565656] dark:text-[#AAAAAA] px-4">
             <div className="relative group">
               <Link
                 href="/house-reserve"
-                className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/house-reserve" ? "text-[#8CFF45]" : ""
+                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
+                  pathName === "/house-reserve" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
                 }`}
                 onClick={handleClose}
               >
                 رزرو سریع
                 <svg
-                className={`${pathName === "/house-reserve" ? "stroke-[#8CFF45]" : "group-hover:stroke-[#8CFF45] stroke-[#AAAAAA]"}`}
+                className={`${pathName === "/house-reserve" ? "dark:stroke-[#8CFF45] stroke-[#6fc539]": "dark:group-hover:stroke-[#8CFF45] group-hover:stroke-[#6fc539] duration-300 stroke-[#565656] dark:stroke-[#AAAAAA]"}`}
                   width="10"
                   height="7"
                   viewBox="0 0 10 7"
@@ -72,14 +72,14 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             <div className="relative group">
               <Link
                 href="/mortgage-rent"
-                className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/mortgage-rent" ? "text-[#8CFF45]" : ""
+                className={`font-[500] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
+                  pathName === "/mortgage-rent" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
                 }`}
                 onClick={handleClose}
               >
                 رهن و اجاره
                 <svg
-                className={`${pathName === "/mortgage-rent" ? "stroke-[#8CFF45] duration-300" : "group-hover:stroke-[#8CFF45] duration-300 stroke-[#AAAAAA]"}`}
+                className={`${pathName === "/mortgage-rent" ? "dark:stroke-[#8CFF45] stroke-[#6fc539] duration-300" : "dark:group-hover:stroke-[#8CFF45] group-hover:stroke-[#6fc539]  duration-300 stroke-[#565656] dark:stroke-[#AAAAAA]"}`}
                   width="10"
                   height="7"
                   viewBox="0 0 10 7"
@@ -96,8 +96,8 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             <div className="relative group">
               <Link
                 href="/about"
-                className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/about" ? "text-[#8CFF45]" : ""
+                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
+                  pathName === "/about" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
                 }`}
                 onClick={handleClose}
               >
@@ -107,8 +107,8 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             <div className="relative group">
               <Link
                 href="/blogs"
-                className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/blogs" ? "text-[#8CFF45]" : ""
+                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
+                  pathName === "/blogs" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
                 }`}
                 onClick={handleClose}
               >
@@ -118,8 +118,8 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             <div className="relative group">
               <Link
                 href="/contact-us"
-                className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/contact-us" ? "text-[#8CFF45]" : ""
+                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
+                  pathName === "/contact-us" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
                 }`}
                 onClick={handleClose}
               >
