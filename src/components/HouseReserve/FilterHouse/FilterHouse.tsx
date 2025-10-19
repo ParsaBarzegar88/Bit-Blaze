@@ -17,12 +17,12 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronDown } from "lucide-react";
 import { IoLocationOutline, IoFilterOutline } from "react-icons/io5";
-import { IHousesData } from "@/core/types/LandingPage/IHouses";
+import { IHouses } from "@/core/types/LandingPage/IHouses";
 
 type Province = string;
 type SortOption = { label: string; value: string };
 interface IProps {
-  totalCount: IHousesData;
+  totalCount: IHouses;
 }
 
 const FilterHouse:FC<IProps> = ({totalCount}) => {

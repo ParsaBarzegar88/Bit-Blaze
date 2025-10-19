@@ -17,14 +17,14 @@ interface IProps {
 }
 
 const ProfileForm: FC<IProps> = ({ action }) => {
-  const initialState: IProfileResponse = { message: "", user: {} , seccess: false};
+  const initialState: IProfileResponse = { message: "", user: {} , success: false};
   const [state, formAction] = useActionState(action, initialState);
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const router = useRouter()
   const {userId} = useAuth()
 
   useEffect(() => {
-    if(state.seccess) {
+    if(state.success) {
       router.push("/register/verify");
     }
   }, [router, state]);

@@ -1,23 +1,28 @@
+/* eslint-disable */
 'use client';
 
+import 'leaflet/dist/leaflet.css';
 import { IHouses } from '@/core/types/LandingPage/IHouses';
 import dynamic from 'next/dynamic';
-import { FC } from 'react';
-import L from 'leaflet';
+import { FC, useEffect, useState } from 'react';
 import { useHouse } from '@/context/HouseContext';
 
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
-
-const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
-import 'leaflet/dist/leaflet.css';
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Popup),
+  { ssr: false }
+);
 
 interface IProps {
   houseLocations: IHouses
@@ -25,11 +30,39 @@ interface IProps {
 
 const HouseLocation: FC<IProps> = ({ houseLocations }) => {
   const { location, setLocation } = useHouse();
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+
+    if (typeof window !== 'undefined') {
+      const setupLeaflet = async () => {
+        const L = await import('leaflet');
+
+        delete (L.Icon.Default.prototype as any)._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNSAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIuNSIgY3k9IjEyLjUiIHI9IjEyLjUiIGZpbGw9IiMyNzUzRkYiLz4KPHBhdGggZD0iTTEyLjUgNkwxOCAxMi41SDE3VjE5SDE0VjE1SDExVjE5SDhWMTIuNUg3TDEyLjU2IDZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=',
+          iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNSAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIuNSIgY3k9IjEyLjUiIHI9IjEyLjUiIGZpbGw9IiMyNzUzRkYiLz4KPHBhdGggZD0iTTEyLjUgNkwxOCAxMi41SDE3VjE5SDE0VjE1SDExVjE5SDhWMTIuNUg3TDEyLjU2IDZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=',
+          shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        });
+      };
+      setupLeaflet();
+    }
+  }, []);
 
 
   const clearLocation = () => {
     setLocation({ lat: "", lng: "" });
   };
+
+  if (!isClient) {
+    return (
+      <div className="w-full max-w-[100%] h-[1032px] rounded-[40px] 
+                      bg-gradient-to-br from-blue-500/10 to-purple-500/10 
+                      border-2 border-blue-200/50 shadow-2xl flex items-center justify-center">
+        <p className="text-white font-vazir text-lg">در حال بارگذاری نقشه...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-[100%] h-[1032px] rounded-[40px] 
@@ -61,7 +94,7 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
           <Marker position={[Number(location.lat), Number(location.lng)]}>
             <Popup className="p-4 rounded-xl bg-green-100 border-green-300">
               <div className="text-right font-vazir text-sm">
-                <h3 className="font-bold text-green-600 mb-2">🏠 خونه انتخاب شده!</h3>
+                <h3 className="font-bold text-green-600 mb-2">خونه انتخاب شده!</h3>
                 <p className="text-gray-700">نقشه روی این خونه زوم شد</p>
               </div>
             </Popup>
@@ -78,7 +111,7 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
                   <h3 className="font-bold text-blue-600 mb-2">{item.title}</h3>
                   <p className="text-gray-700 mb-2">{item.address}</p>
                   <span className="text-green-600 font-semibold">
-                    💰 {item.price?.toLocaleString()} تومان
+                    {item.price?.toLocaleString()} تومان
                   </span>
                 </div>
               </Popup>

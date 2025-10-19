@@ -1,5 +1,6 @@
 import NewPassword from '@/components/Auth/resetPassword/NewPassword'
 import { postNewPassword } from '@/core/api/auth/postNewPassword(reset)'
+import { Metadata } from 'next';
 import React from 'react'
 
 export interface INewPasswordResponse {
@@ -7,7 +8,9 @@ export interface INewPasswordResponse {
      success?: boolean
      error?: string,
 }
-
+export const metadata: Metadata = {
+  title: "بازیابی رمز عبور",
+};
 const NewPasswordPage = () => {
   return (
     <div>

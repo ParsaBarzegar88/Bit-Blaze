@@ -1,5 +1,4 @@
 "use client"
-import dynamic from 'next/dynamic';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from '@/context/AuthContext';
 import React, { FC, ReactNode } from 'react'

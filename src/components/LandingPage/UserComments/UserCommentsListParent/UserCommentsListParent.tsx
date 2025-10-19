@@ -1,13 +1,13 @@
 /* eslint-disable */
 "use client";
-import { IComments } from "@/core/types/LandingPage/IComments";
-import { FC } from "react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
+import React, { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Autoplay, Pagination } from "swiper/modules";
 import UserCommentsList from "./UserCommentsList/UserCommentsList";
+import { IComments } from "@/core/types/LandingPage/IComments";
 
 interface IProps {
   comments: IComments;
@@ -72,7 +72,7 @@ const UserCommentsListParent: FC<IProps> = ({ comments }) => {
         {comments.data.map((comment, index) => {
           const commentWithUser = getCommentWithUser(comment, index);
           return (
-            <SwiperSlide key={comment.id}>
+            <SwiperSlide key={index}>
               <UserCommentsList commentData={commentWithUser} />
             </SwiperSlide>
           );

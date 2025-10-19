@@ -11,7 +11,22 @@ interface IProps {
   value: IHousesData;
 }
 
+const calculateDiscountPercentage = (originalPrice: string, discountedPrice: string | null): number => {
+  if (!discountedPrice) return 0;
+
+  const original = parseFloat(originalPrice);
+  const discounted = parseFloat(discountedPrice);
+
+  if (original <= 0 || discounted <= 0 || discounted >= original) return 0;
+
+  const percentage = ((original - discounted) / original) * 100;
+  return Math.round(percentage);
+}
+
 const HouseCard: FC<IProps> = ({ value }) => {
+
+  const discountPercentage = calculateDiscountPercentage(value.price, value.discounted_price);
+
   const { setLocation } = useHouse();
 
   const LocationHandle = (location: { lat: string; lng: string }) => {
@@ -33,8 +48,8 @@ const HouseCard: FC<IProps> = ({ value }) => {
             alt="housePicture"
             priority={false}
           />
-          <button 
-            onClick={() => LocationHandle(value.location)} 
+          <button
+            onClick={() => LocationHandle(value.location)}
             className='w-7 h-7 md:w-8 md:h-8 rounded-xl md:rounded-2xl bg-purple-500 absolute bottom-1 flex items-center justify-center right-2 hover:transform hover:-translate-y-1 hover:scale-110 cursor-pointer transition-all duration-300 ease-in-out'
           >
             <CiLocationOn className='text-white text-sm md:text-base' />
@@ -44,7 +59,7 @@ const HouseCard: FC<IProps> = ({ value }) => {
           <div className='max-w-[90px] w-full bg-[#7569FF] group-hover:shadow-[#7569FF] flex justify-center rounded-[8px] px-2 py-1'>
             <span className='text-white text-xs md:text-sm flex items-center flex-row-reverse gap-1 md:gap-2 whitespace-nowrap'>
               {value.rate ? value.rate : 0} ستاره
-              {value.rate ? (<IoIosStar className="text-white"/>) : (<IoIosStarOutline />)}
+              {value.rate ? (<IoIosStar className="text-white" />) : (<IoIosStarOutline />)}
             </span>
           </div>
           <h3 className='font-[600] text-lg md:text-xl lg:text-[26px] text-white leading-tight line-clamp-2 min-w-0'>
@@ -61,7 +76,7 @@ const HouseCard: FC<IProps> = ({ value }) => {
             <span className='text-[#AAAAAA] text-xs md:text-sm flex-shrink-0'>آدرس:</span>
             <span className='text-white text-xs md:text-sm line-clamp-1 min-w-0'>{value.address}</span>
           </div>
-          
+
           <div className='flex items-center gap-2 w-full min-w-0'>
             <svg width="14" height="14" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
               <g clipPath="url(#clip0_1_1560)">
@@ -74,12 +89,15 @@ const HouseCard: FC<IProps> = ({ value }) => {
           </div>
         </div>
         <div className='flex flex-row md:flex-col justify-between items-start md:items-end gap-3 md:gap-4 w-full md:w-auto mt-2 md:mt-0'>
-          <div className='flex flex-row items-center gap-2 md:gap-4 order-2 md:order-1 whitespace-nowrap'>
-            <p className='line-through text-[#AAAAAA] text-xs md:text-sm'>25000 ت</p>
-            <span className='bg-red-500 w-8 md:w-11 py-1 rounded-[6px] md:rounded-[8px] flex text-white items-center justify-center text-xs'>25%</span>
-          </div>
-          <h2 className='text-[#8CFF45] text-base md:text-lg lg:text-2xl font-bold whitespace-nowrap order-1 md:order-2'>
-            {value.price} ت
+          {value.discounted_price !== null ? (
+            <div className='flex flex-row items-center gap-2 md:gap-4 order-2 md:order-1 whitespace-nowrap'>
+              <p className='line-through text-[#AAAAAA] text-xs md:text-sm'>{value.price} ت</p>
+              <span className='bg-red-500 w-8 md:w-11 py-1 rounded-[6px] md:rounded-[8px] flex text-white items-center justify-center text-xs'>{discountPercentage}%</span>
+            </div>
+          ) : ""
+          }
+          <h2 className={`${value.discounted_price === null ? "mt-10" : ""} text-[#8CFF45] text-base md:text-lg lg:text-2xl font-bold whitespace-nowrap order-1 md:order-2`}>
+            {value.discounted_price ? value.discounted_price : value.price} ت
           </h2>
           <button className='text-[#8CFF45] cursor-pointer rounded-[12px] md:rounded-[14px] flex flex-row-reverse whitespace-nowrap items-center justify-center w-full md:w-[140px] lg:w-[175px] h-[36px] md:h-[44px] border border-[#8CFF45] bg-transparent group-hover:text-black group-hover:bg-[#8CFF45] transition-all duration-300 font-medium px-3 md:px-4 text-sm md:text-base order-3'>
             بررسی و رزرو هتل

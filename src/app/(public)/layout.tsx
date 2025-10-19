@@ -21,7 +21,7 @@ export default function RootLayout({
       <body
         className={`${PeydaFanum.className} antialiased bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
       >
-        <div className='max-w-[1920px] w-full flex flex-col relative'>
+        <div className='max-w-[1920px] w-full flex flex-col relative overflow-x-hidden'>
           <Header />
           <div className='relative'>
             {children}

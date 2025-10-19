@@ -1,8 +1,6 @@
 "use client"
-
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Command,
   CommandEmpty,
@@ -16,11 +14,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { faIR } from "date-fns/locale";
-import { ChevronDown, CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CalendarIcon, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { CiSearch } from "react-icons/ci";
 
 const HeroSectionFilter = () => {
   const [openProvince, setOpenProvince] = useState(false);
@@ -165,7 +164,6 @@ const HeroSectionFilter = () => {
               </PopoverContent>
             </Popover>
           </div>
-
           <div className="w-full">
             <Popover>
               <PopoverTrigger asChild>
@@ -195,7 +193,6 @@ const HeroSectionFilter = () => {
               </PopoverContent>
             </Popover>
           </div>
-
           <div className="w-full">
             <input 
               className="w-full outline-0 text-[#AAAAAA] mr-2 bg-transparent border border-[#AAAAAA] rounded-md px-3 py-2"

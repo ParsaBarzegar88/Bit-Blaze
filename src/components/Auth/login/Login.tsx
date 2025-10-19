@@ -47,7 +47,7 @@ const LoginForm: FC<IProps> = ({ action }) => {
         draggable: true,
         progress: undefined,
       });
-      router.push("/register");
+      router.push("/");
     }
   }, [state, router]);;
 
@@ -124,10 +124,15 @@ const LoginForm: FC<IProps> = ({ action }) => {
                 <Image width={24} height={24} onClick={togglePassword} src={showPassword ? '/assets/authImages/hide.png' : '/assets/authImages/visible.png'} alt="hide adn show picture" className="cursor-pointer absolute top-1 left-4 w-6" />
               </fieldset>
             </div>
-            <Link href={"/resetPassword"} className="flex justify-end gap-2 sm:gap-3 ml-5 sm:ml-10 items-center">
-              رمز عبور خود را فراموش کردم
-              <Image src={'/assets/authImages/iconsleftarrow-50.png'} alt="arrow" width={25} height={25} />
-            </Link>
+            <div className='flex flex-row-reverse justify-between w-full'>
+              <Link href={"/resetPassword"} className="flex justify-end gap-2 sm:gap-3 ml-5 sm:ml-10 items-center">
+                رمز عبور خود را فراموش کردم
+                <Image src={'/assets/authImages/iconsleftarrow-50.png'} alt="arrow" width={25} height={25} />
+              </Link>
+              <Link href={"/register"} className="flex justify-end gap-2 sm:gap-3 mr-5 sm:mr-10 items-center">
+                حساب کاربری ندارید ؟
+              </Link>
+            </div>
             <ButtonSubmit />
           </form>
         </div>

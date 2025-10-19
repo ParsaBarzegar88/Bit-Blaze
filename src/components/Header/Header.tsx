@@ -33,7 +33,7 @@ const Header = () => {
             <div className="relative h-full group">
               <Link
                 href="/house-reserve"
-                className={`font-[500] group-hover:text-[#8CFF45] text-[16px] h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/reserve" ? "text-[#8CFF45]" : ""
+                className={`font-[500] group-hover:text-[#8CFF45] text-[16px] h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/house-reserve" ? "text-[#8CFF45]" : ""
                   }`}
               >
                 رزرو سریع

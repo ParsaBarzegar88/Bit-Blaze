@@ -92,7 +92,7 @@ const DeltaOffersSection:FC<IProps> = ({houses}) => {
                                 >
                                     {houses.houses.map((house , index) => {
                                         return(
-                                            <SwiperSlide key={house.id}>
+                                            <SwiperSlide key={index}>
                                                 <DeltaOffersList houseData={house} />
                                             </SwiperSlide>
                                         )

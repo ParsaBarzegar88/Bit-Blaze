@@ -1,11 +1,18 @@
+import MortgageRent from '@/components/MortgageRent/MortgageRent';
 import { Metadata } from 'next';
-import React from 'react'
+import React, { FC } from 'react'
 export const metadata: Metadata = {
   title: "رهن و اجاره",
 };
-const MortgageRentPage = () => {
+interface IGetSearchParams {
+  searchParams?: { [key: string]: string }
+}
+const MortgageRentPage:FC<IGetSearchParams> = async ({searchParams}) => {
+  const getAllSearchParams = await searchParams
   return (
-    <div>MortgageRentPage</div>
+    <>
+      <MortgageRent searchParam={getAllSearchParams}/>
+    </>
   )
 }
 

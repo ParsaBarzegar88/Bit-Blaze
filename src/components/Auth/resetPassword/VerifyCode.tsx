@@ -57,8 +57,8 @@ useEffect(() => {
                 setTimeout(() => {
                     setResetCode(state.resetCode!);
                     router.push("/resetPassword/newPassword");
-                }, 2000); // همگام با autoClose توست دوم
-            }, 1000); // تاخیر کوتاه برای توست دوم
+                }, 2000);
+            }, 1000);
         }
     }, [state, router, setResetCode]);
 

@@ -18,7 +18,7 @@ export const ProfileFetch = async (
     if (!phoneNumber && !password && !userId) {
         return {
             error: "لطفا مقادیر مورد نیاز  را وارد کنید",
-            seccess: false
+            success: false
         }
     }
 
@@ -45,7 +45,7 @@ export const ProfileFetch = async (
                 message: "",
                 user: data.user,
                 error: "لطفا مقادیر مورد نیاز  را وارد کنید",
-                seccess: false
+                success: false
             };
         }
 
@@ -54,7 +54,7 @@ export const ProfileFetch = async (
             message: data.message,
             user: data.user,
             error: "لطفا مقادیر مورد نیاز  را وارد کنید",
-            seccess: false
+            success: false
         };    
         
         }
@@ -62,7 +62,7 @@ export const ProfileFetch = async (
             message: data.message,
             user: data.user,
             error: "",
-            seccess: true
+            success: true
         };
     } catch (error) {
         console.error("Error in PostUserEmail:", error);

@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 interface IProps {
-  open: boolean; 
+  open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => { 
+const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
   const pathName = usePathname();
   const handleClose = () => {
     setOpen(false)
@@ -47,15 +47,15 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
           <nav className="flex flex-col gap-10 text-[#AAAAAA] px-4">
             <div className="relative group">
               <Link
-                href="/reserve"
+                href="/house-reserve"
                 className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/reserve" ? "text-[#8CFF45]" : ""
+                  pathName === "/house-reserve" ? "text-[#8CFF45]" : ""
                 }`}
                 onClick={handleClose}
               >
                 رزرو سریع
                 <svg
-                className={`${pathName === "/reserve" ? "stroke-[#8CFF45]" : "group-hover:stroke-[#8CFF45] stroke-[#AAAAAA]"}`}
+                className={`${pathName === "/house-reserve" ? "stroke-[#8CFF45]" : "group-hover:stroke-[#8CFF45] stroke-[#AAAAAA]"}`}
                   width="10"
                   height="7"
                   viewBox="0 0 10 7"

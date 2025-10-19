@@ -1,12 +1,14 @@
+'use client'
 import Image from "next/image";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import HeroSectionFilter from "./HeroSectionFilter/HeroSectionFilter";
 import TheDeltaSVG from "../landingPageSVG/theDeltaSVG";
 import ArrowBRotate from "../landingPageSVG/arrowBRotateSVG";
+import CountUp from "react-countup";
 const HeroSection = () => {
   return (
-    <section className="relative w-full h-fit p-4 md:p-5 bg-gradient-to-t from-[#232323]/80 to-transparent inset-0">
+    <section className="relative w-full max-[900px]:h-fit h-[58rem] p-4 md:p-5 bg-gradient-to-t from-[#232323]/80 to-transparent inset-0">
       <div className="absolute inset-0 -z-10">
         <Image
           fill
@@ -16,12 +18,11 @@ const HeroSection = () => {
           className="object-cover"
         />
       </div>
-      <div className={`absolute bottom-0 left-[100] max-md:-z-0 md:left-1/2 sm:left-1/2 transform -translate-x-1/4  z-[1]`}>
+      <div className={`absolute max-[500px]:w-[300px] max-[500px]:bottom-0 max-[500px]:h-[370px]  w-[500px] h-[500px]  md:w-[500px] md:h-[600px] lg:w-[754px] lg:h-[678px] bottom-0 left-1 max-md:-z-0  md:left-1/2 transform -translate-x-1/4  z-[1]`}>
         <Image
           priority
-          width={754}
-          height={678}
-          className="object-contain"
+          fill
+          className="w-full h-full"
           src={'/assets/LandingPage/BuildingBannerImage.png'}
           alt="BuildingBannerImage"
         />
@@ -30,7 +31,7 @@ const HeroSection = () => {
         <div className="flex flex-row justify-center mt-32">
           <TheDeltaSVG />
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col mt-0  lg:mt-32">
           <div className="flex flex-col md:mx-auto lg:flex justify-center lg:flex-row sm:flex-row md:justify-between gap-6 md:gap-3 m-auto w-full max-w-[97%] h-fit">
             <div className="relative hidden md:flex flex-col gap-4 md:gap-5 order-2 lg:order-1 z-[20]">
               <div className="flex flex-row w-[120px] h-[48px] relative">
@@ -83,7 +84,7 @@ const HeroSection = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col md:justify-center gap-6 md:gap-10 order-3 z-[20] w-[40%] items-center">
+            <div className="flex max-[500px]:-mt-[55px] max-[500px]:mr-5 flex-col md:justify-center gap-6 md:gap-10 order-3 z-[20] w-[40%] items-center">
               <div className="text-[16px] md:text-[14px] font-[400] text-center lg:text-right">
                 <p className="flex flex-row gap-2 items-center justify-center lg:justify-start">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,13 +104,13 @@ const HeroSection = () => {
               </div>
               <div className="flex flex-row items-center gap-6 md:gap-10 justify-center lg:justify-start">
                 <div className="flex flex-col gap-1 md:gap-2 text-center">
-                  <p className="font-[600] text-[20px] md:text-[24px]">8500+</p>
-                  <p className="font-[400] text-[12px] md:text-[14px]">منطقه برای رزرو</p>
+                  <p className="font-[600] max-[500px]:text-[15px] text-[20px] md:text-[24px]"><CountUp start={0} end={8500} duration={6.5} separator="," suffix="+"/></p>
+                  <p className="font-[400] max-[500px]:text-[10px] text-[12px] md:text-[14px]">منطقه برای رزرو</p>
                 </div>
                 <div className="h-[24px] md:h-[32px] w-[1px] md:w-[2px] bg-[#FFFFFF]"></div>
-                <div className="flex flex-col gap-1 md:gap-2 text-center">
-                  <p className="font-[600] text-[20px] md:text-[24px]">5600+</p>
-                  <p className="font-[400] text-[12px] md:text-[14px]">ملک برای رزرو و رهن اجازه</p>
+                <div className="flex flex-col gap-1 max-[500px]:mt-[12px] md:gap-2 text-center">
+                  <p className="font-[600] max-[500px]:text-[15px] text-[20px] md:text-[24px]"><CountUp start={0} end={5600} duration={6.5} separator="," suffix="+"/></p>
+                  <p className="font-[400] max-[500px]:text-[10px] text-[12px] md:text-[14px]">ملک برای رزرو و رهن اجاره</p>
                 </div>
               </div>
             </div>

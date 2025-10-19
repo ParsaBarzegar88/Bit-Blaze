@@ -18,7 +18,7 @@ const CategorySection = async () => {
                 علاقه خود برسید
             </p>
             <CategoryList/>
-            <div className="absolute left-[-50px] lg:left-[-98px] top-1/2 transform -translate-y-1/2 w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[40px] lg:blur-[50px] bg-[#8CFF45]/15 rounded-full"></div>
+            <div className="absolute left-[-50px] top-1/4  lg:left-[-98px] lg:top-1/2 transform -translate-y-1/2 w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[40px] lg:blur-[50px] bg-[#8CFF45]/15 rounded-full"></div>
         </div>
     );
 };

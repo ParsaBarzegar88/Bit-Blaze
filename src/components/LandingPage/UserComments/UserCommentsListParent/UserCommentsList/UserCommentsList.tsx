@@ -13,7 +13,7 @@ const UserCommentsList:FC<IProps> = ({commentData}) => {
                 <div className='flex flex-row justify-between items-center relative'>
                     <div className='bg-[#FFFFFF] transition-colors duration-300 z-[1] mr-3 shadow-[0px_4px_12px_rgba(255,255,255,0.2)] translate-y-6 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
                         <div className='mt-1 font-[700] text-[16px]'>
-                            {commentData.rating}
+                            {commentData.dataValues.rating}
                         </div>
                         <FaStar />
                     </div>
@@ -32,7 +32,7 @@ const UserCommentsList:FC<IProps> = ({commentData}) => {
                         "></div>
                     <div className='flex flex-col gap-4 max-w-[98%] w-full justify-center mx-auto mb-4'>
                         <p className='text-[#FFFFFF] leading-[40px] mt-5 mb-2'>
-                            ” {commentData.caption} “
+                            ” {commentData.dataValues.caption} “
                         </p>
                         <div className='bg-[#444444] rounded-[24px] flex flex-row gap-1.5 items-center'>
                             <div className='bg-[#D9D9D9] rounded-2xl w-[57px] h-[57px] flex justify-center items-center mt-2 mb-2 mr-2'>
@@ -42,7 +42,7 @@ const UserCommentsList:FC<IProps> = ({commentData}) => {
                                 <p className='text-[#FFFFFF] text-[14px]'>{commentData.user?.name}</p>
                                 <div className='flex flex-row gap-2 items-center text-[#AAAAAA] text-[14px]'>
                                     <FaRegCalendarAlt/>
-                                    {formatToPersianDate(commentData.created_at)}
+                                    {formatToPersianDate("2011-10-05T14:48:00.000Z")}
                                 </div>
                             </div>
                         </div>

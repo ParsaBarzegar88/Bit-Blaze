@@ -23,7 +23,7 @@ const Footer = () => {
                 <TheDeltaRealEstatementSVG />
             </div>
             
-            <div className={`${Style.beforeMargin} bg-[#8CFF45] mb-5 relative w-full pb-2 sm:mt-0 mt-10 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
+            <div className={`${Style.beforeMargin} max-[400px]:rounded-tr-[17px] max-[400px]:before:hidden max-[400px]:after:hidden bg-[#8CFF45] mb-5 relative w-full pb-2 sm:mt-0 mt-10 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
                     before:bg-[#8CFF45] before:[clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)] 
                     before:h-16 before:rounded-tr-[17px] before:w-[330px] before:absolute before:-translate-y-16 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
@@ -31,11 +31,11 @@ const Footer = () => {
                     before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                     transition-all duration-300`}>
                     
-                <div className="absolute top-[-3.9rem] right-[5px] w-[280px] h-[2.1rem] rounded-[34px] 
+                <div className="absolute max-[400px]:hidden top-[-3.9rem] right-[5px] w-[280px] h-[2.1rem] rounded-[34px] 
                         outline-[5px] outline-[#8CFF45] transition-all duration-300"></div>
                 
-                <div className='flex flex-col max-w-[98%] w-full justify-center mx-auto'>
-                    <div className='bg-[#232323] rounded-2xl flex flex-row gap-2  w-[250px] h-[50px] justify-center items-center text-[#FFFFFF] -mt-12 z-[1] sm:mr-2 mr-4'>
+                <div className='flex flex-col max-w-[98%] max-[400px]:-mt-10 w-full justify-center mx-auto'>
+                    <div className='bg-[#232323] max-[400px]:hidden rounded-2xl flex flex-row gap-2  w-[250px] h-[50px] justify-center items-center text-[#FFFFFF] -mt-12 z-[1] sm:mr-2 mr-4'>
                         09229167194 - 09154569872
                         <CallSVG />
                     </div>
