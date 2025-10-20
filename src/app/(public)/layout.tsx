@@ -2,6 +2,7 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from '@/components/Footer/Footer';
+import ToggleDarkAndLightProvider from './ThemeProvider';
 
 export const PeydaFanum = localFont({
   src: [
@@ -19,15 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${PeydaFanum.className} antialiased bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
+        className={`${PeydaFanum.className} antialiased bg-[#FFFFFF] dark:bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
       >
-        <div className='max-w-[1920px] w-full flex flex-col relative overflow-x-hidden'>
-          <Header />
-          <div className='relative'>
-            {children}
+        <ToggleDarkAndLightProvider>
+          <div className='max-w-[1920px] w-full flex flex-col relative overflow-x-hidden'>
+            <Header />
+            <div className='relative'>
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </ToggleDarkAndLightProvider>
       </body>
     </html>
   );

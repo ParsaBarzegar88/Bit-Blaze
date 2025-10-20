@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import ResponsiveHeader from "./ResponsiveHeader/ResponsiveHeader";
+import ToggleLightAndDark from "../ToggleTheme/ToggoleTheme";
 
 const Header = () => {
   const pathName = usePathname();
@@ -15,13 +16,13 @@ const Header = () => {
   };
   return (
     <header className="relative mx-auto max-w-[97%] w-full flex flex-row justify-between z-50">
-      <div className="flex flex-row justify-between w-full bg-[#363636] mt-5 h-[56px] rounded-2xl mx-auto shadow-[inset_0_4px_8px_rgba(255,255,255,0.12),0_4px_12px_rgba(0,0,0,0.12)]">
+      <div className="flex flex-row justify-between w-full bg-[#FFFFFF] dark:bg-[#363636] mt-5 h-[56px] rounded-2xl mx-auto shadow-[0_4px_16px_rgba(0,0,0,0.27)] dark:shadow-[inset_0_2px_5px_rgba(255,255,255,0.12),0_2px_12px_rgba(0,0,0,0.12)]">
         <div className="flex flex-row items-center">
           <div className="hidden lg:flex flex-row gap-3 items-center px-4">
             <Link href="/">
               <Image
                 src="/assets/LandingPage/DeltaIcon.png"
-                className="bg-[#FFFFFF] rounded-full"
+                className="dark:bg-[#FFFFFF] rounded-full"
                 alt="DeltaIcon"
                 width={50}
                 height={30}
@@ -29,16 +30,16 @@ const Header = () => {
             </Link>
             <div className="w-1 h-5 bg-[#4A4A4A] rounded-xl hidden lg:block"></div>
           </div>
-          <nav className="hidden lg:flex flex-row gap-10 text-[#AAAAAA] items-center h-full">
+          <nav className="hidden lg:flex flex-row gap-8 text-[#565656] dark:text-[#AAAAAA] items-center h-full">
             <div className="relative h-full group">
               <Link
                 href="/house-reserve"
-                className={`font-[500] group-hover:text-[#8CFF45] text-[16px] h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/house-reserve" ? "text-[#8CFF45]" : ""
+                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a] duration-300 text-[16px] h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/house-reserve" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
                   }`}
               >
                 رزرو سریع
                 <svg
-                className={`${pathName === "/house-reserve" ? "stroke-[#8CFF45] duration-300" : "group-hover:stroke-[#8CFF45] duration-300 stroke-[#AAAAAA]"}`}
+                  className={`${pathName === "/house-reserve" ? "dark:stroke-[#8CFF45] stroke-[#58893a] duration-300" : "dark:group-hover:stroke-[#8CFF45] group-hover:stroke-[#58893a] duration-300 stroke-[#AAAAAA]"}`}
                   width="10"
                   height="7"
                   viewBox="0 0 10 7"
@@ -52,18 +53,18 @@ const Header = () => {
                 </svg>
               </Link>
               {pathName === "/house-reserve" && (
-                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#8CFF45]"></span>
+                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
               )}
             </div>
             <div className="relative h-full group">
               <Link
                 href="/mortgage-rent"
-                className={`font-[500] text-[16px] group-hover:text-[#8CFF45] duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/mortgage-rent" ? "text-[#8CFF45]" : ""
+                className={`font-[500] text-[16px] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a] duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/mortgage-rent" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
                   }`}
               >
                 رهن و اجاره
                 <svg
-                className={`${pathName === "/mortgage-rent" ? "stroke-[#8CFF45] duration-300" : "group-hover:stroke-[#8CFF45] duration-300 stroke-[#AAAAAA]"}`}
+                  className={`${pathName === "/mortgage-rent" ? "dark:stroke-[#8CFF45] stroke-[#58893a] duration-300" : "dark:group-hover:stroke-[#8CFF45] group-hover:stroke-[#58893a] duration-300 stroke-[#AAAAAA]"}`}
                   width="10"
                   height="7"
                   viewBox="0 0 10 7"
@@ -77,43 +78,43 @@ const Header = () => {
                 </svg>
               </Link>
               {pathName === "/mortgage-rent" && (
-                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#8CFF45]"></span>
+                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
               )}
             </div>
             <div className="relative h-full group">
               <Link
                 href="/about"
-                className={`font-[500] text-[16px] group-hover:text-[#8CFF45] duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/about" ? "text-[#8CFF45]" : ""
+                className={`font-[500] text-[16px] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a]  duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/about" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
                   }`}
               >
                 درباره دلتا
               </Link>
               {pathName === "/about" && (
-                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#8CFF45]"></span>
+                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
               )}
             </div>
             <div className="relative h-full group">
               <Link
                 href="/blogs"
-                className={`font-[500] text-[16px] group-hover:text-[#8CFF45] duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/blogs" ? "text-[#8CFF45]" : ""
+                className={`font-[500] text-[16px] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a]  duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/blogs" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
                   }`}
               >
                 مقالات ما
               </Link>
               {pathName === "/blogs" && (
-                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#8CFF45]"></span>
+                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
               )}
             </div>
             <div className="relative h-full group">
               <Link
                 href="/contact-us"
-                className={`font-[500] group-hover:text-[#8CFF45] duration-300 text-[16px] h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/contact-us" ? "text-[#8CFF45]" : ""
+                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a] duration-300 text-[16px] h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/contact-us" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
                   }`}
               >
                 تماس با ما
               </Link>
               {pathName === "/contact-us" && (
-                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#8CFF45]"></span>
+                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
               )}
             </div>
             <div className="bg-[#7569FF] text-[#ffffff] flex flex-row items-center text-[16px] font-[500] gap-2.5 rounded-[12px] p-2 px-5">
@@ -133,35 +134,37 @@ const Header = () => {
             </div>
           </nav>
           <button
-            className="lg:hidden flex w-8 mr-3 h-full items-center justify-center text-[#AAAAAA] cursor-pointer"
+            className="lg:hidden flex w-8 mr-3 h-full items-center justify-center text-[#565656] dark:text-[#AAAAAA] cursor-pointer"
             onClick={handleMenu}
             aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
           >
             <IoMenu className="w-full h-full" />
           </button>
         </div>
-        <Link
-          href="/login"
-          className="flex flex-row gap-2.5 items-center text-[#ffffff] ml-6 font-[500] text-[16px]"
-        >
-          <svg
-            width="12"
-            height="16"
-            viewBox="0 0 12 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <div className="flex flex-row items-center justify-center gap-4">
+          <ToggleLightAndDark />
+          <Link
+            href="/login"
+            className="flex flex-row gap-2.5 items-center text-[#565656] dark:text-[#ffffff] ml-6 font-[500] text-[16px]"
           >
-            <path
-              d="M6 8C6.79113 8 7.56448 7.76541 8.22228 7.32588C8.88008 6.88635 9.39277 6.26164 9.69552 5.53074C9.99827 4.79983 10.0775 3.99556 9.92314 3.21964C9.7688 2.44372 9.38784 1.73098 8.82843 1.17157C8.26902 0.612165 7.55629 0.231202 6.78036 0.0768607C6.00444 -0.0774802 5.20017 0.00173314 4.46927 0.304484C3.73836 0.607234 3.11365 1.11992 2.67412 1.77772C2.2346 2.43552 2 3.20888 2 4C2.00106 5.06054 2.42283 6.07734 3.17274 6.82726C3.92266 7.57718 4.93946 7.99894 6 8ZM6 1.33334C6.52742 1.33334 7.04299 1.48973 7.48152 1.78275C7.92005 2.07577 8.26185 2.49224 8.46368 2.97951C8.66551 3.46678 8.71832 4.00296 8.61543 4.52024C8.51253 5.03753 8.25856 5.51268 7.88562 5.88562C7.51268 6.25856 7.03752 6.51254 6.52024 6.61543C6.00296 6.71832 5.46678 6.66551 4.97951 6.46368C4.49224 6.26185 4.07577 5.92005 3.78275 5.48152C3.48973 5.04299 3.33333 4.52742 3.33333 4C3.33333 3.29276 3.61428 2.61448 4.11438 2.11438C4.61448 1.61429 5.29276 1.33334 6 1.33334Z"
-              fill="white"
-            />
-            <path
-              d="M6 9.33398C4.40924 9.33575 2.88414 9.96846 1.75931 11.0933C0.634472 12.2181 0.00176457 13.7432 0 15.334C0 15.5108 0.0702379 15.6804 0.195262 15.8054C0.320286 15.9304 0.489856 16.0007 0.666667 16.0007C0.843478 16.0007 1.01305 15.9304 1.13807 15.8054C1.2631 15.6804 1.33333 15.5108 1.33333 15.334C1.33333 14.0963 1.825 12.9093 2.70017 12.0342C3.57534 11.159 4.76232 10.6673 6 10.6673C7.23768 10.6673 8.42466 11.159 9.29983 12.0342C10.175 12.9093 10.6667 14.0963 10.6667 15.334C10.6667 15.5108 10.7369 15.6804 10.8619 15.8054C10.987 15.9304 11.1565 16.0007 11.3333 16.0007C11.5101 16.0007 11.6797 15.9304 11.8047 15.8054C11.9298 15.6804 12 15.5108 12 15.334C11.9982 13.7432 11.3655 12.2181 10.2407 11.0933C9.11586 9.96846 7.59076 9.33575 6 9.33398Z"
-              fill="white"
-            />
-          </svg>
-          ورود / ثبت نام
-        </Link>
+            <svg
+              width="12"
+              height="16"
+              viewBox="0 0 12 16"
+              fill="none"
+              className="fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 8C6.79113 8 7.56448 7.76541 8.22228 7.32588C8.88008 6.88635 9.39277 6.26164 9.69552 5.53074C9.99827 4.79983 10.0775 3.99556 9.92314 3.21964C9.7688 2.44372 9.38784 1.73098 8.82843 1.17157C8.26902 0.612165 7.55629 0.231202 6.78036 0.0768607C6.00444 -0.0774802 5.20017 0.00173314 4.46927 0.304484C3.73836 0.607234 3.11365 1.11992 2.67412 1.77772C2.2346 2.43552 2 3.20888 2 4C2.00106 5.06054 2.42283 6.07734 3.17274 6.82726C3.92266 7.57718 4.93946 7.99894 6 8ZM6 1.33334C6.52742 1.33334 7.04299 1.48973 7.48152 1.78275C7.92005 2.07577 8.26185 2.49224 8.46368 2.97951C8.66551 3.46678 8.71832 4.00296 8.61543 4.52024C8.51253 5.03753 8.25856 5.51268 7.88562 5.88562C7.51268 6.25856 7.03752 6.51254 6.52024 6.61543C6.00296 6.71832 5.46678 6.66551 4.97951 6.46368C4.49224 6.26185 4.07577 5.92005 3.78275 5.48152C3.48973 5.04299 3.33333 4.52742 3.33333 4C3.33333 3.29276 3.61428 2.61448 4.11438 2.11438C4.61448 1.61429 5.29276 1.33334 6 1.33334Z"
+              />
+              <path
+                d="M6 9.33398C4.40924 9.33575 2.88414 9.96846 1.75931 11.0933C0.634472 12.2181 0.00176457 13.7432 0 15.334C0 15.5108 0.0702379 15.6804 0.195262 15.8054C0.320286 15.9304 0.489856 16.0007 0.666667 16.0007C0.843478 16.0007 1.01305 15.9304 1.13807 15.8054C1.2631 15.6804 1.33333 15.5108 1.33333 15.334C1.33333 14.0963 1.825 12.9093 2.70017 12.0342C3.57534 11.159 4.76232 10.6673 6 10.6673C7.23768 10.6673 8.42466 11.159 9.29983 12.0342C10.175 12.9093 10.6667 14.0963 10.6667 15.334C10.6667 15.5108 10.7369 15.6804 10.8619 15.8054C10.987 15.9304 11.1565 16.0007 11.3333 16.0007C11.5101 16.0007 11.6797 15.9304 11.8047 15.8054C11.9298 15.6804 12 15.5108 12 15.334C11.9982 13.7432 11.3655 12.2181 10.2407 11.0933C9.11586 9.96846 7.59076 9.33575 6 9.33398Z"
+              />
+            </svg>
+            ورود / ثبت نام
+          </Link>
+        </div>
       </div>
       <ResponsiveHeader open={isOpen} setOpen={setIsOpen} />
     </header>

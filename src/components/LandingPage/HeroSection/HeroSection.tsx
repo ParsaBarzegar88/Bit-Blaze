@@ -18,7 +18,7 @@ const HeroSection = () => {
           className="object-cover"
         />
       </div>
-      <div className={`absolute max-[500px]:w-[300px] max-[500px]:bottom-0 max-[500px]:h-[370px]  w-[500px] h-[500px]  md:w-[500px] md:h-[600px] lg:w-[754px] lg:h-[678px] bottom-0 left-1 max-md:-z-0  md:left-1/2 transform -translate-x-1/4  z-[1]`}>
+      <div className={`absolute max-[500px]:w-[300px] max-[500px]:bottom-0 max-[500px]:h-[370px] w-[500px] h-[500px]  md:w-[500px] md:h-[600px] lg:w-[754px] lg:h-[678px] bottom-0 left-1 max-md:-z-0  md:left-1/2 transform -translate-x-1/4  z-[1]`}>
         <Image
           priority
           fill
@@ -95,10 +95,10 @@ const HeroSection = () => {
                 </p>
               </div>
               <div className="flex flex-row flex-wrap gap-3 md:gap-5 justify-center lg:justify-start">
-                <Button variant="outline" size="sm" className="font-[500] text-[14px] md:text-[16px] p-2 cursor-pointer text-[#363636]">
+                <Button variant="outline" size="sm" className="font-[500] text-[14px] md:text-[16px] p-2 dark:bg-[#dfdfdf] dark:hover:text-[#363636] dark:hover:bg-[#FFFFFF] hover:text-[#363636] hover:bg-[#FFFFFF] bg-[#dfdfdf] cursor-pointer text-[#363636]">
                   آسون رزرو کن<MdKeyboardArrowLeft size={"2px"} />
                 </Button>
-                <Button size="sm" className="font-[500] text-[14px] md:text-[16px] p-2 cursor-pointer bg-[#363636] text-[#FFFFFF]">
+                <Button size="sm" className="font-[500] text-[14px] md:text-[16px] p-2 dark:hover:bg-[#1d1d1d] cursor-pointer bg-[#363636] text-[#FFFFFF]">
                   رهن و اجاره ملک<MdKeyboardArrowLeft size={"2px"} />
                 </Button>
               </div>
