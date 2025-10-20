@@ -17,7 +17,7 @@ const HouseBreadcrumb = () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className='rotate-180 text-[#AAAAAA]' />
                 <BreadcrumbItem>
-                    <BreadcrumbPage className='text-[#8CFF45]'>رزرو خانه</BreadcrumbPage>
+                    <BreadcrumbPage className='dark:text-[#8CFF45]  text-[#66b436]'>رزرو خانه</BreadcrumbPage>
                 </BreadcrumbItem>
             </BreadcrumbList>
         </Breadcrumb>

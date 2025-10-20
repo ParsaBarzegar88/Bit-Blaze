@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation'
 import ButtonSubmit from '../register/ButtonSubmit'
 import { INewPasswordResponse } from '@/app/(public)/(auth)/resetPassword/newPassword/page'
 import { toast } from 'react-toastify'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { BsPersonPlus } from 'react-icons/bs'
 interface IProps {
     action: (prevState: INewPasswordResponse,
         formData: FormData
@@ -58,14 +60,14 @@ const NewPassword: FC<IProps> = ({ action }) => {
     return (
         <div
             style={{ padding: "0" }}
-            className='flex flex-col sm:flex-row-reverse p-0 items-center gap-2 sm:gap-4 md:gap-30 justify-center w-full max-w-full sm:max-w-[1376px] m-auto px-2 sm:p-10 py-4'>
+            className='flex flex-col sm:flex-row-reverse p-0 items-center gap-6 sm:gap-4 md:gap-30 justify-center w-full max-w-full sm:max-w-[1376px] m-auto px-2 sm:p-10 py-4'>
             <LeftSide />
             <div className="w-full max-w-[590.75px] min-h-[200px] sm:min-h-[300px] md:min-h-[600px] h-auto overflow-hidden flex flex-col">
                 <div className="flex flex-col gap-3 sm:gap-5">
-                    <h1 className="text-2xl md:text-[32px] font-[300] whitespace-nowrap text-center md:text-right">
-                        به خانواده دلتا ، خوش برگشتی ! {email} {resetCode}
+                    <h1 className="text-2xl md:text-[32px] font-[300] whitespace-nowrap text-center md:text-right dark:text-white text-black">
+                        به خانواده دلتا ، خوش برگشتی !
                     </h1>
-                    <p className="text-sm md:text-[16px] font-[500] text-center md:text-right">
+                    <p className="text-sm md:text-[16px] font-[500] text-center md:text-right dark:text-white text-black">
                         با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از پروژه هاتون خبر بگیرید !
                     </p>
                 </div>
@@ -73,18 +75,18 @@ const NewPassword: FC<IProps> = ({ action }) => {
                     <div className="flex flex-col">
                         <div className="max-w-[588.25px] w-full h-auto bg-[#303030] flex flex-row justify-between rounded-2xl gap-2 p-1 sm:p-2">
                             <div className="flex max-w-[275px] w-full flex-row-reverse justify-center items-center py-1 sm:py-2 px-2 sm:px-4 rounded-[12px] space-x-2">
-                                <p className='font-[600] text-[16px] text-[#AAAAAA] flex'>ورود با پسورد</p>
+                                <p className='font-[600] text-[16px] text-[#AAAAAA] flex'>ورود </p>
                                 <UserWhiteSVG />
                             </div>
                             <div className="flex bg-[#8CFF45] shadow-[0_0_10px_3px_rgba(140,255,69,0.3)] max-w-[275px] w-full flex-row-reverse justify-center items-center py-1 sm:py-2 px-2 sm:px-4 rounded-[12px] space-x-2">
-                                <p className='font-[600] text-[16px] text-[#363636] flex'>ورود با شماره</p>
-                                <UserwPlusSVG />
+                                <p className='font-[600] text-[16px] dark:text-[#363636] text-[#f3eeee]'>فراموشی رمز عبور</p>
+                                <BsPersonPlus className='dark:text-[#363636] text-white' />
                             </div>
                         </div>
                     </div>
                     <div className='flex flex-row max-w-[588px] w-full items-center justify-between gap-4'>
                         <div className='flex bg-[#8CFF45] shadow-[0_0_8px_2px_rgba(140,255,69,0.2)] w-[278px] h-[48px] flex-row-reverse justify-center items-center rounded-2xl space-x-2'>
-                            <p className='font-[600] text-[16px] text-[#363636] flex'>ورود با حساب گوگل</p>
+                            <p className='font-[600] text-[16px] dark:text-[#363636] text-[#f3eeee] flex'>ورود با حساب گوگل</p>
                             <Image src={'/assets/authImages/GoogleIcon.png'} width={24} height={24} alt='Google' />
                         </div>
                         <div className='flex bg-[#444444] w-[278px] h-[48px] flex-row-reverse justify-center items-center rounded-2xl space-x-2'>
@@ -94,16 +96,16 @@ const NewPassword: FC<IProps> = ({ action }) => {
                     </div>
                     <div className="flex max-w-[558px] h-[20px] w-full items-center mr-auto ml-auto rounded-full">
                         <LinearLSVG />
-                        <span className="text-lg font-semibold text-[#AAAAAA] leading-8 px-8 py-3 whitespace-nowrap">یا میتونید</span>
+                        <span className="text-lg font-semibold dark:text-[#AAAAAA] text-[#857474]  leading-8 px-8 py-3 whitespace-nowrap">یا میتونید</span>
                         <LinearRSVG />
                     </div>
                     <form action={formAction} className='flex gap-4 flex-col'>
-                        <fieldset className="border border-[#AAAAAA] p-2 relative rounded-2xl min-w-[200px] w-full">
-                            <legend className="text-[#AAAAAA] text-[16px] font-[400] px-2">
+                        <fieldset className="border dark:border-[#AAAAAA] border-black p-2 relative rounded-2xl min-w-[200px] w-full">
+                            <legend className="dark:text-[#AAAAAA] text-black text-[16px] font-[400] px-2">
                                 رمز عبور جدید <span className="text-red-500">*</span> :
                             </legend>
-                            <input type={showPassword ? 'text' : 'password'} name='newPassword' className="w-full outline-0  text-[#AAAAAA] mr-2" />
-                            <Image width={24} height={24} onClick={togglePassword} src={showPassword ? '/assets/authImages/hide.png' : '/assets/authImages/visible.png'} alt="hide adn show picture" className="cursor-pointer absolute top-1 left-4 w-6" />
+                            <input type={showPassword ? 'text' : 'password'} name='newPassword' className="w-full outline-0 dark:text-[#AAAAAA]  dark:placeholder:text-[#AAAAAA] placeholder:text-black mr-2 text-black" />
+                            {showPassword ? (<FiEye onClick={togglePassword} className='dark:text-[#AAAAAA] cursor-pointer absolute top-1 left-4 text-black h-5 w-5' />) : (<FiEyeOff onClick={togglePassword} className='dark:text-[#AAAAAA]cursor-pointer absolute top-1 left-4 text-white h-5 w-5' />)}
                         </fieldset>
                         <input type="hidden" name='resetCode' value={resetCode} />
                         <input type="hidden" name='email' value={email} />
