@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import ButtonSubmit from '../register/ButtonSubmit'
 import { IResetPasswordResponse } from '@/app/(public)/(auth)/resetPassword/page'
 import { toast } from 'react-toastify'
+import { BsPersonPlus } from 'react-icons/bs'
 interface IProps {
     action: (prevState: IResetPasswordResponse,
         formData: FormData
@@ -23,20 +24,30 @@ const SendEmail: FC<IProps> = ({ action }) => {
     const router = useRouter()
     const { setEmail } = useAuth()
 
-        useEffect(() => {
-            if (state.error) {
-                toast.error(state.error, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                })
-            }
-            else if (state.email) {
-                toast.success("کد به ایمیل شما با موفقیت ارسال شد", {
+    useEffect(() => {
+        if (state.error) {
+            toast.error(state.error, {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+        else if (state.email) {
+            toast.success("کد به ایمیل شما با موفقیت ارسال شد", {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+            setTimeout(() => {
+                toast.success("در حال رفتن به مرحله بعدی", {
                     position: 'top-right',
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -46,23 +57,13 @@ const SendEmail: FC<IProps> = ({ action }) => {
                     progress: undefined,
                 })
                 setTimeout(() => {
-                    toast.success("در حال رفتن به مرحله بعدی", {
-                        position: 'top-right',
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    })
-                    setTimeout(() => {
-                        if (state.email) {
-                            setEmail(state.email)
-                            router.push("/resetPassword/verifyCode");
-                        }
-                    }, 2800)
-                }, 3000);
-            };
+                    if (state.email) {
+                        setEmail(state.email)
+                        router.push("/resetPassword/verifyCode");
+                    }
+                }, 2800)
+            }, 3000);
+        };
     }, [state, router, setEmail]);
 
 
@@ -75,10 +76,10 @@ const SendEmail: FC<IProps> = ({ action }) => {
             <LeftSide />
             <div className="w-full max-w-[590.75px] min-h-[200px] sm:min-h-[300px] md:min-h-[600px] h-auto overflow-hidden flex flex-col">
                 <div className="flex flex-col gap-3 sm:gap-5">
-                    <h1 className="text-2xl md:text-[32px] font-[300] whitespace-nowrap text-center md:text-right">
+                    <h1 className="text-2xl md:text-[32px] font-[300] whitespace-nowrap text-center md:text-right dark:text-white text-black">
                         به خانواده دلتا ، خوش برگشتی !
                     </h1>
-                    <p className="text-sm md:text-[16px] font-[500] text-center md:text-right">
+                    <p className="text-sm md:text-[16px] font-[500] text-center md:text-right dark:text-white text-black">
                         با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از پروژه هاتون خبر بگیرید !
                     </p>
                 </div>
@@ -86,12 +87,12 @@ const SendEmail: FC<IProps> = ({ action }) => {
                     <div className="flex flex-col">
                         <div className="max-w-[588.25px] w-full h-auto bg-[#303030] flex flex-row justify-between rounded-2xl gap-2 p-1 sm:p-2">
                             <div className="flex max-w-[275px] w-full flex-row-reverse justify-center items-center py-1 sm:py-2 px-2 sm:px-4 rounded-[12px] space-x-2">
-                                <p className='font-[600] text-[16px] text-[#AAAAAA] flex'>ورود با پسورد</p>
+                                <p className='font-[600] text-[16px] text-[#AAAAAA] flex'>ورود </p>
                                 <UserWhiteSVG />
                             </div>
                             <div className="flex bg-[#8CFF45] shadow-[0_0_10px_3px_rgba(140,255,69,0.3)] max-w-[275px] w-full flex-row-reverse justify-center items-center py-1 sm:py-2 px-2 sm:px-4 rounded-[12px] space-x-2">
-                                <p className='font-[600] text-[16px] text-[#363636] flex'>ورود با شماره</p>
-                                <UserwPlusSVG />
+                                <p className='font-[600] text-[16px] dark:text-[#363636] text-[#f3eeee]'>فراموشی رمز عبور</p>
+                                <BsPersonPlus className='dark:text-[#363636] text-white' />
                             </div>
                         </div>
                     </div>
@@ -107,15 +108,15 @@ const SendEmail: FC<IProps> = ({ action }) => {
                     </div>
                     <div className="flex max-w-[558px] h-[20px] w-full items-center mr-auto ml-auto rounded-full">
                         <LinearLSVG />
-                        <span className="text-lg font-semibold text-[#AAAAAA] leading-8 px-8 py-3 whitespace-nowrap">یا میتونید</span>
+                        <span className="text-lg font-semibold dark:text-[#AAAAAA] text-[#857474]  leading-8 px-8 py-3 whitespace-nowrap">یا میتونید</span>
                         <LinearRSVG />
                     </div>
                     <form action={formAction} className='flex gap-4 flex-col'>
-                        <fieldset className="border border-[#AAAAAA] p-2 rounded-2xl min-w-[200px] w-full">
-                            <legend className="text-[#AAAAAA] text-[16px] font-[400] px-2">
+                        <fieldset className="border dark:border-[#AAAAAA] border-black p-2 rounded-2xl min-w-[200px] w-full">
+                            <legend className="dark:text-[#AAAAAA] text-black text-[16px] font-[400] px-2">
                                 ایمیل شما <span className="text-red-500">*</span> :
                             </legend>
-                            <input type='email' name='email' className="w-full outline-0 text-[#AAAAAA] mr-2" placeholder="مثال : example @gmail.com" />
+                            <input type='email' name='email' className="w-full outline-0 dark:placeholder:text-[#AAAAAA] placeholder:text-black text-black mr-2" placeholder="مثال : example @gmail.com" />
                         </fieldset>
                         <div className='mt-[42px]'>
                             <ButtonSubmit />
