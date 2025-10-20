@@ -115,7 +115,7 @@ const MortgageRentFilterFirst:FC<IProps> = ({totalCount}) => {
         sortBy.find((item) => item.value === searchParams.get('sort'))?.label || 'جدید ترین ها'
     );
     const [selectedHouseType, setSelectedHouseType] = useState(
-        houseType.find((item) => item.value === searchParams.get('transactionType'))?.label || 'همه'
+        houseType.find((item) => item.value === searchParams.get('propertyType'))?.label || 'همه'
     );
     const [selectedTradeType, setSelectedTradeType] = useState(
         tradeType.find((item) => item.value === searchParams.get('transactionType'))?.label || 'همه'
@@ -315,7 +315,7 @@ const MortgageRentFilterFirst:FC<IProps> = ({totalCount}) => {
                                                         const selected = tradeType.find(item => item.label === currentValue)
                                                         if (selected) {
                                                             setSelectedTradeType(selected.label);
-                                                            updateSearchParams('transactionType', selected.value)
+                                                            updateSearchParams('propertyType', selected.value)
                                                         }
                                                         setOpenTradeType(false);
                                                     }}
