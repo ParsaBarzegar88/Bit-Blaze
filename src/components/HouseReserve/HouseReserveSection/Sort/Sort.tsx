@@ -15,7 +15,7 @@ const Sort = () => {
 
   const updateSearchParams = (key: string, value: number | null) => {
     const params = new URLSearchParams(searchParams);
-    if (value === 0 || value === null) { 
+    if (value === 0 || value === null) {
       params.delete(key);
     } else {
       params.set(key, value.toString());
@@ -24,37 +24,43 @@ const Sort = () => {
   };
 
   return (
-    <div 
+    <div
       style={{ direction: "rtl" }}
       className='flex flex-col sm:flex-row gap-3 md:gap-4 w-full mb-4 md:mb-7'
     >
       <div className="w-full ">
         <div className="group">
-          <label className="block group-hover:text-[#FFFFFF] text-[#AAAAAA] font-[400] text-xs md:text-[13px] mb-1">
+          <label className="block dark:group-hover:text-[#FFFFFF] dark:text-[#AAAAAA] text-black font-[400] text-xs md:text-[13px] mb-1">
             حداقل قیمت :
           </label>
           <input
             type="number"
-            className="w-full h-[44px] md:h-[50px] px-3 bg-transparent border border-[#AAAAAA] rounded-xl md:rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] hover:bg-[#353535] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right remove-arrows text-sm md:text-base"
+            className="w-full h-[44px] md:h-[50px] px-3 bg-[#ffffff] dark:bg-transparent border placeholder:text-black text-black
+             border-[#AAAAAA] dark:border-[#AAAAAA] rounded-xl md:rounded-2xl dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA]
+              dark:group-hover:text-[#FFFFFF] dark:placeholder:text-[#AAAAAA] dark:hover:bg-[#353535] dark:focus:outline-none
+               dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right remove-arrows text-sm md:text-base"
             placeholder="0 تومان"
             value={minimumPrice}
             onChange={(e) => {
               const value = Number(e.target.value);
               setMinimumPrice(value);
-              updateSearchParams("minPrice", value); 
+              updateSearchParams("minPrice", value);
             }}
           />
         </div>
       </div>
-      
+
       <div className="w-full">
         <div className="group">
-          <label className="block group-hover:text-[#FFFFFF] text-[#AAAAAA] font-[400] text-xs md:text-[13px] mb-1">
+          <label className="block dark:group-hover:text-[#FFFFFF] dark:text-[#AAAAAA] text-black font-[400] text-xs md:text-[13px] mb-1">
             حداکثر قیمت :
           </label>
           <input
             type="number"
-            className="w-full h-[44px] md:h-[50px] px-3 bg-transparent border border-[#AAAAAA] rounded-xl md:rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] hover:bg-[#353535] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right remove-arrows text-sm md:text-base"
+            className="w-full h-[44px] md:h-[50px] px-3 bg-[#ffffff] dark:bg-transparent border placeholder:text-black text-black dark:border-[#AAAAAA]
+             border-[#AAAAAA] rounded-xl md:rounded-2xl dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF]
+              dark:placeholder:text-[#AAAAAA] dark:hover:bg-[#353535] dark:focus:outline-none dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] 
+              text-right remove-arrows text-sm md:text-base"
             placeholder="0 تومان"
             value={maximumPrice}
             onChange={(e) => {

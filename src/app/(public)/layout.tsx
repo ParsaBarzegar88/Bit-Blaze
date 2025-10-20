@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${PeydaFanum.className} antialiased bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
+        className={`${PeydaFanum.className} bg-[#ffffff] antialiased dark:bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
       >
         <ToggleDarkAndLightProvider>
           <div className='max-w-[1920px] w-full flex flex-col relative overflow-x-hidden'>
