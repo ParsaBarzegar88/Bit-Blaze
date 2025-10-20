@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { FC, useActionState, useEffect } from 'react'
 import TheDeltaRealEstatementSVG from './footerSVG/theDeltaRealEstatementSVG'
 import CallSVG from './footerSVG/callSVG'
 import ArrowTriangleBlackLeftSVG from './footerSVG/arrowTriangleBlackLeftSVG'
@@ -16,81 +17,117 @@ import { FaInstagram } from "react-icons/fa6";
 import { FaTelegram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import Style from './footer.module.css'
-const Footer = () => {
+import { IFooterResponse } from '@/app/(public)/layout'
+import { toast } from 'react-toastify'
+
+interface IProps {
+  action: (prevState: IFooterResponse,
+    formData: FormData
+  ) => Promise<IFooterResponse>;
+}
+
+const Footer:FC<IProps> = ({action}) => {
+    const initialState:IFooterResponse = {error:""}
+    const [state,formAction,pending] = useActionState(action , initialState)
+    useEffect(() => {
+        if (state.error) {
+          toast.error(state.error, {
+            position: 'bottom-center',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } 
+        else {
+          toast.success('عملیات با موفقیت انجام شد', {
+            position: 'bottom-center',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      }, [state]);;
     return (
         <div className='max-w-[98%] w-full mx-auto px-2 sm:px-4'>
             <div className='items-end w-full flex justify-end'>
                 <TheDeltaRealEstatementSVG />
             </div>
             
-            <div className={`${Style.beforeMargin} max-[400px]:rounded-tr-[17px] max-[400px]:before:hidden max-[400px]:after:hidden bg-[#8CFF45] mb-5 relative w-full pb-2 sm:mt-0 mt-10 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#8CFF45] before:[clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)] 
+            <div className={`${Style.beforeMargin} max-[400px]:rounded-tr-[17px] max-[400px]:before:hidden max-[400px]:after:hidden bg-[#58893a] dark:bg-[#8CFF45] mb-5 relative w-full pb-2 sm:mt-0 mt-10 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
+                    dark:before:bg-[#8CFF45] before:bg-[#58893a] before:[clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)] 
                     before:h-16 before:rounded-tr-[17px] before:w-[330px] before:absolute before:-translate-y-16 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(20deg)] after:top-[-1.09rem] after:right-[17.6%] after:shadow-[6px_10px_0_0_rgba(140,255,69,1)]
+                    after:transform-[rotate(20deg)] after:top-[-1.09rem] after:right-[17.6%] after:shadow-[6px_10px_0_0_rgba(88,137,58,1)] dark:after:shadow-[6px_10px_0_0_rgba(140,255,69,1)]
                     before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                     transition-all duration-300`}>
                     
                 <div className="absolute max-[400px]:hidden top-[-3.9rem] right-[5px] w-[280px] h-[2.1rem] rounded-[34px] 
-                        outline-[5px] outline-[#8CFF45] transition-all duration-300"></div>
+                        outline-[5px] outline-[#58893a] dark:outline-[#8CFF45] transition-all duration-300"></div>
                 
                 <div className='flex flex-col max-w-[98%] max-[400px]:-mt-10 w-full justify-center mx-auto'>
-                    <div className='bg-[#232323] max-[400px]:hidden rounded-2xl flex flex-row gap-2  w-[250px] h-[50px] justify-center items-center text-[#FFFFFF] -mt-12 z-[1] sm:mr-2 mr-4'>
+                    <div className='dark:bg-[#232323] dark:fill-white fill-black bg-white text-black max-[400px]:hidden rounded-2xl flex flex-row gap-2  w-[250px] h-[50px] justify-center items-center dark:text-[#FFFFFF] -mt-12 z-[1] sm:mr-2 mr-4'>
                         09229167194 - 09154569872
                         <CallSVG />
                     </div>
                     
                     <div className='flex flex-col lg:flex-row justify-between gap-8 mt-8'>
                         <div className='flex flex-col gap-3 w-full lg:w-1/2'>
-                            <div className='flex flex-row text-[#363636] gap-3 items-center font-[500] text-[16px]'>
+                            <div className='flex flex-row dark:fill-[#363636] fill-white text-white dark:text-[#363636] gap-3 items-center font-[500] text-[16px]'>
                                 همیشه کنارتیم
                                 <ArrowTriangleBlackLeftSVG />
                             </div>
-                            <h2 className="text-[#363636] font-[500]">
-                                <b className='text-2xl md:text-[30px]'>24 ساعت روز و 7 روز هفته در اختیار شماییم !</b>
+                            <h2 className="dark:text-[#363636] text-white font-[500]">
+                                <b className='text-2xl md:text-[30px] text-white dark:text-[#363636]'>24 ساعت روز و 7 روز هفته در اختیار شماییم !</b>
                             </h2>
-                            <p className='text-[#363636] text-sm md:text-base'>تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی دارد تا بتواند در تمام لحظات کنار شما باشد .</p>
-                            
-                            <div className='flex flex-col gap-6 w-full'>
+                            <p className='dark:text-[#363636] text-white text-sm md:text-base'>تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی دارد تا بتواند در تمام لحظات کنار شما باشد .</p>
+                            <form className='flex flex-col gap-6 w-full' action={formAction}>
                                 <div className='flex flex-col sm:flex-row gap-5'>
-                                    <fieldset className="border border-[#363636] p-2 sm:p-3 rounded-2xl w-full">
-                                        <legend className="text-[#363636] text-sm sm:text-[16px] font-[400] px-2">
+                                    <fieldset className="border dark:border-[#363636] border-white p-2 sm:p-3 rounded-2xl w-full">
+                                        <legend className="dark:text-[#363636] text-white text-sm sm:text-[16px] font-[400] px-2">
                                             نام و نام خانوادگی :
                                         </legend>
                                         <input
                                             type="text"
-                                            className="w-full outline-0 text-[#tempUserId] mr-1 sm:mr-2 bg-transparent"
+                                            className="w-full outline-0 dark:text-[#363636] text-white mr-1 sm:mr-2 bg-transparent"
                                             placeholder="وارد کنید ...."
                                         />
                                     </fieldset>
-                                    <fieldset className="border border-[#363636] p-2 sm:p-3 rounded-2xl w-full">
-                                        <legend className="text-[#363636] text-sm sm:text-[16px] font-[400] px-2">
-                                            شماره یا ایمیل :
+                                    <fieldset className="border dark:border-[#363636] border-white p-2 sm:p-3 rounded-2xl w-full">
+                                        <legend className="dark:text-[#363636] text-white text-sm sm:text-[16px] font-[400] px-2">
+                                            عنوان :
                                         </legend>
                                         <input
                                             type="text"
-                                            className="w-full outline-0 text-[#tempUserId] mr-1 sm:mr-2 bg-transparent"
+                                            className="w-full outline-0 dark:text-[#363636] text-white mr-1 sm:mr-2 bg-transparent"
                                             placeholder="وارد کنید ...."
+                                            name='title'
                                         />
                                     </fieldset>
                                 </div>
                                 <div>
-                                    <fieldset className="border border-[#363636] p-2 sm:p-3 rounded-2xl w-full h-[150px]">
-                                        <legend className="text-[#363636] text-sm sm:text-[16px] font-[400] px-2">
+                                    <fieldset className="border dark:border-[#363636] border-white p-2 sm:p-3 rounded-2xl w-full h-[150px]">
+                                        <legend className="dark:text-[#363636] text-white text-sm sm:text-[16px] font-[400] px-2">
                                             پیام شما :
                                         </legend>
                                         <input
                                             type="text"
-                                            className="w-full outline-0 text-[#tempUserId] mr-1 sm:mr-2 bg-transparent"
+                                            className="w-full outline-0 dark:text-[#363636] text-white mr-1 sm:mr-2 bg-transparent"
                                             placeholder="...."
+                                            name='message'
                                         />
                                     </fieldset>
                                 </div>
-                                <button className='flex flex-row gap-3 justify-center items-center bg-[#363636] text-[#FFFFFF] w-full h-[50px] rounded-2xl'>
-                                    ارسال پیام
+                                <button type='submit' disabled={pending} className='flex flex-row gap-3 justify-center items-center bg-white dark:bg-[#363636] text-black dark:text-[#FFFFFF] w-full h-[50px] rounded-2xl'>
+                                    {pending ? (<Image width={30} height={30} src="/assets/authImages/infinite-spinner.svg" alt='spinner'/>) : "ارسال پیام "}
                                     <MdOutlineKeyboardArrowLeft />
                                 </button>
-                            </div>
+                            </form>
                         </div>
                         
                         <div className='relative w-full lg:w-1/2 justify-center lg:justify-end mt-8 lg:mt-0 hidden lg:flex'>

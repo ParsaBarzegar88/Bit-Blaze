@@ -13,7 +13,7 @@ interface IProps{
 const DreamRent:FC<IProps> = ({locations}) => {
   return (
     <div className='flex flex-col max-w-[98%] w-full m-auto justify-center items-center gap-5 relative px-4 lg:px-0'>
-      <div className='flex flex-row justify-center lg:justify-start gap-3 text-[#8CFF45] items-center font-[500] text-[14px] lg:text-[16px] mx-auto mt-20 lg:mt-44'>
+      <div className='flex flex-row justify-center lg:justify-start gap-3 dark:fill-[#8CFF45] fill-[#58893a] text-[#58893a] dark:text-[#8CFF45] items-center font-[500] text-[14px] lg:text-[16px] mx-auto mt-20 lg:mt-44'>
         <div className='hidden lg:flex'>
           <ArrowTriangleGreenRightSVG/>
         </div>
@@ -22,10 +22,10 @@ const DreamRent:FC<IProps> = ({locations}) => {
           <ArrowTriangleGreenLeftSVG/>
         </div>
       </div>
-      <h2 className="text-[#FFFFFF] text-[20px] lg:text-[26px] font-[500] text-center">
+      <h2 className="dark:text-[#FFFFFF] text-black text-[20px] lg:text-[26px] font-[500] text-center">
         اجاره ویلا در <b className='text-[24px] lg:text-[30px]'>محبوب ترین مقاصد این ماه</b>
       </h2>
-      <p className="text-[#FFFFFF] text-[14px] lg:text-[16px] font-[400] text-center max-w-[90%] lg:max-w-full">
+      <p className="dark:text-[#FFFFFF] text-black text-[14px] lg:text-[16px] font-[400] text-center max-w-[90%] lg:max-w-full">
         در اینجا می توانید محبوب ترین مقصد هارا از بین انتخاب کاربران مشاهده کنید و آن ها بررسی کنید !
       </p>
       <div className='flex flex-row justify-between max-w-[98%] h-[380px] animate-fade w-full'>
@@ -73,7 +73,7 @@ const DreamRent:FC<IProps> = ({locations}) => {
           })}
         </Swiper>
       </div>
-      <div className="absolute left-[-98px] z-[1] top-1/2 transform -translate-y-1/2 w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[50px] bg-[#8CFF45]/15 rounded-full"></div>
+      <div className="absolute left-[-98px] z-[1] top-1/2 transform -translate-y-1/2 w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[50px] bg-[#8CFF45]/25  dark:bg-[#8CFF45]/15 rounded-full"></div>
     </div>
   )
 }
