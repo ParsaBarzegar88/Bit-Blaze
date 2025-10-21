@@ -4,7 +4,6 @@ import Header from "@/components/Header/Header";
 import Footer from '@/components/Footer/Footer';
 import ToggleDarkAndLightProvider from './ThemeProvider';
 import { FooterFetch } from '@/core/api/Footer/Footer';
-
 export const PeydaFanum = localFont({
   src: [
     {
@@ -23,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${PeydaFanum.className} bg-[#ffffff] antialiased dark:bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
       >
