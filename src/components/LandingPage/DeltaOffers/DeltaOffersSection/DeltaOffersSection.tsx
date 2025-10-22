@@ -26,30 +26,30 @@ const DeltaOffersSection:FC<IProps> = ({houses}) => {
                     <ClockSVG/>
                 </div>
                 <div className='flex flex-col'>
-                    <div className='bg-[#2D2D2D] relative w-full h-fit rounded-bl-[40px] rounded-br-[40px] rounded-tl-[40px] 
+                    <div className='dark:bg-[#2D2D2D] bg-[#cccccc] before:bg-[#cccccc] after:shadow-[#cccccc] dark:after:shadow-[#2D2D2D]  relative w-full h-fit rounded-bl-[40px] rounded-br-[40px] rounded-tl-[40px] 
                                     before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] before:content-[""] 
                                     before:w-56 before:h-16 before:-translate-y-16 before:absolute before:top-0 
-                                    before:right-0 before:rounded-tr-[20px] before:bg-[#2D2D2D] after:absolute 
+                                    before:right-0 before:rounded-tr-[20px] dark:before:bg-[#2D2D2D] after:absolute 
                                     after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] after:transform-[rotate(11deg)] 
                                     after:top-[-1.2rem] after:right-[13.5rem] after:shadow-[6px_10px_0_0_rgba(45,45,45,1)]
                                     [&_.second-before]:absolute [&_.second-before]:content-[""] [&_.second-before]:w-[10.4rem] 
                                     [&_.second-before]:h-[2rem] [&_.second-before]:bg-transparent [&_.second-before]:rounded-[14px]
-                                    [&_.second-before]:outline-[5px] [&_.second-before]:outline-[#2D2D2D]
+                                    [&_.second-before]:outline-[5px] dark:[&_.second-before]:outline-[#2D2D2D] [&_.second-before]:outline-[#cccccc]
                                     [&_.second-before]:top-[-3.8rem] [&_.second-before]:right-[0.4rem]
                                     '>
                         <div className='flex flex-col gap-5 mt-5 max-w-[98%] w-full mx-auto mb-6'>
                             <div className="second-before"></div>
-                            <h3 className='text-[#8CFF45] text-[14px] lg:text-[16px] font-[500] flex flex-row gap-2 items-center justify-center lg:justify-start'>
+                            <h3 className='dark:text-[#8CFF45] text-[#58893a]  dark:fill-[#8CFF45] fill-[#58893a] text-[14px] lg:text-[16px] font-[500] flex flex-row gap-2 items-center justify-center lg:justify-start'>
                                 بهترین تخفیف
                                 <div className='hidden lg:flex'>
                                     <ArrowTriangleGreenLeftSVG/>
                                 </div>
                             </h3>
                             <div className='flex flex-col lg:flex-row w-full justify-between items-center gap-4 lg:gap-0'>
-                                <h2 className='font-[200] text-[24px] lg:text-[32px] text-[#FFFFFF] text-center lg:text-right'>
+                                <h2 className='font-[200] text-[24px] lg:text-[32px] text-black dark:text-[#FFFFFF] text-center lg:text-right'>
                                     <b className='font-[700] text-[24px] lg:text-[32px]'>پیشنهاد های ویژه</b> دلتا
                                 </h2>
-                                <div className='border border-[#FFFFFF] text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#FFFFFF] hover:text-[#000000] transition-all duration-300'>
+                                <div className='border dark:border-[#FFFFFF] border-black text-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
                                     مشاهده همه
                                     <MdOutlineKeyboardArrowLeft />
                                 </div>
@@ -103,7 +103,7 @@ const DeltaOffersSection:FC<IProps> = ({houses}) => {
                     </div>
                 </div>
             </div>
-            <div className="absolute right-[-50px] lg:right-[-109px] top-2 transform -translate-y-1/2 w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[40px] lg:blur-[50px] bg-[#7569FF]/15 rounded-full"></div>
+            <div className="absolute right-[-50px] lg:right-[-109px] top-2 transform -translate-y-1/2 w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[40px] lg:blur-[50px] bg-[#7569FF]/35 dark:bg-[#7569FF]/15 rounded-full"></div>
         </div>
     )
 }

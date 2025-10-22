@@ -11,7 +11,7 @@ const StarCategorySVG = () => {
     >
       <path
         d="M6 0L7.62054 4.37946L12 6L7.62054 7.62054L6 12L4.37946 7.62054L0 6L4.37946 4.37946L6 0Z"
-        className="fill-white group-hover:fill-[#363636] transition-colors"
+        className="dark:fill-white fill-black group-hover:fill-[#ffffff] dark:group-hover:fill-[#363636] transition-colors"
       />
     </svg>
   )
