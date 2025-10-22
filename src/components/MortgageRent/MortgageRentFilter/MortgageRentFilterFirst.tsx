@@ -155,7 +155,7 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent className="p-0 border-none min-w-[200px] w-fit">
-                                <Command className="bg-[#404040] text-[#FFFFFF] border-none rounded-[6px]">
+                                <Command className="dark:bg-[#404040] bg-white text-[#FFFFFF] border-none rounded-[6px]">
                                     <CommandInput placeholder="جستجوی استان..." className="h-9" />
                                     <CommandList>
                                         <CommandEmpty>استان یافت نشد</CommandEmpty>
@@ -171,10 +171,10 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                                         updateSearchParams('location', newValue)
                                                     }}
 
-                                                    className="text-[#FFFFFF] rounded-[3px]"
+                                                    className="dark:text-[#FFFFFF] text-black rounded-[3px]"
                                                 >
                                                     {selectedProvince === province || (!selectedProvince && province === 'همه') ? (
-                                                        <Check className="h-4 w-4 text-white" />
+                                                        <Check className="h-4 w-4 dark:text-white text-black" />
                                                     ) : null}
                                                     {province}
                                                 </CommandItem>
@@ -206,7 +206,7 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent className="p-0 border-none min-w-[150px] w-fit">
-                                <Command className="bg-[#404040] border-none rounded-[6px]">
+                                <Command className="dark:bg-[#404040] bg-white border-none rounded-[6px]">
                                     <CommandList>
                                         <CommandGroup>
                                             {sortBy.map((sorts, index) => (
@@ -221,10 +221,10 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                                         }
                                                         setOpenSorts(false);
                                                     }}
-                                                    className="text-[#FFFFFF] rounded-[3px]"
+                                                    className="dark:text-[#FFFFFF] text-black rounded-[3px]"
                                                 >
                                                     {selectedSort === sorts.label || (!selectedSort && sorts.label === 'همه') ? (
-                                                        <Check className="h-4 w-4 text-white" />
+                                                        <Check className="h-4 w-4 dark:text-white text-black" />
                                                     ) : null}
                                                     {sorts.label}
                                                 </CommandItem>
@@ -257,7 +257,7 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent className="p-0 border-none min-w-[120px] w-fit">
-                                <Command className="bg-[#404040] border-none rounded-[6px]">
+                                <Command className="dark:bg-[#404040] bg-white border-none rounded-[6px]">
                                     <CommandList>
                                         <CommandGroup>
                                             {houseType.map((houses, index) => (
@@ -272,10 +272,10 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                                         }
                                                         setOpenHouseType(false);
                                                     }}
-                                                    className="text-[#FFFFFF] rounded-[3px]"
+                                                    className="dark:text-[#FFFFFF] text-black rounded-[3px]"
                                                 >
                                                     {selectedHouseType === houses.label || (!selectedHouseType && houses.label === 'همه') ? (
-                                                        <Check className="h-4 w-4 text-white" />
+                                                        <Check className="h-4 w-4 dark:text-white text-black" />
                                                     ) : null}
                                                     {houses.label}
                                                 </CommandItem>
@@ -308,7 +308,7 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent className="p-0 border-none w-fit min-w-[120px]">
-                                <Command className="bg-[#404040] border-none">
+                                <Command className="dark:bg-[#404040] bg-[#FFFFFF] border-none">
                                     <CommandList>
                                         <CommandGroup>
                                             {tradeType.map((trade, index) => (
@@ -323,10 +323,10 @@ const MortgageRentFilterFirst: FC<IProps> = ({ totalCount }) => {
                                                         }
                                                         setOpenTradeType(false);
                                                     }}
-                                                    className="text-[#FFFFFF]"
+                                                    className="dark:text-[#FFFFFF] text-black"
                                                 >
                                                     {selectedTradeType === trade.label || (!tradeType && trade.label === 'همه') ? (
-                                                        <Check className="h-4 w-4 text-white" />
+                                                        <Check className="h-4 w-4 dark:text-white text-black" />
                                                     ) : null}
                                                     {trade.label}
                                                 </CommandItem>

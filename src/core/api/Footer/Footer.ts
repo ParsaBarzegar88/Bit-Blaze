@@ -31,7 +31,6 @@ export const FooterFetch = async (
     });
 
     const data = await response.json();
-
     if (!response.ok) {
       return {
         error: data.error || "خطایی در ورود رخ داد",
