@@ -7,6 +7,7 @@ import { useHouse } from '@/context/HouseContext';
 import { CiLocationOn } from "react-icons/ci";
 import { IoIosStar } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
+import Link from 'next/link';
 interface IProps {
   value: IHousesData;
 }
@@ -41,7 +42,7 @@ const HouseCard: FC<IProps> = ({ value }) => {
       <div className='flex flex-col md:flex-row gap-4 w-full items-start'>
         <div className='relative w-full md:w-[180px] lg:w-[228px]'>
           <Image
-            className='bg-secondary-light3 w-full h-[160px] md:h-[120px] lg:h-[144px] dark:group-hover:shadow-[#8CFF451F] group-hover:shadow-[#8CFF451F] group-hover:shadow-2xl group-hover:border group-hover:border-[#8CFF45] rounded-2xl object-cover'
+            className="bg-secondary-light3 w-full h-[160px] md:h-[120px] lg:h-[144px] dark:group-hover:shadow-[#8CFF451F] group-hover:shadow-[#8CFF451F] group-hover:shadow-2xl group-hover:border group-hover:border-[#8CFF45] rounded-2xl object-cover"
             width={228}
             height={144}
             src={value.photos !== null && value.photos.length > 0 && value.photos[0].trim() !== '' ? value.photos[0] : "https://storage.c2.liara.space/sepehr-ac/uploads/1753995432907-white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg"}
@@ -99,10 +100,10 @@ const HouseCard: FC<IProps> = ({ value }) => {
           <h2 className={`${value.discounted_price === null ? "m-1 md:mt-10 flex items-center" : ""} dark:text-[#8CFF45]  text-[#66b436] items-center flex text-base md:text-lg lg:text-2xl font-bold whitespace-nowrap order-1 md:order-2`}>
             {value.discounted_price ? value.discounted_price : value.price} ت
           </h2>
-          <button className='dark:text-[#8CFF45]  text-[#66b436] dark:group-hover:text-black group-hover:text-white  cursor-pointer rounded-[12px] md:rounded-[14px] flex flex-row-reverse whitespace-nowrap items-center justify-center w-full md:w-[140px] lg:w-[175px] h-[36px] md:h-[44px] border dark:border-[#8CFF45] border-[#66b436] bg-transparent dark:group-hover:bg-[#8CFF45] group-hover:bg-[#66b436] transition-all duration-300 font-medium px-3 md:px-4 text-sm md:text-base order-3'>
+          <Link href={`/house-reserve/${value.id}`} className='dark:text-[#8CFF45]  text-[#66b436] dark:group-hover:text-black group-hover:text-white  cursor-pointer rounded-[12px] md:rounded-[14px] flex flex-row-reverse whitespace-nowrap items-center justify-center w-full md:w-[140px] lg:w-[175px] h-[36px] md:h-[44px] border dark:border-[#8CFF45] border-[#66b436] bg-transparent dark:group-hover:bg-[#8CFF45] group-hover:bg-[#66b436] transition-all duration-300 font-medium px-3 md:px-4 text-sm md:text-base order-3'>
             بررسی و رزرو هتل
             <LuHotel className='dark:text-[#8CFF45]  text-[#66b436] ml-1 md:ml-2 dark:group-hover:text-black group-hover:text-white flex-shrink-0 text-sm md:text-base' />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
