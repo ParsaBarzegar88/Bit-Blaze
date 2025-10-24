@@ -51,7 +51,6 @@ export const getMortgageRentHouses = async (params: GetMortgageRentHousesParams 
 
     const baseURL = process.env.API_BASE_URL || "";
     const response = await fetch(`${baseURL}/api/houses?${queryParams}`);
-    console.log(queryParams)
     if (!response.ok) {
       throw new Error("Failed to fetch houses");
     }

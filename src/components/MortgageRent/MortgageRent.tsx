@@ -15,7 +15,7 @@ const MortgageRent:FC<IProps> = async ({searchParam = {}}) => {
             <MortgageRentBreadcrumb />
             <MortgageRentFilterFirst totalCount={getHouses} />
             <MortgageRentFilterSecond />
-            <div className='mt-8 bg-[#4E4E4E] w-full h-[2px]'></div>
+            <div className='mt-8 bg-[#3b3b3b] dark:bg-[#4E4E4E] w-full h-[2px]'></div>
             <MortgageRentSection houses={getHouses} />
         </div>
     )

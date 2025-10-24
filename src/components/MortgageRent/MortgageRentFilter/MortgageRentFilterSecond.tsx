@@ -48,72 +48,90 @@ const MortgageRentFilterSecond: React.FC = () => {
     <div className="flex flex-col lg:flex-row gap-5 w-full mt-10 items-end">
       <div className="flex flex-row lg:w-fit w-full gap-5">
         <div className="flex flex-col lg:w-fit w-full gap-1 group">
-          <p className="text-[#AAAAAA] group-hover:text-[#FFFFFF] text-[13px]">حداقل رهن :</p>
+          <p className="dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF] text-[#5f5f5f] group-hover:text-black text-[13px]">حداقل رهن :</p>
           <input
             value={minimumMortgage ?? ''}
             onChange={handleInputChange(setMinimumMortgage, 'minMortgage')}
-            className="h-[50px] w-full border-[#AAAAAA] border rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
+            className="h-[50px] w-full border-[#5f5f5f] dark:border-[#AAAAAA] border rounded-2xl group-hover:border-black
+             dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] text-[#5f5f5f] group-hover:text-[#5f5f5f] dark:group-hover:text-[#FFFFFF]
+            dark:placeholder:text-[#AAAAAA] placeholder:text-[#5f5f5f] focus:outline-none focus:border-black focus:text-black
+            dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
             type="number"
             placeholder="0 تومان"
             min="0"
           />
         </div>
         <div className="flex flex-col lg:w-fit w-full gap-1 group">
-          <p className="text-[#AAAAAA] group-hover:text-[#FFFFFF] text-[13px]">حداکثر رهن :</p>
+          <p className="dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF] text-[#5f5f5f] group-hover:text-black text-[13px]">حداکثر رهن :</p>
           <input
             value={maximumMortgage ?? ''}
             onChange={handleInputChange(setMaximumMortgage, 'maxMortgage')}
-            className="h-[50px] w-full border-[#AAAAAA] border rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
+            className="h-[50px] w-full border-[#5f5f5f] dark:border-[#AAAAAA] border rounded-2xl group-hover:border-black
+             dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] text-[#5f5f5f] group-hover:text-[#5f5f5f] dark:group-hover:text-[#FFFFFF]
+            dark:placeholder:text-[#AAAAAA] placeholder:text-[#5f5f5f] focus:outline-none focus:border-black focus:text-black
+            dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
             type="number"
             placeholder="0 تومان"
             min="0"
           />
         </div>
       </div>
-      <div className="h-[30px] hidden lg:flex w-[2px] bg-[#AAAAAA] mb-2"></div>
+      <div className="h-[30px] hidden lg:flex w-[2px] bg-[#5f5f5f] dark:bg-[#AAAAAA] mb-2"></div>
       <div className="flex flex-row lg:w-fit w-full gap-5">
         <div className="flex flex-col lg:w-fit w-full gap-1 group">
-          <p className="text-[#AAAAAA] group-hover:text-[#FFFFFF] text-[13px]">حداقل اجاره :</p>
+          <p className="dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF] text-[#5f5f5f] group-hover:text-black text-[13px]">حداقل اجاره :</p>
           <input
             value={minimumRent ?? ''}
             onChange={handleInputChange(setMinimumRent, 'minRent')}
-            className="h-[50px] w-full border-[#AAAAAA] border rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
+            className="h-[50px] w-full border-[#5f5f5f] dark:border-[#AAAAAA] border rounded-2xl group-hover:border-black
+             dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] text-[#5f5f5f] group-hover:text-[#5f5f5f] dark:group-hover:text-[#FFFFFF]
+            dark:placeholder:text-[#AAAAAA] placeholder:text-[#5f5f5f] focus:outline-none focus:border-black focus:text-black
+            dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
             type="number"
             placeholder="0 تومان"
             min="0"
           />
         </div>
         <div className="flex flex-col lg:w-fit w-full gap-1 group">
-          <p className="text-[#AAAAAA] group-hover:text-[#FFFFFF] text-[13px]">حداکثر اجاره :</p>
+          <p className="dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF] text-[#5f5f5f] group-hover:text-black text-[13px]">حداکثر اجاره :</p>
           <input
             value={maximumRent ?? ''}
             onChange={handleInputChange(setMaximumRent, 'maxRent')}
-            className="h-[50px] w-full border-[#AAAAAA] border rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
+            className="h-[50px] w-full border-[#5f5f5f] dark:border-[#AAAAAA] border rounded-2xl group-hover:border-black
+             dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] text-[#5f5f5f] group-hover:text-[#5f5f5f] dark:group-hover:text-[#FFFFFF]
+            dark:placeholder:text-[#AAAAAA] placeholder:text-[#5f5f5f] focus:outline-none focus:border-black focus:text-black
+            dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
             type="number"
             placeholder="0 تومان"
             min="0"
           />
         </div>
       </div>
-      <div className="h-[30px] hidden lg:flex w-[2px] bg-[#AAAAAA] mb-2"></div>
+      <div className="h-[30px] hidden lg:flex w-[2px] bg-[#5f5f5f] dark:bg-[#AAAAAA] mb-2"></div>
       <div className="flex flex-row lg:w-fit w-full gap-5">
         <div className="flex flex-col lg:w-fit w-full gap-1 group">
-          <p className="text-[#AAAAAA] group-hover:text-[#FFFFFF] text-[13px]">حداقل متراژ :</p>
+          <p className="dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF] text-[#5f5f5f] group-hover:text-black text-[13px]">حداقل متراژ :</p>
           <input
             value={minimumMeterage ?? ''}
             onChange={handleInputChange(setMinimumMeterage, 'minArea')}
-            className="h-[50px] w-full border-[#AAAAAA] border rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
+            className="h-[50px] w-full border-[#5f5f5f] dark:border-[#AAAAAA] border rounded-2xl group-hover:border-black
+             dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] text-[#5f5f5f] group-hover:text-[#5f5f5f] dark:group-hover:text-[#FFFFFF]
+            dark:placeholder:text-[#AAAAAA] placeholder:text-[#5f5f5f] focus:outline-none focus:border-black focus:text-black
+            dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
             type="number"
             placeholder="0 متر"
             min="0"
           />
         </div>
         <div className="flex flex-col lg:w-fit w-full gap-1 group">
-          <p className="text-[#AAAAAA] group-hover:text-[#FFFFFF] text-[13px]">حداکثر متراژ :</p>
+          <p className="dark:text-[#AAAAAA] dark:group-hover:text-[#FFFFFF] text-[#5f5f5f] group-hover:text-black text-[13px]">حداکثر متراژ :</p>
           <input
             value={maximumMeterage ?? ''}
             onChange={handleInputChange(setMaximumMeterage, 'maxArea')}
-            className="h-[50px] w-full border-[#AAAAAA] border rounded-2xl group-hover:border-[#FFFFFF] text-[#AAAAAA] group-hover:text-[#FFFFFF] placeholder:text-[#AAAAAA] focus:outline-none focus:border-[#FFFFFF] focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
+            className="h-[50px] w-full border-[#5f5f5f] dark:border-[#AAAAAA] border rounded-2xl group-hover:border-black
+             dark:group-hover:border-[#FFFFFF] dark:text-[#AAAAAA] text-[#5f5f5f] group-hover:text-[#5f5f5f] dark:group-hover:text-[#FFFFFF]
+            dark:placeholder:text-[#AAAAAA] placeholder:text-[#5f5f5f] focus:outline-none focus:border-black focus:text-black
+            dark:focus:border-[#FFFFFF] dark:focus:text-[#FFFFFF] text-right pr-2 remove-arrows"
             type="number"
             placeholder="0 متر"
             min="0"

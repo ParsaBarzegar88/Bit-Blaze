@@ -6,7 +6,7 @@ import { getLocations } from '@/core/api/LandingPage/locations'
 const RentBuildingSection = async () => {
   const locationsData = await getLocations()
   return (
-    <div className='mt-10 w-full bg-[#2D2D2D] rounded-br-[64px] rounded-bl-[64px]'>
+    <div className='mt-10 w-full bg-[#CCCCCC] dark:bg-[#2D2D2D] rounded-br-[64px] rounded-bl-[64px]'>
       <DreamRent locations={locationsData}/>
       <RentMortgage/>
     </div>
