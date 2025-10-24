@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,14 +7,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { cookies } from 'next/headers'
-const BookingHouseBreadcrumb = async () => {
-    const cookieStore = await cookies()
-    const houseData = cookieStore.get('book')?.value
-    let houseTitle
-    if(houseData){
-        houseTitle = JSON.parse(houseData)
-    }
+interface IProps{
+  houseTitle: string
+}
+const BookingHouseBreadcrumb:FC<IProps> = async ({houseTitle}) => {
   return (
     <Breadcrumb dir='rtl'>
       <BreadcrumbList>
@@ -27,7 +23,7 @@ const BookingHouseBreadcrumb = async () => {
         </BreadcrumbItem>
         <BreadcrumbSeparator className='rotate-180 text-[#AAAAAA]' />
         <BreadcrumbItem>
-          <BreadcrumbPage className='dark:text-[#8CFF45] text-[#4f9623]'>{houseTitle?.info.title}</BreadcrumbPage>
+          <BreadcrumbPage className='dark:text-[#8CFF45] text-[#4f9623]'>{houseTitle}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

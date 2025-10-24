@@ -2,7 +2,9 @@ import React from 'react'
 
 const StepOne = () => {
   return (
-    <div>StepOne</div>
+    <div className='flex flex-col gap-5'>
+
+    </div>
   )
 }
 

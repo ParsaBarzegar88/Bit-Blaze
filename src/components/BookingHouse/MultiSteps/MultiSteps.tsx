@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import StepOne from './step1/StepOne';
 import StepTwo from './step2/StepTwo';
 import StepThree from './step3/StepThree';
@@ -11,10 +11,14 @@ import { FaBuilding, FaUsers } from "react-icons/fa6";
 import { HiOutlineDocumentCheck } from "react-icons/hi2";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { IoTicketOutline } from "react-icons/io5";
+import { IBookingData } from '@/core/types/bookingHouse/IBookingHouse';
 
-const MultiSteps = () => {
+interface IProps{
+  houseData:IBookingData
+}
+const MultiSteps:FC<IProps> = ({houseData}) => {
   const [step, setStep] = useState<string>('one');
-
   const steps = [
     { id: 'one', label: 'انتخاب هتل', component: <StepOne />, icon: <FaBuilding /> },
     { id: 'two', label: 'مشخصات مسافران', component: <StepTwo />, icon: <FaUsers /> },
@@ -84,7 +88,7 @@ const MultiSteps = () => {
                       absolute -top-2 -right-2 w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center
                       ${isActive 
                         ? 'dark:bg-white bg-gray-800 dark:text-black text-white' 
-                        : 'dark:bg-[#8CFF45] bg-[#4f9623] text-white'
+                        : 'dark:bg-[#8CFF45] bg-[#4f9623] text-black'
                       }
                     `}>
                       {index + 1}
@@ -122,42 +126,49 @@ const MultiSteps = () => {
       <div className="mt-8 w-full mx-auto">
           {steps.find((s) => s.id === step)?.component}
       </div>
-      <div className="flex justify-between items-center mt-8 w-full max-w-6xl mx-auto">
-        <button
-          onClick={prevStep}
-          disabled={isFirstStep}
-          className={`
-            flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
-            ${isFirstStep
-              ? 'dark:bg-gray-700 bg-gray-300 dark:text-gray-500 text-gray-400 cursor-not-allowed'
-              : 'dark:bg-[#8CFF45] bg-[#4f9623] dark:text-black text-white hover:shadow-lg transform hover:-translate-x-1'
-            }
-          `}
-        >
-          <FaChevronRight size={16} />
-          مرحله قبلی
-        </button>
-
-        <div className="dark:text-gray-300 text-gray-600 text-sm font-medium">
+      <div className="flex justify-between items-center mt-8 w-full mx-auto border-2 border-dotted rounded-[36px] h-[84px] p-1.5">
+        <div className='flex flex-row gap-1 mr-5'>
+          <div className='flex flex-row gap-1.5 items-center text-[17px]'>
+            <IoTicketOutline size={20}/>
+            قیمت بلیط :
+          </div>
+          <div className='dark:text-[#8CFF45] text-[#4f9623]'>{houseData.info.price}</div>
+        </div>
+        <div className='flex flex-row gap-2 ml-5'>
+          <button
+            onClick={prevStep}
+            disabled={isFirstStep}
+            className={`
+              flex items-center gap-2 px-6 py-2 rounded-xl font-medium transition-all duration-300
+              ${isFirstStep
+                ? 'dark:bg-gray-700 bg-gray-300 dark:text-gray-500 text-gray-400 cursor-not-allowed'
+                : 'dark:bg-[#8CFF45] bg-[#4f9623] dark:text-black text-white hover:shadow-lg transform hover:-translate-x-1'
+              }
+            `}
+          >
+            <FaChevronRight size={16} />
+            مرحله قبلی
+          </button>
+          <button
+            onClick={nextStep}
+            disabled={isLastStep}
+            className={`
+              flex items-center gap-2 px-5 py-2 rounded-xl font-medium transition-all duration-300
+              ${isLastStep
+                ? 'dark:bg-gray-700 bg-gray-300 dark:text-gray-500 text-gray-400 cursor-not-allowed'
+                : 'dark:bg-[#8CFF45] bg-[#4f9623] dark:text-black text-white hover:shadow-lg transform hover:translate-x-1'
+              }
+            `}
+          >
+            مرحله بعدی
+            <FaChevronLeft size={16} />
+          </button>
+        </div>
+      </div>
+      <div className="mt-6 w-full mx-auto">
+        <div className="dark:text-gray-300 mb-2 justify-center flex w-full text-gray-600 text-sm font-medium">
           مرحله {currentStepIndex + 1} از {steps.length}
         </div>
-
-        <button
-          onClick={nextStep}
-          disabled={isLastStep}
-          className={`
-            flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
-            ${isLastStep
-              ? 'dark:bg-gray-700 bg-gray-300 dark:text-gray-500 text-gray-400 cursor-not-allowed'
-              : 'dark:bg-[#8CFF45] bg-[#4f9623] dark:text-black text-white hover:shadow-lg transform hover:translate-x-1'
-            }
-          `}
-        >
-          مرحله بعدی
-          <FaChevronLeft size={16} />
-        </button>
-      </div>
-      <div className="mt-6 w-full max-w-6xl mx-auto">
         <div className="dark:bg-gray-700 bg-gray-200 h-2 rounded-full overflow-hidden">
           <div 
             className="dark:bg-[#8CFF45] bg-[#4f9623] h-full transition-all duration-500 ease-out"
