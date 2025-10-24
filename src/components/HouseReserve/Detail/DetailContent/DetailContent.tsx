@@ -27,7 +27,7 @@ const DetailContent: FC<IProps> = async ({ Info,housesComments , action }) => {
     return (
         <div className='max-w-[100%] w-full flex flex-col-reverse lg:flex-row-reverse justify-between mt-10'>
             <div className='w-full lg:w-[20%]'>
-                <ReserveHouse info={Info} />
+                <ReserveHouse info={Info}/>
             </div>
             <div className='w-full lg:w-[75%]'>
                 <HouseReserveDetailTabs houseData={Info} housesComments={housesComments} action={action} userId={userId} />

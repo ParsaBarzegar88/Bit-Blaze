@@ -12,9 +12,6 @@ export const LoginFetch = async (
 
   const baseURL = process.env.API_BASE_URL;
 
-  console.log("API_BASE_URL:", baseURL);
-  console.log("Sending request with:", { email, password });
-
   if (!email || !password) {
     return {
       accessToken: "",
