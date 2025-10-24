@@ -45,7 +45,7 @@ const MortgageRentList: FC<IProps> = ({ houseData }) => {
                         <div className='flex flex-col gap-5 justify-between'>
                             <div className='flex flex-row text-[#FFFFFF] text-[14px] font-[500] items-center justify-center gap-1 rounded-[8px] bg-[#7569FF] shadow-[0px_8px_16px_rgba(115,103,255,0.2)] w-[82px] h-[28px]'>
                                 <FaStar />
-                                {houseData.rate !== null ? houseData.rate : "4"} ستاره
+                                {houseData.rate !== null ? houseData.rate : "0"} ستاره
                             </div>
                             <h2 className='text-[20px] font-[600] text-black dark:text-[#FFFFFF]'>{houseData.title}</h2>
                             <span className='flex flex-row gap-1 items-center text-[#a7a7a7] dark:text-[#AAAAAA]'>
@@ -82,7 +82,7 @@ const MortgageRentList: FC<IProps> = ({ houseData }) => {
                         <div className={`${houseData.discounted_price === null ? "mt-16" : ""} text-[#66b436] dark:text-[#8CFF45] text-[20px] font-[60]'`}>
                             {houseData.price} ت
                         </div>
-                        <Link href='/mortgage-rent' className='dark:group-hover:bg-[#8CFF45] group-hover:bg-[#66b436] w-[144px] group-hover:text-[#ffffff] dark:group-hover:text-[#000000] transition duration-300 border border-[#66b436] dark:border-[#8CFF45] rounded-[14px] h-[40px] justify-center text-[#66b436] dark:text-[#8CFF45] flex flex-row gap-1 items-center text-[16px] font-[500]'>
+                        <Link href={`/mortgage-rent/${houseData.id}`} className='dark:group-hover:bg-[#8CFF45] group-hover:bg-[#66b436] w-[144px] group-hover:text-[#ffffff] dark:group-hover:text-[#000000] transition duration-300 border border-[#66b436] dark:border-[#8CFF45] rounded-[14px] h-[40px] justify-center text-[#66b436] dark:text-[#8CFF45] flex flex-row gap-1 items-center text-[16px] font-[500]'>
                             مشاهده لینک
                             <MdOutlineKeyboardArrowLeft />
                         </Link>
