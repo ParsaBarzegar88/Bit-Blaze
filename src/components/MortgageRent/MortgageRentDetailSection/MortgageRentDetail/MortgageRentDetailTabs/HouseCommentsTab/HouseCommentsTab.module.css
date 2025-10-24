@@ -1,0 +1,51 @@
+.dark .sliderRangeShape {
+  background: linear-gradient(to left, #a855f7 0%, #a855f7 var(--range-progress, 0%), #e5e7eb var(--range-progress, 0%), #e5e7eb 100%);
+}
+.sliderRangeShape {
+  background: linear-gradient(to left, #a855f7 0%, #a855f7 var(--range-progress, 0%), gray var(--range-progress, 0%), gray 100%);
+}
+.sliderRangeShape::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 25px;
+  background: #a855f7; 
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid white;
+}
+
+.sliderRangeShape::-webkit-slider-track {
+  -webkit-appearance: none;
+  background: transparent;
+  height: 12px;
+  border-radius: 10px;
+}
+
+.sliderRangeShape::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background: transparent;
+  border-radius: 10px;
+}
+
+.sliderRangeShape::-moz-range-thumb {
+  width: 15px; 
+  height: 25px;
+  background: #a855f7; 
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid white;
+}
+
+.sliderRangeShape::-moz-range-track {
+  background: #e5e7eb;
+  height: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+.sliderRangeShape::-moz-range-progress {
+  background: #a855f7;
+  height: 12px;
+  border-radius: 10px;
+}
