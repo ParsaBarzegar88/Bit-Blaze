@@ -127,7 +127,7 @@ const LoginForm: FC<IProps> = ({ action }) => {
                   کلمه عبور <span className="text-red-500">*</span> :
                 </legend>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name='password'
                   className="w-full outline-0 dark:text-[#AAAAAA] dark:placeholder:text-[#AAAAAA] placeholder:text-black text-black mr-1 sm:mr-2 "
                   style={{ maxWidth: '200px' }}
