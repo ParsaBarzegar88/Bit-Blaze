@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FaUser } from 'react-icons/fa6';
 import { TbEditCircle } from 'react-icons/tb';
 import { AiOutlineDollarCircle } from "react-icons/ai";
@@ -6,7 +6,27 @@ import { PiMegaphoneThin } from "react-icons/pi";
 import { PiStarFourFill } from "react-icons/pi";
 import { LuBadgePercent } from "react-icons/lu";
 import { CiCircleCheck } from "react-icons/ci";
-const StepTwo = () => {
+import { IBookingData } from '@/core/types/bookingHouse/IBookingHouse';
+import { DateObject } from 'react-multi-date-picker';
+import persian from 'react-date-object/calendars/persian';
+import persian_fa from 'react-date-object/locales/persian_fa';
+
+interface IProps {
+  houseData: IBookingData;
+}
+
+const StepTwo: FC<IProps> = ({ houseData }) => {
+
+  
+    const formatDate = (timestamp: number | string | Date) => {
+        const date = new DateObject({
+            date: typeof timestamp === 'number' ? timestamp : new Date(timestamp),
+            calendar: persian,
+            locale: persian_fa,
+        });
+        return date.format('YYYY/MM/DD ساعت HH:mm');
+    };
+
   return (
     <div className="w-full flex flex-col p-4">
       <div className="dark:bg-[#393939] bg-white border flex flex-col lg:gap-0 p-2 md:gap-0 dark:border-[#333] shadow-lg border-gray-200 items-center rounded-3xl overflow-hidden">
@@ -35,14 +55,18 @@ const StepTwo = () => {
             </div>
             <div className="border-t-2 border-[#CCCCCC] my-3 dark:text-white text-black"></div>
             <div className="grid grid-cols-8 gap-x-4 text-xs dark:text-white text-black">
-              <div className='text-[#AAAAAA]'>بزرگسال</div>
-              <div className='text-[#AAAAAA]'>محمد رضا ساداتی</div>
-              <div className='text-[#AAAAAA] text-center'>مرد</div>
-              <div className='dark:text-[#8CFF45] text-[#509724] text-center'>09229167194</div>
-              <div className='dark:text-white text-black text-center'>—</div>
-              <div className='dark:text-white text-black text-center'>—</div>
-              <div className="text-right text-[#AAAAAA]">1350/5/12</div>
-              <div className="text-left text-[#AAAAAA]">1,500,000</div>
+              {houseData.personalInfo.map((value, index) => (
+                <React.Fragment key={index}>
+                  <div className='text-[#AAAAAA]'>16-23</div>
+                  <div className='text-[#AAAAAA]'>{value.firstName + ' ' + value.lastName} </div>
+                  <div className='text-[#AAAAAA] text-center'>{value.gender}</div>
+                  <div className='dark:text-[#8CFF45] text-[#509724] text-center'>{value.nationalCode}</div>
+                  <div className='dark:text-white text-black text-center'>—</div>
+                  <div className='dark:text-white text-black text-center'>—</div>
+                  <div className="text-right text-[#AAAAAA]">{formatDate(String(value.birthDate))}</div>
+                  <div className="text-left text-[#AAAAAA]">{houseData.info.price}</div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>

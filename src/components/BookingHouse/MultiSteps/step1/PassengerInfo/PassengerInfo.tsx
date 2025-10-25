@@ -18,46 +18,59 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCookies } from 'next-client-cookies';
-
-interface Passenger {
-  id: string;
-  firstName: string;
-  lastName: string;
-  gender: 'male' | 'female';
-  nationalCode: string;
-  birthDate: Date | null;
-}
+import { IBookingData, IPersonalInfo } from '@/core/types/bookingHouse/IBookingHouse';
 
 const PassengerInfo: React.FC = () => {
   const cookie = useCookies();
-  const [passengers, setPassengers] = useState<Passenger[]>([
+  const [passengers, setPassengers] = useState<IPersonalInfo[]>([
     {
       id: '1',
       firstName: '',
-      lastName: '',
+      lastName:'',
       gender: 'male',
       nationalCode: '',
       birthDate: null,
     }
   ]);
-  const [addedPassengers, setAddedPassengers] = useState<{ id: string; fullName: string }[]>([]);
+  const [addedPassengers, setAddedPassengers] = useState<IPersonalInfo[]>([]);
   useEffect(() => {
     const bookCookie = cookie.get('book');
     if (bookCookie) {
-      const parsedCookie = JSON.parse(bookCookie);
-      if (parsedCookie.passengerInfo) {
-        setAddedPassengers(parsedCookie.passengerInfo);
+      try {
+        const parsedCookie = JSON.parse(bookCookie) as IBookingData;
+        if (parsedCookie.personalInfo && parsedCookie.personalInfo.length > 0) {
+          setAddedPassengers(parsedCookie.personalInfo.map((p: IPersonalInfo) => ({
+            ...p,
+            birthDate: p.birthDate ? new Date(p.birthDate) : null,
+          })));
+        }
+      } catch (error) {
+        console.error('Error parsing book cookie:', error);
       }
     }
   }, [cookie]);
-  useEffect(() => {
+  const saveToCookie = (updatedPassengers: IPersonalInfo[]) => {
     const bookCookie = cookie.get('book');
-    const bookData = bookCookie ? JSON.parse(bookCookie) : {};
-    bookData.passengerInfo = addedPassengers;
-    cookie.set('book', JSON.stringify(bookData));
-  }, [addedPassengers, cookie]);
+    const bookData = bookCookie ? (JSON.parse(bookCookie) as IBookingData) : ({} as IBookingData);
+    
+    bookData.personalInfo = updatedPassengers.map(p => ({
+      ...p,
+      birthDate: p.birthDate instanceof Date ? p.birthDate.toISOString() : p.birthDate,
+    }));
+    
+    cookie.set('book', JSON.stringify(bookData), {
+      path: '/',
+      sameSite: 'lax',
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+    });
+  };
+  useEffect(() => {
+    if (addedPassengers.length > 0) {
+      saveToCookie(addedPassengers);
+    }
+  }, [addedPassengers]);
 
-  const updatePassenger = (id: string, field: keyof Passenger, value: any) => {
+  const updatePassenger = (id: string, field: keyof IPersonalInfo, value: any) => {
     setPassengers(prev => prev.map(passenger =>
       passenger.id === id ? { ...passenger, [field]: value } : passenger
     ));
@@ -66,21 +79,48 @@ const PassengerInfo: React.FC = () => {
   const addPassengerDisplay = (id: string) => {
     const passenger = passengers.find(p => p.id === id);
     if (passenger && passenger.firstName && passenger.lastName) {
-      const fullName = `${passenger.firstName} ${passenger.lastName}`;
-      const newPassenger = { id: Date.now().toString(), fullName };
-      setAddedPassengers(prev => [...prev, newPassenger]);
+      const newPassenger: IPersonalInfo = {
+        id: Date.now().toString(),
+        firstName: passenger.firstName,
+        lastName: passenger.lastName,
+        gender: passenger.gender,
+        nationalCode: passenger.nationalCode,
+        birthDate: passenger.birthDate,
+      };
+      
+      const updatedPassengers = [...addedPassengers, newPassenger];
+      setAddedPassengers(updatedPassengers);
+      saveToCookie(updatedPassengers);
+      setPassengers([{
+        id: '1',
+        firstName: '',
+        lastName: '',
+        gender: 'male',
+        nationalCode: '',
+        birthDate: null,
+      }]);
     }
   };
 
   const removePassengerDisplay = (id: string) => {
     setAddedPassengers(prev => {
       const updatedPassengers = prev.filter(p => p.id !== id);
-      const bookCookie = cookie.get('book');
-      const bookData = bookCookie ? JSON.parse(bookCookie) : {};
-      bookData.passengerInfo = updatedPassengers;
-      cookie.set('book', JSON.stringify(bookData));
+      saveToCookie(updatedPassengers);
       return updatedPassengers;
     });
+  };
+  const handleInputChange = (id: string, field: keyof IPersonalInfo, value: any) => {
+    updatePassenger(id, field, value);
+    const existingPassengerIndex = addedPassengers.findIndex(p => p.id === id);
+    if (existingPassengerIndex !== -1) {
+      const updatedPassengers = [...addedPassengers];
+      updatedPassengers[existingPassengerIndex] = {
+        ...updatedPassengers[existingPassengerIndex],
+        [field]: value
+      };
+      setAddedPassengers(updatedPassengers);
+      saveToCookie(updatedPassengers);
+    }
   };
 
   return (
@@ -106,7 +146,7 @@ const PassengerInfo: React.FC = () => {
                   <input
                     type="text"
                     value={passenger.firstName}
-                    onChange={(e) => updatePassenger(passenger.id, 'firstName', e.target.value)}
+                    onChange={(e) => handleInputChange(passenger.id, 'firstName', e.target.value)}
                     className='w-full h-full mb-2 text-black dark:text-gray-200 mr-2 bg-transparent outline-none transition-all duration-200 placeholder-gray-400 dark:placeholder-gray-500'
                     placeholder='نام را وارد کنید'
                   />
@@ -118,7 +158,7 @@ const PassengerInfo: React.FC = () => {
                   <input
                     type="text"
                     value={passenger.lastName}
-                    onChange={(e) => updatePassenger(passenger.id, 'lastName', e.target.value)}
+                    onChange={(e) => handleInputChange(passenger.id, 'lastName', e.target.value)}
                     className='w-full h-full mb-2 text-black dark:text-gray-200 mr-2 bg-transparent outline-none transition-all duration-200 placeholder-gray-400 dark:placeholder-gray-500'
                     placeholder='نام خانوادگی را وارد کنید'
                   />
@@ -130,7 +170,7 @@ const PassengerInfo: React.FC = () => {
                   <div className='mb-2 mr-2'>
                     <Select 
                       value={passenger.gender} 
-                      onValueChange={(value: 'male' | 'female') => updatePassenger(passenger.id, 'gender', value)}
+                      onValueChange={(value: 'male' | 'female') => handleInputChange(passenger.id, 'gender', value)}
                     >
                       <SelectTrigger className="w-[99%] !h-[25px] !bg-transparent !outline-none !border-0 !focus:border-0 text-black dark:text-white p-0 text-sm" dir='rtl'>
                         <SelectValue placeholder="انتخاب جنسیت" />
@@ -149,7 +189,7 @@ const PassengerInfo: React.FC = () => {
                   <input
                     type="text"
                     value={passenger.nationalCode}
-                    onChange={(e) => updatePassenger(passenger.id, 'nationalCode', e.target.value)}
+                    onChange={(e) => handleInputChange(passenger.id, 'nationalCode', e.target.value)}
                     className='w-full h-full mb-2 text-black dark:text-gray-200 mr-2 bg-transparent outline-none transition-all duration-200 placeholder-gray-400 dark:placeholder-gray-500'
                     placeholder='کد ملی را وارد کنید'
                     maxLength={10}
@@ -163,13 +203,13 @@ const PassengerInfo: React.FC = () => {
                     <DatePicker
                       value={passenger.birthDate}
                       onChange={(date: DateObject | DateObject[] | null) => {
+                        let newDate: Date | null = null;
                         if (date instanceof DateObject) {
-                          updatePassenger(passenger.id, 'birthDate', date.toDate());
+                          newDate = date.toDate();
                         } else if (Array.isArray(date) && date.length > 0) {
-                          updatePassenger(passenger.id, 'birthDate', date[0].toDate());
-                        } else {
-                          updatePassenger(passenger.id, 'birthDate', null);
+                          newDate = date[0].toDate();
                         }
+                        handleInputChange(passenger.id, 'birthDate', newDate);
                       }}
                       format="YYYY/MM/DD"
                       calendar={persian}
@@ -188,10 +228,10 @@ const PassengerInfo: React.FC = () => {
         <div className='my-4 border-t-2 border-dashed border-gray-300 dark:border-gray-500 opacity-70'></div>
         <div className='flex flex-col flex-wrap sm:flex-row justify-between'>
           {addedPassengers.length > 0 ? (
-            <div className='flex flex-row gap-2'>
+            <div className='flex flex-row gap-2 flex-wrap'>
               {addedPassengers.map((p) => (
                 <div key={p.id} className='flex items-center gap-2 text-white bg-[#4f9623] dark:bg-[#8CFF45] p-2 rounded-lg dark:text-black'>
-                  <span>{p.fullName}</span>
+                  <span>{`${p.firstName} ${p.lastName}`}</span>
                   <button
                     onClick={() => removePassengerDisplay(p.id)}
                     className='text-red-500 hover:text-red-700 transition-colors'

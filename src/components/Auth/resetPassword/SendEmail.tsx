@@ -34,6 +34,10 @@ const SendEmail: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             })
         }
         else if (state.email) {
@@ -45,6 +49,10 @@ const SendEmail: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             })
             setTimeout(() => {
                 toast.success("در حال رفتن به مرحله بعدی", {
@@ -55,6 +63,10 @@ const SendEmail: FC<IProps> = ({ action }) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
+                    style: {
+                        fontFamily: 'IRANSansXFaNum',
+                        textAlign: 'right',
+                    },
                 })
                 setTimeout(() => {
                     if (state.email) {

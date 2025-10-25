@@ -35,6 +35,10 @@ const NewPassword: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             });
         } else if (state.success) {
             toast.success("رمز عبور شما با موفقیت تغییر کرد", {
@@ -45,6 +49,10 @@ const NewPassword: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             });
             setTimeout(() => {
                 router.push("/");

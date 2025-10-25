@@ -15,13 +15,13 @@ import { IoTicketOutline } from "react-icons/io5";
 import { IBookingData } from '@/core/types/bookingHouse/IBookingHouse';
 
 interface IProps{
-  houseData:IBookingData
+  houseData: IBookingData
 }
 const MultiSteps:FC<IProps> = ({houseData}) => {
   const [step, setStep] = useState<string>('one');
   const steps = [
     { id: 'one', label: 'انتخاب هتل', component: <StepOne houseData={houseData} />, icon: <FaBuilding /> },
-    { id: 'two', label: 'مشخصات مسافران', component: <StepTwo />, icon: <FaUsers /> },
+    { id: 'two', label: 'مشخصات مسافران', component: <StepTwo houseData={houseData} />, icon: <FaUsers /> },
     { id: 'three', label: 'تأیید اطلاعات', component: <StepThree />, icon: <HiOutlineDocumentCheck /> },
     { id: 'four', label: 'پرداخت آنلاین', component: <StepFour />, icon: <FaMoneyBillWave /> },
     { id: 'five', label: 'صدور بلیط', component: <StepFive />, icon: <LiaFileInvoiceDollarSolid /> },
@@ -163,17 +163,6 @@ const MultiSteps:FC<IProps> = ({houseData}) => {
             مرحله بعدی
             <FaChevronLeft size={16} />
           </button>
-        </div>
-      </div>
-      <div className="mt-6 w-full mx-auto">
-        <div className="dark:text-gray-300 mb-2 justify-center flex w-full text-gray-600 text-sm font-medium">
-          مرحله {currentStepIndex + 1} از {steps.length}
-        </div>
-        <div className="dark:bg-gray-700 bg-gray-200 h-2 rounded-full overflow-hidden">
-          <div 
-            className="dark:bg-[#8CFF45] bg-[#4f9623] h-full transition-all duration-500 ease-out"
-            style={{ width: `${((currentStepIndex + 1) / steps.length) * 100}%` }}
-          ></div>
         </div>
       </div>
     </div>
