@@ -2,7 +2,7 @@ export interface IPersonalInfo {
   id: string;
   firstName: string;
   lastName: string;
-  gender: 'male' | 'female';
+  gender: "male" | "female";
   nationalCode: string;
   birthDate: Date | null;
 }
@@ -45,6 +45,27 @@ export interface IBookingData {
   selectedReturnDay: number;
   guestCount: number;
   personalInfo: IPersonalInfo[];
-  shareMobile:string;
-  shareEmail:string;
+  shareMobile: string;
+  shareEmail: string;
+}
+
+export interface ISendBookingHouseToApi {
+  data:{
+    houseId: string;
+    reservedDates: [
+      string,
+      string
+    ];
+    traveler_details: [
+      {
+        firstName: string;
+        lastName: string;
+        gender: string;
+        birthDate: string;
+        nationalId: string;
+      }
+    ];
+    sharedEmail: string;
+    sharedMobile: string;
+  }
 }
