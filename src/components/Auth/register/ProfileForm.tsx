@@ -11,6 +11,7 @@ import ButtonSubmit from './ButtonSubmit'
 import { useRouter } from 'next/navigation'
 import { BsPersonPlus } from 'react-icons/bs'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { toast } from 'react-toastify'
 interface IProps {
   action: (prevState: IProfileResponse,
     formData: FormData
@@ -18,22 +19,35 @@ interface IProps {
 }
 
 const ProfileForm: FC<IProps> = ({ action }) => {
-  const initialState: IProfileResponse = { message: "", user: {} , success: false};
+  const initialState: IProfileResponse = { message: "", user: {}, success: false };
   const [state, formAction] = useActionState(action, initialState);
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const router = useRouter()
-  const {userId} = useAuth()
+  const { userId } = useAuth()
 
   useEffect(() => {
-    if(state.success) {
+    if (state.success) {
+      toast.success("ثبت نام شدید", {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          fontFamily: 'IRANSansXFaNum',
+          textAlign: 'right',
+        },
+      })
       router.push("/register/verify");
     }
   }, [router, state]);
 
-  
-    const togglePassword = () => {
-        setShowPassword(!showPassword);
-    };
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
 
 

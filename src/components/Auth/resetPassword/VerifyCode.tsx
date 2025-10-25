@@ -34,6 +34,11 @@ const VerifyCode: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                    style: {
+                        fontFamily: 'IRANSansXFaNum',
+                        textAlign: 'right',
+                    },
+                
             });
         } else if (state.resetCode) {
             toast.success("کد با موفقیت تأیید شد", {
@@ -44,6 +49,10 @@ const VerifyCode: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                    style: {
+                        fontFamily: 'IRANSansXFaNum',
+                        textAlign: 'right',
+                    },
             });
             setTimeout(() => {
                 toast.success("در حال رفتن به مرحله بعدی", {
@@ -54,6 +63,10 @@ const VerifyCode: FC<IProps> = ({ action }) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
+                        style: {
+                        fontFamily: 'IRANSansXFaNum',
+                        textAlign: 'right',
+                    },
                 });
                 setTimeout(() => {
                     setResetCode(state.resetCode!);

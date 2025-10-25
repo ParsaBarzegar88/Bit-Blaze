@@ -32,6 +32,10 @@ const SignupForm: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             })
         }
         else if (state.email && state.tempUserId) {
@@ -43,6 +47,10 @@ const SignupForm: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             })
             setTimeout(() => {
                 toast.success("در حال رفتن به مرحله بعدی", {
@@ -53,6 +61,10 @@ const SignupForm: FC<IProps> = ({ action }) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
+                    style: {
+                        fontFamily: 'IRANSansXFaNum',
+                        textAlign: 'right',
+                    },
                 })
                 setTimeout(() => {
                     if (state.email && state.tempUserId) {

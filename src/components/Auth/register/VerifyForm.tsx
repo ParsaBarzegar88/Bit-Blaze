@@ -52,6 +52,7 @@ const VerifyForm: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+
             })
         }
         else if (state.userId) {
@@ -63,6 +64,10 @@ const VerifyForm: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             })
             setTimeout(() => {
                 toast.success("در حال رفتن به مرحله بعدی", {
@@ -73,6 +78,10 @@ const VerifyForm: FC<IProps> = ({ action }) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
+                    style: {
+                        fontFamily: 'IRANSansXFaNum',
+                        textAlign: 'right',
+                    },
                 })
                 setTimeout(() => {
                     if (state.userId) {

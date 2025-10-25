@@ -39,6 +39,10 @@ const LoginForm: FC<IProps> = ({ action }) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+        style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
       });
     } else if (state.accessToken && state.refreshToken) {
       toast.success('با موفقیت وارد شدید!', {
@@ -49,6 +53,10 @@ const LoginForm: FC<IProps> = ({ action }) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
       });
       router.push("/");
     }

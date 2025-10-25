@@ -10,7 +10,8 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { LucideCircleDollarSign } from "lucide-react";
 import { IHousesDetail } from "@/core/types/HouseReserveDetail/IHousesDetail";
-
+import { useCookies } from 'next-client-cookies';
+import { redirect } from "next/navigation";
 const DatePicker = dynamic(() => import("react-multi-date-picker"), {
   ssr: false,
 });
@@ -32,12 +33,11 @@ interface IProps {
 }
 
 const ReserveHouse: FC<IProps> = ({ info }) => {
-
+  const cookieStore = useCookies()
   const discountPercentage = calculateDiscountPercentage(info.price, info.discounted_price);
   const [selectedDepartureDay, setSelectedDepartureDay] = useState<DateObject | null>(null);
   const [selectedReturnDay, setSelectedReturnDay] = useState<DateObject | null>(null);
   const [guestCount, setGuestCount] = useState(2);
-
   const increaseGuests = () => {
     setGuestCount(prev => prev + 1);
   };
@@ -45,7 +45,16 @@ const ReserveHouse: FC<IProps> = ({ info }) => {
   const decreaseGuests = () => {
     setGuestCount(prev => (prev > 1 ? prev - 1 : 1));
   };
-
+  const bookHouse = () => {
+    const data = {
+      info,
+      selectedDepartureDay,
+      selectedReturnDay,
+      guestCount
+    }
+    cookieStore.set('book', JSON.stringify(data))
+    redirect('/booking-house')
+  }
   return (
     <div className="flex flex-col items-center px-4 max-w-[100%] w-full  bg-[#fcfcfc] dark:bg-[#393939] dark:shadow-none shadow-[0_0px_16px_rgba(0,0,0,0.2)] rounded-4xl border dark:border-[#565656] border-none">
       <div className="w-[80%] h-12 flex-row-reverse dark:bg-[#565656] bg-[#ebebeb] flex gap-3 rounded-br-4xl rounded-bl-4xl items-center justify-center">
@@ -152,11 +161,12 @@ const ReserveHouse: FC<IProps> = ({ info }) => {
       </div>
       <div className="w-full mt-5 mb-3">
         <button
+          onClick={bookHouse}
           type='submit'
-          className='cursor-pointer dark:text-white text-black flex rounded-[12px] flex-row justify-center items-center font-[600] text-[16px] shadow-[0_0_8px_2px_rgba(140,255,69,0.2)] bg-[#8CFF45] w-full h-[44px] gap-4'
+          className='cursor-pointer dark:text-black text-white flex rounded-[12px] flex-row justify-center items-center font-[600] text-[16px] shadow-[0_0_8px_2px_rgba(140,255,69,0.2)] bg-[#8CFF45] w-full h-[44px] gap-4'
         >
           همین الان رزرو کن
-          <MdKeyboardArrowLeft className='dark:text-white text-black' />
+          <MdKeyboardArrowLeft className='dark:text-black text-white' />
         </button>
       </div>
     </div>
