@@ -20,7 +20,7 @@ interface IProps{
 const MultiSteps:FC<IProps> = ({houseData}) => {
   const [step, setStep] = useState<string>('one');
   const steps = [
-    { id: 'one', label: 'انتخاب هتل', component: <StepOne />, icon: <FaBuilding /> },
+    { id: 'one', label: 'انتخاب هتل', component: <StepOne houseData={houseData} />, icon: <FaBuilding /> },
     { id: 'two', label: 'مشخصات مسافران', component: <StepTwo />, icon: <FaUsers /> },
     { id: 'three', label: 'تأیید اطلاعات', component: <StepThree />, icon: <HiOutlineDocumentCheck /> },
     { id: 'four', label: 'پرداخت آنلاین', component: <StepFour />, icon: <FaMoneyBillWave /> },

@@ -1,3 +1,12 @@
+export interface IPersonalInfo {
+  id: string;
+  firstName: string;
+  lastName: string;
+  gender: 'male' | 'female';
+  nationalCode: string;
+  birthDate: Date | null;
+}
+
 export interface IBookingData {
   info: {
     id: number;
@@ -35,4 +44,7 @@ export interface IBookingData {
   selectedDepartureDay: number;
   selectedReturnDay: number;
   guestCount: number;
+  personalInfo: IPersonalInfo[];
+  shareMobile:string;
+  shareEmail:string;
 }
