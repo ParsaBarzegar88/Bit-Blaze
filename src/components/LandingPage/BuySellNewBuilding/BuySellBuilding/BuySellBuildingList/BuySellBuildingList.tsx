@@ -19,7 +19,7 @@ const BuySellBuildingList: FC<IProps> = ({ housesData }) => {
         <div className='w-full mt-5 group mx-auto'>
             <div className='flex flex-col relative'>
                 <div className='flex flex-row justify-between items-center relative'>
-                    <div className='bg-[#FFFFFF] transition-colors duration-300 group-hover:bg-[#2D2D2D] group-hover:text-[#FFFFFF] shadow-[0px_4px_12px_rgba(255,255,255,0.2)] z-[1] mr-3 translate-y-2 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
+                    <div className='bg-[#FFFFFF] text-black transition-colors duration-300 group-hover:bg-[#2D2D2D] group-hover:text-[#FFFFFF] shadow-[0px_4px_12px_rgba(255,255,255,0.2)] z-[1] mr-3 translate-y-2 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
                         <div className='mt-1 font-[700] text-[16px]'>
                             {housesData.rate ? housesData.rate : 0}
                         </div>
