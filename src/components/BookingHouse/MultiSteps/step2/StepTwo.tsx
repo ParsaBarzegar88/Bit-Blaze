@@ -15,7 +15,6 @@ import { useCookies } from "next-client-cookies";
 const StepTwo:FC = () => {
   const cookieStore = useCookies();
   const [houseData, setHouseData] = useState<IBookingData>();
-  const book = cookieStore.get("book");
   useEffect(() => {
     const book = cookieStore.get("book");
     if (book) {
@@ -99,7 +98,7 @@ const StepTwo:FC = () => {
                     {formatDate(String(value.birthDate))}
                   </div>
                   <div className="text-left text-[#AAAAAA]">
-                    {houseData.info.price}
+                    {houseData.info.discounted_price ? houseData.info.discounted_price : houseData.info.price}
                   </div>
                 </React.Fragment>
               ))}

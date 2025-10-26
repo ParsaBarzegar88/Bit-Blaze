@@ -8,9 +8,9 @@ export const sendBookingHouse = async (houseData: IBookingData) => {
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
 
-  if (!token) {
-    throw new Error("No token provided");
-  }
+  // if (!token) {
+  //   throw new Error('No token provided')
+  // }
   const sendData = {
       houseId: houseData.info.id,
       reservedDates: [
@@ -37,9 +37,9 @@ export const sendBookingHouse = async (houseData: IBookingData) => {
     },
     body: JSON.stringify(sendData),
   });
-  if (!res.ok) {
-    throw new Error(`Failed to send booking`);
-  }
+  // if (!res.ok) {
+  //   throw new Error(`Failed to send booking`);
+  // }
 
   const response = await res.json();
 

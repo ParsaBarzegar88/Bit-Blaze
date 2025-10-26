@@ -33,10 +33,7 @@ export const LoginFetch = async (
         password,
       }),
     });
-
-    console.log("Response status:", response.status);
     const data = await response.json();
-    console.log("Response data:", data);
 
     if (!response.ok) {
       return {
@@ -57,7 +54,6 @@ export const LoginFetch = async (
     if (data.accessToken && data.refreshToken) {
       cookieStore.set("accessToken", data.accessToken);
       cookieStore.set("refreshToken", data.refreshToken);
-      console.log("Cookies set successfully");
       return {
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,

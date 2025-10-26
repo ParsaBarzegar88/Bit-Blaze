@@ -13,8 +13,6 @@ export const ProfileFetch = async (
 
     const baseURL = process.env.API_BASE_URL;
 
-    console.log("API_BASE_URL:", baseURL);
-
     if (!phoneNumber && !password && !userId) {
         return {
             error: "لطفا مقادیر مورد نیاز  را وارد کنید",
@@ -38,7 +36,6 @@ export const ProfileFetch = async (
 
         console.log("Response status:", response.status);
         const data = await response.json();
-        console.log("Response data:", data);
 
         if (!response.ok) {
             return {
@@ -64,8 +61,7 @@ export const ProfileFetch = async (
             error: "",
             success: true
         };
-    } catch (error) {
-        console.error("Error in PostUserEmail:", error);
+    } catch{
         return { message: "خطای شبکه رخ داده است", error: "" };
     }
 };
