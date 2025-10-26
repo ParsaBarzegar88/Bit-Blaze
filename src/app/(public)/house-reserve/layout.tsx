@@ -1,4 +1,4 @@
-"use clinet"
+"use client"
 import { FC, ReactNode } from 'react';
 import { HouseProvider } from '@/context/HouseContext';
 import { ToastContainer } from 'react-toastify';

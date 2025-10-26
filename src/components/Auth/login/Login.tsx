@@ -58,7 +58,10 @@ const LoginForm: FC<IProps> = ({ action }) => {
                     textAlign: 'right',
                 },
       });
-      router.push("/");
+      setTimeout(() => {
+
+        router.push("/");
+      } , 3000)
     }
   }, [state, router]);;
 

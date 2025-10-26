@@ -49,23 +49,3 @@ export interface IBookingData {
   shareEmail: string;
 }
 
-export interface ISendBookingHouseToApi {
-  data:{
-    houseId: string;
-    reservedDates: [
-      string,
-      string
-    ];
-    traveler_details: [
-      {
-        firstName: string;
-        lastName: string;
-        gender: string;
-        birthDate: string;
-        nationalId: string;
-      }
-    ];
-    sharedEmail: string;
-    sharedMobile: string;
-  }
-}
