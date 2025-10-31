@@ -1,11 +1,11 @@
 import localFont from 'next/font/local'
 import "./globals.css";
-import Header from "@/components/Header/Header";
 import Footer from '@/components/Footer/Footer';
 import ToggleDarkAndLightProvider from './ThemeProvider';
 import { FooterFetch } from '@/core/api/Footer/Footer';
 import { CookiesProvider } from 'next-client-cookies/server';
 import TokenRefresher from '@/utils/refreshToken';
+import MainHeader from '@/components/Header/MainHeader';
 export const PeydaFanum = localFont({
   src: [
     {
@@ -32,7 +32,7 @@ export default async function RootLayout({
         <CookiesProvider>
           <ToggleDarkAndLightProvider>
             <div className='max-w-[1920px] w-full flex flex-col relative overflow-x-hidden'>
-              <Header />
+              <MainHeader />
               <div className='relative'>
                 {children}
                 <TokenRefresher/>

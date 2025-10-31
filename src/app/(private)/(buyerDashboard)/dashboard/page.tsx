@@ -1,3 +1,4 @@
+import DashboardPageSection from '@/components/Dashboard/BuyerDashboard/DashboardPageSection/DashboardPageSection';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 const DashboardPage = () => {
   return (
     <>
-      {/* <BuyerDashboard /> */}
+      <DashboardPageSection />
     </>
   )
 }

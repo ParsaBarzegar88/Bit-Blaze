@@ -2,6 +2,9 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import TokenRefresher from '@/utils/refreshToken';
 import { CookiesProvider } from 'next-client-cookies/server';
+import DashboardHeader from '@/components/Dashboard/DashboardHeader/DashboardHeader';
+import ToggleDarkAndLightProvider from './ThemeProvider';
+import DashboardMenu from '@/components/Dashboard/DashboardMenu/DashboardMenu';
 export const PeydaFanum = localFont({
   src: [
     {
@@ -19,11 +22,19 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${PeydaFanum.className} bg-[#ffffff] antialiased dark:bg-[#232323] min-h-screen overflow-x-hidden flex justify-center`}
+        className={`${PeydaFanum.className} bg-[#ECECEC] antialiased dark:bg-[#232323] mx-auto max-w-[99%] min-h-screen overflow-x-hidden flex justify-center`}
       >
         <CookiesProvider>
-          {children}
-          <TokenRefresher />
+          <ToggleDarkAndLightProvider>
+            <div className='flex flex-row-reverse gap-2 w-full'>
+              <div className='flex flex-col gap-3 w-full'>
+                <DashboardHeader />
+                {children}
+              </div>
+              <DashboardMenu/>
+            </div>
+            <TokenRefresher />
+          </ToggleDarkAndLightProvider>
         </CookiesProvider>
       </body>
     </html>
