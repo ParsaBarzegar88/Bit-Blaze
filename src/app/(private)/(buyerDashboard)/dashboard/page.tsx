@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 const DashboardPage = () => {
   return (
     <>
+    
       <DashboardPageSection />
     </>
   )

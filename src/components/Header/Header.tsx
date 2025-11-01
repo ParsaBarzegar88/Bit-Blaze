@@ -9,7 +9,7 @@ import ToggleLightAndDark from "../ToggleTheme/ToggoleTheme";
 import { IUserDetail } from "@/core/types/LandingPage/IUserDetail";
 
 interface IProps {
-  userInfo: IUserDetail
+  userInfo?: IUserDetail
 }
 const Header: FC<IProps> = ({ userInfo }) => {
   const pathName = usePathname();
@@ -147,16 +147,16 @@ const Header: FC<IProps> = ({ userInfo }) => {
         </div>
         <div className="flex flex-row items-center justify-center gap-4">
           <ToggleLightAndDark />
-          {userInfo.user.profilePicture !== null ? (
+          {userInfo && userInfo?.user.profilePicture !== null ? (
             <Link href={'/dashboard'}>
-              <Image src={userInfo.user.profilePicture} alt="img" width={40} height={40} className="rounded-full ml-6 cursor-pointer" />
+              <Image src={userInfo?.user.profilePicture} alt="img" width={40} height={40} className="rounded-full ml-6 cursor-pointer" />
             </Link>
           ) : (
             <Link
               href="/login"
               className="flex flex-row gap-2.5 items-center text-[#565656] dark:text-[#ffffff] ml-6 font-[500] text-[16px] cursor-pointer"
             >
-              {userInfo.user.profilePicture !== null ? (
+              {userInfo && userInfo?.user.profilePicture !== null ? (
                 <Link href={'/dashboard'}>
                   <svg
                     width="12"

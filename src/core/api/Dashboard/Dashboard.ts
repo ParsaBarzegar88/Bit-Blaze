@@ -22,3 +22,14 @@ export const getDashboardSummery = async () => {
   });
   return res.json();
 };
+export const getDashboardMarketTrends = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(`${baseURL}/api/dashboard/market-trends`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+};

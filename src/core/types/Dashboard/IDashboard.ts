@@ -20,19 +20,24 @@ export interface IUserDetail {
   additionalPercentage: number;
 }
 export interface IDashboardSummery {
-    houses: number,
-    users: {
-        userCount: number,
-        sellers: number,
-        buyers: number,
-        admins: number
-    },
-    bookings: {
-        bookingCount: number,
-        conformedBookings: number,
-        canceledBookings: number,
-        pendingBookings: number
-    },
-    comments: number,
-    averageRating: string
+  houses: number;
+  users: {
+    userCount: number;
+    sellers: number;
+    buyers: number;
+    admins: number;
+  };
+  bookings: {
+    bookingCount: number;
+    conformedBookings: number;
+    canceledBookings: number;
+    pendingBookings: number;
+  };
+  comments: number;
+  averageRating: string;
+}
+
+export interface IDashboardMarketTrends {
+  month: string;
+  bookingCount: string;
 }

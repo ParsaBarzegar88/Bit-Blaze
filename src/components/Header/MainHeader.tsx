@@ -15,7 +15,12 @@ const MainHeader = async () => {
     }
     return (
         <>
-            <Header userInfo={userInfo}/>
+            {userInfo ? (
+                <Header userInfo={userInfo} />
+
+            ) : (
+                <Header />
+            )}
         </>
     )
 }
