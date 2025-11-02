@@ -4,6 +4,7 @@ import { getDashboardMarketTrends, getDashboardSummery, getUserDetail } from '@/
 import DashboardStatusProfile from './DashboardStatusProfile/DashboardStatusProfile'
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
+import DashboardRecentReserve from './DashboardRecentReserve/DashboardRecentReserve'
 
 const DashboardPageSection = async () => {
   const cookieStore = await cookies()
@@ -21,6 +22,7 @@ const DashboardPageSection = async () => {
     <div className='flex flex-col w-full gap-3'>
       <DashboardSummery dashboardSummeryInfo={dashboardSummery} />
       <DashboardStatusProfile dashboardMarketTrendsInfo={dashboardMarketTrends} userInfo={userInfo}/>
+      <DashboardRecentReserve/>
     </div>
   )
 }
