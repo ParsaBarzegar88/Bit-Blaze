@@ -27,14 +27,14 @@ const DashboardMenu = () => {
                         <AiOutlineLogin onClick={setMenuOpen} size={24} className={`hover:text-[#5d3bff] cursor-pointer transition-colors  ${open === true ? '' : 'rotate-[180deg] w-full'}`} />
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <div className={`flex items-center ${pathName === '/dashboard' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                        <Link href={'/dashboard'} className={`flex items-center ${pathName === '/dashboard' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <FiHome size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>داشبورد</span>
-                        </div>
-                        <div className={`flex items-center ${pathName === '/dashboard/profile' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                        </Link>
+                        <Link href={'/dashboard-profile'} className={`flex items-center ${pathName === '/dashboard-profile' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <FiUser size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>اطلاعات کاربری</span>
-                        </div>
+                        </Link>
                         <div className={`flex items-center ${pathName === '/dashboard/payments' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <IoMdAddCircleOutline size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت رزروها</span>

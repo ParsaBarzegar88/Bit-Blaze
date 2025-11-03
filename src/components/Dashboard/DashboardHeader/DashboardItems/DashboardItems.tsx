@@ -16,7 +16,7 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
     const [openSubMenu, setOpenSubMenu] = useState(false)
     const getPath = () => {
         if (pathName === '/dashboard') return 'داشبورد'
-        if (pathName === '/dashboard/profile') return 'اطلاعات کاربری'
+        if (pathName === '/dashboard-profile') return 'اطلاعات کاربری'
         if (pathName === '/dashboard/payments') return 'پرداخت ها'
         if (pathName === '/dashboard/reserve-management') return 'مدیریت رزرو ها'
         if (pathName === '/dashboard/favorites') return 'علاقه مندی ها'

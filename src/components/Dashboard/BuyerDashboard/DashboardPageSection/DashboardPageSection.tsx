@@ -19,7 +19,7 @@ const DashboardPageSection = async () => {
     userInfo = await getUserDetail(String(userId))
   }
   return (
-    <div className='flex flex-col w-full gap-3'>
+    <div className='flex flex-col w-full gap-3 h-full md:overflow-x-auto'>
       <DashboardSummery dashboardSummeryInfo={dashboardSummery} />
       <DashboardStatusProfile dashboardMarketTrendsInfo={dashboardMarketTrends} userInfo={userInfo}/>
       <DashboardRecentReserve/>
