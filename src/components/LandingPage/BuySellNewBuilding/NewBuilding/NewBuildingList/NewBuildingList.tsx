@@ -63,7 +63,7 @@ const NewBuildingList: FC<IProps> = ({ locationData }) => {
                     </div>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
-                    <h3 className='text-black dark:text-[#FFFFFF] font-[500] text-[14px] sm:text-[16px] mt-5 mr-1'>اقامتگاه در {locationData.dataValues.area_name} ( {locationData.dataValues.id} نفر بازدید کننده )</h3>
+                    <h3 className='text-black dark:text-[#FFFFFF] font-[500] text-[14px] sm:text-[16px] mt-5 mr-1'>اقامتگاه در {locationData.area_name} ( {locationData.id} نفر بازدید کننده )</h3>
                 </div>
             </div>
         </div>

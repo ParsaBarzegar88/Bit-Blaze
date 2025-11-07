@@ -2,14 +2,31 @@ import Link from "next/link";
 import React, { FC } from "react";
 import { FaBookmark } from "react-icons/fa6";
 import ArrowLeftSVG from "../../../.././BuyerDashboardSVG/arrowLeftSVG";
-import { IUserDetail } from "@/core/types/LandingPage/IUserDetail";
+import { IUserDetail } from "@/core/types/Dashboard/IDashboard";
+import { formatDistanceToNow, parseISO } from "date-fns";
+import { faIR } from "date-fns/locale";
 
 interface IProps {
   userInfo: IUserDetail;
 }
 const DashboardProfileInformation: FC<IProps> = ({ userInfo }) => {
   const progress = userInfo.additionalPercentage || 0;
-
+  const formatRelativeTime = (dateString: string) => {
+    try {
+      const date = parseISO(dateString);
+      return formatDistanceToNow(date, {
+        addSuffix: true,
+        locale: faIR,
+      })
+        .replace("حدود ", "")
+        .replace("کمتر از ", "");
+    } catch {
+      return "نامشخص";
+    }
+  };
+  const lastUpdate = userInfo.user.updatedAt
+    ? formatRelativeTime(userInfo.user.updatedAt)
+    : "نامشخص";
   return (
     <div
       className="
@@ -57,6 +74,9 @@ const DashboardProfileInformation: FC<IProps> = ({ userInfo }) => {
               برای اینکه بازدید خوبی داشته باشید، پروفایل شما باید حداقل ۷۰٪
               تکمیل شده باشد.
             </p>
+            <span>
+              اخرین تغییرات شما {lastUpdate}
+            </span>
           </div>
 
           <div className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] lg:w-[150px] lg:h-[150px] rounded-full flex justify-center items-center">

@@ -14,8 +14,8 @@ export interface IUserDetail {
     firstName: string;
     lastName: string;
     profilePicture: string;
-    createdAt: object;
-    updatedAt: object;
+    createdAt: string;
+    updatedAt: string;
   };
   additionalPercentage: number;
 }
@@ -40,4 +40,43 @@ export interface IDashboardSummery {
 export interface IDashboardMarketTrends {
   month: string;
   bookingCount: string;
+}
+
+export interface IDashboardUserReserve {
+  id: number;
+  user_id: number;
+  houseId: number;
+  reservedDates: [
+    {
+      value: string;
+      inclusive: true;
+    },
+    {
+      value: string;
+      inclusive: false;
+    }
+  ];
+  traveler_details: [
+    {
+      gender: string;
+      lastName: string;
+      birthDate: string;
+      firstName: string;
+      nationalId: string;
+    }
+  ];
+  status: string;
+  sharedEmail: string;
+  sharedMobile: string;
+  createdAt: string;
+  updatedAt: string;
+  house: {
+    title: string;
+    price: number;
+  };
+}
+
+export interface IDashboardUserReserves {
+  data: IDashboardUserReserve[];
+  totalCount: number;
 }

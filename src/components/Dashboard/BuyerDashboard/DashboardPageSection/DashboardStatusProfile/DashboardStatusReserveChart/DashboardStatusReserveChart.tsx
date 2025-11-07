@@ -102,7 +102,7 @@ const DashboardStatusReserveChart: FC<IProps> = ({ dashboardMarketTrendsInfo }) 
                     <FaBookmark size={24} />
                     <span className='text-black dark:text-white text-xl font-normal'>نمودار رزرو های شما</span>
                 </div>
-                <div className='w-full my-2 border-t border-dashed border-gray-300 dark:border-gray-600'></div>
+                 <div className="w-full mt-2 mb-2 border-t border-gray-300 dark:border-white border-dashed transition-colors duration-300"></div>
 
                 <div className='mt-2 -mx-4 -mb-4'>
                     <Chart options={chartOptions} series={series} type="area" height={250} />

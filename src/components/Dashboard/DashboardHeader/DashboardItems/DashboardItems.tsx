@@ -17,10 +17,10 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
     const getPath = () => {
         if (pathName === '/dashboard') return 'داشبورد'
         if (pathName === '/dashboard-profile') return 'اطلاعات کاربری'
-        if (pathName === '/dashboard/payments') return 'پرداخت ها'
-        if (pathName === '/dashboard/reserve-management') return 'مدیریت رزرو ها'
-        if (pathName === '/dashboard/favorites') return 'علاقه مندی ها'
-        if (pathName === '/dashboard/announcements') return 'اعلان ها'
+        if (pathName === '/dashboard-payments') return 'پرداخت ها'
+        if (pathName === '/dashboard-reserves') return 'مدیریت رزرو ها'
+        if (pathName === '/dashboard-favorites') return 'علاقه مندی ها'
+        if (pathName === '/dashboard-announcements') return 'اعلان ها'
     }
     const handleOpenSubMenu = () => {
         setOpenSubMenu(!openSubMenu)
@@ -45,7 +45,6 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
             </div>
             {openSubMenu === true ? (
                     <DashboardItemSubMenu />
-
             ) : ""}
         </div>
     )

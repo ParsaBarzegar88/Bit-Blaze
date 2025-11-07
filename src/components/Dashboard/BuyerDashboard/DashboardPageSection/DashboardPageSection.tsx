@@ -1,6 +1,6 @@
 import React from 'react'
 import DashboardSummery from './DashboardSummery/DashboardSummery'
-import { getDashboardMarketTrends, getDashboardSummery, getUserDetail } from '@/core/api/Dashboard/Dashboard'
+import { getDashboardMarketTrends, getDashboardSummery, getDashboardUserReserve, getUserDetail } from '@/core/api/Dashboard/Dashboard'
 import DashboardStatusProfile from './DashboardStatusProfile/DashboardStatusProfile'
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
@@ -11,6 +11,7 @@ const DashboardPageSection = async () => {
   const accessToken = cookieStore.get('accessToken')?.value
   const dashboardSummery = await getDashboardSummery()
   const dashboardMarketTrends = await getDashboardMarketTrends()
+  const dashboardUserReserve = await getDashboardUserReserve()
   let userInfo
   let userId: string | undefined;
   if (accessToken) {
@@ -19,10 +20,10 @@ const DashboardPageSection = async () => {
     userInfo = await getUserDetail(String(userId))
   }
   return (
-    <div className='flex flex-col w-full gap-3 h-full md:overflow-x-auto'>
+    <div className='flex flex-col w-full gap-3 h-full overflow-x-auto bg-none shadow-none'>
       <DashboardSummery dashboardSummeryInfo={dashboardSummery} />
       <DashboardStatusProfile dashboardMarketTrendsInfo={dashboardMarketTrends} userInfo={userInfo}/>
-      <DashboardRecentReserve/>
+      <DashboardRecentReserve dashboardUserReserveInfo={dashboardUserReserve}/>
     </div>
   )
 }
