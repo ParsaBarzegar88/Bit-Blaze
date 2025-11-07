@@ -1,12 +1,10 @@
-export interface ILocationData{
-    dataValues:{
-        id:number;
-        area_name:string;
-        lat:string | null;
-        lng:string | null;
-    }
+export interface ILocationData {
+  id: number;
+  area_name: string;
+  lat: string | null;
+  lng: string | null;
 }
-export interface ILocations{
-    data:ILocationData[];
-    totalCount:number;
+export interface ILocations {
+  data: ILocationData[];
+  totalCount: number;
 }

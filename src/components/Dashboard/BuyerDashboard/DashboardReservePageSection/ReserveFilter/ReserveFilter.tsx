@@ -1,0 +1,45 @@
+'use client'
+import React, { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation';
+import ReserveFilterItem from './ReserveFilterItem/ReserveFilterItem';
+
+const ReserveFilter = () => {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [openFilters, setOpenFilters] = useState<boolean>(false)
+
+  const handleOpenFilter = () => {
+    setOpenFilters(!openFilters)
+  }
+
+  const updateSearchParams = (key: string, value: string | null) => {
+    const params = new URLSearchParams(searchParams)
+    if (value === null || value === "همه" || value === "") {
+      params.delete(key)
+    } else {
+      params.set(key, value)
+    }
+    router.push(`?${params.toString()}`)
+  }
+  return (
+    <div className='flex flex-row w-full items-center justify-between'>
+      <div className='dark:text-white text-black text-[20px] w-fit'>لیست رزرو  های شما</div>
+      <div className='flex flex-row gap-5 justify-end max-w-[500px] w-full'>
+        <fieldset className='border rounded-[10px] border-[#AAAAAA] max-w-[375px] w-full'>
+          <legend className='mr-2 text-[#AAAAAA] text-[13px] pr-2 pl-2'>جستجو : </legend>
+          <input onChange={(e) => updateSearchParams('search', e.target.value)} type="text" className='w-full mb-1 pr-2 focus:border-none focus:outline-none text-[#AAAAAA]' placeholder='نام هتل مورد نظر .....' />
+        </fieldset>
+        <div onClick={handleOpenFilter} className='bg-[#8CFF45] text-black w-[90px] items-center cursor-pointer flex justify-center mt-3 rounded-[16px]'>
+          فیلتر
+        </div>
+      </div>
+      {openFilters && (
+        <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+          <ReserveFilterItem handleClose={setOpenFilters} />
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default ReserveFilter

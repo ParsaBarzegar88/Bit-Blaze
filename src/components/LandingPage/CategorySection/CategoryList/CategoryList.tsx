@@ -35,7 +35,7 @@ const CategoryList = async () => {
                         transition-all duration-300">
                     </div>
                     <StarCategorySVG />
-                    {categoryData.data[0].dataValues.name}
+                    {categoryData.data[0].name}
                     <StarCategorySVG />
                 </div>
             </div>
@@ -66,7 +66,7 @@ const CategoryList = async () => {
                         transition-all duration-300">
                     </div>
                     <StarCategorySVG />
-                    {categoryData.data[1].dataValues.name}
+                    {categoryData.data[1].name}
                     <StarCategorySVG />
                 </div>
             </div>
@@ -97,7 +97,7 @@ const CategoryList = async () => {
                         transition-all duration-300">
                     </div>
                     <StarCategorySVG />
-                    {categoryData.data[6].dataValues.name}
+                    {categoryData.data[6].name}
                     <StarCategorySVG />
                 </div>
             </div>
@@ -128,7 +128,7 @@ const CategoryList = async () => {
                         transition-all duration-300">
                     </div>
                     <StarCategorySVG />
-                    {categoryData.data[2].dataValues.name}
+                    {categoryData.data[2].name}
                     <StarCategorySVG />
                 </div>
             </div>
@@ -159,7 +159,7 @@ const CategoryList = async () => {
                         transition-all duration-300">
                     </div>
                     <StarCategorySVG />
-                    {categoryData.data[3].dataValues.name}
+                    {categoryData.data[3].name}
                     <StarCategorySVG />
                 </div>
             </div>
@@ -189,7 +189,7 @@ const CategoryList = async () => {
                         transition-all duration-300">
                     </div>
                     <StarCategorySVG />
-                    {categoryData.data[4].dataValues.name}
+                    {categoryData.data[4].name}
                     <StarCategorySVG />
                 </div>
             </div>

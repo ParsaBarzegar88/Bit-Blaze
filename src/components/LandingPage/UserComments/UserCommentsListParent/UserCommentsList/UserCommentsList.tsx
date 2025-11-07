@@ -13,7 +13,7 @@ const UserCommentsList:FC<IProps> = ({commentData}) => {
                 <div className='flex flex-row justify-between items-center relative'>
                     <div className='bg-[#FFFFFF] text-black transition-colors duration-300 z-[1] mr-3 shadow-[0px_4px_12px_rgba(255,255,255,0.2)] translate-y-6 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
                         <div className='mt-1 font-[700] text-[16px]'>
-                            {commentData.dataValues.rating ? commentData.dataValues.rating : 0}
+                            {commentData.rating ? commentData.rating : 0}
                         </div>
                         <FaStar />
                     </div>
@@ -32,7 +32,7 @@ const UserCommentsList:FC<IProps> = ({commentData}) => {
                         "></div>
                     <div className='flex flex-col gap-4 max-w-[98%] w-full justify-center mx-auto mb-4'>
                         <p className='dark:text-[#FFFFFF] text-black leading-[40px] mt-5 mb-2'>
-                            ” {commentData.dataValues.caption} “
+                            ” {commentData.caption} “
                         </p>
                         <div className='dark:bg-[#444444] bg-[#cccccc] rounded-[24px] flex flex-row gap-1.5 items-center'>
                             <div className='bg-[#D9D9D9] rounded-2xl w-[57px] h-[57px] flex justify-center items-center mt-2 mb-2 mr-2'>
@@ -42,7 +42,7 @@ const UserCommentsList:FC<IProps> = ({commentData}) => {
                                 <p className='dark:text-[#FFFFFF] text-black text-[14px]'>{commentData.user?.name}</p>
                                 <div className='flex flex-row gap-2 items-center text-[#696969] dark:text-[#AAAAAA] text-[14px]'>
                                     <FaRegCalendarAlt/>
-                                    {formatToPersianDate("2011-10-05T14:48:00.000Z")}
+                                    {formatToPersianDate(String(commentData.created_at))}
                                 </div>
                             </div>
                         </div>
