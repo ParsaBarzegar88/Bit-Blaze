@@ -1,6 +1,7 @@
 'use client'
 import { UpdateProfileInformation } from '@/core/api/Dashboard/Profile';
 import { IUserDetail } from '@/core/types/Dashboard/IDashboard'
+import { useRouter } from 'next/navigation';
 import React, { FC, useState } from 'react'
 import { toast } from 'react-toastify';
 interface IProps {
@@ -10,6 +11,7 @@ interface IProps {
 const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
     const [FirstName, setFirstName] = useState<string>(userInfo.user?.firstName || '')
     const [LastName, setLastName] = useState<string>(userInfo.user?.lastName || '')
+    const router = useRouter()
     const handleUpdateProfileInfo = async () => {
         console.log(String(userId), FirstName, LastName, userInfo.user.email, userInfo.user.phoneNumber)
         const res = await UpdateProfileInformation(String(userId), FirstName, LastName , userInfo.user.email, userInfo.user.phoneNumber)
@@ -23,6 +25,7 @@ const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
                 draggable: true,
                 style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
             });
+            router.refresh()
         } else {
             toast.error('مشکلی در بروزرسانی کردن اطاعات شما به وجود آمده است', {
                 position: 'top-center',

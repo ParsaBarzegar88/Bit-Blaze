@@ -49,12 +49,12 @@ const ReserveList: FC<IProps> = ({ userReserveInfo }) => {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="flex flex-col gap-1">
                     {userReserveInfo ? (
                         userReserveInfo.map((item) => (
                             <div
                                 key={item.id}
-                                className="grid grid-cols-8 gap-2 sm:gap-8 items-center py-2 px-2 sm:py-3 sm:px-3 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-200"
+                                className="grid grid-cols-8 gap-2 sm:gap-8 items-center py-2 px-2 sm:py-2 sm:px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-200"
                             >
                                 <div className="col-span-1 sm:col-span-1 text-right bg-[#AAAAAA] rounded-[12px] w-full h-[107px] line-clamp-1">
                                     <Image src={item.houseDetail.photos !== null && item.houseDetail.photos.length > 0 && item.houseDetail.photos[0].trim() !== '' ? item.houseDetail.photos[0] : "https://storage.c2.liara.space/sepehr-ac/uploads/1753995432907-white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg"} width={500} height={500} className='w-full h-full object-cover rounded-[12px]' alt='HouseImage' />

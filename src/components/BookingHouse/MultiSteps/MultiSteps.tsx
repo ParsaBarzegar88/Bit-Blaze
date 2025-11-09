@@ -21,33 +21,15 @@ interface IProps {
   houseData: IBookingData;
 }
 
-const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
+const MultiSteps: FC<IProps> = ({ houseData }) => {
   const [step, setStep] = useState<string>("one");
   const cookieStore = useCookies();
-  const getBookingData = useCallback((): IBookingData => {
-    const cookie = cookieStore.get("book");
-    if (cookie) {
-      try {
-        return JSON.parse(cookie);
-      } catch (e) {
-        console.error("خطا در پارس کوکی", e);
-      }
-    }
-    return initialHouseData;
-  }, [cookieStore, initialHouseData]);
-  const [bookingData, setBookingData] = useState<IBookingData>(getBookingData);
-  useEffect(() => {
-    setBookingData(getBookingData());
-  }, [getBookingData]);
-  useEffect(() => {
-    cookieStore.set("book", JSON.stringify(bookingData));
-  }, [bookingData, cookieStore]);
   const steps = useMemo(
     () => [
       {
         id: "one",
         label: "انتخاب هتل",
-        component: <StepOne houseData={bookingData} />,
+        component: <StepOne houseData={houseData} />,
         icon: <FaBuilding />,
       },
       {
@@ -75,7 +57,7 @@ const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
         icon: <LiaFileInvoiceDollarSolid />,
       },
     ],
-    [bookingData]
+    [houseData]
   );
 
   const currentStepIndex = steps.findIndex((s) => s.id === step);
@@ -83,12 +65,14 @@ const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
   const isLastStep = currentStepIndex === steps.length - 1;
 
   const nextStep = useCallback(async () => {
-    console.log(bookingData)
+    const bookData = cookieStore.get('book')
+    const parseBookData = bookData ? JSON.parse(bookData) : null;
+    console.log(parseBookData)
     if (step === "two") {
       if (
-        !bookingData?.personalInfo ||
-        !bookingData?.shareEmail ||
-        !bookingData?.shareMobile
+        !parseBookData?.personalInfo ||
+        !parseBookData?.shareEmail ||
+        !parseBookData?.shareMobile
       ) {
         toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
           position: "top-right",
@@ -97,7 +81,7 @@ const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
           style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
         });
       }
-      const response = await sendBookingHouse(bookingData);
+      const response = await sendBookingHouse(parseBookData);
       if (response?.message === 'Invalid token') {
         toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
           position: "top-right",
@@ -113,7 +97,7 @@ const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
     } else if (!isLastStep) {
       setStep(steps[currentStepIndex + 1].id);
     }
-  }, [step, steps, bookingData, currentStepIndex, isLastStep]);
+  }, [step, steps, houseData, currentStepIndex, isLastStep]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {
@@ -233,7 +217,7 @@ const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
               قیمت بلیط :
             </div>
             <div className="dark:text-[#8CFF45] text-[#4f9623]">
-              {bookingData.info.price}
+              {houseData.info.price}
             </div>
           </div>
           <div className="flex flex-row gap-2 ml-5">

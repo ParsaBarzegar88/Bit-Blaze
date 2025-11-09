@@ -4,11 +4,13 @@ import { LiaTimesCircle } from "react-icons/lia";
 import { IoCard } from "react-icons/io5";
 import { DeleteUserReserve } from '@/core/api/Dashboard/Reserve';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 interface IProps {
     openHouseDetailFunction: () => void;
     reserveId: string
 }
 const ReserveMoreSection: FC<IProps> = ({ openHouseDetailFunction, reserveId }) => {
+    const router = useRouter()
     const handleDeleteReserve = async (id: string) => {
         const res = await DeleteUserReserve(id)
         if (res.message === 'Booking deleted successfully') {
@@ -20,6 +22,7 @@ const ReserveMoreSection: FC<IProps> = ({ openHouseDetailFunction, reserveId }) 
                 draggable: true,
                 style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
             });
+            router.refresh()
         }
         else{
             toast.error('مشکلی در حذف کردن رزرو شما به وجود آمده است', {
@@ -30,6 +33,7 @@ const ReserveMoreSection: FC<IProps> = ({ openHouseDetailFunction, reserveId }) 
                 draggable: true,
                 style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
             });
+            router.refresh()
         }
     }
     return (

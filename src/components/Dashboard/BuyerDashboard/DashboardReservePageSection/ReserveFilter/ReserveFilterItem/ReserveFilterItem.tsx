@@ -56,7 +56,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
         },
         {
             label: "تایید شده",
-            value: "confirm"
+            value: "confirmed"
         },
         {
             label: "در حال انتظار",
@@ -64,7 +64,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
         },
         {
             label: "تایید نشده",
-            value: "cancel"
+            value: "canceled"
         },
     ], [])
     const [selectedDepartureDay, setSelectedDepartureDay] = useState<DateObject | null>(null);
