@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useState, useCallback, useMemo } from "react";
+import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
 import StepOne from "./step1/StepOne";
 import StepTwo from "./step2/StepTwo";
 import StepThree from "./step3/StepThree";
@@ -16,19 +16,38 @@ import { IBookingData } from "@/core/types/bookingHouse/IBookingHouse";
 import { toast, ToastContainer } from "react-toastify";
 import { sendBookingHouse } from "@/core/api/BookingHouse/bookingHouse";
 import { redirect } from "next/navigation";
+import { useCookies } from "next-client-cookies";
 interface IProps {
   houseData: IBookingData;
 }
 
-const MultiSteps: FC<IProps> = ({ houseData }) => {
+const MultiSteps: FC<IProps> = ({ houseData: initialHouseData }) => {
   const [step, setStep] = useState<string>("one");
-
+  const cookieStore = useCookies();
+  const getBookingData = useCallback((): IBookingData => {
+    const cookie = cookieStore.get("book");
+    if (cookie) {
+      try {
+        return JSON.parse(cookie);
+      } catch (e) {
+        console.error("خطا در پارس کوکی", e);
+      }
+    }
+    return initialHouseData;
+  }, [cookieStore, initialHouseData]);
+  const [bookingData, setBookingData] = useState<IBookingData>(getBookingData);
+  useEffect(() => {
+    setBookingData(getBookingData());
+  }, [getBookingData]);
+  useEffect(() => {
+    cookieStore.set("book", JSON.stringify(bookingData));
+  }, [bookingData, cookieStore]);
   const steps = useMemo(
     () => [
       {
         id: "one",
         label: "انتخاب هتل",
-        component: <StepOne houseData={houseData} />,
+        component: <StepOne houseData={bookingData} />,
         icon: <FaBuilding />,
       },
       {
@@ -56,7 +75,7 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
         icon: <LiaFileInvoiceDollarSolid />,
       },
     ],
-    [houseData]
+    [bookingData]
   );
 
   const currentStepIndex = steps.findIndex((s) => s.id === step);
@@ -64,11 +83,12 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
   const isLastStep = currentStepIndex === steps.length - 1;
 
   const nextStep = useCallback(async () => {
+    console.log(bookingData)
     if (step === "two") {
       if (
-        !houseData?.personalInfo ||
-        !houseData?.shareEmail ||
-        !houseData?.shareMobile
+        !bookingData?.personalInfo ||
+        !bookingData?.shareEmail ||
+        !bookingData?.shareMobile
       ) {
         toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
           position: "top-right",
@@ -76,9 +96,8 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
           theme: "colored",
           style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
         });
-        return;
       }
-      const response = await sendBookingHouse(houseData);
+      const response = await sendBookingHouse(bookingData);
       if (response?.message === 'Invalid token') {
         toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
           position: "top-right",
@@ -88,13 +107,13 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
         });
         redirect("/login");
       }
-      else{
+      else {
         setStep("five");
       }
     } else if (!isLastStep) {
       setStep(steps[currentStepIndex + 1].id);
     }
-  }, [step, steps, houseData, currentStepIndex, isLastStep]);
+  }, [step, steps, bookingData, currentStepIndex, isLastStep]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {
@@ -104,18 +123,18 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
 
   return (
     <>
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={true}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="flex flex-col w-full mt-6 px-4 sm:px-6 lg:px-8">
         <div className="dark:bg-[#393939] bg-white border dark:border-[#333] border-gray-200 h-auto py-6 sm:py-4 w-full flex flex-col sm:flex-row justify-between items-center rounded-2xl shadow-lg">
           <div className="flex flex-col sm:flex-row justify-between items-center mx-auto gap-4 sm:gap-6 w-full px-4">
@@ -214,7 +233,7 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
               قیمت بلیط :
             </div>
             <div className="dark:text-[#8CFF45] text-[#4f9623]">
-              {houseData.info.price}
+              {bookingData.info.price}
             </div>
           </div>
           <div className="flex flex-row gap-2 ml-5">

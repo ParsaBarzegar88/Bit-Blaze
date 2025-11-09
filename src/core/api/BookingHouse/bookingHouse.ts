@@ -7,10 +7,7 @@ export const sendBookingHouse = async (houseData: IBookingData) => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
-
-  // if (!token) {
-  //   throw new Error('No token provided')
-  // }
+  
   const sendData = {
       houseId: houseData.info.id,
       reservedDates: [
