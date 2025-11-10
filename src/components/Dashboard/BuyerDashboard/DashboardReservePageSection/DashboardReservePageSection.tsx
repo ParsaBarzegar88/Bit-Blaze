@@ -24,8 +24,9 @@ const DashboardReservePageSection: FC<IProps> = async ({ searchParams = {} }) =>
             transition-all duration-300 
             hover:shadow-[0_8px_15px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_8px_15px_rgba(0,0,0,0.4)]'>
             <ReserveFilter />
+            <div className='w-full mt-2 mb-2 border-t border-gray-300 dark:border-white border-dashed transition-colors duration-300'></div>
             <div className='flex flex-col h-full justify-between'>
-                <ReserveList userReserveInfo={enrichedData} />
+                <ReserveList userReserveInfo={enrichedData} searchParams={searchParams} />
                 <ReservePagination userReserveCount={userReserve} />
             </div>
         </div>

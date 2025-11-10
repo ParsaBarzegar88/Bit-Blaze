@@ -5,6 +5,8 @@ import DashboardStatusProfile from './DashboardStatusProfile/DashboardStatusProf
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 import DashboardRecentReserve from './DashboardRecentReserve/DashboardRecentReserve'
+import { IDashboardUserReserve } from '@/core/types/Dashboard/IDashboard'
+import { getHousesReserveDetail } from '@/core/api/HouseReserve/Detail/Detail'
 
 const DashboardPageSection = async () => {
   const cookieStore = await cookies()
@@ -12,6 +14,12 @@ const DashboardPageSection = async () => {
   const dashboardSummery = await getDashboardSummery()
   const dashboardMarketTrends = await getDashboardMarketTrends()
   const dashboardUserReserve = await getDashboardUserReserve()
+  const housesDetail = await dashboardUserReserve.data.map((item: IDashboardUserReserve) => getHousesReserveDetail(String(item.houseId)))
+    const houseDetailPromise = await Promise.all(housesDetail)
+    const enrichedData = dashboardUserReserve.data.map((reserve:IDashboardUserReserve, index:number) => ({
+        ...reserve,
+        houseDetail: houseDetailPromise[index],
+    }))
   let userInfo
   let userId: string | undefined;
   if (accessToken) {
@@ -23,7 +31,7 @@ const DashboardPageSection = async () => {
     <div className='flex flex-col w-full gap-3 h-full overflow-x-auto bg-none shadow-none'>
       <DashboardSummery dashboardSummeryInfo={dashboardSummery} />
       <DashboardStatusProfile dashboardMarketTrendsInfo={dashboardMarketTrends} userInfo={userInfo}/>
-      <DashboardRecentReserve dashboardUserReserveInfo={dashboardUserReserve}/>
+      <DashboardRecentReserve dashboardUserReserveInfo={enrichedData}/>
     </div>
   )
 }

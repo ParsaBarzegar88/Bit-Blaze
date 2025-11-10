@@ -120,7 +120,7 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
                     </legend>
                     <div className='w-full gap-2 md:gap-3 flex flex-row items-center justify-between relative'>
                         {param.get('parentId') ? (
-                            <input type="text" disabled value={housesComments.data.find(item => item.dataValues.id === param.get('parentId'))?.dataValues.caption} />
+                            <input type="text" disabled value={housesComments.data.find(item => item.id === param.get('parentId'))?.caption} />
                         ) : (
                             <>
                                 <input

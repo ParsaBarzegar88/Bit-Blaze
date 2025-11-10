@@ -29,7 +29,7 @@ const ReserveFilter = () => {
           <legend className='mr-2 text-[#AAAAAA] text-[13px] pr-2 pl-2'>جستجو : </legend>
           <input onChange={(e) => updateSearchParams('search', e.target.value)} type="text" className='w-full mb-1 pr-2 focus:border-none focus:outline-none text-[#AAAAAA]' placeholder='نام هتل مورد نظر .....' />
         </fieldset>
-        <div onClick={handleOpenFilter} className='bg-[#8CFF45] text-black w-[90px] items-center cursor-pointer flex justify-center mt-3 rounded-[16px]'>
+        <div onClick={handleOpenFilter} className='bg-[#8CFF45] text-black w-[90px] items-center cursor-pointer flex justify-center mt-2.5 rounded-[14px]'>
           فیلتر
         </div>
       </div>

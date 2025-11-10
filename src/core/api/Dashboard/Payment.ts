@@ -1,0 +1,26 @@
+"use server";
+import { cookies } from "next/headers";
+
+interface SearchParam {
+  page?: string;
+  reserveType?: string;
+}
+export const getAllPayments = async (searchParams: SearchParam = {}) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(
+    `${baseURL}/api/payments?${
+      searchParams.reserveType ? `status=${searchParams.reserveType}&` : ""
+    }page=${
+      searchParams.page ? searchParams.page : 1
+    }&limit=5&sort=createdAt&order=ASC`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.json()
+};

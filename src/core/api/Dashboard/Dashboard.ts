@@ -37,7 +37,7 @@ export const getDashboardUserReserve = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
-  const res = await fetch(`${baseURL}/api/bookings?page=1&limit=5`, {
+  const res = await fetch(`${baseURL}/api/bookings?page=1&limit=3`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

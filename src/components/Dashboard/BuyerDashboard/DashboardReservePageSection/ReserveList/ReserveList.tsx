@@ -4,16 +4,17 @@ import { formatToPersianDate } from '@/utils/date'
 import Image from 'next/image'
 import React, { FC, useState } from 'react'
 import { FaCheckCircle, FaTimes } from 'react-icons/fa'
+import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoIosMore } from 'react-icons/io'
 import ReserveMoreSection from './ReserveMoreSection/ReserveMoreSection'
 import ReserveHouseDetail from './ReserveMoreSection/ReserveHouseDetail/ReserveHouseDetail'
 interface IProps {
     userReserveInfo: IUserReserve[];
+    searchParams?: { [key: string]: string }
 }
-const ReserveList: FC<IProps> = ({ userReserveInfo }) => {
+const ReserveList: FC<IProps> = ({ userReserveInfo , searchParams = {}}) => {
     const [openReserveId, setOpenReserveId] = useState<string | null>(null)
     const [openHouseDetail, setOpenHouseDetail] = useState<boolean>(false)
-
     const handleOpenReserveMode = (id: string) => {
         setOpenReserveId(prev => prev === id ? null : id)
     }
@@ -51,29 +52,35 @@ const ReserveList: FC<IProps> = ({ userReserveInfo }) => {
 
                 <div className="flex flex-col gap-1">
                     {userReserveInfo ? (
-                        userReserveInfo.map((item) => (
+                       userReserveInfo.filter((item) => {
+                        const query = searchParams?.search?.trim()
+                        if(!query) return true
+                        const lowerCase = query.toLocaleLowerCase()
+                        const houseTitle = item.houseDetail.title.trim().toLocaleLowerCase() || ''
+                        return houseTitle.includes(lowerCase)
+                       }).map((item) => (
                             <div
                                 key={item.id}
-                                className="grid grid-cols-8 gap-2 sm:gap-8 items-center py-2 px-2 sm:py-2 sm:px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-200"
+                                className="grid grid-cols-8 gap-2 sm:gap-8 items-center py-2 px-2 sm:py-2 sm:px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300"
                             >
                                 <div className="col-span-1 sm:col-span-1 text-right bg-[#AAAAAA] rounded-[12px] w-full h-[107px] line-clamp-1">
                                     <Image src={item.houseDetail.photos !== null && item.houseDetail.photos.length > 0 && item.houseDetail.photos[0].trim() !== '' ? item.houseDetail.photos[0] : "https://storage.c2.liara.space/sepehr-ac/uploads/1753995432907-white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg"} width={500} height={500} className='w-full h-full object-cover rounded-[12px]' alt='HouseImage' />
                                 </div>
-                                <div className="col-span-1 sm:col-span-1 text-right text-gray-600 dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
+                                <div className="col-span-1 sm:col-span-1 text-right font-[600] text-[#272727] dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
                                     {item.house.title}
                                 </div>
                                 <div className="col-span-1 text-center flex justify-center items-center">
-                                    <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+                                    <span className="text-xs sm:text-sm font-[600] text-[#272727] dark:text-gray-300">
                                         {formatToPersianDate(item.reservedDates[0].value)}
                                     </span>
                                 </div>
                                 <div className="col-span-1 text-center flex justify-center items-center">
-                                    <span className="text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-200">
+                                    <span className="text-xs sm:text-sm font-[600] text-[#272727] dark:text-gray-200">
                                         {item.house.price.toLocaleString()} ت
                                     </span>
                                 </div>
                                 <div className="col-span-1 text-center flex justify-center items-center">
-                                    <span className="text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-200">
+                                    <span className="text-xs sm:text-sm font-[600] text-[#272727] dark:text-gray-200">
                                         {item.traveler_details.length} عدد مسافر
                                     </span>
                                 </div>
@@ -81,19 +88,23 @@ const ReserveList: FC<IProps> = ({ userReserveInfo }) => {
                                     <div
                                         className={`flex flex-row gap-1 sm:gap-2 items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm 
                                         ${item.status === 'pending'
-                                                ? "bg-[#ff4d4d] text-white"
+                                                ? "bg-[#FAC100] text-gray-800" 
+                                                : item.status === 'canceled' 
+                                                ? "bg-[#FF989A] text-gray-800" 
                                                 : "bg-[#8CFF45] text-gray-800"
                                             }
                                         `}
 
                                     >
                                         {item.status === 'pending' ? (
-                                            <FaTimes className="text-white text-xs sm:text-sm" />
+                                            <IoRemoveCircleOutline size={20} className="text-gray-800 text-xs sm:text-sm"/>
+                                        ) : item.status === 'canceled' ? (
+                                            <FaTimes className="text-gray-800 text-xs sm:text-sm" />
                                         ) : (
                                             <FaCheckCircle className="text-gray-800 text-xs sm:text-sm" />
                                         )}
                                         <span className="whitespace-nowrap">
-                                            {item.status === 'pending' ? 'تایید نشده' : 'تایید شده'}
+                                            {item.status === 'pending' ? 'در حال انتظار' : item.status === 'canceled' ? 'تایید نشده' : 'تایید شده'}
                                         </span>
                                     </div>
                                 </div>
@@ -101,25 +112,29 @@ const ReserveList: FC<IProps> = ({ userReserveInfo }) => {
                                     <div
                                         className={`flex flex-row gap-1 sm:gap-2 items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm 
                                         ${item.status === 'pending'
-                                                ? "bg-[#ff4d4d] text-white"
+                                                ? "bg-[#FAC100] text-gray-800" 
+                                                : item.status === 'canceled' 
+                                                ? "bg-[#FF989A] text-gray-800" 
                                                 : "bg-[#8CFF45] text-gray-800"
                                             }
                                         `}
 
                                     >
                                         {item.status === 'pending' ? (
-                                            <FaTimes className="text-white text-xs sm:text-sm" />
+                                            <IoRemoveCircleOutline size={20} className="text-gray-800 text-xs sm:text-sm"/>
+                                        ) : item.status === 'canceled' ? (
+                                            <FaTimes className="text-gray-800 text-xs sm:text-sm" />
                                         ) : (
                                             <FaCheckCircle className="text-gray-800 text-xs sm:text-sm" />
                                         )}
                                         <span className="whitespace-nowrap">
-                                            {item.status === 'pending' ? 'تایید نشده' : 'تایید شده'}
+                                            {item.status === 'pending' ? 'در حال انتظار' : item.status === 'canceled' ? 'تایید نشده' : 'تایید شده'}
                                         </span>
                                     </div>
                                 </div>
                                 <div className="flex relative col-span-1 text-center text-gray-700 dark:text-gray-300 font-medium items-center justify-center">
                                     <div className="p-1.5 rounded-lg hover:bg-gray-200 dark:hover:bg-[#555555] cursor-pointer transition-colors duration-200">
-                                        <IoIosMore onClick={() => handleOpenReserveMode(String(item.id))} size={22} className="text-gray-600 dark:text-gray-400" />
+                                        <IoIosMore onClick={() => handleOpenReserveMode(String(item.id))} size={25} className="text-gray-600 dark:text-gray-400" />
                                     </div>
                                     {openReserveId === String(item.id) && (
                                         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-10">

@@ -38,12 +38,12 @@ export const DeleteUserReserve = async (id: string) => {
   return res.json();
 };
 
-export const getREservePayment = async () => {
+export const getReservePayment = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
   const res = await fetch(
-    `${baseURL}/api/payments?page=1&limit=10&sort=createdAt&order=ASC`,
+    `${baseURL}/api/payments?sort=createdAt&order=ASC`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
