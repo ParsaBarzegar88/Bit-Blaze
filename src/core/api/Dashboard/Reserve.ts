@@ -52,3 +52,17 @@ export const getReservePayment = async () => {
   );
   return res.json();
 }
+export const getReserveById = async (bookingId:string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(
+    `${baseURL}/api/bookings/${bookingId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.json();
+}
