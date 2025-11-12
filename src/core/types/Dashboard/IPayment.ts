@@ -15,3 +15,10 @@ export interface IUserPayments {
   payments: IUserPayment[];
   totalCount: number;
 }
+
+export interface ICreatePayment {
+  amount: number | string,
+  description?: string,
+  callbackUrl: string,
+  bookingId: number | string
+}

@@ -6,13 +6,15 @@ import { IoCashOutline } from "react-icons/io5";
 import { FaShopLock } from "react-icons/fa6";
 import Link from 'next/link';
 import { IUserReserve } from '@/core/types/Dashboard/IReserve';
+import { createPayment } from '@/core/api/Dashboard/Payment';
+import { toast } from 'react-toastify';
 
 interface IProps{
     houseInfo:IUserReserve
 }
 const PaymentAddCart:FC<IProps> = ({houseInfo}) => {
     const [cardNumber, setCardNumber] = useState('');
-
+    const [description, setDescription] = useState<string | null>()
     const formatCardNumber = (value: string) => {
         const digits = value.replace(/\D/g, '');
         const limited = digits.slice(0, 16);
@@ -28,6 +30,35 @@ const PaymentAddCart:FC<IProps> = ({houseInfo}) => {
 
         setCardNumber(formattedValue);
     };
+    const handleSendPayment = async () => {
+        const paymentData={
+            amount: Number(houseInfo.houseDetail.price),
+            description: description ? description : `پرداخت برای خانه ${houseInfo.houseDetail.title}`,
+            callbackUrl: 'localhost:3000/dashboard-payments',
+            bookingId: houseInfo.id
+        }
+        const res = await createPayment(paymentData)
+        if(res.ok){
+            toast.success('پرداخت شما با موفقیت انجام شد', {
+                position: 'top-center',
+                autoClose: 2400,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
+            });
+        }
+        else{
+            toast.error('خطایی در پرداخت به .ج.د اآموده است', {
+                position: 'top-center',
+                autoClose: 2400,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
+            });
+        }
+    }
     return (
         <div className='flex flex-col gap-2 py-3 px-3 mx-auto -mt-10 max-w-[75%] '>
             <div className='flex flex-row justify-center sm:justify-between py-3 px-3 items-center shadow-[0_5px_10px_rgba(0,0,0,0.1)] bg-white rounded-[16px]'>
@@ -182,6 +213,7 @@ const PaymentAddCart:FC<IProps> = ({houseInfo}) => {
                         <div className='flex flex-col gap-1.5'>
                             <label className='text-[#4e4e4e]'>توضیحات (اختیاری)</label>
                             <textarea
+                                onChange={(e) => setDescription(e.target.value)}
                                 placeholder='توضیحات'
                                 className='
                                 bg-[#e4e4e4]
@@ -224,7 +256,7 @@ const PaymentAddCart:FC<IProps> = ({houseInfo}) => {
                             <label className='text-[#4e4e4e] cursor-pointer' htmlFor='saveCart'>شماره کارت در درگاه ثبت شود</label>
                         </div>
                         <div className='flex flex-col gap-3'>
-                            <button className='w-full border-[16px] bg-[#76fc76] px-2 py-2 rounded-[9px] cursor-pointer border-none'>پرداخت {houseInfo.houseDetail.price} تومان</button>
+                            <button onClick={handleSendPayment} className='w-full border-[16px] bg-[#76fc76] px-2 py-2 rounded-[9px] cursor-pointer border-none'>پرداخت {houseInfo.houseDetail.price} تومان</button>
                             <Link href={'/dashboard-reserves'} className='w-full text-center border-[16px] px-2 py-2 rounded-[9px] cursor-pointer border-none text-red-600'>انصراف</Link>
                         </div>
                     </div>

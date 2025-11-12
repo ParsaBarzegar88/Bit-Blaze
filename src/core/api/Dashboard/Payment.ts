@@ -1,4 +1,5 @@
 "use server";
+import { ICreatePayment } from "@/core/types/Dashboard/IPayment";
 import { cookies } from "next/headers";
 
 interface SearchParam {
@@ -10,10 +11,8 @@ export const getAllPayments = async (searchParams: SearchParam = {}) => {
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
   const res = await fetch(
-    `${baseURL}/api/payments?${
-      searchParams.reserveType ? `status=${searchParams.reserveType}&` : ""
-    }page=${
-      searchParams.page ? searchParams.page : 1
+    `${baseURL}/api/payments?${searchParams.reserveType ? `status=${searchParams.reserveType}&` : ""
+    }page=${searchParams.page ? searchParams.page : 1
     }&limit=5&sort=createdAt&order=ASC`,
     {
       headers: {
@@ -24,3 +23,28 @@ export const getAllPayments = async (searchParams: SearchParam = {}) => {
   );
   return res.json()
 };
+
+export const createPayment = async (paymentData: ICreatePayment) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(`${baseURL}/api/payments` , {
+    method:"POST",
+    headers:{
+      'Content-Type':"application/json",
+      Authorization:`Bearer ${token}`
+    },
+    body:JSON.stringify({
+      amount:paymentData.amount,
+      description:paymentData.description,
+      callbackUrl:paymentData.callbackUrl,
+      bookingId:paymentData.bookingId
+    })
+  })
+  const data = await res.json()
+  return {
+    status: res.status,
+    ok: res.ok,
+    res:data,
+  };
+}
