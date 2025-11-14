@@ -45,7 +45,7 @@ const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
                     <p className='text-[16px] font-[400]'>میتوانید اطلاعات فردی خود را تغییر دهید</p>
                     <div className='flex flex-row gap-2.5'>
                         <button className='px-3 py-2 rounded-[12px] bg-[#d8d8d8] cursor-pointer text-[#888888]'>انصراف</button>
-                        <button className='px-3 py-2 rounded-[12px] bg-[#8CFF45] cursor-pointer' onClick={handleUpdateProfileInfo}>اعمال تغییرات</button>
+                        <button className='px-3 py-2 rounded-[12px] bg-[#8CFF45] dark:text-black cursor-pointer' onClick={handleUpdateProfileInfo}>اعمال تغییرات</button>
                     </div>
                 </div>
                 <div className='flex flex-col gap-4 justify-start w-full'>

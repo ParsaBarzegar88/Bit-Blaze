@@ -24,8 +24,8 @@ const ReserveList: FC<IProps> = ({ userReserveInfo , searchParams = {}}) => {
     const FindHouseDetailById = userReserveInfo.find(item => String(item.id) === openReserveId)
     return (
         <div className="w-full overflow-x-auto custom-scrollbar">
-            <div className="w-full flex flex-col gap-3 sm:gap-2">
-                <div className="bg-[#F0F0F0] dark:bg-[#4a4a4a] dark:shadow-[0_0px_5px_rgba(0,0,0,0.3)] shadow-[0_0px_5px_rgba(0,0,0,0.27)] w-full items-center grid grid-cols-8 gap-2 min-w-[600px] py-3 px-2 sm:py-2 sm:px-3 rounded-[10px]">
+            <div className="w-full flex flex-col gap-3 sm:gap-2 min-w-[900px]">
+                <div className="bg-[#F0F0F0] dark:bg-[#4a4a4a] dark:shadow-[0_0px_5px_rgba(0,0,0,0.3)] shadow-[0_0px_5px_rgba(0,0,0,0.27)] w-full items-center grid grid-cols-8 gap-2 py-3 px-2 sm:py-2 sm:px-3 rounded-[10px]">
                     <div className="col-span-1 sm:col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm pr-2">
                     </div>
                     <div className="col-span-1 sm:col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm pr-2">
@@ -58,7 +58,7 @@ const ReserveList: FC<IProps> = ({ userReserveInfo , searchParams = {}}) => {
                         const lowerCase = query.toLocaleLowerCase()
                         const houseTitle = item.houseDetail.title.trim().toLocaleLowerCase() || ''
                         return houseTitle.includes(lowerCase)
-                       }).map((item) => (
+                       }).map((item, index, array) => (
                             <div
                                 key={item.id}
                                 className="grid grid-cols-8 gap-2 sm:gap-8 items-center py-2 px-2 sm:py-2 sm:px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300"
@@ -137,7 +137,11 @@ const ReserveList: FC<IProps> = ({ userReserveInfo , searchParams = {}}) => {
                                         <IoIosMore onClick={() => handleOpenReserveMode(String(item.id))} size={25} className="text-gray-600 dark:text-gray-400" />
                                     </div>
                                     {openReserveId === String(item.id) && (
-                                        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-10">
+                                        <div className={`absolute left-1/2 -translate-x-1/2 z-10 ${
+                                            index >= array.length - 3 
+                                                ? "bottom-full mb-2" 
+                                                : "top-full mt-2"
+                                        }`}>
                                             <ReserveMoreSection openHouseDetailFunction={handleOpenHouseDetail} reserveId={String(FindHouseDetailById?.id)} />
                                         </div>
                                     )}

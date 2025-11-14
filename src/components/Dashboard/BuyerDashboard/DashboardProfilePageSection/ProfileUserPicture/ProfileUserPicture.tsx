@@ -21,7 +21,7 @@ const ProfileUserPicture:FC<IProps> = ({userInfo}) => {
                     <h2 className='text-[20px] font-[900] text-black dark:text-white'>عکس نمایه شما</h2>
                     <p className='text-[16px] font-[400]'>میتوانید عکس نمایه خود را تغییر دهید</p>
                 </div>
-                <div className='flex justify-start w-full'>
+                <div className='flex max-[800px]:justify-center justify-start w-full'>
                     <div className='relative w-[120px] h-[120px] rounded-full bg-[#D9D9D9]'>
                         {userInfo.user.profilePicture ? (
                             <Image

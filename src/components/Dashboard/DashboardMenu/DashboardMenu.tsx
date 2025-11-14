@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineLogin } from "react-icons/ai";
 import { FiHome } from 'react-icons/fi';
 import { FiUser } from "react-icons/fi";
@@ -10,7 +10,6 @@ import { BsCreditCard } from "react-icons/bs";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import DashboardWalletItem from './DashboardWalletItem/DashboardWalletItem';
-
 const DashboardMenu = () => {
     const pathName = usePathname()
     const [open, setOpen] = useState<boolean>(true)
@@ -21,8 +20,21 @@ const DashboardMenu = () => {
     const handleOpenWalletItem = () => {
         setOpenWalletItem(!openWalletItem)
     }
+    useEffect(() => {
+        const toggleVisibility = () => {
+            if (window.innerWidth >= 1200) {
+                setOpen(true);
+            } else {
+                setOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', toggleVisibility);
+        return () => window.removeEventListener('resize', toggleVisibility);
+    }, [])
+
     return (
-        <div className={`bg-[#ffffff] dark:bg-[#363636] transition-all mt-2 items-center flex flex-col ${open === true ? 'min-w-[230px]' : 'min-w-fit pr-6 pl-6 justify-center'}  min-w mb-2 shadow-[0_0px_10px_rgba(0,0,0,0.27)] rounded-[12px]`}>
+        <div className={`bg-[#ffffff] dark:bg-[#363636] max-[800px]:hidden transition-all mt-2 items-center flex flex-col ${open === true ? 'min-w-[230px]' : 'min-w-fit pr-6 pl-6 justify-center'}  min-w mb-2 shadow-[0_0px_10px_rgba(0,0,0,0.27)] rounded-[12px]`}>
             <div className='flex flex-col h-full justify-between max-w-[90%] w-full mx-auto'>
                 <div className='flex flex-col gap-10 w-full'>
                     <div className='flex flex-row justify-between mt-4 items-center w-full'>
@@ -72,11 +84,20 @@ const DashboardMenu = () => {
                             </div>
                         </div>
                         {openWalletItem === true ? (
-                            <DashboardWalletItem/>
+                            <div className='absolute -top-30 left-3 bg-white w-max dark:bg-[#363636] rounded-[12px] min-w-[180px] px-1.5 py-1.5 border dark:shadow-[0px_0px_5px_rgba(0,0,0,0.3)] shadow-[0_2px_5px_rgba(0,0,0,0.27)] flex flex-col'>
+                                <DashboardWalletItem />
+                            </div>
                         ) : ""}
                     </div>
                 ) : (
-                    <BsCreditCard size={24} className='mr-2 mb-5' />
+                    <div className='w-full relative'>
+                        <BsCreditCard onClick={handleOpenWalletItem} size={24} className='mr-2 mb-5' />
+                        {openWalletItem === true ? (
+                            <div className='absolute -top-30 right-3 bg-white w-max dark:bg-[#363636] rounded-[12px] min-w-[180px] px-1.5 py-1.5 border dark:shadow-[0px_0px_5px_rgba(0,0,0,0.3)] shadow-[0_2px_5px_rgba(0,0,0,0.27)] flex flex-col'>
+                                <DashboardWalletItem />
+                            </div>
+                        ) : ""}
+                    </div>
                 )}
 
             </div>

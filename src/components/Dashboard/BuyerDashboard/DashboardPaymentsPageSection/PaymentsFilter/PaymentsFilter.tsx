@@ -51,9 +51,9 @@ const PaymentsFilter = () => {
     router.push(`?${params.toString()}`)
   }
   return (
-    <div className='flex flex-row w-full items-center justify-between'>
+    <div className='flex max-[800px]:flex-col flex-row w-full items-center justify-between'>
       <div className='dark:text-white text-black text-[20px] w-fit'>لیست رزرو  های ذخیره شده</div>
-      <div className='flex flex-row gap-5 justify-end max-w-[270px] w-full'>
+      <div className='flex  max-[800px]:flex-col flex-row gap-5 justify-end max-w-[270px] w-full'>
         <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
           <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>وضعیت پرداخت : </legend>
           <Popover open={openReserveType} onOpenChange={setOpenReserveType}>

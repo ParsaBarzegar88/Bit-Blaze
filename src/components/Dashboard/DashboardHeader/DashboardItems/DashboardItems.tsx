@@ -26,14 +26,14 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
         setOpenSubMenu(!openSubMenu)
     }
     return (
-        <div className='flex flex-row justify-between max-w-[96%] mx-auto w-full relative'>
-            <h2 className='tracking-[0.2em] font-[800] text-[25px] dark:text-white text-black'>
+        <div className='flex flex-row justify-between max-w-[96%] mx-auto w-full relative items-center'>
+            <h2 className='tracking-[0.2em] max-[800px]:text-[17px] font-[800] text-[25px] dark:text-white text-black'>
                 {getPath()}
             </h2>
             <div className='flex flex-row gap-2 items-center '>
                 <ToggleLightAndDark />
-                <div className='w-[1px] h-[32px] bg-[#9C9C9C]'></div>
-                <IoIosNotificationsOutline className='w-6 h-6' />
+                <div className='w-[1px] h-[32px] bg-[#9C9C9C] max-[800px]:hidden'></div>
+                <IoIosNotificationsOutline className='w-6 h-6 max-[800px]:hidden' />
                 <div className='flex flex-row items-center cursor-pointer gap-1.5' onClick={handleOpenSubMenu}>
                     <Image src={userInfo.user.profilePicture} className='rounded-[8px]' alt='img' width={37} height={37} />
                     <div className='flex flex-col justify-between ml-2'>

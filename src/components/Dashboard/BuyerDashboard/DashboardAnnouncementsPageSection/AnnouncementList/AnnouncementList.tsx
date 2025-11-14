@@ -40,8 +40,8 @@ const AnnouncementList: FC<IProps> = ({ userAnnouncement }) => {
     }
     return (
         <div className="w-full overflow-x-auto custom-scrollbar">
-            <div className="w-full flex flex-col gap-3">
-                <div className="bg-[#F0F0F0] dark:bg-[#4a4a4a] dark:shadow-[0_0px_5px_rgba(0,0,0,0.3)] shadow-[0_0px_5px_rgba(0,0,0,0.27)] w-full items-center grid grid-cols-3 gap-2 min-w-[600px] py-3 px-2  rounded-[10px]">
+            <div className="w-full flex flex-col gap-3 min-w-[600px]">
+                <div className="bg-[#F0F0F0] dark:bg-[#4a4a4a] dark:shadow-[0_0px_5px_rgba(0,0,0,0.3)] shadow-[0_0px_5px_rgba(0,0,0,0.27)] w-full items-center grid grid-cols-3 gap-2 py-3 px-2 rounded-[10px]">
                     <div className="col-span-1 sm:col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm">
                         اعلان
                     </div>
@@ -51,21 +51,21 @@ const AnnouncementList: FC<IProps> = ({ userAnnouncement }) => {
                     <div className="sm:block col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm"></div>
                 </div>
                 <h4 className="font-normal text-[16px] text-[#AAAAAA] mt-4">خوانده نشده</h4>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1">
                     {unreadAnnouncements.length > 0 ? (
                         unreadAnnouncements.map((item) => (
                             <div
                                 key={item.id}
-                                className="grid grid-cols-3 gap-2 items-center py-2 px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300 "
+                                className="grid grid-cols-3 gap-2 items-center py-2 px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300"
                             >
-                                <div className="col-span-1 text-right  text-black dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
+                                <div className="col-span-1 text-right text-black dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
                                     {item.title}
                                 </div>
                                 <div className="col-span-1 text-right text-black dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
                                     {formatToPersianDate(item.createdAt)}
                                 </div>
                                 <div className="col-span-1 text-left">
-                                    <span onClick={() => handleMarkAsRead(item.id)} className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-[#8CFF45] text-black cursor-pointer">
+                                    <span onClick={() => handleMarkAsRead(item.id)} className="inline-flex items-center gap-1 px-2 py-1 rounded-full max-[950px]:text-[10px] font-medium bg-[#8CFF45] text-black cursor-pointer hover:bg-[#7ae035] transition-colors duration-200">
                                         <FaCheckCircle size={14} />
                                         علامت گذاری به عنوان خوانده شده
                                     </span>
@@ -73,7 +73,7 @@ const AnnouncementList: FC<IProps> = ({ userAnnouncement }) => {
                             </div>
                         ))
                     ) : (
-                        <p className="text-center py-4 text-gray-500 dark:text-gray-400 text-sm">
+                        <p className="text-center py-4 text-gray-500 dark:text-gray-400 text-sm min-w-full">
                             هیچ اعلان خوانده نشده‌ای وجود ندارد
                         </p>
                     )}
@@ -96,7 +96,7 @@ const AnnouncementList: FC<IProps> = ({ userAnnouncement }) => {
                             </div>
                         ))
                     ) : (
-                        <p className="text-center py-4 text-gray-500 dark:text-gray-400 text-sm">
+                        <p className="text-center py-4 text-gray-500 dark:text-gray-400 text-sm min-w-full">
                             هیچ اعلان خوانده شده‌ای وجود ندارد
                         </p>
                     )}

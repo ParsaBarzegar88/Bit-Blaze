@@ -11,7 +11,7 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import { IUserPayments } from '@/core/types/Dashboard/IPayment';
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 10;
 
 interface IProps {
     userPaymentCount: IUserPayments

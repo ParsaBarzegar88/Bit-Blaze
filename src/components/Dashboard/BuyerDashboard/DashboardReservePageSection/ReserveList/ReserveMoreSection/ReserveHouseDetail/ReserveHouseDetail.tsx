@@ -28,8 +28,8 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
             <div className='relative bg-white dark:bg-[#363636] border border-gray-300 dark:border-gray-700 rounded-3xl shadow-2xl w-full max-w-4xl mx-4 
                 flex flex-col max-h-[90vh]'>
-                <div className='flex justify-between items-center p-6 border-b border-dashed border-gray-300 dark:border-gray-600'>
-                    <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
+                <div className='flex max-[800px]:flex-col-reverse max-[800px]:gap-3.5 justify-between items-center p-6 border-b border-dashed border-gray-300 dark:border-gray-600'>
+                    <h2 className='text-3xl max-[800px]:text-[19px] font-bold text-gray-800 dark:text-white'>
                         {houseDetail.house.title}
                     </h2>
                     <button
@@ -102,7 +102,7 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                     <div className='mt-8 pt-6 border-t border-dashed border-gray-300 dark:border-gray-600'>
                         <div className='flex flex-col sm:flex-row justify-between items-center gap-4'>
                             <div className='bg-[#D9D9D9] dark:bg-gray-700 px-6 py-3 rounded-xl'>
-                                <div className='flex justify-between items-center gap-8 text-lg font-medium'>
+                                <div className='flex max-[800px]:flex-col justify-between items-center gap-8 text-lg font-medium'>
                                     <span>قیمت کل :</span>
                                     <span className='text-xl'>{houseDetail.houseDetail.discounted_price ? houseDetail.houseDetail.discounted_price : houseDetail.houseDetail.price} تومان</span>
                                 </div>

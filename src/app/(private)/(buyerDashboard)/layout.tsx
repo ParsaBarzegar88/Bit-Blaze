@@ -5,6 +5,7 @@ import { CookiesProvider } from 'next-client-cookies/server';
 import DashboardHeader from '@/components/Dashboard/DashboardHeader/DashboardHeader';
 import ToggleDarkAndLightProvider from './ThemeProvider';
 import DashboardMenu from '@/components/Dashboard/DashboardMenu/DashboardMenu';
+import DashboardMenuResponsive from '@/components/Dashboard/DashboardMenu/DashboardMenuResponsive/DashboardMenuResponsive';
 export const PeydaFanum = localFont({
   src: [
     {
@@ -30,6 +31,9 @@ export default async function RootLayout({
               <div className='flex flex-col gap-3 w-full'>
                 <DashboardHeader />
                 {children}
+                <div className='max-[800px]:mt-3'>
+                  <DashboardMenuResponsive/>
+                </div>
               </div>
               <DashboardMenu/>
             </div>

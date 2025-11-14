@@ -148,7 +148,7 @@ const DashboardDocumentItem: FC<IProps> = ({ houseDetail, userDetail }) => {
       <p className="text-gray-600 text-center mb-3 font-mono text-lg">
         قولنامه شماره : {contractCode}/{today.getFullYear()}
       </p>
-      <div className="flex flex-row justify-between w-full gap-5 mb-4">
+      <div className="flex flex-row max-[450px]:flex-col  justify-between w-full gap-5 mb-4">
         <div className="w-full flex flex-col gap-2 bg-[#f0f0f0] px-3 py-3 rounded-lg">
           <h4 className="text-purple-700">اطلاعات فروشنده</h4>
           <div className="flex flex-col gap-1">
@@ -204,16 +204,16 @@ const DashboardDocumentItem: FC<IProps> = ({ houseDetail, userDetail }) => {
           با موس یا انگشت امضا کنید
         </p>
       </div>
-      <div className="flex gap-3 mt-6 justify-between">
+      <div className="flex gap-3 max-[450px]:flex-col mt-6 justify-between">
         <button
           onClick={clearCanvas}
-          className="flex items-center gap-2 rounded-lg px-4 py-2 bg-red-500 hover:bg-red-600 text-white transition-colors"
+          className="flex items-center gap-2 max-[450px]:justify-center rounded-lg px-4 py-2 bg-red-500 hover:bg-red-600 text-white transition-colors"
         >
           <Trash2 className="w-4 h-4" /> پاک کردن
         </button>
         <button
           onClick={generateAndSendPDF}
-          className="flex items-center gap-2 rounded-lg px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+          className="flex items-center max-[450px]:justify-center gap-2 rounded-lg px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white transition-colors"
         >
           <Download className="w-4 h-4" /> تایید و ایجاد قولنامه
         </button>

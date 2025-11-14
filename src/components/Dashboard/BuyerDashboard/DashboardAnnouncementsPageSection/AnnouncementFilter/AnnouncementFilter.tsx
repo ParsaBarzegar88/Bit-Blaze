@@ -52,10 +52,10 @@ const AnnouncementFilter = () => {
     setSelectToRead(!selectToRead)
   }
   return (
-    <div className='flex flex-row w-full items-center justify-between'>
-      <div className='dark:text-white text-black text-[20px] w-full'>لیست اعلان های شما</div>
-      <div className='flex flex-row gap-2 w-full justify-end'>
-        <div className='flex flex-row gap-5 justify-end max-w-[170px] w-full'>
+    <div className='flex max-[950px]:flex-col flex-row w-full items-center justify-between'>
+      <div className='dark:text-white text-black text-[20px] w-fit'>لیست اعلان های شما</div>
+      <div className='flex flex-row max-[950px]:flex-col gap-2 w-full justify-end'>
+        <div className='flex flex-row max-[950px]:max-w-full gap-5 justify-end max-w-[170px] w-full'>
           <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
             <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>نوع اعلان : </legend>
             <Popover open={openAnnouncementType} onOpenChange={setOpenAnnouncementType}>
@@ -105,7 +105,7 @@ const AnnouncementFilter = () => {
             </Popover>
           </fieldset>
         </div>
-        <div onClick={handleOpenSelectToRead} className='bg-[#8CFF45] max-w-[240px] w-full py-2 px-2 text-black rounded-[12px] flex justify-center items-center mt-2 text-[15px] cursor-pointer'>
+        <div onClick={handleOpenSelectToRead} className='bg-[#8CFF45] max-[950px]:max-w-full max-w-[240px] w-full py-2 px-2 text-black rounded-[12px] flex justify-center items-center mt-2 text-[15px] cursor-pointer'>
           علامت گذاری به عنوان خوانده شده
         </div>
       </div>
