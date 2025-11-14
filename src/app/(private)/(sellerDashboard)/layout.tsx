@@ -4,8 +4,8 @@ import TokenRefresher from '@/utils/refreshToken';
 import { CookiesProvider } from 'next-client-cookies/server';
 import DashboardHeader from '@/components/Dashboard/DashboardHeader/DashboardHeader';
 import ToggleDarkAndLightProvider from './ThemeProvider';
-import DashboardMenu from '@/components/Dashboard/BuyerDashboard/DashboardMenu/DashboardMenu';
-import DashboardMenuResponsive from '@/components/Dashboard/BuyerDashboard/DashboardMenu/DashboardMenuResponsive/DashboardMenuResponsive';
+import DashboardMenu from '@/components/Dashboard/SellerDashboard/DashboardMenu/DashboardMenu';
+import DashboardMenuResponsive from '@/components/Dashboard/SellerDashboard/DashboardMenu/DashboardMenuResponsive/DashboardMenuResponsive';
 export const PeydaFanum = localFont({
   src: [
     {
