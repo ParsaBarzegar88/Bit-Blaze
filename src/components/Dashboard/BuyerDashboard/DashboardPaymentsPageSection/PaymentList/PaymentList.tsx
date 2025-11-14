@@ -1,12 +1,19 @@
-import React, { FC } from 'react'
+'use client'
+import React, { FC, useState } from 'react'
 import { IUserPayments } from '@/core/types/Dashboard/IPayment';
 import { formatToPersianDate } from '@/utils/date';
 import { IoRemoveCircleOutline } from 'react-icons/io5';
 import { FaCheckCircle, FaTimes } from 'react-icons/fa';
+import PaymentReceipt from './PaymentReceipt/PaymentReceipt';
 interface IProps {
     userPaymentInfo: IUserPayments;
 }
 const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
+    const [OpenPaymentReceipt, setOpenPaymentReceipt] = useState<string | null>(null)
+    const handleOpenPaymentReceipt = (id: string) => {
+        setOpenPaymentReceipt(prev => prev === id ? null : id)
+    }
+    const FindPaymentById = userPaymentInfo.payments.find(item => item.id === OpenPaymentReceipt)
     return (
         <div className="w-full overflow-x-auto custom-scrollbar">
             <div className="w-full flex flex-col gap-3 sm:gap-2">
@@ -29,7 +36,7 @@ const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
                     <div className="sm:block col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm"></div>
                 </div>
 
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-10">
                     {userPaymentInfo ? (
                         userPaymentInfo.payments.map((item) => (
                             <div
@@ -75,11 +82,12 @@ const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
                                     {item.description}
                                 </div>
                                 <div className="col-span-1 text-right font-[600] text-[#272727] dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
-                                    <span className='cursor-pointer'>
+                                    <span onClick={() => handleOpenPaymentReceipt(String(item.id))} className='cursor-pointer'>
                                         مشاهده رسید
                                     </span>
                                 </div>
                             </div>
+
                         ))
                     ) : (
                         <div className="text-center py-8 text-gray-500 dark:text-gray-400 text-sm">
@@ -88,6 +96,11 @@ const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
                     )}
                 </div>
             </div>
+            {OpenPaymentReceipt !==null && FindPaymentById && (
+                <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+                    <PaymentReceipt paymentId={String(FindPaymentById?.id)} closePaymentReceipt={setOpenPaymentReceipt} />
+                </div>
+            )}
         </div>
     )
 }

@@ -1,153 +1,25 @@
 "use client";
-
 import React, { useRef, useEffect, useState, useMemo, FC } from "react";
 import { Trash2, Download } from "lucide-react";
 import { IHousesDetail } from "@/core/types/HouseReserveDetail/IHousesDetail";
 import { IUserDetail } from "@/core/types/Dashboard/IDashboard";
 import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  Font,
   pdf,
 } from "@react-pdf/renderer";
-import { toJalaali } from "jalaali-js";
-
-Font.register({
-  family: "IranSans",
-  src: "/PDFFonts/IRANSansXFaNum-Medium.ttf",
-});
-
-const toPersianDate = (date: Date): string => {
-  const j = toJalaali(date.getFullYear(), date.getMonth() + 1, date.getDate());
-  return `${j.jy}/${String(j.jm).padStart(2, "0")}/${String(j.jd).padStart(
-    2,
-    "0"
-  )}`;
-};
-const styles = StyleSheet.create({
-  page: { padding: 40, fontFamily: "IranSans", fontSize: 12, lineHeight: 1.5 },
-  header: {
-    fontSize: 18,
-    textAlign: "center",
-    marginBottom: 20,
-    fontWeight: "bold",
-    paddingBottom: 10,
-  },
-  section: {
-    marginBottom: 15,
-    flexDirection: "row",
-    gap: "16px",
-    width: "100%",
-    justifyContent: "space-between",
-    textAlign: "right",
-  },
-  sectionItem: {
-    flexDirection: "column",
-    gap: "6px",
-    width: "100%",
-    textAlign: "right",
-  },
-  signatureSection: {
-    marginTop: 30,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    paddingTop: 20,
-  },
-  signatureBox: { width: "45%", alignItems: "center", padding: 10, height: 80 },
-  signatureImage: { width: 150, height: 50, marginTop: 5 },
-  signatureText: { fontSize: 10, marginTop: 5 },
-  footer: {
-    position: "absolute",
-    bottom: 30,
-    left: 40,
-    right: 40,
-    textAlign: "center",
-    fontSize: 10,
-    color: "#666",
-  },
-});
+import DocumentPdf from "./DocumentPDF";
+import { uploadContractDocument } from "@/core/api/Dashboard/Document";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface IProps {
   houseDetail: IHousesDetail;
   userDetail: IUserDetail;
 }
-const QolnamehPDF = ({
-  houseDetail,
-  userDetail,
-  today,
-  buyerSignature,
-}: any) => (
-  <Document>
-    <Page size="A5" style={styles.page}>
-      <View style={styles.header}>
-        <Text>امضای دو طرفین قرارداد</Text>
-      </View>
-      <View style={styles.section}>
-        <View style={styles.sectionItem}>
-          <View>
-            <Text>
-              نام و نام خانوداگی :{" "}
-              {userDetail.user.firstName + " " + userDetail.user.lastName}
-            </Text>
-          </View>
-          <View>
-            <Text>کد ملی : {userDetail.user.id}3345334</Text>
-          </View>
-          <View>
-            <Text>تاریخ : {toPersianDate(today)}</Text>
-          </View>
-        </View>
-        <View style={styles.sectionItem}>
-          <View>
-            <Text>
-              نام و نام خانوداگی :{" "}
-              {houseDetail.sellerName}
-            </Text>
-          </View>
-          <View>
-            <Text>کد ملی : {houseDetail.sellerId}3345334</Text>
-          </View>
-          <View>
-            <Text>تاریخ : {toPersianDate(today)}</Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.signatureSection}>
-        <View style={styles.signatureBox}>
-          <Text style={{ fontSize: 14, marginBottom: 5 }}>امضای فروشنده</Text>
-          <Text>
-            <Image
-              style={styles.signatureImage}
-              src={"/assets/Dashboard/fakeSig.jpg"}
-            />
-          </Text>
-        </View>
-        <View style={styles.signatureBox}>
-          <Text style={{ fontSize: 14, marginBottom: 5 }}>امضای خریدار</Text>
-          {buyerSignature ? (
-            <Image style={styles.signatureImage} src={buyerSignature} />
-          ) : (
-            <Text>امضا موجود نیست</Text>
-          )}
-        </View>
-      </View>
-      <View style={styles.footer}>
-        <Text>
-          این سند به صورت الکترونیکی پیاده شده و دارای جنبه قانونی می باشد
-        </Text>
-      </View>
-    </Page>
-  </Document>
-);
-
 const DashboardDocumentItem: FC<IProps> = ({ houseDetail, userDetail }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
+  const router = useRouter()
 
   const { contractCode, today } = useMemo(() => {
     const code = Math.floor(10000 + Math.random() * 90000).toString();
@@ -229,10 +101,9 @@ const DashboardDocumentItem: FC<IProps> = ({ houseDetail, userDetail }) => {
     if (!canvas) return;
     const sig = canvas.toDataURL("image/png");
     const doc = (
-      <QolnamehPDF
+      <DocumentPdf
         houseDetail={houseDetail}
         userDetail={userDetail}
-        contractCode={contractCode}
         today={today}
         buyerSignature={sig}
       />
@@ -243,9 +114,30 @@ const DashboardDocumentItem: FC<IProps> = ({ houseDetail, userDetail }) => {
     link.download = `document-${contractCode}.pdf`;
     link.click();
     const formData = new FormData();
-    formData.append("file", blob, `document-${contractCode}.pdf`);
-    formData.append("contractCode", contractCode);
-    // await fetch("/api/upload-contract", { method: "POST", body: formData });
+    formData.append("document", blob, `document-${contractCode}.pdf`);
+    formData.append("houseId", houseDetail.id);
+    formData.append("documentType", 'contract');
+    const sendDocToAPI = await uploadContractDocument(formData)
+    if (sendDocToAPI.ok) {
+      toast.success("قولنامه شما با موفقیت دانلود و ذخیره شد", {
+        position: "top-center",
+        autoClose: 2400,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
+      });
+      router.push('/dashboard-payments')
+    } else {
+      toast.error("مشکلی در ذخیره کردن قولنامه و ارسال آن به وجود آمده است", {
+        position: "top-center",
+        autoClose: 2400,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
+      });
+    }
   };
 
   return (

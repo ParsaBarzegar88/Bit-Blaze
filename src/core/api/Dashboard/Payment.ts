@@ -48,3 +48,18 @@ export const createPayment = async (paymentData: ICreatePayment) => {
     res:data,
   };
 }
+export const getPaymentsById = async (id:string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(
+    `${baseURL}/api/payments/${id}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.json()
+};
