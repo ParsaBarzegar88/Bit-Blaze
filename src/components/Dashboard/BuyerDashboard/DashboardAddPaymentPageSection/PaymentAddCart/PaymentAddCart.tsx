@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { IUserReserve } from '@/core/types/Dashboard/IReserve';
 import { createPayment } from '@/core/api/Dashboard/Payment';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 interface IProps{
     houseInfo:IUserReserve
@@ -15,6 +16,7 @@ interface IProps{
 const PaymentAddCart:FC<IProps> = ({houseInfo}) => {
     const [cardNumber, setCardNumber] = useState('');
     const [description, setDescription] = useState<string | null>()
+    const router = useRouter()
     const formatCardNumber = (value: string) => {
         const digits = value.replace(/\D/g, '');
         const limited = digits.slice(0, 16);
@@ -47,6 +49,7 @@ const PaymentAddCart:FC<IProps> = ({houseInfo}) => {
                 draggable: true,
                 style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
             });
+            router.push(`/dashboard-document/${houseInfo.houseId}`)
         }
         else{
             toast.error('خطایی در پرداخت به .ج.د اآموده است', {
