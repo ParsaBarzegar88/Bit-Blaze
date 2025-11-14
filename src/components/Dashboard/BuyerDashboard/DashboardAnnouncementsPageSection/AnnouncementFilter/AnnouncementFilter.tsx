@@ -53,7 +53,7 @@ const AnnouncementFilter = () => {
   }
   return (
     <div className='flex max-[950px]:flex-col flex-row w-full items-center justify-between'>
-      <div className='dark:text-white text-black text-[20px] w-fit'>لیست اعلان های شما</div>
+      <div className='dark:text-white text-black text-[20px] w-full max-[950px]:w-fit'>لیست اعلان های شما</div>
       <div className='flex flex-row max-[950px]:flex-col gap-2 w-full justify-end'>
         <div className='flex flex-row max-[950px]:max-w-full gap-5 justify-end max-w-[170px] w-full'>
           <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
