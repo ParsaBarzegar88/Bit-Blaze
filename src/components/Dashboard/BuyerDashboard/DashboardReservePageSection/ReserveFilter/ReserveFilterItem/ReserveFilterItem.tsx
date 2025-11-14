@@ -56,7 +56,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
         },
         {
             label: "تایید شده",
-            value: "confirm"
+            value: "confirmed"
         },
         {
             label: "در حال انتظار",
@@ -64,7 +64,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
         },
         {
             label: "تایید نشده",
-            value: "cancel"
+            value: "canceled"
         },
     ], [])
     const [selectedDepartureDay, setSelectedDepartureDay] = useState<DateObject | null>(null);
@@ -83,6 +83,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
             params.delete(key)
         } else {
             params.set(key, value)
+            params.set('page','1')
         }
         router.push(`?${params.toString()}`)
     }
@@ -126,7 +127,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
                 </div>
             </div>
             <div className="w-full mt-1 mb-1 border-t border-[#b3b3b3] dark:border-white border-dashed transition-colors duration-300"></div>
-            <div className='flex md:flex-row flex-col gap-3 w-full '>
+            {/* <div className='flex md:flex-row flex-col gap-3 w-full '>
                 <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
                     <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>تاریخ رفت : </legend>
                     <div className='flex h-[30px] flex-row gap-1.5 pb-1 text-[#AAAAAA] w-full items-center pr-2.5'>
@@ -169,9 +170,9 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
                         />
                     </div>
                 </fieldset>
-            </div>
+            </div> */}
             <div className='flex md:flex-row flex-col gap-3 w-full '>
-                <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
+                {/* <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
                     <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>نوع ملک : </legend>
                     <Popover open={openHouseType} onOpenChange={setOpenHouseType}>
                         <PopoverTrigger asChild>
@@ -218,7 +219,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
                             </Command>
                         </PopoverContent>
                     </Popover>
-                </fieldset>
+                </fieldset> */}
                 <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
                     <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>وضعیت رزرو : </legend>
                     <Popover open={openReserveType} onOpenChange={setOpenReserveType}>

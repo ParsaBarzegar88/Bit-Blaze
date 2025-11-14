@@ -56,7 +56,7 @@ const ReserveHouse: FC<IProps> = ({ info }) => {
     redirect('/booking-house')
   }
   return (
-    <div className="flex flex-col items-center px-4 max-w-[100%] w-full  bg-[#fcfcfc] dark:bg-[#393939] dark:shadow-none shadow-[0_0px_16px_rgba(0,0,0,0.2)] rounded-4xl border dark:border-[#565656] border-none">
+    <div id="house-date" className="flex flex-col items-center px-4 max-w-[100%] w-full  bg-[#fcfcfc] dark:bg-[#393939] dark:shadow-none shadow-[0_0px_16px_rgba(0,0,0,0.2)] rounded-4xl border dark:border-[#565656] border-none">
       <div className="w-[80%] h-12 flex-row-reverse dark:bg-[#565656] bg-[#ebebeb] flex gap-3 rounded-br-4xl rounded-bl-4xl items-center justify-center">
         <div className="dark:text-white text-[13px] sm:text-[17px] md:text-[15px] text-black font-[600]">
           رزرو خونه برای :

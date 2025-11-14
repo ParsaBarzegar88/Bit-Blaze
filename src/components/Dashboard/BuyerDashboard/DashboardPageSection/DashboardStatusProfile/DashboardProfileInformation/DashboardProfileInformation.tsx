@@ -88,9 +88,10 @@ const DashboardProfileInformation: FC<IProps> = ({ userInfo }) => {
                   #D9D9D9 ${progress * 3.6}deg 360deg
                 )`,
               }}
-            ></div>
+            >
+            </div>
             <div className="relative w-[85px] h-[85px] sm:w-[100px] sm:h-[100px] lg:w-[110px] lg:h-[110px] bg-white dark:bg-[#363636] rounded-full flex justify-center items-center">
-              <span className="text-black dark:text-white text-base sm:text-lg font-medium"></span>
+              <span className="text-black dark:text-white text-base sm:text-lg font-medium">{progress}%</span>
             </div>
           </div>
         </div>

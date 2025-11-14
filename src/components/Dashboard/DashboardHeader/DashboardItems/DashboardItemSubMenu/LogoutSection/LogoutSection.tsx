@@ -13,7 +13,7 @@ const LogoutSection:FC<IProps> = ({onClose}) => {
      data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]  rounded-4xl flex flex-col gap-8 items-center 
       justify-center mx-auto dark:bg-[#363636]'>
         <Image src={'/assets/Dashboard/WarningIcon.png'} alt='Warning' width={90} height={100}/>
-        <div className='text-[24px] dark:text-white text-black font-[900]'>
+        <div className='text-[24px] max-[400px]:items-center w-fit max-[450px]:text-[17px] dark:text-white text-black font-[900]'>
             آیا از خروج خود مطمئن هستید؟
         </div>
         <div className='flex flex-row gap-5'>

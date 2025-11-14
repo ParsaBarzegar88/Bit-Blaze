@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'IRANSansXFaNum';
-  src: url('../../assets/Fonts/IRANSansXFaNum-Medium.ttf');
+  src: url('../../../assets/Fonts/IRANSansXFaNum-Medium.ttf');
 }
 @theme inline {
   --color-background: var(--background);

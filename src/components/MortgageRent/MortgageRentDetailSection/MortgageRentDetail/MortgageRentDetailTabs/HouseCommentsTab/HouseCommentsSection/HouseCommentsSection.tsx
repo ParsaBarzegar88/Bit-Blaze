@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination } from "swiper/modules";
-import { IComments } from "@/core/types/LandingPage/IComments";
+import { IComments } from "@/core/types/MortgageRent/IComments";
 import CommentsList from "./CommentsList/CommentsList";
 const users = [
   { id: 1, name: "محمد رضا ساداتی", avatar: "م" },

@@ -1,6 +1,7 @@
 'use client'
 import { UpdateProfileInformation } from '@/core/api/Dashboard/Profile';
 import { IUserDetail } from '@/core/types/Dashboard/IDashboard'
+import { useRouter } from 'next/navigation';
 import React, { FC, useState } from 'react'
 import { toast } from 'react-toastify';
 interface IProps {
@@ -10,6 +11,7 @@ interface IProps {
 const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
     const [FirstName, setFirstName] = useState<string>(userInfo.user?.firstName || '')
     const [LastName, setLastName] = useState<string>(userInfo.user?.lastName || '')
+    const router = useRouter()
     const handleUpdateProfileInfo = async () => {
         console.log(String(userId), FirstName, LastName, userInfo.user.email, userInfo.user.phoneNumber)
         const res = await UpdateProfileInformation(String(userId), FirstName, LastName , userInfo.user.email, userInfo.user.phoneNumber)
@@ -23,6 +25,7 @@ const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
                 draggable: true,
                 style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
             });
+            router.refresh()
         } else {
             toast.error('مشکلی در بروزرسانی کردن اطاعات شما به وجود آمده است', {
                 position: 'top-center',
@@ -42,7 +45,7 @@ const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
                     <p className='text-[16px] font-[400]'>میتوانید اطلاعات فردی خود را تغییر دهید</p>
                     <div className='flex flex-row gap-2.5'>
                         <button className='px-3 py-2 rounded-[12px] bg-[#d8d8d8] cursor-pointer text-[#888888]'>انصراف</button>
-                        <button className='px-3 py-2 rounded-[12px] bg-[#8CFF45] cursor-pointer' onClick={handleUpdateProfileInfo}>اعمال تغییرات</button>
+                        <button className='px-3 py-2 rounded-[12px] bg-[#8CFF45] dark:text-black cursor-pointer' onClick={handleUpdateProfileInfo}>اعمال تغییرات</button>
                     </div>
                 </div>
                 <div className='flex flex-col gap-4 justify-start w-full'>

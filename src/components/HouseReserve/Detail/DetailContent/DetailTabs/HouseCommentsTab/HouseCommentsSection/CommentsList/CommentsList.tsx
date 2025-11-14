@@ -24,7 +24,7 @@ const CommentsList: FC<IProps> = ({ commentData }) => {
         <div className='flex flex-row justify-between items-center relative'>
           <div className='bg-[#FFFFFF] text-black transition-colors duration-300 z-[1] mr-3 shadow-[0px_4px_12px_rgba(255,255,255,0.2)] translate-y-6 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
             <div className='mt-1 font-[700] text-[16px]'>
-              {commentData.dataValues.rating}
+              {commentData.rating}
             </div>
             <FaStar />
           </div>
@@ -43,7 +43,7 @@ const CommentsList: FC<IProps> = ({ commentData }) => {
                             "></div>
           <div className='flex flex-col gap-4 max-w-[98%] w-full justify-center mx-auto mb-4'>
             <p className='dark:text-[#FFFFFF] text-black leading-[40px] mt-5 mb-2'>
-              ” {commentData.dataValues.caption} “
+              ” {commentData.caption} “
             </p>
             <div className='dark:bg-[#444444] bg-[#cccccc] rounded-[24px] flex flex-row justify-between items-end'>
               <div className='flex flex-row gap-1.5 items-center'>
@@ -59,7 +59,7 @@ const CommentsList: FC<IProps> = ({ commentData }) => {
                 </div>
               </div>
               <button
-                onClick={() => handleReplyComment(commentData.dataValues.id)}
+                onClick={() => handleReplyComment(commentData.id)}
                 type="submit"
                 className='dark:border-white mb-2 cursor-pointer border-black w-fit flex flex-row gap-2 pr-3 items-center ml-2 h-[36px] rounded-[12px] border dark:text-white text-black'
               >

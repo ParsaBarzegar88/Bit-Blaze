@@ -1,5 +1,5 @@
-import { IUserReserve } from '@/core/types/Dashboard/IReserve';
-import React, { Dispatch, FC, SetStateAction } from 'react'
+'use client'
+import React, { Dispatch, FC, SetStateAction, useState } from 'react'
 import { FaBed, FaCarSide } from 'react-icons/fa6';
 import { LiaTimesSolid } from 'react-icons/lia'
 import { MdHotTub } from 'react-icons/md';
@@ -7,18 +7,29 @@ import { FaRegShareFromSquare } from "react-icons/fa6";
 import { GoStarFill } from "react-icons/go";
 import Image from 'next/image';
 import Link from 'next/link';
+import ReservePaymentDetail from '../ReservePaymentDetail/ReservePaymentDetail';
+import ReserveReserversLists from '../ReserveReserversLists/ReseveReserversLists';
+import { IDashboardUserReserve } from '@/core/types/Dashboard/IDashboard';
 interface IProps {
     closeHouseDetail: Dispatch<SetStateAction<boolean>>;
-    houseDetail: IUserReserve
+    houseDetail: IDashboardUserReserve
 }
 
 const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
+    const [openPayment, setOpenPayment] = useState<boolean>(false)
+    const [openReserversList, setOpenReserversList] = useState<boolean>(false)
+    const handleOpenPayment = () => {
+        setOpenPayment(!openPayment)
+    }
+    const handleOpenReservesList = () => {
+        setOpenReserversList(!openReserversList)
+    }
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
             <div className='relative bg-white dark:bg-[#363636] border border-gray-300 dark:border-gray-700 rounded-3xl shadow-2xl w-full max-w-4xl mx-4 
                 flex flex-col max-h-[90vh]'>
-                <div className='flex justify-between items-center p-6 border-b border-dashed border-gray-300 dark:border-gray-600'>
-                    <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
+                <div className='flex max-[800px]:flex-col-reverse max-[800px]:gap-3.5 justify-between items-center p-6 border-b border-dashed border-gray-300 dark:border-gray-600'>
+                    <h2 className='text-3xl max-[800px]:text-[19px] font-bold text-gray-800 dark:text-white'>
                         {houseDetail.house.title}
                     </h2>
                     <button
@@ -91,17 +102,17 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                     <div className='mt-8 pt-6 border-t border-dashed border-gray-300 dark:border-gray-600'>
                         <div className='flex flex-col sm:flex-row justify-between items-center gap-4'>
                             <div className='bg-[#D9D9D9] dark:bg-gray-700 px-6 py-3 rounded-xl'>
-                                <div className='flex justify-between items-center gap-8 text-lg font-medium'>
+                                <div className='flex max-[800px]:flex-col justify-between items-center gap-8 text-lg font-medium'>
                                     <span>قیمت کل :</span>
                                     <span className='text-xl'>{houseDetail.houseDetail.discounted_price ? houseDetail.houseDetail.discounted_price : houseDetail.houseDetail.price} تومان</span>
                                 </div>
                             </div>
 
                             <div className='flex gap-3'>
-                                <button className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
-                                    مشاهده رزروها
+                                <button onClick={handleOpenReservesList} className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
+                                    رزروها
                                 </button>
-                                <button className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
+                                <button onClick={handleOpenPayment} className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
                                     پرداختی‌ها
                                 </button>
                             </div>
@@ -109,6 +120,16 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                     </div>
                 </div>
             </div>
+            {openPayment && (
+                <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+                    <ReservePaymentDetail closePayment={setOpenPayment} bookingId={houseDetail.id}/>
+                </div>
+            )}
+            {openReserversList && (
+                <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+                    <ReserveReserversLists closeReserversLists={setOpenReserversList} reserversDetail={houseDetail}/>
+                </div>
+            )}
         </div>
     )
 }

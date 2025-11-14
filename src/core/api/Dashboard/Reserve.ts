@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 
 interface SearchParam {
   page?: string;
+  reserveType?:string;
 }
 export const getUserReserves = async (searchParams: SearchParam = {}) => {
   const cookieStore = await cookies();
@@ -11,7 +12,7 @@ export const getUserReserves = async (searchParams: SearchParam = {}) => {
   const res = await fetch(
     `${baseURL}/api/bookings?page=${
       searchParams.page ? searchParams.page : 1
-    }&limit=5`,
+    }&limit=5${searchParams.reserveType && `&status=${searchParams.reserveType}`}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -36,3 +37,32 @@ export const DeleteUserReserve = async (id: string) => {
   );
   return res.json();
 };
+
+export const getReservePayment = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(
+    `${baseURL}/api/payments?sort=createdAt&order=ASC`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.json();
+}
+export const getReserveById = async (bookingId:string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(
+    `${baseURL}/api/bookings/${bookingId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.json();
+}
