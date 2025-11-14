@@ -56,7 +56,7 @@ const DashboardRecentReserve: FC<IProps> = ({ dashboardUserReserveInfo }) => {
         <div className="flex flex-row gap-2 sm:gap-2.5 items-center">
           <FaBookmark className="text-lg sm:text-xl lg:text-2xl" />
           <span className="dark:text-white text-black text-sm sm:text-base lg:text-lg xl:text-xl font-[500]">
-            رزرو های اخیر
+            رزرو های اخیر مشتریان
           </span>
         </div>
         <Link

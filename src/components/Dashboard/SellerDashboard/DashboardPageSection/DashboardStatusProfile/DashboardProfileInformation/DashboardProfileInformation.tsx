@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React, { FC } from "react";
-import { FaBookmark } from "react-icons/fa6";
 import ArrowLeftSVG from "../../../.././BuyerDashboardSVG/arrowLeftSVG";
 import { IUserDetail } from "@/core/types/Dashboard/IDashboard";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { faIR } from "date-fns/locale";
+import { FaUser } from "react-icons/fa6";
 
 interface IProps {
   userInfo: IUserDetail;
@@ -41,7 +41,7 @@ const DashboardProfileInformation: FC<IProps> = ({ userInfo }) => {
       <div className="px-2 py-2 w-full flex flex-col gap-3 sm:gap-4 h-full">
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row gap-2.5 items-center">
-            <FaBookmark className="text-lg sm:text-xl lg:text-2xl" />
+            <FaUser className="text-lg sm:text-xl lg:text-2xl" />
             <span className="dark:text-white text-black text-base sm:text-lg lg:text-xl font-[400]">
               وضعیت پروفایل شما
             </span>
@@ -65,7 +65,7 @@ const DashboardProfileInformation: FC<IProps> = ({ userInfo }) => {
 
         <div className="w-full mt-2 mb-2 border-t border-gray-300 dark:border-white border-dashed transition-colors duration-300"></div>
 
-        <div className="mt-4 sm:mt-6 lg:mt-8 flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4">
+        <div className="mt-4 sm:mt-6 lg:mt-8 flex mb-9 flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4">
           <div className="flex flex-col gap-2 sm:gap-3 items-center sm:items-start text-center sm:text-right w-full sm:w-1/2">
             <span className="text-3xl sm:text-4xl lg:text-[36px] text-black dark:text-white font-medium">
               {progress}%

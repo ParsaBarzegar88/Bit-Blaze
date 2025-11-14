@@ -79,7 +79,7 @@ const DashboardMenu = () => {
                         <div onClick={handleOpenWalletItem} className='w-full border-2 border-dashed border-[rgba(136,136,136,0.5)] rounded-[12px] flex flex-row gap-3 mb-5 cursor-pointer h-[60px] py-10 items-center'>
                             <BsCreditCard size={24} className='mr-2' />
                             <div className='flex flex-col gap-1'>
-                                <h2 className='text-[20px]'>کیف پول</h2>
+                                <h2 className='text-[20px]'>نظرات جدید</h2>
                                 <div className='text-[#888888] text-[14px]'>عدم موجودی</div>
                             </div>
                         </div>

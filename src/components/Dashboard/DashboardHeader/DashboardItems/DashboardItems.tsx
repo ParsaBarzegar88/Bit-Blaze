@@ -15,12 +15,18 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
     const pathName = usePathname()
     const [openSubMenu, setOpenSubMenu] = useState(false)
     const getPath = () => {
+        if (pathName === '/seller/dashboard') return 'داشبورد'
         if (pathName === '/dashboard') return 'داشبورد'
         if (pathName === '/dashboard-profile') return 'اطلاعات کاربری'
+        if (pathName === '/seller/dashboard-profile') return 'اطلاعات کاربری'
         if (pathName === '/dashboard-payments') return 'پرداخت ها'
+        if (pathName === '/seller/dashboard-payments') return 'پرداخت ها'
         if (pathName === '/dashboard-reserves') return 'مدیریت رزرو ها'
+        if (pathName === '/seller/dashboard-reserves') return 'مدیریت رزرو ها'
         if (pathName === '/dashboard-favorites') return 'علاقه مندی ها'
+        if (pathName === '/seller/dashboard-favorites') return 'علاقه مندی ها'
         if (pathName === '/dashboard-announcements') return 'اعلان ها'
+        if (pathName === '/seller/dashboard-announcements') return 'اعلان ها'
     }
     const handleOpenSubMenu = () => {
         setOpenSubMenu(!openSubMenu)

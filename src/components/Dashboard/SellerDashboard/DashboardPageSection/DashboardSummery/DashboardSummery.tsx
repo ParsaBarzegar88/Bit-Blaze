@@ -30,10 +30,10 @@ const DashboardSummery:FC<IProps> = ({dashboardSummeryInfo}) => {
                     </div>
                     <div className='flex flex-col gap-1 flex-1 mt-2'>
                         <div className='text-2xl sm:text-[20px] font-[600] text-gray-800 dark:text-white transition-colors duration-300'>
-                            {dashboardSummeryInfo.bookings.bookingCount}
+                            {dashboardSummeryInfo.houses}
                         </div>
                         <div className='text-sm sm:text-[14px] font-[400] text-gray-600 dark:text-gray-300 transition-colors duration-300'>
-                            کل رزرو ها
+                            کل املاک ها
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ const DashboardSummery:FC<IProps> = ({dashboardSummeryInfo}) => {
             <div className='max-w-[94%] mx-auto w-full flex flex-col gap-3 justify-between h-full'>
                 <div className='flex flex-row gap-3 items-start'>
                     <div className='
-                        bg-gray-200 dark:bg-gray-700 
+                        bg-gray-200 dark:bg-[#2d2d2d]
                         pt-8 pb-2 px-3 
                         flex items-center justify-center 
                         rounded-bl-[12px] rounded-br-[12px]
@@ -108,7 +108,7 @@ const DashboardSummery:FC<IProps> = ({dashboardSummeryInfo}) => {
             <div className='max-w-[94%] mx-auto w-full flex flex-col gap-3 justify-between h-full'>
                 <div className='flex flex-row gap-3 items-start'>
                     <div className='
-                        bg-gray-200 dark:bg-gray-700 
+                        bg-gray-200 dark:bg-[#2d2d2d]
                         pt-8 pb-2 px-3 
                         flex items-center justify-center 
                         rounded-bl-[12px] rounded-br-[12px]
@@ -121,7 +121,7 @@ const DashboardSummery:FC<IProps> = ({dashboardSummeryInfo}) => {
                             {dashboardSummeryInfo.bookings.pendingBookings}
                         </div>
                         <div className='text-sm sm:text-[14px] font-[400] text-gray-600 dark:text-gray-300 transition-colors duration-300'>
-                            رزرو های پرداخت نشده
+                            رزرو های در حال انتظار
                         </div>
                     </div>
                 </div>
@@ -152,7 +152,7 @@ const DashboardSummery:FC<IProps> = ({dashboardSummeryInfo}) => {
             <div className='max-w-[94%] mx-auto w-full flex flex-col gap-3 justify-between h-full'>
                 <div className='flex flex-row gap-3 items-start'>
                     <div className='
-                        bg-gray-200 dark:bg-gray-700 
+                        bg-gray-200 dark:bg-[#2d2d2d]
                         pt-8 pb-2 px-3 
                         flex items-center justify-center 
                         rounded-bl-[12px] rounded-br-[12px]
@@ -162,10 +162,10 @@ const DashboardSummery:FC<IProps> = ({dashboardSummeryInfo}) => {
                     </div>
                     <div className='flex flex-col gap-1 flex-1 mt-2'>
                         <div className='text-2xl sm:text-[20px] font-[600] text-gray-800 dark:text-white transition-colors duration-300'>
-                            {dashboardSummeryInfo.averageRating}
+                            {dashboardSummeryInfo.comments}
                         </div>
                         <div className='text-sm sm:text-[14px] font-[400] text-gray-600 dark:text-gray-300 transition-colors duration-300'>
-                            میانگین امتیاز
+                            تعداد کامنت ها
                         </div>
                     </div>
                 </div>

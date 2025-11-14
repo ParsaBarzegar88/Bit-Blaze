@@ -1,16 +1,15 @@
 import React, { FC } from 'react'
-import { IDashboardMarketTrends, IUserDetail } from '@/core/types/Dashboard/IDashboard';
-import DashboardStatusReserveChart from './DashboardStatusReserveChart/DashboardStatusReserveChart';
+import { IUserDetail } from '@/core/types/Dashboard/IDashboard';
+import DashboardIncomeStatistic from './DashboardIncomeStatistic/DashboardIncomeStatistic';
 import DashboardProfileInformation from './DashboardProfileInformation/DashboardProfileInformation';
 
 interface IProps{
-    dashboardMarketTrendsInfo:IDashboardMarketTrends[];
     userInfo: IUserDetail
 }
-const DashboardStatusProfile:FC<IProps> = ({dashboardMarketTrendsInfo , userInfo}) => {
+const DashboardStatusProfile:FC<IProps> = ({userInfo}) => {
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 w-full'>
-            <DashboardStatusReserveChart dashboardMarketTrendsInfo={dashboardMarketTrendsInfo}/>
+            <DashboardIncomeStatistic/>
             <DashboardProfileInformation userInfo={userInfo}/>
         </div>
     )
