@@ -5,11 +5,13 @@ import { FiHome } from 'react-icons/fi';
 import { FiUser } from "react-icons/fi";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
-import { TbCash } from "react-icons/tb";
 import { BsCreditCard } from "react-icons/bs";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import DashboardWalletItem from './DashboardWalletItem/DashboardWalletItem';
+import { GrSettingsOption } from "react-icons/gr";
+import { HiClipboardDocumentList } from "react-icons/hi2";
+
 const DashboardMenu = () => {
     const pathName = usePathname()
     const [open, setOpen] = useState<boolean>(true)
@@ -52,17 +54,21 @@ const DashboardMenu = () => {
                             <FiUser size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>اطلاعات کاربری</span>
                         </Link>
+                        <Link href={'/seller/dashboard-house-management'} className={`flex items-center ${pathName === '/seller/dashboard-house-management' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <GrSettingsOption size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت املاک</span>
+                        </Link>
                         <Link href={'/seller/dashboard-reserves'} className={`flex items-center ${pathName === '/seller/dashboard-reserves' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <IoMdAddCircleOutline size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت رزروها</span>
                         </Link>
-                        <Link href={'/seller/dashboard-favorites'} className={`flex items-center ${pathName === '/seller/dashboard-favorites' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
-                            <MdFavoriteBorder size={24} className='w-5 h-5' />
-                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>علاقه‌مندی‌ها</span>
+                        <Link href={'/seller/dashboard-financial-management'} className={`flex items-center ${pathName === '/seller/dashboard-financial-management' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <HiClipboardDocumentList  size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت مالی</span>
                         </Link>
-                        <Link href={'/seller/dashboard-payments'} className={`flex items-center ${pathName === '/seller/dashboard-payments' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
-                            <TbCash size={24} className='w-5 h-5' />
-                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>پرداخت‌ها</span>
+                        <Link href={'/seller/dashboard-comments-management'} className={`flex items-center ${pathName === '/seller/dashboard-comments-management' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <MdFavoriteBorder size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت نظرات</span>
                         </Link>
                         <Link href={'/seller/dashboard-announcements'} className={`flex items-center ${pathName === '/seller/dashboard-announcements' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bell-dot min-w-5 min-h-5 h-5 w-5" aria-hidden="true">
