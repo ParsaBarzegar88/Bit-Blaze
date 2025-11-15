@@ -5,21 +5,21 @@ import DashboardStatusProfile from './DashboardStatusProfile/DashboardStatusProf
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 import DashboardRecentReserve from './DashboardRecentReserve/DashboardRecentReserve'
-import { IDashboardUserReserve } from '@/core/types/Dashboard/IDashboard'
+import { IReserveManagement } from '@/core/types/SellerDashboard/IReserveManagement'
+import { getAllUserReserveDashboard } from '@/core/api/SellerDashboard/Dashboard'
 import { getHousesReserveDetail } from '@/core/api/HouseReserve/Detail/Detail'
-import { getMyUserReserve } from '@/core/api/SellerDashboard/Dashboard'
 
 const DashboardPageSection = async () => {
   const cookieStore = await cookies()
   let userId: string | undefined;
   const accessToken = cookieStore.get('accessToken')?.value
   const dashboardSummery = await getDashboardSummery()
-  const dashboardUserReserve = await getMyUserReserve(String(userId))
-  const housesDetail = await dashboardUserReserve.data?.map((item: IDashboardUserReserve) => getHousesReserveDetail(String(item.houseId)))
+  const dashboardUserReserve = await getAllUserReserveDashboard(String(userId))
+  const housesDetail = await dashboardUserReserve.bookings?.map((item: IReserveManagement) => getHousesReserveDetail(String(item.houseId)))
   let enrichedData
   if(housesDetail){
     const houseDetailPromise = await Promise.all(housesDetail)
-    enrichedData = dashboardUserReserve.data?.map((reserve: IDashboardUserReserve, index: number) => ({
+    enrichedData = dashboardUserReserve.bookings?.map((reserve: IReserveManagement, index: number) => ({
       ...reserve,
       houseDetail: houseDetailPromise[index],
     }))

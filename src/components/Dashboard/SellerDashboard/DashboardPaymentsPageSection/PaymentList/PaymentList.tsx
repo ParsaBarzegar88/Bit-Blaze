@@ -1,23 +1,52 @@
 'use client'
 import React, { FC, useState } from 'react'
-import { IUserPayments } from '@/core/types/Dashboard/IPayment';
 import { formatToPersianDate } from '@/utils/date';
 import { IoRemoveCircleOutline } from 'react-icons/io5';
 import { FaCheckCircle, FaTimes } from 'react-icons/fa';
 import PaymentReceipt from './PaymentReceipt/PaymentReceipt';
+import { ICustomerPayments } from '@/core/types/SellerDashboard/IFinancialManagement';
+import { AcceptUserPayment } from '@/core/api/SellerDashboard/FinancialManagement';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 interface IProps {
-    userPaymentInfo: IUserPayments;
+    userPaymentInfo: ICustomerPayments;
 }
 const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
     const [OpenPaymentReceipt, setOpenPaymentReceipt] = useState<string | null>(null)
+    const router = useRouter()
     const handleOpenPaymentReceipt = (id: string) => {
         setOpenPaymentReceipt(prev => prev === id ? null : id)
     }
-    const FindPaymentById = userPaymentInfo.payments.find(item => item.id === OpenPaymentReceipt)
+    const FindPaymentById = userPaymentInfo.data?.find(item => item.id === OpenPaymentReceipt)
+    const handleAcceptPayment = async (id: string) => {
+        const res = await AcceptUserPayment(id)
+        if (res.message === "Payment verified successfully") {
+            toast.success('پرداخت با موفقیت تایید شد', {
+                position: 'top-center',
+                autoClose: 2400,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
+            });
+            router.refresh()
+        }
+        else {
+            toast.error('مشکلی در تایید کردن پرداخت به وجود آمده است', {
+                position: 'top-center',
+                autoClose: 2400,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                style: { fontFamily: 'IRANSansXFaNum', direction: 'rtl' },
+            });
+            router.refresh()
+        }
+    }
     return (
         <div className="w-full overflow-x-auto custom-scrollbar">
             <div className="w-full flex flex-col gap-3 sm:gap-2 min-w-[800px]">
-                <div className="bg-[#F0F0F0] dark:bg-[#4a4a4a] dark:shadow-[0_0px_5px_rgba(0,0,0,0.3)] shadow-[0_0px_5px_rgba(0,0,0,0.27)] w-full items-center grid grid-cols-6 gap-2 py-3 px-2 rounded-[10px]">
+                <div className="bg-[#F0F0F0] dark:bg-[#4a4a4a] dark:shadow-[0_0px_5px_rgba(0,0,0,0.3)] shadow-[0_0px_5px_rgba(0,0,0,0.27)] w-full items-center grid grid-cols-7 gap-2 py-3 px-2 rounded-[10px]">
                     <div className="col-span-1 sm:col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm">
                         تاریخ
                     </div>
@@ -34,14 +63,15 @@ const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
                         نوع تراکنش
                     </div>
                     <div className="sm:block col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm"></div>
+                    <div className="sm:block col-span-1 text-right font-medium text-gray-700 dark:text-white text-xs sm:text-sm"></div>
                 </div>
 
                 <div className="flex flex-col gap-6">
-                    {userPaymentInfo ? (
-                        userPaymentInfo.payments.map((item) => (
+                    {userPaymentInfo?.data?.length > 0 ? (
+                        userPaymentInfo.data.map((item) => (
                             <div
                                 key={item.id}
-                                className="grid grid-cols-6 gap-2 items-center py-2 px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300"
+                                className="grid grid-cols-7 gap-2 items-center py-2 px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300"
                             >
                                 <div className="col-span-1 text-right font-[600] text-[#272727] dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
                                     {formatToPersianDate(item.createdAt)}
@@ -49,7 +79,7 @@ const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
                                 <div className="col-span-1 text-right font-[600] text-[#272727] dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
                                     {item.transactionId ? item.transactionId : item.id}
                                 </div>
-                                <div className="col-span-1 text-right flex justify-center">
+                                <div className="col-span-1 text-right flex justify-start">
                                     <span className="text-xs sm:text-sm font-[600] text-[#272727] dark:text-gray-200">
                                         {item.amount.toLocaleString()}
                                     </span>
@@ -82,12 +112,19 @@ const PaymentList: FC<IProps> = ({ userPaymentInfo }) => {
                                     {item.description}
                                 </div>
                                 <div className="col-span-1 text-right font-[600] text-[#272727] dark:text-gray-300 text-xs sm:text-sm pr-2 line-clamp-1">
-                                    <span 
-                                        onClick={() => handleOpenPaymentReceipt(String(item.id))} 
+                                    <span
+                                        onClick={() => handleOpenPaymentReceipt(String(item.id))}
                                         className='cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
                                     >
                                         مشاهده رسید
                                     </span>
+                                </div>
+                                <div className='col-span-1 text-center items-center mx-auto font-[600] text-[#8CFF45] dark:text-[#8CFF45] text-xs sm:text-sm pr-2 line-clamp-1"'>
+                                    {item.status === 'pending' ? (
+                                        <div onClick={() => handleAcceptPayment(item.id)} className='py-2 px-3 w-fit flex cursor-pointer justify-center items-center border border-[#8CFF45] rounded-[10px]'>
+                                            {item.status === 'pending' ? "تایید" : ""}
+                                        </div>
+                                    ) : ""}
                                 </div>
                             </div>
                         ))

@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,10 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronDown } from 'lucide-react';
 
-const PaymentsFilter = () => {
+interface IProps{
+  totalCount:number
+}
+const PaymentsFilter:FC<IProps> = ({totalCount}) => {
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -52,7 +55,7 @@ const PaymentsFilter = () => {
   }
   return (
     <div className='flex max-[800px]:flex-col flex-row w-full items-center justify-between'>
-      <div className='dark:text-white text-black text-[20px] w-fit'>لیست رزرو  های ذخیره شده</div>
+      <div className='dark:text-white text-black text-[20px] w-fit'>{`لیست تراکنش های مشتریان (${totalCount})`}</div>
       <div className='flex  max-[800px]:flex-col flex-row gap-5 justify-end max-w-[270px] w-full'>
         <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
           <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>وضعیت پرداخت : </legend>

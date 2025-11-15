@@ -1,4 +1,4 @@
-import DashboardReservePageSection from '@/components/Dashboard/SellerDashboard/DashboardReservePageSection/DashboardReservePageSection'
+import DashboardReserveManagementPageSection from '@/components/Dashboard/SellerDashboard/DashboardReserveManagementPageSection/DashboardReserveManagementPageSection'
 import { Metadata } from 'next';
 import React, { FC } from 'react'
 
@@ -12,7 +12,7 @@ const DashboardReservePage:FC<IGetSearchParams> = async ({searchParams}) => {
   const getAllSearchParams = await searchParams
   return (
     <>
-      <DashboardReservePageSection searchParams={getAllSearchParams}/>
+      <DashboardReserveManagementPageSection searchParams={getAllSearchParams}/>
     </>
   )
 }

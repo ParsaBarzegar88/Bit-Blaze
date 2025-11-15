@@ -58,7 +58,7 @@ const ReservePaymentDetail: FC<IProps> = ({ closePayment, bookingId }) => {
                         const paymentFilter = userPaymentsInfo?.payments?.filter((item) => item.bookingId === String(bookingId)) || []
                         if (paymentFilter.length === 0) {
                             return (
-                                <div className="text-center py-12 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-[#444] rounded-xl">
+                                <div className="text-center py-12 text-gray-600 dark:text-gray-400 rounded-xl">
                                     هیچ پرداختی برای این رزرو ثبت نشده
                                 </div>
                             );

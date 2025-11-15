@@ -3,12 +3,12 @@ import { Metadata } from 'next';
 import React, { FC } from 'react'
 
 export const metadata: Metadata = {
-  title: "پرداخت ها",
+  title: "مدیریت مالی",
 };
 interface IGetSearchParams {
   searchParams?: { [key: string]: string }
 }
-const DashboardPaymentsPage:FC<IGetSearchParams> = async ({searchParams}) => {
+const DashboardFinancialManagementPage:FC<IGetSearchParams> = async ({searchParams}) => {
   const getAllSearchParams = await searchParams
   return (
     <>
@@ -17,4 +17,4 @@ const DashboardPaymentsPage:FC<IGetSearchParams> = async ({searchParams}) => {
   )
 }
 
-export default DashboardPaymentsPage
+export default DashboardFinancialManagementPage

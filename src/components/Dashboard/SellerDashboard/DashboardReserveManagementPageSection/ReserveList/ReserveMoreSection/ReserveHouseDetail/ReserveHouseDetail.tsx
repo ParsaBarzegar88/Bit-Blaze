@@ -8,8 +8,8 @@ import { GoStarFill } from "react-icons/go";
 import Image from 'next/image';
 import Link from 'next/link';
 import ReservePaymentDetail from '../ReservePaymentDetail/ReservePaymentDetail';
-import ReserveReserversLists from '../ReserveReserversLists/ReseveReserversLists';
 import { IDashboardUserReserve } from '@/core/types/Dashboard/IDashboard';
+import ReserveTravelerList from '../ReserveReserversLists/ReserveTravelerList/ReserveTravelerList';
 interface IProps {
     closeHouseDetail: Dispatch<SetStateAction<boolean>>;
     houseDetail: IDashboardUserReserve
@@ -17,12 +17,12 @@ interface IProps {
 
 const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
     const [openPayment, setOpenPayment] = useState<boolean>(false)
-    const [openReserversList, setOpenReserversList] = useState<boolean>(false)
+    const [openTravelersList, setOpenTravelersList] = useState<boolean>(false)
+    const handleOpenTravelersList = () => {
+        setOpenTravelersList(!openTravelersList)
+    }
     const handleOpenPayment = () => {
         setOpenPayment(!openPayment)
-    }
-    const handleOpenReservesList = () => {
-        setOpenReserversList(!openReserversList)
     }
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
@@ -46,11 +46,11 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                             <div className='relative h-64 bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden'>
                                 <Image src={houseDetail.houseDetail.photos !== null && houseDetail.houseDetail.photos.length > 0 && houseDetail.houseDetail.photos[0].trim() !== '' ? houseDetail.houseDetail.photos[0] : "https://storage.c2.liara.space/sepehr-ac/uploads/1753995432907-white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg"} width={500} height={500} className='w-full h-full object-cover rounded-[12px]' alt='HouseImage' />
                                 <div className='absolute top-3 right-3 h-[40px] bg-[#7367FF] text-white flex flex-row gap-1.5 justify-center items-center px-3 py-1 rounded-[10px] text-sm font-medium'>
-                                    <GoStarFill/>
+                                    <GoStarFill />
                                     5 ستاره
                                 </div>
                                 <Link href={`/house-reserve/${houseDetail.houseId}`} className='absolute top-3 left-3 bg-[#8CFF45] cursor-pointer flex justify-center items-center text-black px-3 py-1 rounded-[12px] w-[40px] h-[40px] text-sm'>
-                                    <FaRegShareFromSquare size={18}/>
+                                    <FaRegShareFromSquare size={18} />
                                 </Link>
                             </div>
 
@@ -109,11 +109,14 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                             </div>
 
                             <div className='flex gap-3'>
-                                <button onClick={handleOpenReservesList} className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
-                                    رزروها
+                                <button onClick={handleOpenTravelersList} className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
+                                    مسافرها
                                 </button>
                                 <button onClick={handleOpenPayment} className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
-                                    پرداختی‌ها
+                                    پرداخت ها
+                                </button>
+                                <button onClick={handleOpenPayment} className='bg-[#8CFF45] cursor-pointer text-black px-6 py-3 rounded-xl font-medium hover:bg-[#7be03b] transition'>
+                                    تاریخچه تغییرات
                                 </button>
                             </div>
                         </div>
@@ -122,12 +125,12 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
             </div>
             {openPayment && (
                 <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <ReservePaymentDetail closePayment={setOpenPayment} bookingId={houseDetail.id}/>
+                    <ReservePaymentDetail closePayment={setOpenPayment} bookingId={houseDetail.id} />
                 </div>
             )}
-            {openReserversList && (
+            {openTravelersList && (
                 <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <ReserveReserversLists closeReserversLists={setOpenReserversList} reserversDetail={houseDetail}/>
+                    <ReserveTravelerList closeTravelersList={setOpenTravelersList} travelersDetail={houseDetail} />
                 </div>
             )}
         </div>

@@ -1,6 +1,6 @@
 import { IUserReserve } from '@/core/types/Dashboard/IReserve';
-import { formatToPersianDate } from '@/utils/date';
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react';
+import { IoIosSend } from "react-icons/io";
 import { LiaTimesSolid } from 'react-icons/lia';
 
 interface IProps {
@@ -30,29 +30,29 @@ const ReserveTravelerList: FC<IProps> = ({ closeTravelersList, travelersDetail }
                         <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
                             نام
                         </div>
-                        <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
-                            کد ملی
-                        </div>
-                        <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
+                        <div className="col-span-1 text-center font-[400] text-gray-700 dark:text-white text-[16px]">
                             جنسیت
                         </div>
-                        <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
-                            تاریخ تولد
+                        <div className="col-span-1 text-center font-[400] text-gray-700 dark:text-white text-[16px]">
+                            کد ملی
+                        </div>
+                        <div className="col-span-1 text-center font-[400] text-gray-700 dark:text-white text-[16px]">
+                            ارسال پیام
                         </div>
                     </div>
-                    {travelersDetail.traveler_details?.map((item , index) => (
+                    {travelersDetail.traveler_details?.map((item, index) => (
                         <div key={index} className="w-full items-center grid grid-cols-4  py-2 px-2 rounded-[10px] mx-4 mb-1.5">
                             <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
-                                {item.firstName}
+                                {item.firstName + " " + item.lastName}
                             </div>
-                            <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
-                                {item.nationalId}
-                            </div>
-                            <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px]">
+                            <div className="col-span-1 text-center font-[400] text-gray-700 dark:text-white text-[16px]">
                                 {item.gender === 'male' ? 'مرد' : 'زن'}
                             </div>
-                            <div className="col-span-1 text-right font-[400] text-gray-700 dark:text-white text-[16px] pr-2">
-                                {formatToPersianDate(item.birthDate)}
+                            <div className="col-span-1 text-center font-[400] text-gray-700 dark:text-white text-[16px]">
+                                {item.nationalId}
+                            </div>
+                            <div className="col-span-1 text-center items-center mx-auto font-[400] text-gray-700 dark:text-white text-[16px] pr-2">
+                                <IoIosSend className='text-[#8CFF45] cursor-pointer' size={30}/>
                             </div>
                         </div>
                     ))}
