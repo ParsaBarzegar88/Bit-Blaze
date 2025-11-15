@@ -1,48 +1,4 @@
-export interface IUserDetail {
-  user: {
-    id: string;
-    role: string;
-    membershipDate: null;
-    email: string;
-    phoneNumber: string;
-    emailVerified: boolean;
-    verificationCode: string;
-    verificationCodeExpires: object;
-    resetCode: null;
-    resetCodeExpires: null;
-    fullName: string;
-    firstName: string;
-    lastName: string;
-    profilePicture: string;
-    createdAt: string;
-    updatedAt: string;
-  };
-  additionalPercentage: number;
-}
-export interface IDashboardSummery {
-  houses: number;
-  users: {
-    userCount: number;
-    sellers: number;
-    buyers: number;
-    admins: number;
-  };
-  bookings: {
-    bookingCount: number;
-    conformedBookings: number;
-    canceledBookings: number;
-    pendingBookings: number;
-  };
-  comments: number;
-  averageRating: string;
-}
-
-export interface IDashboardMarketTrends {
-  month: string;
-  bookingCount: string;
-}
-
-export interface IDashboardUserReserve {
+export interface IReserveManagement {
   id: number;
   user_id: number;
   houseId: number;
@@ -108,15 +64,7 @@ export interface IDashboardUserReserve {
   };
 }
 
-export interface IDashboardUserReserves {
-  data: IDashboardUserReserve[];
+export interface IReserveManagements {
+  bookings: IReserveManagement[];
   totalCount: number;
-}
-
-export interface IDashboardFinancial {
-  totalAmount: number;
-  totalBookings: number;
-  totalPayments: number;
-  totalPerviousMonthAmount: number;
-  totalCurrentMonthAmount: number;
 }

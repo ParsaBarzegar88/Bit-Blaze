@@ -23,10 +23,10 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
         if (pathName === '/dashboard-payments') return 'پرداخت ها'
         if (pathName === '/seller/dashboard-payments') return 'پرداخت ها'
         if (pathName === '/dashboard-reserves') return 'مدیریت رزرو ها'
-        if (pathName === '/seller/dashboard-reserves') return 'مدیریت رزرو ها'
+        if (pathName === '/seller/dashboard-reserves-management') return 'مدیریت رزرو ها'
         if (pathName === '/seller/dashboard-financial-management') return 'مدیریت مالی'
         if (pathName === '/dashboard-favorites') return 'علاقه مندی ها'
-        if (pathName === '/seller/dashboard-comments-management') return 'علاقه مندی هامدیریت نظرات'
+        if (pathName === '/seller/dashboard-comments-management') return 'مدیریت نظرات'
         if (pathName === '/dashboard-announcements') return 'اعلان ها'
         if (pathName === '/seller/dashboard-announcements') return 'اعلان ها'
     }

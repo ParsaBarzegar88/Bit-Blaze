@@ -9,8 +9,8 @@ import { IDashboardUserReserve } from "@/core/types/Dashboard/IDashboard";
 import { FaTimes } from "react-icons/fa";
 import { formatToPersianDate } from "@/utils/date";
 import { IoRemoveCircleOutline } from "react-icons/io5";
-import ReserveMoreSection from "../../DashboardReservePageSection/ReserveList/ReserveMoreSection/ReserveMoreSection";
-import ReserveHouseDetail from "../../DashboardReservePageSection/ReserveList/ReserveMoreSection/ReserveHouseDetail/ReserveHouseDetail";
+import ReserveMoreSection from "../../DashboardReserveManagementPageSection/ReserveList/ReserveMoreSection/ReserveMoreSection";
+import ReserveHouseDetail from "../../DashboardReserveManagementPageSection/ReserveList/ReserveMoreSection/ReserveHouseDetail/ReserveHouseDetail";
 
 interface IProps {
   dashboardUserReserveInfo: IDashboardUserReserve[];

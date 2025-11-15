@@ -9,21 +9,21 @@ import {
     PaginationPrevious
 } from '@/components/ui/pagination';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { IUserPayments } from '@/core/types/Dashboard/IPayment';
+import { IUserReserves } from '@/core/types/Dashboard/IReserve';
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 8;
 
 interface IProps {
-    userPaymentCount: IUserPayments
+    userReserveCount: IUserReserves
 }
-const PaymentPagination: FC<IProps> = ({ userPaymentCount }) => {
+const ReservePagination: FC<IProps> = ({ userReserveCount }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-    const totalPages = Math.ceil(userPaymentCount.totalCount / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(userReserveCount.totalCount / ITEMS_PER_PAGE);
 
     const goToPage = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -35,7 +35,7 @@ const PaymentPagination: FC<IProps> = ({ userPaymentCount }) => {
     return (
         <>
             {totalPages > 1 && (
-                <Pagination dir="ltr" className='mt-6'>
+                <Pagination dir="ltr" className='mt-10'>
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious
@@ -69,4 +69,4 @@ const PaymentPagination: FC<IProps> = ({ userPaymentCount }) => {
     )
 }
 
-export default PaymentPagination
+export default ReservePagination
