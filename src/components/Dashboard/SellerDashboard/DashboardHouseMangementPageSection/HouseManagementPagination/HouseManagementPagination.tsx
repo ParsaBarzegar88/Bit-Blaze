@@ -10,20 +10,21 @@ import {
 } from '@/components/ui/pagination';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { IUserFavorites } from '@/core/types/Dashboard/IFavorite';
+import { IHouses } from '@/core/types/LandingPage/IHouses';
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 10;
 
 interface IProps {
-    userFavoriteCount: IUserFavorites
+    userSellerHouseInfo: IHouses
 }
-const FavoritePagination: FC<IProps> = ({ userFavoriteCount }) => {
+const HouseManagementPagination: FC<IProps> = ({ userSellerHouseInfo }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-    const totalPages = Math.ceil(userFavoriteCount.totalCount / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(userSellerHouseInfo.totalCount / ITEMS_PER_PAGE);
 
     const goToPage = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -69,4 +70,4 @@ const FavoritePagination: FC<IProps> = ({ userFavoriteCount }) => {
     )
 }
 
-export default FavoritePagination
+export default HouseManagementPagination

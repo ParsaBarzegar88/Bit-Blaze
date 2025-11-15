@@ -43,7 +43,7 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
                 <div className='w-[1px] h-[32px] bg-[#9C9C9C] max-[800px]:hidden'></div>
                 <IoIosNotificationsOutline className='w-6 h-6 max-[800px]:hidden' />
                 <div className='flex flex-row items-center cursor-pointer gap-1.5' onClick={handleOpenSubMenu}>
-                    <Image src={userInfo.user.profilePicture} className='rounded-[8px]' alt='img' width={37} height={37} />
+                    <Image src={userInfo?.user.profilePicture} className='rounded-[8px]' alt='img' width={37} height={37} />
                     <div className='flex flex-col justify-between ml-2'>
                         <h3 className='font-[400] text-[14px] dark:text-white text-black'>{`${userInfo.user.firstName} ${userInfo.user.lastName}`}</h3>
                         <span className='font-[400] text-[12px] text-[#888888]'>{userInfo.user.role === 'buyer' ? 'خریدار' : userInfo.user.role === 'seller' ? 'فروشنده' : 'ادمین'}</span>

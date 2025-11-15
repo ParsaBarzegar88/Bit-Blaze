@@ -14,6 +14,7 @@ export const SendProfileImage = async (picture: FormData) => {
   });
   return res.json()
 };
+
 export const UpdateProfileInformation = async (userId: string , firstName:string, lastName:string ,email:string,phoneNumber:string) => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;

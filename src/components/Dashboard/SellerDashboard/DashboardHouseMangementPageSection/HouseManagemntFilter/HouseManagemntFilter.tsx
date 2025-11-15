@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
-import FavoriteFilterItem from './FavoriteFilterItem/FavoriteFilterItem';
+import FavoriteFilterItem from './HouseManagemntFilterItem/HouseManagemntFilterItem';
 
-const FavoriteFilter = () => {
+const HouseManagemntFilter = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [openFilters, setOpenFilters] = useState<boolean>(false)
@@ -23,7 +23,7 @@ const FavoriteFilter = () => {
   }
   return (
     <div className='flex max-[800px]:flex-col flex-row w-full items-center justify-between'>
-      <div className='dark:text-white text-black text-[20px] w-fit'>لیست رزرو  های ذخیره شده</div>
+      <div className='dark:text-white text-black text-[20px] w-fit'>لیست املاک من</div>
       <div className='flex max-[800px]:flex-col flex-row gap-5 justify-end max-w-[500px] w-full'>
         <fieldset className='border rounded-[10px] border-[#AAAAAA] max-[800px]:max-w-full max-w-[375px] w-full'>
           <legend className='mr-2 text-[#AAAAAA] text-[13px] pr-2 pl-2'>جستجو : </legend>
@@ -42,4 +42,4 @@ const FavoriteFilter = () => {
   )
 }
 
-export default FavoriteFilter
+export default HouseManagemntFilter
