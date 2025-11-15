@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react'
+import { FC } from 'react';
 
 import {
     Pagination,
@@ -8,10 +8,8 @@ import {
     PaginationNext,
     PaginationPrevious
 } from '@/components/ui/pagination';
-import { useRouter, useSearchParams } from 'next/navigation';
-<<<<<<<< HEAD:src/components/Dashboard/SellerDashboard/DashboardHouseMangementPageSection/HouseManagementPagination/HouseManagementPagination.tsx
-import { IUserFavorites } from '@/core/types/Dashboard/IFavorite';
 import { IHouses } from '@/core/types/LandingPage/IHouses';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -19,27 +17,15 @@ interface IProps {
     userSellerHouseInfo: IHouses
 }
 const HouseManagementPagination: FC<IProps> = ({ userSellerHouseInfo }) => {
-========
-import { IUserReserves } from '@/core/types/Dashboard/IReserve';
 
-const ITEMS_PER_PAGE = 8;
-
-interface IProps {
-    userReserveCount: IUserReserves
-}
-const ReservePagination: FC<IProps> = ({ userReserveCount }) => {
->>>>>>>> a7fd5f74dc502c2fd4b8beb773a240ae4be752de:src/components/Dashboard/SellerDashboard/DashboardReserveManagementPageSection/ReservePagination/ReservePagination.tsx
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-<<<<<<<< HEAD:src/components/Dashboard/SellerDashboard/DashboardHouseMangementPageSection/HouseManagementPagination/HouseManagementPagination.tsx
     const totalPages = Math.ceil(userSellerHouseInfo.totalCount / ITEMS_PER_PAGE);
-========
-    const totalPages = Math.ceil(userReserveCount.totalCount / ITEMS_PER_PAGE);
->>>>>>>> a7fd5f74dc502c2fd4b8beb773a240ae4be752de:src/components/Dashboard/SellerDashboard/DashboardReserveManagementPageSection/ReservePagination/ReservePagination.tsx
+
 
     const goToPage = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -84,9 +70,4 @@ const ReservePagination: FC<IProps> = ({ userReserveCount }) => {
         </>
     )
 }
-
-<<<<<<<< HEAD:src/components/Dashboard/SellerDashboard/DashboardHouseMangementPageSection/HouseManagementPagination/HouseManagementPagination.tsx
 export default HouseManagementPagination
-========
-export default ReservePagination
->>>>>>>> a7fd5f74dc502c2fd4b8beb773a240ae4be752de:src/components/Dashboard/SellerDashboard/DashboardReserveManagementPageSection/ReservePagination/ReservePagination.tsx
