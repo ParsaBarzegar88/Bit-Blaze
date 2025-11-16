@@ -1,6 +1,6 @@
 import React from "react";
 import MultiSteps from "./MultiSteps/MultiSteps";
-import CreateHouseBreadcrumb from "./CreateHouseBreadcrumb/CreateHouseBreadcrumb";
+// import CreateHouseBreadcrumb from "./CreateHouseBreadcrumb/CreateHouseBreadcrumb";
 import { cookies } from "next/headers";
 
 const CreateHouse = async () => {
@@ -12,7 +12,7 @@ const CreateHouse = async () => {
   }
   return (
     <div className="max-w-[96%] w-full mx-auto mt-10">
-        <CreateHouseBreadcrumb houseTitle={houseData.info.title} />
+        {/* <CreateHouseBreadcrumb houseTitle={houseData.info.title} /> */}
         <MultiSteps houseData={houseData}/>
     </div>
   );

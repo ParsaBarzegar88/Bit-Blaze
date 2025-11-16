@@ -6,14 +6,15 @@ import StepThree from "./step3/StepThree";
 import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { FaBuilding, FaUsers } from "react-icons/fa6";
-import { HiOutlineDocumentCheck } from "react-icons/hi2";
-import { FaMoneyBillWave } from "react-icons/fa";
-import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { RiErrorWarningLine } from "react-icons/ri";
 import { IoTicketOutline } from "react-icons/io5";
+import { ImCheckmark2 } from "react-icons/im";
 import { IBookingData } from "@/core/types/bookingHouse/IBookingHouse";
 import { toast, ToastContainer } from "react-toastify";
 import { sendBookingHouse } from "@/core/api/BookingHouse/bookingHouse";
+import { MdLocationPin } from "react-icons/md";
+import { MdOutlineFeaturedPlayList } from "react-icons/md";
+import { ImFilePicture } from "react-icons/im";
 import { redirect } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 interface IProps {
@@ -29,31 +30,31 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
         id: "one",
         label: "مشخصات اولیه",
         component: <StepOne houseData={houseData} />,
-        icon: <FaBuilding />,
+        icon: <RiErrorWarningLine />,
       },
       {
         id: "two",
         label: "آدرس",
         component: <StepTwo />,
-        icon: <FaUsers />,
+        icon: <MdLocationPin />,
       },
       {
         id: "three",
         label: "امکانات",
         component: <StepThree />,
-        icon: <HiOutlineDocumentCheck />,
+        icon: <MdOutlineFeaturedPlayList />,
       },
       {
         id: "four",
         label: "تصاویر ملک",
         component: <StepFour />,
-        icon: <FaMoneyBillWave />,
+        icon: <ImFilePicture />,
       },
       {
         id: "five",
         label: "تایید نهایی",
         component: <StepFive />,
-        icon: <LiaFileInvoiceDollarSolid />,
+        icon: <ImCheckmark2 />,
       },
     ],
     [houseData]
@@ -63,40 +64,40 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === steps.length - 1;
 
-  const nextStep = useCallback(async () => {
-    const HouseData = cookieStore.get('book')
-    const parseHouseData = HouseData ? JSON.parse(HouseData) : null;
-    console.log(parseHouseData)
-    if (step === "two") {
-      if (
-        !parseHouseData?.personalInfo ||
-        !parseHouseData?.shareEmail ||
-        !parseHouseData?.shareMobile
-      ) {
-        toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
-          position: "top-right",
-          autoClose: 3000,
-          theme: "colored",
-          style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-        });
-      }
-      const response = await sendBookingHouse(parseHouseData);
-      if (response?.message === 'Invalid token') {
-        toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
-          position: "top-right",
-          autoClose: 3000,
-          theme: "colored",
-          style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-        });
-        redirect("/login");
-      }
-      else {
-        setStep("five");
-      }
-    } else if (!isLastStep) {
-      setStep(steps[currentStepIndex + 1].id);
-    }
-  }, [step, steps, houseData, currentStepIndex, isLastStep]);
+  // const nextStep = useCallback(async () => {
+  //   const HouseData = cookieStore.get('book')
+  //   const parseHouseData = HouseData ? JSON.parse(HouseData) : null;
+  //   console.log(parseHouseData)
+  //   if (step === "two") {
+  //     if (
+  //       !parseHouseData?.personalInfo ||
+  //       !parseHouseData?.shareEmail ||
+  //       !parseHouseData?.shareMobile
+  //     ) {
+  //       toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
+  //         position: "top-right",
+  //         autoClose: 3000,
+  //         theme: "colored",
+  //         style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+  //       });
+  //     }
+  //     const response = await sendBookingHouse(parseHouseData);
+  //     if (response?.message === 'Invalid token') {
+  //       toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
+  //         position: "top-right",
+  //         autoClose: 3000,
+  //         theme: "colored",
+  //         style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+  //       });
+  //       redirect("/login");
+  //     }
+  //     else {
+  //       setStep("five");
+  //     }
+  //   } else if (!isLastStep) {
+  //     setStep(steps[currentStepIndex + 1].id);
+  //   }
+  // }, [step, steps, houseData, currentStepIndex, isLastStep]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {
