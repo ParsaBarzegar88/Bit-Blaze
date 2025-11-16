@@ -2,7 +2,7 @@ import DashboardHouseMangementPageSection from '@/components/Dashboard/SellerDas
 import { Metadata } from 'next';
 import React, { FC } from 'react'
 export const metadata: Metadata = {
-  title: "علاقه مندی ها",
+  title: "مدیریت املاک",
 };
 interface IGetSearchParams {
   searchParams?: { [key: string]: string }

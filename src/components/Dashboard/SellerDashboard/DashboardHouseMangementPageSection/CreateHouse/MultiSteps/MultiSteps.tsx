@@ -11,7 +11,7 @@ import StepTwo from "./step2/StepTwo";
 import StepThree from "./step3/StepThree";
 import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
-
+import ArrowLeftBlueSVG from '../../../../BuyerDashboardSVG/arrowLeftBlueSVG';
 const MultiSteps = () => {
   const [step, setStep] = useState<string>("one");
   const steps = useMemo(
@@ -108,7 +108,20 @@ const MultiSteps = () => {
         pauseOnHover
         theme="colored"
       />
-      <div className="flex flex-col w-full mt-6 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col w-full px-4 py-5 rounded-[12px] bg-white dark:bg-[#363636] hover:shadow-[0_8px_15px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_8px_15px_rgba(0,0,0,0.4)]
+       shadow-[0_5px_10px_rgba(0,0,0,0.1)] dark:shadow-[0_5px_10px_rgba(0,0,0,0.3)]">
+        <div className="flex flex-row justify-between mb-3">
+          <span>ساخت آگهی ملک جدید</span>
+          <div className="flex flex-row gap-2.5 items-center text-[#0059FF] cursor-pointer">
+            <div>
+              لیست املاک من
+
+            </div>
+            <div>
+              <ArrowLeftBlueSVG />
+            </div>
+          </div>
+        </div>
         <div className="dark:bg-[#393939] bg-white border dark:border-[#333] border-gray-200 h-auto py-6 sm:py-4 w-full flex flex-col sm:flex-row justify-between items-center rounded-2xl shadow-lg">
           <div className="flex flex-col sm:flex-row justify-between items-center mx-auto gap-4 sm:gap-6 w-full px-4">
             {steps.map((stepItem, index) => {

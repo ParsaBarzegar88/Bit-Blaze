@@ -11,7 +11,7 @@ const CreateHouse = async () => {
     houseData = JSON.parse(house);
   }
   return (
-    <div className="max-w-[96%] w-full mx-auto mt-10">
+    <div className="w-full mx-auto">
         {/* <CreateHouseBreadcrumb houseTitle={houseData.info.title} /> */}
         <MultiSteps/>
     </div>
