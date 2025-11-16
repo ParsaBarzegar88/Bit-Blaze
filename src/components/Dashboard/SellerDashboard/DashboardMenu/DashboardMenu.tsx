@@ -8,17 +8,12 @@ import { FiHome, FiUser } from 'react-icons/fi';
 import { GrSettingsOption } from "react-icons/gr";
 import { HiClipboardDocumentList } from "react-icons/hi2";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import DashboardWalletItem from './DashboardWalletItem/DashboardWalletItem';
 
 const DashboardMenu = () => {
     const pathName = usePathname()
     const [open, setOpen] = useState<boolean>(true)
-    const [openWalletItem, setOpenWalletItem] = useState<boolean>(false)
     const setMenuOpen = () => {
         setOpen(!open)
-    }
-    const handleOpenWalletItem = () => {
-        setOpenWalletItem(!openWalletItem)
     }
     useEffect(() => {
         const toggleVisibility = () => {
@@ -80,27 +75,17 @@ const DashboardMenu = () => {
                 </div>
                 {open === true ? (
                     <div className='w-full relative'>
-                        <div onClick={handleOpenWalletItem} className='w-full border-2 border-dashed border-[rgba(136,136,136,0.5)] rounded-[12px] flex flex-row gap-3 mb-5 cursor-pointer h-[60px] py-10 items-center'>
-                            <BsCreditCard size={24} className='mr-2' />
+                        <div className='w-full border-2 border-dashed border-[rgba(136,136,136,0.5)] rounded-[12px] flex flex-row gap-3 mb-5 cursor-pointer h-[60px] py-10 items-center'>
+                            <BsChatLeftDots size={24} className='mr-2' />
                             <div className='flex flex-col gap-1'>
                                 <h2 className='text-[20px]'>نظرات جدید</h2>
-                                <div className='text-[#888888] text-[14px]'>عدم موجودی</div>
+                                <div className='text-[#888888] text-[14px]'>5 نظر</div>
                             </div>
                         </div>
-                        {openWalletItem === true ? (
-                            <div className='absolute -top-30 left-3 bg-white w-max dark:bg-[#363636] rounded-[12px] min-w-[180px] px-1.5 py-1.5 border dark:shadow-[0px_0px_5px_rgba(0,0,0,0.3)] shadow-[0_2px_5px_rgba(0,0,0,0.27)] flex flex-col'>
-                                <DashboardWalletItem />
-                            </div>
-                        ) : ""}
                     </div>
                 ) : (
                     <div className='w-full relative'>
-                        <BsCreditCard onClick={handleOpenWalletItem} size={24} className='mr-2 mb-5' />
-                        {openWalletItem === true ? (
-                            <div className='absolute -top-30 right-3 bg-white w-max dark:bg-[#363636] rounded-[12px] min-w-[180px] px-1.5 py-1.5 border dark:shadow-[0px_0px_5px_rgba(0,0,0,0.3)] shadow-[0_2px_5px_rgba(0,0,0,0.27)] flex flex-col'>
-                                <DashboardWalletItem />
-                            </div>
-                        ) : ""}
+                        <BsChatLeftDots size={24} className='mr-2 mb-5' />
                     </div>
                 )}
             </div>
