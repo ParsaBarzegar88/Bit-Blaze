@@ -1,35 +1,25 @@
 "use client";
-import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { ImCheckmark2, ImFilePicture } from "react-icons/im";
+import { IoTicketOutline } from "react-icons/io5";
+import { MdLocationPin, MdOutlineFeaturedPlayList } from "react-icons/md";
+import { RiErrorWarningLine } from "react-icons/ri";
+import { ToastContainer } from "react-toastify";
 import StepOne from "./step1/StepOne";
 import StepTwo from "./step2/StepTwo";
 import StepThree from "./step3/StepThree";
 import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { RiErrorWarningLine } from "react-icons/ri";
-import { IoTicketOutline } from "react-icons/io5";
-import { ImCheckmark2 } from "react-icons/im";
-import { IBookingData } from "@/core/types/bookingHouse/IBookingHouse";
-import { toast, ToastContainer } from "react-toastify";
-import { sendBookingHouse } from "@/core/api/BookingHouse/bookingHouse";
-import { MdLocationPin } from "react-icons/md";
-import { MdOutlineFeaturedPlayList } from "react-icons/md";
-import { ImFilePicture } from "react-icons/im";
-import { redirect } from "next/navigation";
-import { useCookies } from "next-client-cookies";
-interface IProps {
-  houseData: IBookingData;
-}
 
-const MultiSteps: FC<IProps> = ({ houseData }) => {
+const MultiSteps = () => {
   const [step, setStep] = useState<string>("one");
-  const cookieStore = useCookies();
   const steps = useMemo(
     () => [
       {
         id: "one",
         label: "مشخصات اولیه",
-        component: <StepOne houseData={houseData} />,
+        component: <StepOne />,
         icon: <RiErrorWarningLine />,
       },
       {
@@ -57,47 +47,46 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
         icon: <ImCheckmark2 />,
       },
     ],
-    [houseData]
+    []
   );
 
   const currentStepIndex = steps.findIndex((s) => s.id === step);
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === steps.length - 1;
 
-  // const nextStep = useCallback(async () => {
-  //   const HouseData = cookieStore.get('book')
-  //   const parseHouseData = HouseData ? JSON.parse(HouseData) : null;
-  //   console.log(parseHouseData)
-  //   if (step === "two") {
-  //     if (
-  //       !parseHouseData?.personalInfo ||
-  //       !parseHouseData?.shareEmail ||
-  //       !parseHouseData?.shareMobile
-  //     ) {
-  //       toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
-  //         position: "top-right",
-  //         autoClose: 3000,
-  //         theme: "colored",
-  //         style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-  //       });
-  //     }
-  //     const response = await sendBookingHouse(parseHouseData);
-  //     if (response?.message === 'Invalid token') {
-  //       toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
-  //         position: "top-right",
-  //         autoClose: 3000,
-  //         theme: "colored",
-  //         style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-  //       });
-  //       redirect("/login");
-  //     }
-  //     else {
-  //       setStep("five");
-  //     }
-  //   } else if (!isLastStep) {
-  //     setStep(steps[currentStepIndex + 1].id);
-  //   }
-  // }, [step, steps, houseData, currentStepIndex, isLastStep]);
+  const nextStep = useCallback(async () => {
+    // const HouseData = cookieStore.get('book')
+    // const parseHouseData = HouseData ? JSON.parse(HouseData) : null;
+    // if (step === "two") {
+    //   if (
+    //     !parseHouseData?.personalInfo ||
+    //     !parseHouseData?.shareEmail ||
+    //     !parseHouseData?.shareMobile
+    //   ) {
+    //     toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
+    //       position: "top-right",
+    //       autoClose: 3000,
+    //       theme: "colored",
+    //       style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+    //     });
+    //   }
+    //   const response = await sendBookingHouse(parseHouseData);
+    //   if (response?.message === 'Invalid token') {
+    //     toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
+    //       position: "top-right",
+    //       autoClose: 3000,
+    //       theme: "colored",
+    //       style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+    //     });
+    //     redirect("/login");
+    //   }
+    //   else {
+    //     setStep("five");
+    //   }
+    // } else if (!isLastStep) {
+    // }
+    setStep(steps[currentStepIndex + 1].id);
+  }, [step, steps, currentStepIndex, isLastStep]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {
@@ -217,7 +206,7 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
               قیمت بلیط :
             </div>
             <div className="dark:text-[#8CFF45] text-[#4f9623]">
-              {houseData.info.price}
+              {/* {houseData.info.price} */}
             </div>
           </div>
           <div className="flex flex-row gap-2 ml-5">

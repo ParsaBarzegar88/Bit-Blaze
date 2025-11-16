@@ -13,7 +13,7 @@ const CreateHouse = async () => {
   return (
     <div className="max-w-[96%] w-full mx-auto mt-10">
         {/* <CreateHouseBreadcrumb houseTitle={houseData.info.title} /> */}
-        <MultiSteps houseData={houseData}/>
+        <MultiSteps/>
     </div>
   );
 };
