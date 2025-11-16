@@ -1,20 +1,15 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 import { BsCreditCard } from 'react-icons/bs'
 import { FiHome, FiUser } from 'react-icons/fi'
 import { IoMdAddCircleOutline } from 'react-icons/io'
 import { MdFavoriteBorder } from 'react-icons/md'
 import { TbCash } from 'react-icons/tb'
-import DashboardWalletItem from '../DashboardWalletItem/DashboardWalletItem'
 import { usePathname } from 'next/navigation'
 
 const DashboardMenuResponsive = () => {
-    const [openWalletItem, setOpenWalletItem] = useState<boolean>(false)
     const pathName = usePathname()
-    const handleOpenWalletItem = () => {
-        setOpenWalletItem(!openWalletItem)
-    }
     return (
         <div className='max-[800px]:flex hidden bg-[#dbdbdb] dark:bg-[#2e2e2e] fixed bottom-0 w-full shadow-2xl'>
             <div className='flex flex-row max-w-[95%] w-full items-center mx-auto'>
@@ -41,12 +36,9 @@ const DashboardMenuResponsive = () => {
                             <circle cx="18" cy="8" r="3"></circle>
                         </svg>
                     </Link>
-                    <BsCreditCard onClick={handleOpenWalletItem} size={19} />
+                    <BsCreditCard size={19} />
                 </div>
             </div>
-            {openWalletItem === true ? (
-                <DashboardWalletItem />
-            ) : ""}
         </div>
     )
 }
