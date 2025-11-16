@@ -239,13 +239,13 @@ useEffect(() => {
                                 }}
                             ></div>
                             <div
-                                className="absolute w-6 h-6 bg-white border-2 border-[#10B981] rounded-full cursor-pointer shadow-lg z-10 transition-transform hover:scale-110"
+                                className="absolute w-3 h-3 bg-white border-2 border-[#10B981] rounded-full cursor-pointer shadow-lg z-10 transition-transform hover:scale-110"
                                 style={{ left: `calc(${minPercent}% - 12px)` }}
                                 onMouseDown={handleMouseDown('min')}
                                 onTouchStart={handleTouchStart('min')}
                             ></div>
                             <div
-                                className="absolute w-6 h-6 bg-white border-2 border-[#10B981] rounded-full cursor-pointer shadow-lg z-10 transition-transform hover:scale-110"
+                                className="absolute w-3 h-3 bg-white border-2 border-[#10B981] rounded-full cursor-pointer shadow-lg z-10 transition-transform hover:scale-110"
                                 style={{ left: `calc(${maxPercent}% - 12px)` }}
                                 onMouseDown={handleMouseDown('max')}
                                 onTouchStart={handleTouchStart('max')}

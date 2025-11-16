@@ -46,26 +46,38 @@ const HouseManagementMoreSection: FC<IProps> = ({ HouseId }) => {
 
     return (
         <>
-            <div className='absolute -top-10 left-3 bg-white w-max dark:bg-[#363636] rounded-[12px] min-w-full px-1.5 py-1.5 border dark:shadow-[0px_0px_5px_rgba(0,0,0,0.3)] shadow-[0_2px_5px_rgba(0,0,0,0.27)] flex flex-col'>
-                <Link href={`/house-reserve/${HouseId}#house-date`} className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors">
+             <div className='bg-white w-48 dark:bg-[#363636] rounded-[12px] px-1.5 py-1.5 border dark:shadow-[0px_0px_5px_rgba(0,0,0,0.3)] shadow-[0_2px_5px_rgba(0,0,0,0.27)] flex flex-col'>
+                <Link 
+                    href={`/house-reserve/${HouseId}#house-date`} 
+                    className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors"
+                >
                     <MdEdit size={20} />
                     <span className='dark:text-white text-black text-[14px] font-[400]'>ویرایش ملک</span>
                 </Link>
-                <div onClick={() => handluReserve(HouseId)} className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors">
+                <div 
+                    onClick={() => handluReserve(HouseId)} 
+                    className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors"
+                >
                     <IoDocumentTextOutline size={20} />
                     <span className='dark:text-white text-black text-[14px] font-[400]'>مشاهده مدارک</span>
                 </div>
-                <div onClick={() => handluReserve(HouseId)} className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors">
+                <div 
+                    onClick={() => handluReserve(HouseId)} 
+                    className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors"
+                >
                     <IoIosAddCircleOutline size={20} />
-                    <span className='dark:text-white text-black text-[14px] font-[400]'>افرون عکس</span>
+                    <span className='dark:text-white text-black text-[14px] font-[400]'>افزودن عکس</span>
                 </div>
-                <div onClick={() => handleOpenLogout()} className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors">
+                <div 
+                    onClick={handleOpenLogout} 
+                    className="flex flex-row gap-2 items-center py-1 hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] px-2 w-full rounded-[8px] cursor-pointer transition-colors"
+                >
                     <LiaTimesCircle size={20} />
                     <span className='dark:text-white text-black text-[14px] font-[400]'>حذف</span>
                 </div>
             </div>
             {isSure === true ? (
-               <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+               <div className='fixed inset-0 z-50 bg-black/80'>
                     <LogoutSection onClose={setIsSure} Id={HouseId}/>
                 </div>
             ):(

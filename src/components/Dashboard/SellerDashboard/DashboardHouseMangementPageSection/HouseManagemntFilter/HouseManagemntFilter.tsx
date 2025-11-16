@@ -27,7 +27,6 @@ const HouseManagemntFilter = () => {
       <div className='dark:text-white text-black text-[20px] w-fit'>لیست املاک من</div>
       <div className='flex max-[800px]:flex-col flex-row gap-5 justify-end max-w-[500px] w-full'>
         <div className='flex flex-row max-[800px]:flex-col w-full items-center justify-between'>
-          <div className='dark:text-white text-black text-[20px] w-fit'>لیست رزرو  های مشتریان</div>
           <div className='flex flex-row max-[800px]:flex-col max-[800px]:justify-center max-[800px]:items-center gap-5 justify-end max-w-[500px] w-full'>
             <fieldset className='border rounded-[10px] border-[#AAAAAA] max-[800px]:max-w-full max-w-[375px] w-full'>
               <legend className='mr-2 text-[#AAAAAA] text-[13px] pr-2 pl-2'>جستجو : </legend>
