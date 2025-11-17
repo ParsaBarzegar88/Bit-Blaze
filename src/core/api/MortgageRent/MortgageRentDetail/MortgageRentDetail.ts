@@ -45,3 +45,15 @@ export const addHouseToFavorite = async (houseId:string , userId:string | undefi
     })
     return result.json()
 }
+export const getSellerInfo = async (id:string) => {
+    const cookieStore = await cookies()
+    const token = cookieStore.get('accessToken')?.value
+    const baseURL = process.env.API_BASE_URL;
+    const result = await fetch(`${baseURL}/api/users/${id}` , {
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":`Bearer ${token}`
+        }
+    })
+    return result.json()
+}
