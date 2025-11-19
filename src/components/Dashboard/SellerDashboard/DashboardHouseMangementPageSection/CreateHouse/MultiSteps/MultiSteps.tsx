@@ -12,8 +12,11 @@ import StepThree from "./step3/StepThree";
 import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
 import ArrowLeftBlueSVG from '../../../../BuyerDashboardSVG/arrowLeftBlueSVG';
+import Link from "next/link";
 const MultiSteps = () => {
   const [step, setStep] = useState<string>("one");
+  const [pictureFiles, setPictureFiles] = useState<File[]>([]);
+  const [picturePreviews, setPicturePreviews] = useState<string[]>([]);
   const steps = useMemo(
     () => [
       {
@@ -37,7 +40,11 @@ const MultiSteps = () => {
       {
         id: "four",
         label: "تصاویر ملک",
-        component: <StepFour />,
+        component: <StepFour 
+        setPictureFiles={setPictureFiles}
+        pictureFiles={pictureFiles}
+        setPicturePreviews={setPicturePreviews}
+        picturePreviews={picturePreviews} />,
         icon: <ImFilePicture />,
       },
       {
@@ -47,7 +54,7 @@ const MultiSteps = () => {
         icon: <ImCheckmark2 />,
       },
     ],
-    []
+    [picturePreviews, pictureFiles]
   );
 
   const currentStepIndex = steps.findIndex((s) => s.id === step);
@@ -113,10 +120,10 @@ const MultiSteps = () => {
         <div className="flex flex-row justify-between mb-3">
           <span>ساخت آگهی ملک جدید</span>
           <div className="flex flex-row gap-2.5 items-center text-[#0059FF] cursor-pointer">
-            <div>
+            <Link href={"/seller/dashboard-house-management"}>
               لیست املاک من
 
-            </div>
+            </Link>
             <div>
               <ArrowLeftBlueSVG />
             </div>
@@ -213,15 +220,6 @@ const MultiSteps = () => {
           {steps.find((s) => s.id === step)?.component}
         </div>
         <div className="flex justify-between items-center mt-8 w-full mx-auto border-2 border-dotted rounded-[36px] h-[84px] p-1.5">
-          <div className="flex flex-row gap-1 mr-5">
-            <div className="flex flex-row gap-1.5 items-center text-[17px]">
-              <IoTicketOutline size={20} />
-              قیمت بلیط :
-            </div>
-            <div className="dark:text-[#8CFF45] text-[#4f9623]">
-              {/* {houseData.info.price} */}
-            </div>
-          </div>
           <div className="flex flex-row gap-2 ml-5">
             <button
               onClick={prevStep}
@@ -248,7 +246,7 @@ const MultiSteps = () => {
                 }
             `}
             >
-              {step === "two" ? "پرداخت آنلاین" : "مرحله بعدی"}
+              {step === "five" ? "ایجاد ملک" : "مرحله بعدی"}
               <FaChevronLeft size={16} />
             </button>
           </div>

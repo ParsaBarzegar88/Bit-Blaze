@@ -12,7 +12,6 @@ const CreateHouse = async () => {
   }
   return (
     <div className="w-full mx-auto">
-        {/* <CreateHouseBreadcrumb houseTitle={houseData.info.title} /> */}
         <MultiSteps/>
     </div>
   );
