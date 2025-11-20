@@ -5,7 +5,7 @@ import { ImCheckmark2, ImFilePicture } from "react-icons/im";
 import { IoTicketOutline } from "react-icons/io5";
 import { MdLocationPin, MdOutlineFeaturedPlayList } from "react-icons/md";
 import { RiErrorWarningLine } from "react-icons/ri";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import StepOne from "./step1/StepOne";
 import StepTwo from "./step2/StepTwo";
 import StepThree from "./step3/StepThree";
@@ -13,10 +13,18 @@ import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
 import ArrowLeftBlueSVG from '../../../../BuyerDashboardSVG/arrowLeftBlueSVG';
 import Link from "next/link";
+import { CreateAHouse } from "@/core/api/SellerDashboard/CreateHouse/CreateHouse";
+import { redirect } from "next/navigation";
+import { useCookies } from "next-client-cookies";
+import { ICreateHouse } from "@/core/types/CreateHouse/CreateHouse";
+
 const MultiSteps = () => {
   const [step, setStep] = useState<string>("one");
   const [pictureFiles, setPictureFiles] = useState<File[]>([]);
   const [picturePreviews, setPicturePreviews] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const cookieStore = useCookies();
+
   const steps = useMemo(
     () => [
       {
@@ -41,16 +49,17 @@ const MultiSteps = () => {
         id: "four",
         label: "تصاویر ملک",
         component: <StepFour 
-        setPictureFiles={setPictureFiles}
-        pictureFiles={pictureFiles}
-        setPicturePreviews={setPicturePreviews}
-        picturePreviews={picturePreviews} />,
+          setPictureFiles={setPictureFiles}
+          pictureFiles={pictureFiles}
+          setPicturePreviews={setPicturePreviews}
+          picturePreviews={picturePreviews} 
+        />,
         icon: <ImFilePicture />,
       },
       {
         id: "five",
         label: "تایید نهایی",
-        component: <StepFive />,
+        component: <StepFive picturePreviews={picturePreviews} />,
         icon: <ImCheckmark2 />,
       },
     ],
@@ -61,39 +70,55 @@ const MultiSteps = () => {
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === steps.length - 1;
 
+  const handleSubmitHouse = async (houseData: ICreateHouse) => {
+    console.log("asd in founction", houseData)
+    setIsSubmitting(true);
+    try {
+      const response = await CreateAHouse(houseData);
+
+      if (response?.success) {
+        toast.success("آگهی با موفقیت ثبت شد!", {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "colored",
+          style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+        });
+        
+        cookieStore.remove("House");
+        
+        setTimeout(() => {
+          redirect("/seller/dashboard-house-management");
+        }, 2000);
+      } else {
+        toast.error("خطا در ثبت آگهی!", {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "colored",
+          style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+        });
+      }
+    } catch (error) {
+      toast.error("خطا در ارتباط با سرور!", {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "colored",
+        style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const nextStep = useCallback(async () => {
-    // const HouseData = cookieStore.get('book')
-    // const parseHouseData = HouseData ? JSON.parse(HouseData) : null;
-    // if (step === "two") {
-    //   if (
-    //     !parseHouseData?.personalInfo ||
-    //     !parseHouseData?.shareEmail ||
-    //     !parseHouseData?.shareMobile
-    //   ) {
-    //     toast.error("لطفاً تمام اطلاعات لازم را وارد کنید!", {
-    //       position: "top-right",
-    //       autoClose: 3000,
-    //       theme: "colored",
-    //       style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-    //     });
-    //   }
-    //   const response = await sendBookingHouse(parseHouseData);
-    //   if (response?.message === 'Invalid token') {
-    //     toast.error("برای ادامه کار باید وارد حساب کاربری خود شوید", {
-    //       position: "top-right",
-    //       autoClose: 3000,
-    //       theme: "colored",
-    //       style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-    //     });
-    //     redirect("/login");
-    //   }
-    //   else {
-    //     setStep("five");
-    //   }
-    // } else if (!isLastStep) {
-    // }
-    setStep(steps[currentStepIndex + 1].id);
-  }, [step, steps, currentStepIndex, isLastStep]);
+    if (step === "five") {
+      const houseData = cookieStore.get('House');
+      const parseHouseData = houseData ? JSON.parse(houseData) : null;
+      
+      await handleSubmitHouse(parseHouseData);
+    } else if (!isLastStep) {
+      setStep(steps[currentStepIndex + 1].id);
+    }
+  }, [step, steps, currentStepIndex, isLastStep, cookieStore]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {
@@ -122,7 +147,6 @@ const MultiSteps = () => {
           <div className="flex flex-row gap-2.5 items-center text-[#0059FF] cursor-pointer">
             <Link href={"/seller/dashboard-house-management"}>
               لیست املاک من
-
             </Link>
             <div>
               <ArrowLeftBlueSVG />
@@ -237,16 +261,22 @@ const MultiSteps = () => {
             </button>
             <button
               onClick={nextStep}
-              disabled={isLastStep}
+              disabled={isSubmitting}
               className={`
               flex items-center gap-2 px-5 py-2 rounded-xl font-medium transition-all duration-300
-              ${isLastStep
+              ${isSubmitting
                   ? "dark:bg-gray-700 bg-gray-300 dark:text-gray-500 text-gray-400 cursor-not-allowed"
                   : "dark:bg-[#8CFF45] bg-[#4f9623] dark:text-black text-white hover:shadow-lg transform hover:translate-x-1"
                 }
             `}
             >
-              {step === "five" ? "ایجاد ملک" : "مرحله بعدی"}
+              {step === "five" ? (
+                <>
+                  {isSubmitting ? "در حال ثبت..." : "ثبت آگهی"}
+                </>
+              ) : (
+                "مرحله بعدی"
+              )}
               <FaChevronLeft size={16} />
             </button>
           </div>
