@@ -4,7 +4,7 @@ import { ICreateHouse } from "@/core/types/CreateHouse/CreateHouse";
 import { cookies } from "next/headers";
 
 export const CreateAHouse = async (houseData: ICreateHouse) => {
-    console.log("api",houseData)
+  console.log("api", houseData)
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
@@ -12,7 +12,7 @@ export const CreateAHouse = async (houseData: ICreateHouse) => {
   const sendData = {
     title: houseData?.title,
     address: houseData?.address,
-    rate: houseData?.rate || 0,
+    rate: 0,
     price: houseData?.price,
     tags: houseData?.tags,
     capacity: houseData?.capacity,
@@ -41,5 +41,21 @@ export const CreateAHouse = async (houseData: ICreateHouse) => {
 
   const response = await res.json();
 
-  return response;
+  return {
+    response:response,
+    ok:res.ok
+  };
+};
+
+export const UploadPicture = async (id: string, data: FormData) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(`${baseURL}/api/houses/upload/photos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data)
+  });
+  return res.json();
 };

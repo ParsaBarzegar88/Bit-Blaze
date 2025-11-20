@@ -13,7 +13,7 @@ import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
 import ArrowLeftBlueSVG from '../../../../BuyerDashboardSVG/arrowLeftBlueSVG';
 import Link from "next/link";
-import { CreateAHouse } from "@/core/api/SellerDashboard/CreateHouse/CreateHouse";
+import { CreateAHouse, UploadPicture } from "@/core/api/SellerDashboard/CreateHouse/CreateHouse";
 import { redirect } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { ICreateHouse } from "@/core/types/CreateHouse/CreateHouse";
@@ -48,11 +48,11 @@ const MultiSteps = () => {
       {
         id: "four",
         label: "تصاویر ملک",
-        component: <StepFour 
+        component: <StepFour
           setPictureFiles={setPictureFiles}
           pictureFiles={pictureFiles}
           setPicturePreviews={setPicturePreviews}
-          picturePreviews={picturePreviews} 
+          picturePreviews={picturePreviews}
         />,
         icon: <ImFilePicture />,
       },
@@ -76,18 +76,26 @@ const MultiSteps = () => {
     try {
       const response = await CreateAHouse(houseData);
 
-      if (response?.success) {
+      if (response.ok) {
+        const id = response.response.split('"id":"')[1]?.split('"')[0];
+        if (id) {
+          const formData = new FormData()
+          pictureFiles.forEach((file) => {
+            formData.append('photos', file);
+          });
+          console.log("houseId", id)
+          const PictureResponse = await UploadPicture(id, formData)
+          console.log(PictureResponse)
+        }
         toast.success("آگهی با موفقیت ثبت شد!", {
           position: "top-right",
           autoClose: 3000,
           theme: "colored",
           style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
         });
-        
         cookieStore.remove("House");
-        
         setTimeout(() => {
-          redirect("/seller/dashboard-house-management");
+          window.location.href = "/seller/dashboard-house-management";
         }, 2000);
       } else {
         toast.error("خطا در ثبت آگهی!", {
@@ -113,7 +121,7 @@ const MultiSteps = () => {
     if (step === "five") {
       const houseData = cookieStore.get('House');
       const parseHouseData = houseData ? JSON.parse(houseData) : null;
-      
+
       await handleSubmitHouse(parseHouseData);
     } else if (!isLastStep) {
       setStep(steps[currentStepIndex + 1].id);

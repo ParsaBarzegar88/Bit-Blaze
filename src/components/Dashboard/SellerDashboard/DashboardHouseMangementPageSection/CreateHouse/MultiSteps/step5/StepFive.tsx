@@ -83,9 +83,7 @@ const StepFive: FC<IProps> = ({ picturePreviews }) => {
                 <SwiperSlide><div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px]'>عکسی وجود ندارد</div></SwiperSlide>
               }
             </Swiper>
-            <div className='absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center'>
-              <span className='text-gray-500 dark:text-gray-400'>عکس در دسترس نیست</span>
-            </div>
+
           </div>
         </div>
 
