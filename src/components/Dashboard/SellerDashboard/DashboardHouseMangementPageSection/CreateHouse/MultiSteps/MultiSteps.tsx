@@ -2,7 +2,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { ImCheckmark2, ImFilePicture } from "react-icons/im";
-import { IoTicketOutline } from "react-icons/io5";
 import { MdLocationPin, MdOutlineFeaturedPlayList } from "react-icons/md";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { toast, ToastContainer } from "react-toastify";
@@ -14,7 +13,6 @@ import StepFive from "./step5/StepFive";
 import ArrowLeftBlueSVG from '../../../../BuyerDashboardSVG/arrowLeftBlueSVG';
 import Link from "next/link";
 import { CreateAHouse, UploadPicture } from "@/core/api/SellerDashboard/CreateHouse/CreateHouse";
-import { redirect } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { ICreateHouse } from "@/core/types/CreateHouse/CreateHouse";
 
@@ -50,7 +48,6 @@ const MultiSteps = () => {
         label: "تصاویر ملک",
         component: <StepFour
           setPictureFiles={setPictureFiles}
-          pictureFiles={pictureFiles}
           setPicturePreviews={setPicturePreviews}
           picturePreviews={picturePreviews}
         />,
@@ -63,36 +60,34 @@ const MultiSteps = () => {
         icon: <ImCheckmark2 />,
       },
     ],
-    [picturePreviews, pictureFiles]
+    [picturePreviews]
   );
 
   const currentStepIndex = steps.findIndex((s) => s.id === step);
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === steps.length - 1;
 
-  const handleSubmitHouse = async (houseData: ICreateHouse) => {
-    console.log("asd in founction", houseData)
+  const handleSubmitHouse = useCallback(async (houseData: ICreateHouse) => {
     setIsSubmitting(true);
     try {
       const response = await CreateAHouse(houseData);
-
       if (response.ok) {
-        const id = response.response.split('"id":"')[1]?.split('"')[0];
-        if (id) {
+        if (response.response.id) {
           const formData = new FormData()
           pictureFiles.forEach((file) => {
             formData.append('photos', file);
           });
-          console.log("houseId", id)
-          const PictureResponse = await UploadPicture(id, formData)
-          console.log(PictureResponse)
+          const PictureResponse = await UploadPicture(response.response.id, formData)
+          if (PictureResponse.message === "Photos uploaded successfully.") {
+            toast.success("آگهی با موفقیت ثبت شد!", {
+              position: "top-right",
+              autoClose: 3000,
+              theme: "colored",
+              style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
+            });
+          }
         }
-        toast.success("آگهی با موفقیت ثبت شد!", {
-          position: "top-right",
-          autoClose: 3000,
-          theme: "colored",
-          style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
-        });
+
         cookieStore.remove("House");
         setTimeout(() => {
           window.location.href = "/seller/dashboard-house-management";
@@ -105,7 +100,7 @@ const MultiSteps = () => {
           style: { fontFamily: "IRANSansXFaNum", textAlign: "right" },
         });
       }
-    } catch (error) {
+    } catch {
       toast.error("خطا در ارتباط با سرور!", {
         position: "top-right",
         autoClose: 3000,
@@ -115,7 +110,7 @@ const MultiSteps = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [cookieStore, pictureFiles])
 
   const nextStep = useCallback(async () => {
     if (step === "five") {
@@ -126,7 +121,7 @@ const MultiSteps = () => {
     } else if (!isLastStep) {
       setStep(steps[currentStepIndex + 1].id);
     }
-  }, [step, steps, currentStepIndex, isLastStep, cookieStore]);
+  }, [step, steps, currentStepIndex, isLastStep, cookieStore, handleSubmitHouse]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {

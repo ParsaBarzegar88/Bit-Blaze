@@ -13,11 +13,7 @@ const StepThree = () => {
   const [formData, setFormData] = useState<ICreateHouse>(() => {
     const saved = cookies.get("House");
     if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error("کوکی خراب بود", e);
-      }
+      return JSON.parse(saved);
     }
     return {
       title: "", capacity: 0, price: 0,
@@ -146,7 +142,7 @@ const StepThree = () => {
 
           <div className="min-h-[60px] p-3 border border-gray-200 dark:border-[#444444] rounded-lg bg-gray-50 dark:bg-[#333333] mt-3">
             <div className="flex flex-wrap gap-2">
-              {formData.tags?.length > 0 ? (
+              {formData.tags && formData.tags?.length > 0 ? (
                 formData.tags?.map((tag, index) => (
                   <div
                     key={index}

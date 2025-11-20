@@ -52,10 +52,11 @@ export const UploadPicture = async (id: string, data: FormData) => {
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
   const res = await fetch(`${baseURL}/api/houses/upload/photos/${id}`, {
+    method:"POST",
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data)
+    body: data
   });
   return res.json();
 };

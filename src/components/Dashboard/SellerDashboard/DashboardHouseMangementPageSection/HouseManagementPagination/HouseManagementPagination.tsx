@@ -11,7 +11,7 @@ import {
 import { IHouses } from '@/core/types/LandingPage/IHouses';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 5;
 
 interface IProps {
     userSellerHouseInfo: IHouses

@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { FC, useState } from 'react'
 import { IoIosMore } from 'react-icons/io'
-import { IHouses, IHousesData } from '@/core/types/LandingPage/IHouses'
+import { IHouses } from '@/core/types/LandingPage/IHouses'
 import { formatToPersianDate } from '@/utils/date'
 import HouseManagementMoreSection from './HouseManagementMoreSection/HouseManagementMoreSection'
 
@@ -16,10 +16,6 @@ const HouseManagementList: FC<IProps> = ({ userSellerHouseInfo, searchParams = {
     
     const handleOpenReserveMode = (id: string) => {
         setOpenHouseId(prev => prev === id ? null : id)
-    }
-
-    const handleCloseMenu = () => {
-        setOpenHouseId(null)
     }
 
     return (
@@ -54,7 +50,7 @@ const HouseManagementList: FC<IProps> = ({ userSellerHouseInfo, searchParams = {
                             const lowerCase = query.toLocaleLowerCase()
                             const houseTitle = item.title.trim().toLocaleLowerCase() || ''
                             return houseTitle.includes(lowerCase)
-                        }).map((item, index, array) => (
+                        }).map((item) => (
                             <div
                                 key={item.id}
                                 className="grid grid-cols-7 gap-2 items-center py-2 px-2 rounded-[10px] hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300"

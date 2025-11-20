@@ -1,93 +1,81 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { FC, useEffect, useState } from 'react'
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { CiLocationOn } from "react-icons/ci";
-import { PiBuildingApartment, PiTree } from "react-icons/pi";
-import { TbCalendar, TbTag } from "react-icons/tb";
-import { IoHomeOutline } from "react-icons/io5";
-import { FaRegMoneyBillAlt } from "react-icons/fa";
-import { RiMoneyEuroCircleLine } from "react-icons/ri";
-import { useCookies } from 'next-client-cookies';
 import { ICreateHouse } from '@/core/types/CreateHouse/CreateHouse';
-import { SwiperSlide, Swiper } from 'swiper/react';
+import { useCookies } from 'next-client-cookies';
+import Image from 'next/image';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { CiLocationOn } from "react-icons/ci";
+import { IoHomeOutline } from "react-icons/io5";
+import { PiBuildingApartment, PiTree } from "react-icons/pi";
+import { RiMoneyEuroCircleLine } from "react-icons/ri";
+import { TbTag } from "react-icons/tb";
 import { Autoplay, Pagination } from 'swiper/modules';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 interface IProps {
-  picturePreviews: string[]
+  picturePreviews: string[] | []
 }
 
 const StepFive: FC<IProps> = ({ picturePreviews }) => {
-
-  console.log(picturePreviews)
   const [houseData, setHouseData] = useState<ICreateHouse>()
-
   const cookie = useCookies()
-  const GetHouseInfo = () => {
+  const GetHouseInfo = useCallback(() => {
     const HouseData = cookie.get("House")
     if (HouseData) {
-      try {
-        const ParsedData: ICreateHouse = JSON.parse(HouseData)
-        console.log(HouseData)
-        setHouseData(ParsedData)
-      } catch {
-        return console.log("خطا در گرفتن اطلاعات")
-      }
+      const ParsedData: ICreateHouse = JSON.parse(HouseData)
+      setHouseData(ParsedData)
     }
-  }
+  }, [cookie])
 
   useEffect(() => {
     GetHouseInfo()
-  }, [])
+  }, [GetHouseInfo])
 
 
   return (
-    <div className='flex flex-col gap-6 md:gap-8'>
+    <div className='flex flex-col justify-between md:gap-8'>
       <div className='flex flex-col lg:flex-row gap-6 md:gap-8'>
-        <div className='flex-1'>
-          <div className='relative w-full h-64 sm:h-80 md:h-96 lg:h-[400px] rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-600'>
-            <Swiper
-              slidesPerView={1}
-              navigation={true}
-              pagination={{
-                clickable: true,
-                clickableClass: "readsad"
-              }}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay, Pagination]}
-              className="h-full cursor-pointer"
-            >
-              {picturePreviews !== null ? picturePreviews?.map((img, index) => {
-                if (img === "") {
-                  return (
-                    <SwiperSlide key={index}><div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px]'>عکسی وجود ندارد</div></SwiperSlide>
-                  )
-                }
+        <div className='w-full h-[400px] rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-600'>
+          <Swiper
+            slidesPerView={1}
+            navigation={true}
+            pagination={{
+              clickable: true,
+              clickableClass: "readsad"
+            }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Pagination]}
+            className="h-full cursor-pointer"
+          >
+            {picturePreviews !== null && picturePreviews.length > 0 ? picturePreviews.map((img, index) => {
+              if (img === "") {
                 return (
-                  <SwiperSlide key={index}>
-                    <div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px]'>
-                      <Image
-                        src={img}
-                        alt={`ملک ${index + 1}`}
-                        fill
-                        className='object-cover rounded-[20px]'
-                        unoptimized
-                      />
-                    </div>
-                  </SwiperSlide>
+                  <SwiperSlide key={index}><div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px]'>عکسی وجود ندارد</div></SwiperSlide>
                 )
-              }) :
-                <SwiperSlide><div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px]'>عکسی وجود ندارد</div></SwiperSlide>
               }
-            </Swiper>
-
-          </div>
+              return (
+                <SwiperSlide key={index}>
+                  <div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px] relative'>
+                    <Image
+                      src={img}
+                      alt={`Property image ${index + 1}`}
+                      className='rounded-[20px] object-cover w-full h-full'
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                </SwiperSlide>
+              )
+            }) :
+              <SwiperSlide><div className='w-full h-full flex justify-center items-center bg-[#444444] rounded-[20px]'>عکسی وجود ندارد</div></SwiperSlide>
+            }
+          </Swiper>
         </div>
 
-        <div className='flex-1 flex flex-col gap-4'>
+        <div className='flex flex-col w-full gap-4'>
           <div>
             <h1 className='text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-2'>
               {houseData?.title}

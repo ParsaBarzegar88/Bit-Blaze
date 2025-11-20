@@ -5,25 +5,19 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 interface IProps {
   setPictureFiles: React.Dispatch<React.SetStateAction<File[]>>;
-  pictureFiles: File[];
   setPicturePreviews: React.Dispatch<React.SetStateAction<string[]>>;
   picturePreviews: string[]
 }
 
 const StepFour: FC<IProps> = ({
   picturePreviews,
-  pictureFiles,
   setPictureFiles,
   setPicturePreviews
 }) => {
-  console.log('StepFour rendered with picture:', pictureFiles, picturePreviews);
   
   const handleAddPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    console.log(files)
-    if (!files) {
-      return console.log("عکسی وارد نشده")
-    }
+    if (!files) return
     Array.from(files).forEach(file => {
       if (file.type.startsWith('image/')) {
         setPictureFiles(prev => [...prev, file])
@@ -98,7 +92,7 @@ const StepFour: FC<IProps> = ({
       {picturePreviews.length === 0 && (
         <div className='text-center py-8 text-gray-500 dark:text-gray-400'>
           <p className='text-sm md:text-base'>هنوز هیچ عکسی اضافه نکرده‌اید</p>
-          <p className='text-xs md:text-sm mt-1'>برای شروع، روی دکمه "افزودن عکس" کلیک کنید</p>
+          <p className='text-xs md:text-sm mt-1'>برای شروع، روی دکمه افزودن عکس کلیک کنید</p>
         </div>
       )}
       {picturePreviews.length > 0 && (

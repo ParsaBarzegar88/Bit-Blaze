@@ -24,13 +24,8 @@ const StepOne = () => {
   const CookieStore = useCookies()
 
   const AllCategory = async () => {
-    try {
-      const getCategory = await GetAllCategory();
-      console.log("category", getCategory);
-      setCategory(getCategory?.data || []);
-    } catch (err) {
-      console.error(`خطا: ${err}`);
-    }
+    const getCategory = await GetAllCategory();
+    setCategory(getCategory?.data || []);
   };
   useEffect(() => {
     AllCategory();
