@@ -2,19 +2,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import ResponsiveHeader from "./ResponsiveHeader/ResponsiveHeader";
 import ToggleLightAndDark from "../ToggleTheme/ToggoleTheme";
 import { IUserDetail } from "@/core/types/LandingPage/IUserDetail";
-
+import { useCookies } from "next-client-cookies";
+import jwt from 'jsonwebtoken'
 interface IProps {
   userInfo?: IUserDetail
 }
 const Header: FC<IProps> = ({ userInfo }) => {
   const pathName = usePathname();
+  const cookieStore = useCookies()
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
+  const [userRole, setUserRole] = useState<string>("")
+  useEffect(() => {
+    const accessToken = cookieStore.get('accessToken')
+    if(accessToken){
+      const decodeToken = jwt.decode(accessToken) as {role:string}
+      setUserRole(decodeToken.role)
+    }
+  }, [cookieStore])
+  
   const handleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -148,7 +158,7 @@ const Header: FC<IProps> = ({ userInfo }) => {
         <div className="flex flex-row items-center justify-center gap-4">
           <ToggleLightAndDark />
           {userInfo && userInfo?.user.profilePicture !== null ? (
-            <Link href={'/dashboard'}>
+            <Link href={`${userRole === 'seller' || userRole === 'admin'? '/seller/dashboard' : '/dashboard'}`}>
               <Image src={userInfo?.user.profilePicture} alt="img" width={40} height={40} className="rounded-full ml-6 cursor-pointer" />
             </Link>
           ) : (

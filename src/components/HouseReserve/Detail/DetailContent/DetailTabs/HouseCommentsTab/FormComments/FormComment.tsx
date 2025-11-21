@@ -32,12 +32,13 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
         return (numValue / 5) * 100;
     }
     useEffect(() => {
-        if (state.success) {
+        if (state.success && state.error === "") {
             const newParams = new URLSearchParams(searchParams)
             newParams.delete('parentId')
             router.replace(`?${newParams.toString()}`, { scroll: false })
+            state.success = false
         }
-    }, [state.success, searchParams, router])
+    }, [state.success, searchParams, router , state.error , state])
     useEffect(() => {
         if (state.error) {
             if (state.error === 'Invalid token') {
