@@ -13,7 +13,6 @@ interface IProps {
 const HouseReserve: FC<IProps> = async ({ sortingData }) => {
 
 
-
   const HouseData = await getHousesReserve(
     sortingData?.search,
     sortingData?.sort,

@@ -24,7 +24,6 @@ type SortOption = { label: string; value: string };
 interface IProps {
   totalCount: IHouses;
 }
-
 const FilterHouse:FC<IProps> = ({totalCount}) => {
   const router = useRouter();
   const searchParams = useSearchParams();

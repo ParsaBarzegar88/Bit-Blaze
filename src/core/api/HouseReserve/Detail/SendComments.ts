@@ -16,7 +16,11 @@ export const SendCommentFetch = async (
   const rating = formData.get("rating")?.toString();
   const parentCommentId = formData.get("parentCommentId")?.toString();
   const baseURL = process.env.API_BASE_URL;
-
+  console.log( houseId,
+        userId,
+        caption,
+        rating,
+        parentCommentId)
   if (!houseId || !userId || !title || !caption) {
     return {
       error: "لطفاً مقادیر خواسته شده را وارد کنید",
@@ -32,11 +36,12 @@ export const SendCommentFetch = async (
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        houseId,
-        userId,
-        caption,
-        rating,
-        parentCommentId
+        house_id:houseId,
+        user_id:userId,
+        title:title,
+        caption:caption,
+        rating:rating,
+        parent_comment_id:parentCommentId
       }),
     });
 

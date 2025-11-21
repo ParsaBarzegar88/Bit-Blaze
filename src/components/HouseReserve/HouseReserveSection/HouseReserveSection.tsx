@@ -10,6 +10,10 @@ interface IProps {
 
 const HouseReserveSection: FC<IProps> = ({ houseDetail }) => {
 
+  
+  console.log("allhouse",houseDetail)
+
+
   return (
     <div className='max-w-full w-full dark:bg-[#303030] bg-[#e9e9e9] rounded-[20px] md:rounded-[40px] mt-4 md:mt-6 p-4 md:p-5 lg:p-6'>
       <div className='flex flex-col lg:flex-row w-full h-full gap-4 md:gap-6'>
