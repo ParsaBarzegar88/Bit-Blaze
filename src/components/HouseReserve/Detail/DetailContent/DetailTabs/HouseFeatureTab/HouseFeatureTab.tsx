@@ -11,15 +11,15 @@ const HouseFeatureTab: FC<IProps> = ({ houseData }) => {
     return (
         <div className='flex flex-row gap-4'>
             <div className='flex flex-col h-fit dark:bg-[#3F3F3F] gap-3 p-2 items-center rounded-[16px] dark:shadow-none shadow-[0px_0px_16px_rgba(0,0,0,0.27)]'>
-                <FaBed size={20} />
-                <span className='dark:bg-[#7569FF]  w-fit rounded-[10px] text-white py-2 px-8'>{houseData.rooms} خوابه</span>
+                <FaBed size={20} className='dark:text-white text-black' />
+                <span className='dark:bg-[#7569FF] bg-[#897eff] w-fit rounded-[10px] text-white py-2 px-8'>{houseData.rooms} خوابه</span>
             </div>
             <div className='flex flex-col h-fit dark:bg-[#3F3F3F] gap-3 p-2 items-center rounded-[16px] dark:shadow-none shadow-[0px_0px_16px_rgba(0,0,0,0.27)]'>
-                <FaCarSide size={20} />
+                <FaCarSide size={20} className='dark:text-white text-black' />
                 <span className='dark:bg-[#7569FF] bg-[#897eff] w-fit rounded-[10px] text-white py-2 px-8'>پارکینگ</span>
             </div>
             <div className='flex flex-col h-fit dark:bg-[#3F3F3F] gap-3 p-2 items-center rounded-[16px] dark:shadow-none shadow-[0px_0px_16px_rgba(0,0,0,0.27)]'>
-                <MdHotTub size={20} />
+                <MdHotTub size={20} className='dark:text-white text-black' />
                 <span className='dark:bg-[#7569FF] bg-[#897eff] w-fit rounded-[10px] text-white py-2 px-8'>{houseData.bathrooms} حمام</span>
             </div>
             <div className='flex flex-col h-fit dark:bg-[#3F3F3F] dark:fill-white fill-black gap-3 p-2 items-center rounded-[16px] dark:shadow-none shadow-[0px_0px_16px_rgba(0,0,0,0.27)]'>
@@ -29,7 +29,7 @@ const HouseFeatureTab: FC<IProps> = ({ houseData }) => {
                 <span className='dark:bg-[#7569FF] bg-[#897eff] w-fit rounded-[10px] text-white py-2 px-8'>{houseData.yard_type}</span>
             </div>
             <div className='flex flex-col h-fit dark:bg-[#3F3F3F] gap-3 p-2 items-center rounded-[16px] dark:shadow-none shadow-[0px_0px_16px_rgba(0,0,0,0.27)]'>
-                <ImManWoman size={20} />
+                <ImManWoman size={20} className='dark:text-white text-black' />
                 <span className='dark:bg-[#7569FF] bg-[#897eff] w-fit rounded-[10px] text-white py-2 px-8'>{houseData.capacity} ظرفیت</span>
             </div>
         </div>

@@ -107,7 +107,7 @@ const HotelSection: FC<IProps> = ({ houseData }) => {
                     </div>
 
                     <Link
-                        href={`/mortgage-rent`}
+                        href={`/house-reserve`}
                         className='w-[120px] transition duration-300 border border-[#4f9623] dark:border-[#8CFF45] rounded-[12px] h-[36px] justify-center text-[#4f9623] dark:text-[#8CFF45] flex flex-row gap-1 items-center text-sm font-[500] hover:bg-[#4f9623]/10 dark:hover:bg-[#8CFF45]/10'
                     >
                         <FaBuilding size={14} />
@@ -185,7 +185,7 @@ const HotelSection: FC<IProps> = ({ houseData }) => {
                     </div>
 
                     <Link
-                        href={`/mortgage-rent`}
+                        href={`/house-reserve`}
                         className='w-[140px] transition duration-300 border border-[#4f9623] dark:border-[#8CFF45] rounded-[14px] h-[40px] justify-center text-[#4f9623] dark:text-[#8CFF45] flex flex-row gap-2 items-center text-base font-[500] hover:bg-[#4f9623]/10 dark:hover:bg-[#8CFF45]/10'
                     >
                         <FaBuilding size={16} />

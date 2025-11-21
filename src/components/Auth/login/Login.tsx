@@ -40,9 +40,9 @@ const LoginForm: FC<IProps> = ({ action }) => {
         draggable: true,
         progress: undefined,
         style: {
-                    fontFamily: 'IRANSansXFaNum',
-                    textAlign: 'right',
-                },
+          fontFamily: 'IRANSansXFaNum',
+          textAlign: 'right',
+        },
       });
     } else if (state.accessToken && state.refreshToken) {
       toast.success('با موفقیت وارد شدید!', {
@@ -53,15 +53,15 @@ const LoginForm: FC<IProps> = ({ action }) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-                style: {
-                    fontFamily: 'IRANSansXFaNum',
-                    textAlign: 'right',
-                },
+        style: {
+          fontFamily: 'IRANSansXFaNum',
+          textAlign: 'right',
+        },
       });
       setTimeout(() => {
 
         router.push("/");
-      } , 3000)
+      }, 3000)
     }
   }, [state, router]);;
 

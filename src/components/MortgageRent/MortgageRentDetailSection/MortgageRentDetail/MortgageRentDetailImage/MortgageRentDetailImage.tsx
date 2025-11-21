@@ -9,7 +9,7 @@ interface IProps{
 const MortgageRentDetailImage:FC<IProps> = ({houseData}) => {
     return (
         <div className='flex flex-col lg:flex-row justify-between gap-6 lg:gap-8'>
-            <div className='flex flex-col lg:flex-row justify-between w-full gap-6 lg:gap-8'>
+            <div className='flex flex-col items-center lg:flex-row justify-between w-full gap-6 lg:gap-8'>
                 <div className='flex flex-col lg:flex-row gap-4 lg:gap-6 w-full'>
                     {houseData.photos !== null ? (
                         <div className='w-full lg:max-w-full rounded-2xl lg:rounded-4xl overflow-hidden'>
@@ -32,7 +32,7 @@ const MortgageRentDetailImage:FC<IProps> = ({houseData}) => {
                         <div className='w-full hidden md:flex  sm:h-full h-[172px] bg-[#AAAAAA] rounded-2xl lg:rounded-4xl'></div>
                     </div>
                 </div>
-                <div className='lg:w-fit w-full h-full'>
+                <div className='lg:w-fit w-full h-fit'>
                     <SellerInformation sellerInfo={houseData} />
                 </div>
             </div>

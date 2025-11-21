@@ -28,14 +28,14 @@ const SellerInformation:FC<IProps> = ({sellerInfo}) => {
                         <div className='flex flex-col gap-2 justify-center items-center  mt-5'>
                             <span className='dark:bg-[#565656] bg-[#afafaf] rounded-2xl w-[48px] h-[48px]'></span>
                             <span>{sellerInfo.sellerName}</span>
-                            <span className='dark:text-[#AAAAAA] text-[13px] flex flex-row gap-2'>
+                            <span className='text-[#AAAAAA] text-[13px] flex flex-row gap-2'>
                                 <FaRegCalendarAlt />
                                 12 مرداد - 1401 / 12:33
                             </span>
                         </div>
                         <div className='mt-5 flex flex-col gap-2'>
                             <div className='flex flex-row justify-center items-center'>
-                                <span className='flex flex-row justify-center items-center gap-1 dark:text-[#AAAAAA] text-[13px] ml-1'>
+                                <span className='flex flex-row justify-center items-center gap-1 text-[#AAAAAA] text-[13px] ml-1'>
                                     <HiOutlineCurrencyDollar size={17} />
                                     قیمت رهن از :
                                 </span>
@@ -44,7 +44,7 @@ const SellerInformation:FC<IProps> = ({sellerInfo}) => {
                                 </span>
                             </div>
                             <div className='flex flex-row justify-center items-center'>
-                                <span className='flex flex-row justify-center items-center gap-1 dark:text-[#AAAAAA] text-[13px] ml-1'>
+                                <span className='flex flex-row justify-center items-center gap-1 text-[#AAAAAA] text-[13px] ml-1'>
                                     <HiOutlineCurrencyDollar size={17} />
                                     قیمت رهن از :
                                 </span>

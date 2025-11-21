@@ -96,16 +96,16 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
                 <input type="hidden" name="parentId" value={String(param.get('parentId'))} />
             ) : ""}
             <div className='flex flex-col lg:flex-row gap-3 md:gap-5 w-full'>
-                <fieldset className='border w-full lg:w-1/3 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
+                <fieldset className='border w-full dark:text-white text-black lg:w-1/3 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
                     <legend className='mr-2 pr-1 pl-1 text-sm md:text-base'>نام و نام خانوادگی:</legend>
                     <input
                         type="text"
                         name="title"
                         placeholder="وارد کنید ..."
-                        className='mr-3 pb-2 focus:outline-none w-full bg-transparent text-sm md:text-base'
+                        className='mr-3 pb-2 focus:outline-none dark:text-white text-black w-full bg-transparent text-sm md:text-base'
                     />
                 </fieldset>
-                <fieldset className='border w-full lg:w-1/3 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
+                <fieldset className='border w-full dark:text-white text-black lg:w-1/3 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
                     <legend className='mr-2 pr-1 pl-1 text-sm md:text-base'>ایمیل شما:</legend>
                     <input
                         type="email"
@@ -114,13 +114,13 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
                         className='mr-3 pb-2 focus:outline-none w-full bg-transparent text-sm md:text-base'
                     />
                 </fieldset>
-                <fieldset className='border w-full lg:w-1/3 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
+                <fieldset className='border w-full dark:text-white text-black lg:w-1/3 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
                     <legend className='mr-2 pr-1 pl-1 text-sm md:text-base'>
                         {param.get('parentId') ? 'برای نظر:' : 'امتیاز شما:'}
                     </legend>
                     <div className='w-full gap-2 md:gap-3 flex flex-row items-center justify-between relative'>
                         {param.get('parentId') ? (
-                            <input type="text" disabled value={housesComments.data.find(item => item.id === param.get('parentId'))?.caption} />
+                            <input type="text" className='dark:text-white text-black' disabled value={housesComments.data.find(item => item.id === param.get('parentId'))?.caption} />
                         ) : (
                             <>
                                 <input
@@ -130,7 +130,7 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
                                     value={rangeValue}
                                     step={0.5}
                                     name="rating"
-                                    className={`focus:outline-none cursor-pointer w-full appearance-none h-[8px] md:h-[12px] rounded-full ${Style.sliderRangeShape}`}
+                                    className={`focus:outline-none cursor-pointer dark:text-white text-black w-full appearance-none h-[8px] md:h-[12px] rounded-full ${Style.sliderRangeShape}`}
                                     onChange={(e) => setRangeValue(e.target.value)}
                                     style={{
                                         '--range-progress': `${calculateProgress(rangeValue)}%`
@@ -146,13 +146,13 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
                 </fieldset>
             </div >
             <div className='flex flex-col sm:flex-row justify-between items-stretch sm:items-end gap-3 md:gap-5'>
-                <fieldset className='border w-full sm:flex-1 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
+                <fieldset className='border dark:text-white text-black w-full sm:flex-1 dark:border-white border-black rounded-[12px] md:rounded-[16px] h-[50px] md:h-[56px] px-2'>
                     <legend className='mr-2 pr-1 pl-1 text-sm md:text-base'>پیام شما:</legend>
                     <input
                         type="text"
                         name="caption"
                         placeholder="وارد کنید ..."
-                        className='mr-3 pb-2 focus:outline-none w-full bg-transparent text-sm md:text-base'
+                        className='mr-3 pb-2 focus:outline-none dark:text-white text-black w-full bg-transparent text-sm md:text-base'
                     />
                 </fieldset>
 
