@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { BsCreditCard } from 'react-icons/bs'
+import { BsChatDots, BsCreditCard } from 'react-icons/bs'
 import { FiHome, FiUser } from 'react-icons/fi'
 import { IoMdAddCircleOutline } from 'react-icons/io'
 import { MdFavoriteBorder } from 'react-icons/md'
@@ -41,7 +41,10 @@ const DashboardMenuResponsive = () => {
                             <circle cx="18" cy="8" r="3"></circle>
                         </svg>
                     </Link>
-                    <BsCreditCard onClick={handleOpenWalletItem} size={19} />
+                    <Link href={'/dashboard-chats'} className={`flex items-center ${pathName === '/dashboard-chats' ? 'bg-[#bdbdbd] dark:bg-[#a08cff]' : ""}  px-3 py-2 flex-row  dark:text-white  text-black transition-colors hover:bg-[#bdbdbd] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                        <BsChatDots size={24} className='w-5 h-5' />
+                    </Link>
+                    <BsCreditCard className='max-[350px]:hidden' onClick={handleOpenWalletItem} size={19} />
                 </div>
             </div>
             {openWalletItem === true ? (

@@ -1,6 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
+import jwt from 'jsonwebtoken'
 export const middleware = async (request: NextRequest) => {
   const accessToken = request.cookies.get("accessToken")?.value;
+  let decodeToken
+  if(accessToken){
+    decodeToken = jwt.decode(accessToken) as {role:string}
+  }
+  if(decodeToken?.role === 'buyer' && request.nextUrl.pathname.startsWith("/seller")){
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
   if (request.nextUrl.pathname.startsWith("/seller") && !accessToken) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

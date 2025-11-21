@@ -5,7 +5,6 @@ import { FaCheckCircle, FaTimes } from 'react-icons/fa'
 import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoIosMore } from 'react-icons/io'
 import ReserveMoreSection from './ReserveMoreSection/ReserveMoreSection'
-import ReserveHouseDetail from './ReserveMoreSection/ReserveHouseDetail/ReserveHouseDetail'
 import { IReserveManagement } from '@/core/types/SellerDashboard/IReserveManagement'
 interface IProps {
     // userReserveInfo: IReserveManagement[];
@@ -143,11 +142,6 @@ const CommentList: FC<IProps> = ({ searchParams = {} }) => {
                     )} */}
                 </div>
             </div>
-            {/* {openHouseDetail && FindHouseDetailById && (
-                <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <ReserveHouseDetail closeHouseDetail={setOpenHouseDetail} houseDetail={FindHouseDetailById} />
-                </div>
-            )} */}
         </div>
     )
 }
