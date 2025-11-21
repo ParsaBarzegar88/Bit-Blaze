@@ -1,9 +1,9 @@
-"use server";
-
-import { ICreateHouse } from "@/core/types/CreateHouse/CreateHouse";
+"use server"
+import { IUpdateHouse } from "@/core/types/UpdateHouse/IUpdateHouse";
 import { cookies } from "next/headers";
 
-export const CreateAHouse = async (houseData: ICreateHouse) => {
+
+export const UpdateAHouse = async (HouseId: string = "" , houseData: IUpdateHouse) => {
   console.log("api", houseData)
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;
@@ -14,7 +14,9 @@ export const CreateAHouse = async (houseData: ICreateHouse) => {
     address: houseData?.address,
     rate: 5,
     price: houseData?.price,
+    photos: houseData?.photos ?? [""],
     tags: houseData?.tags,
+    last_updated: houseData?.last_updated ?? "",
     capacity: houseData?.capacity,
     location: {
       lat: houseData?.location?.lat,
@@ -27,11 +29,12 @@ export const CreateAHouse = async (houseData: ICreateHouse) => {
     parking: houseData?.parking,
     rooms: houseData?.rooms,
     yard_type: houseData?.yard_type,
+    num_comments: houseData?.num_comments ?? 0,
     transaction_type: houseData?.transaction_type,
     caption: houseData?.caption || null,
   };
-  const res = await fetch(`${baseURL}/api/houses`, {
-    method: "POST",
+  const res = await fetch(`${baseURL}/api/houses/${HouseId}`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -45,18 +48,4 @@ export const CreateAHouse = async (houseData: ICreateHouse) => {
     response:response,
     ok:res.ok
   };
-};
-
-export const UploadPicture = async (id: string, data: FormData) => {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("accessToken")?.value;
-  const baseURL = process.env.API_BASE_URL;
-  const res = await fetch(`${baseURL}/api/houses/upload/photos/${id}`, {
-    method:"POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: data
-  });
-  return res.json();
 };

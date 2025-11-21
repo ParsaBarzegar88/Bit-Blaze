@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronDown } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { FC, useMemo, useState, useEffect, useRef } from 'react';
+import { FC, useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { LiaTimesSolid } from "react-icons/lia";
 
 interface IProps {
@@ -28,61 +28,89 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
     const HouseType = useMemo(() => [
         { label: "همه", value: null },
         { label: "اجاره ای", value: "rental" },
-        { label: "رهن", value: "morgage" },
-        { label: "مستقبم", value: "resarvation" },
+        { label: "رهن", value: "mortgage" },
+        { label: "رزرو", value: "reservation" },
     ], []);
 
     const [openReserveType, setOpenReserveType] = useState<boolean>(false);
     const [selectedHouseType, setSelectedHouseType] = useState<string>(
         HouseType.find((item) => item.value === searchParams.get('transaction_type'))?.label || 'همه'
     );
-    const [minPrice, setMinPrice] = useState<number>(parseInt(searchParams.get('min_price') || '0'));
-    const [maxPrice, setMaxPrice] = useState<number>(parseInt(searchParams.get('max_price') || '10000000'));
+    const [minPrice, setMinPrice] = useState<number>(parseInt(searchParams.get('minPrice') || '0'));
+    const [maxPrice, setMaxPrice] = useState<number>(parseInt(searchParams.get('maxPrice') || '10000000'));
 
     const sliderRef = useRef<HTMLDivElement>(null);
     const [activeThumb, setActiveThumb] = useState<'min' | 'max' | null>(null);
 
-const updateSearchParams = () => {
-    const params = new URLSearchParams(searchParams);
-    
-    if (selectedHouseType === 'همه') {
-        params.delete('transaction_type');
-    } else {
-        const selected = HouseType.find(item => item.label === selectedHouseType);
-        if (selected?.value) {
-            params.set('transaction_type', selected.value);
-        }
-    }
-    
-    if (minPrice === 0) {
-        params.delete('minPrice');
-    } else {
-        params.set('minPrice', minPrice.toString());
-    }
-    
-    if (maxPrice === 10000000) {
-        params.delete('maxPrice');
-    } else {
-        params.set('maxPrice', maxPrice.toString());
-    }
-    
-    params.set('page', '1');
-    
-    const queryString = params.toString();
-    const newUrl = queryString ? `${pathName}?${queryString}` : pathName;
-    router.push(newUrl);
-    
-    handleClose(false);
-};
+    const updateURL = useCallback((newParams: URLSearchParams) => {
+        const queryString = newParams.toString();
+        const newUrl = queryString ? `${pathName}?${queryString}` : pathName;
+        router.push(newUrl);
+    }, [pathName, router]);
 
+    const handleHouseTypeChange = useCallback((value: string | null) => {
+        const params = new URLSearchParams(searchParams);
+        
+        if (value === null || value === "همه" || value === "") {
+            params.delete('transaction_type');
+        } else {
+            params.set('transaction_type', value);
+        }
+        params.set('page', '1');
+        
+        updateURL(params);
+    }, [searchParams, updateURL]);
+
+    const handlePriceChange = useCallback((newMinPrice: number, newMaxPrice: number) => {
+        const params = new URLSearchParams(searchParams);
+        
+        if (newMinPrice === 0) {
+            params.delete('minPrice');
+        } else {
+            params.set('minPrice', newMinPrice.toString());
+        }
+        
+        if (newMaxPrice === 10000000) {
+            params.delete('maxPrice');
+        } else {
+            params.set('maxPrice', newMaxPrice.toString());
+        }
+        
+        params.set('page', '1');
+        updateURL(params);
+    }, [searchParams, updateURL]);
+
+    useEffect(() => {
+        if (selectedHouseType === 'همه') {
+            handleHouseTypeChange(null);
+        } else {
+            const selected = HouseType.find(item => item.label === selectedHouseType);
+            if (selected?.value) {
+                handleHouseTypeChange(selected.value);
+            }
+        }
+    }, [selectedHouseType, handleHouseTypeChange, HouseType]);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            handlePriceChange(minPrice, maxPrice);
+        }, 300); 
+
+        return () => clearTimeout(timeoutId);
+    }, [minPrice, maxPrice, handlePriceChange]);
 
     const clearAllFilters = () => {
         setSelectedHouseType('همه');
         setMinPrice(0);
         setMaxPrice(10000000);
-        router.push(pathName);
+        
+        const params = new URLSearchParams();
+        params.set('page', '1');
+        updateURL(params);
+        
         handleClose(false);
     };
+
     const handleThumbMove = (clientX: number) => {
         if (!sliderRef.current || !activeThumb) return;
 
@@ -151,17 +179,17 @@ const updateSearchParams = () => {
         };
     }, [activeThumb]);
 
-useEffect(() => {
-    const resType = searchParams.get('transaction_type');
-    const reserve = HouseType.find(r => r.value === resType);
-    setSelectedHouseType(reserve?.label || 'همه');
+    useEffect(() => {
+        const resType = searchParams.get('transaction_type');
+        const reserve = HouseType.find(r => r.value === resType);
+        setSelectedHouseType(reserve?.label || 'همه');
 
-    const urlMinPrice = searchParams.get('minPrice');
-    const urlMaxPrice = searchParams.get('maxPrice');
-    
-    if (urlMinPrice) setMinPrice(parseInt(urlMinPrice));
-    if (urlMaxPrice) setMaxPrice(parseInt(urlMaxPrice));
-}, [searchParams, HouseType]);
+        const urlMinPrice = searchParams.get('minPrice');
+        const urlMaxPrice = searchParams.get('maxPrice');
+        
+        if (urlMinPrice) setMinPrice(parseInt(urlMinPrice));
+        if (urlMaxPrice) setMaxPrice(parseInt(urlMaxPrice));
+    }, [searchParams, HouseType]);
 
     const minPercent = (minPrice / 10000000) * 100;
     const maxPercent = (maxPrice / 10000000) * 100;
@@ -240,13 +268,13 @@ useEffect(() => {
                             ></div>
                             <div
                                 className="absolute w-3 h-3 bg-white border-2 border-[#10B981] rounded-full cursor-pointer shadow-lg z-10 transition-transform hover:scale-110"
-                                style={{ left: `calc(${minPercent}% - 12px)` }}
+                                style={{ left: `calc(${minPercent}% - 6px)` }}
                                 onMouseDown={handleMouseDown('min')}
                                 onTouchStart={handleTouchStart('min')}
                             ></div>
                             <div
                                 className="absolute w-3 h-3 bg-white border-2 border-[#10B981] rounded-full cursor-pointer shadow-lg z-10 transition-transform hover:scale-110"
-                                style={{ left: `calc(${maxPercent}% - 12px)` }}
+                                style={{ left: `calc(${maxPercent}% - 6px)` }}
                                 onMouseDown={handleMouseDown('max')}
                                 onTouchStart={handleTouchStart('max')}
                             ></div>
@@ -264,12 +292,6 @@ useEffect(() => {
                     onClick={clearAllFilters}
                 >
                     حذف فیلتر
-                </button>
-                <button
-                    className='bg-[#10B981] w-[120px] rounded-[10px] cursor-pointer py-2 text-white hover:bg-[#0da271] transition-colors duration-200'
-                    onClick={updateSearchParams}
-                >
-                    اعمال تغییرات
                 </button>
             </div>
         </div>

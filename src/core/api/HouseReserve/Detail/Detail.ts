@@ -1,3 +1,4 @@
+'use server'
 import { IComments } from "@/core/types/HouseReserveDetail/IComments";
 import { IHousesDetail } from "@/core/types/HouseReserveDetail/IHousesDetail";
 import { IHouses } from "@/core/types/LandingPage/IHouses";

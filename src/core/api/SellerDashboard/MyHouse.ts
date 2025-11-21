@@ -14,7 +14,7 @@ export const getAllSellerHouses = async (searchParams: SearchParam = {}) => {
   const res = await fetch(
     `${baseURL}/api/houses/seller/user?page=${
       searchParams.page ? searchParams.page : 1
-    }&limit=5&sort=createdAt&order=DESC&maxPrice=${searchParams?.maxPrice}&minPrice=${searchParams?.minPrice}`,
+    }&limit=5&sort=createdAt&order=DESC&maxPrice=${searchParams?.maxPrice}&minPrice=${searchParams?.minPrice}$transaction_type=${searchParams?.transaction_type}`,
     {
       headers: {
         "Content-Type": "application/json",

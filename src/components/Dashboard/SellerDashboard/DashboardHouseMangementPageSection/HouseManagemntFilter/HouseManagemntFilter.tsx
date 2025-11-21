@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import FavoriteFilterItem from './HouseManagemntFilterItem/HouseManagemntFilterItem';
+import ReserveFilterItem from './HouseManagemntFilterItem/HouseManagemntFilterItem';
 
 const HouseManagemntFilter = () => {
 
@@ -38,7 +39,7 @@ const HouseManagemntFilter = () => {
           </div>
           {openFilters && (
             <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-              <FavoriteFilterItem handleClose={setOpenFilters} />
+              <ReserveFilterItem handleClose={setOpenFilters} />
             </div>
           )}
         </div>
