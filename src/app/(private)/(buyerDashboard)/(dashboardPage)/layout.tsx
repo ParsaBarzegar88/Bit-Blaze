@@ -10,7 +10,6 @@ interface IProps {
 const BuyerDashboardLayout: FC<IProps> = ({ children }) => {
   return (
     <>
-        {children}
         <ToastContainer
           position="top-right"
           autoClose={2500}
@@ -23,6 +22,7 @@ const BuyerDashboardLayout: FC<IProps> = ({ children }) => {
           pauseOnHover
           theme="colored"
         />
+        {children}
     </>
   )
 }

@@ -14,7 +14,7 @@ export const SendCommentFetch = async (
   const title = formData.get("title")?.toString();
   const caption = formData.get("caption")?.toString();
   const rating = formData.get("rating")?.toString();
-  const parentCommentId = formData.get("parentCommentId")?.toString();
+  const parentCommentId = formData.get("parentId")?.toString();
   const baseURL = process.env.API_BASE_URL;
   console.log( houseId,
         userId,
