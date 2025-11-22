@@ -15,3 +15,12 @@ export interface INotifications {
   data: INotification[];
   totalCount: number;
 }
+
+export interface INotificationSetting {
+  id: number;
+  userId: number;
+  notificationType: string;
+  criteria: object;
+  createdAt: string;
+  updatedAt: string;
+}
