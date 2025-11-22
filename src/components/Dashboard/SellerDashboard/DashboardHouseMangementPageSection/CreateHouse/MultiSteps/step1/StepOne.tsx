@@ -97,7 +97,7 @@ const StepOne = () => {
               <option
                 key={option.value}
                 value={option.value}
-                className="text-gray-800 dark:text-white"
+                className="text-gray-800 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 {option.label}
               </option>
@@ -136,7 +136,7 @@ const StepOne = () => {
               <option
                 key={option.id}
                 value={option.name}
-                className="text-gray-800 dark:text-white max-h-[300px] h-full"
+                className="text-gray-800 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 {option.name}
               </option>

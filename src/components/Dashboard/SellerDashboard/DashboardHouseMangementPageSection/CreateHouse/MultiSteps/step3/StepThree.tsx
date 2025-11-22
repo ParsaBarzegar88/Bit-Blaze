@@ -113,7 +113,9 @@ const StepThree = () => {
           >
             <option value="">انتخاب کنید</option>
             {yard_type.map((type) => (
-              <option key={type} value={type}>
+              <option
+                className="text-gray-800 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+                key={type} value={type}>
                 {type}
               </option>
             ))}
@@ -133,7 +135,9 @@ const StepThree = () => {
             {available_tags
               .filter(tag => !formData.tags?.includes(tag))
               .map((tag) => (
-                <option key={tag} value={tag}>
+                <option
+                  className="text-gray-800 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  key={tag} value={tag}>
                   {tag}
                 </option>
               ))
