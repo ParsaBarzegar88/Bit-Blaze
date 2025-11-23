@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Command,
@@ -18,14 +18,18 @@ import {
 import { Check, ChevronDown } from "lucide-react";
 import { IoLocationOutline, IoFilterOutline } from "react-icons/io5";
 import { IHouses } from "@/core/types/LandingPage/IHouses";
+import { AddSaveSearch, DeleteSaveSearch, getSaveSearch } from "@/core/api/saveSearch/saveSearch";
+import { ISaveSearchItem } from "@/core/types/saveSearch/ISaveSearch";
+import { toast } from "react-toastify";
+import { BsSave } from "react-icons/bs";
+import AddSaveSearchModal from "./addSaveSearch/AddSaveSearchModal";
 
 type Province = string;
 type SortOption = { label: string; value: string };
 interface IProps {
   totalCount: IHouses;
 }
-const FilterHouse:FC<IProps> = ({totalCount}) => {
-  const router = useRouter();
+const FilterHouse: FC<IProps> = ({ totalCount }) => {
   const searchParams = useSearchParams();
 
   const provinces: Province[] = [
@@ -43,7 +47,10 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
     { label: 'محبوب ترین ها', value: "rate" }
   ];
 
+  const router = useRouter();
   const [openProvince, setOpenProvince] = useState<boolean>(false);
+  const [showSaveSearch, setShowSaveSearch] = useState<boolean>(false);
+  const [saveSearch, setSaveSearch] = useState<ISaveSearchItem[]>([]);
   const [openSort, setOpenSort] = useState<boolean>(false);
   const [selectedProvince, setSelectedProvince] = useState<Province>(searchParams.get("location") || "");
   const [selectedSort, setSelectedSort] = useState<SortOption | null>(
@@ -51,6 +58,7 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
       sortBy.find(item => item.value === searchParams.get("sort")) || null : sortBy[0]
   );
   const [search, setSearch] = useState<string>(searchParams.get("search") || "");
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const updateSearchParams = (key: string, value: string | null) => {
     const params = new URLSearchParams(searchParams)
@@ -61,6 +69,58 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
     }
     router.push(`?${params.toString()}`)
   }
+
+  const HandleSaveSearch = async () => {
+    const response = await getSaveSearch()
+    console.log("savesearch", response)
+    setSaveSearch(response)
+  }
+
+  const handleShowSaveSearch = () => {
+    setShowSaveSearch(!showSaveSearch)
+  }
+
+  const HandleDeleteSaveSearch = async (id: string) => {
+    const response = await DeleteSaveSearch(id);
+    console.log("delete", response)
+    if (response.message === 'Saved search deleted successfully') {
+      toast.success('سرچ ذخیره شده با موفقیت حذف شد', {
+        position: "top-center",
+        autoClose: 2400,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
+      });
+      setSaveSearch(prev => prev.filter(item => item.id.toString() !== id));
+      router.refresh();
+    } else {
+      toast.error(response?.response?.message || "مشکلی در حذف سرچ ذخیره شده به وجود آمده است", {
+        position: "top-center",
+        autoClose: 2400,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
+      });
+    }
+  }
+  const saveSearchInParam = (value: string) => {
+    setSearch(value);
+    setShowSaveSearch(false);
+
+    const params = new URLSearchParams(searchParams)
+    params.set("search", value);
+    router.push(`?${params.toString()}`);
+  }
+
+  const handleSaveSuccess = () => {
+    HandleSaveSearch()
+  }
+
+  useEffect(() => {
+    HandleSaveSearch()
+  }, [])
 
   return (
     <div className="m-auto w-full z-[9] mt-4">
@@ -87,7 +147,7 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
                   </Button>
                 </div>
               </PopoverTrigger>
-             <PopoverContent className="p-0 border-none w-fit" align="start">
+              <PopoverContent className="p-0 border-none w-fit" align="start">
                 <Command className="bg-white dark:bg-[#303030] border-none rounded-[3px]">
                   <CommandInput placeholder="جستجوی استان..." className="h-9 dark:text-white text-black" />
                   <CommandList className="max-h-[200px]">
@@ -170,8 +230,8 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
               </PopoverContent>
             </Popover>
           </div>
-          <div className="w-full md:w-fit lg:w-[300px] xl:w-[400px]">
-            <div className="group">
+          <div className="w-full md:w-fit lg:w-[300px] xl:w-[400px] relative">
+            <div onClick={handleShowSaveSearch} className="group">
               <label className="block  dark:group-hover:text-[#FFFFFF] group-hover:text-[#363636] dark:text-[#AAAAAA] text-black border-black font-[400] text-xs sm:text-[13px] mb-1">جستجو :</label>
               <input
                 type="text"
@@ -184,8 +244,57 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
                 }}
               />
             </div>
+            <div className="w-full bg-white dark:bg-[#1e1e1e] absolute z-50 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto">
+              {showSaveSearch && (
+                saveSearch?.length > 0 ? (
+                  saveSearch.map((item) => (
+                    <div
+                      onClick={() => saveSearchInParam(item.searchQuery)}
+                      key={item.id}
+                      className="p-3 flex flex-row justify-between items-center border-b border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-[#333333] transition-colors duration-200 cursor-pointer"
+                    >
+                      <div className="flex flex-col flex-1">
+                        <h4 className="font-medium text-sm text-black dark:text-white">
+                          {item.searchQuery}
+                        </h4>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                          {item.note}
+                        </p>
+                        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                          {new Date(item.createdAt).toLocaleDateString('fa-IR')}
+                        </p>
+                      </div>
+                      <div onClick={() => HandleDeleteSaveSearch(item.id.toString())} className="text-red-500 dark:text-red-400 text-[12px] hover:text-red-700 dark:hover:text-red-300 transition-colors duration-200 cursor-pointer p-1">
+                        ×
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="p-3 text-gray-500 dark:text-gray-400 text-sm text-center">
+                    هیچ جستجویی ذخیره نشده است
+                  </p>
+                )
+              )}
+            </div>
           </div>
+          {search ? (
+            <div className="w-full md:w-auto flex items-end">
+              <div className="group">
+                <p className='dark:group-hover:text-[#FFFFFF] group-hover:text-[#363636] dark:text-[#AAAAAA] text-[#000000] font-[400] text-xs sm:text-[13px] mb-1 invisible'>
+                  ذخیره جستجو
+                </p>
+                <div
+                  onClick={() => setModalOpen(true)}
+                  className="w-10 h-10 bg-blue-500 hover:bg-blue-600 rounded-2xl flex items-center justify-center cursor-pointer transition-colors duration-200 group-hover:scale-105"
+                  title="ذخیره این جستجو"
+                >
+                  <BsSave size={20} className="text-white" />
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
+
         <div className="flex w-full md:w-auto mt-3 sm:mt-0 whitespace-nowrap">
           <div className="border dark:border-[#ffffff] border-black flex flex-row-reverse gap-2 items-center p-3 sm:p-4 rounded-xl sm:rounded-2xl w-full justify-center md:justify-start">
             <p className="dark:text-white text-black text-sm sm:text-base">تعداد آگهی : {totalCount.totalCount}</p>
@@ -195,6 +304,12 @@ const FilterHouse:FC<IProps> = ({totalCount}) => {
           </div>
         </div>
       </div>
+      <AddSaveSearchModal
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+        onSaveSuccess={handleSaveSuccess}
+        initialSearchQuery={search}
+      />
     </div>
   )
 }

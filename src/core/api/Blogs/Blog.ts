@@ -1,11 +1,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { IBlogs, ICreateBlog, IUpdateBlog } from "@/core/types/Blogs/IBlogs";
+import { ICreateBlog, IUpdateBlog } from "@/core/types/Blogs/IBlogs";
 
 export const GetAllBlogs = async (searchParams?: { [key: string]: string }) => {
+
     const params = new URLSearchParams();
-    
     if (searchParams?.page) params.append('page', searchParams.page);
     if (searchParams?.limit) params.append('limit', searchParams.limit);
     params.append('limit', "8");
@@ -14,8 +14,8 @@ export const GetAllBlogs = async (searchParams?: { [key: string]: string }) => {
     const baseURL = process.env.API_BASE_URL;
     const response = await fetch(`${baseURL}/api/blogs?${params.toString()}`)
     return response.json()
+    
 }
-
 
 export const GetBlogById = async (id: string) => {
     const cookieStore = await cookies();
