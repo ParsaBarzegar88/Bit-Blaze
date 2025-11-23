@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, useState, useRef } from "react";
 import { FaBookmark } from "react-icons/fa6";
 import ArrowLeftSVG from "../../.././BuyerDashboardSVG/arrowLeftSVG";
 import { FaCheckCircle } from "react-icons/fa";
@@ -27,21 +27,7 @@ const DashboardRecentReserve: FC<IProps> = ({ dashboardUserReserveInfo }) => {
 
   const handleOpenHouseDetail = () => {
     setOpenHouseDetail(!openHouseDetail)
-    setOpenReserveId(null)
   }
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (moreSectionRef.current && !moreSectionRef.current.contains(event.target as Node)) {
-      setOpenReserveId(null)
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
 
   const FindHouseDetailById = dashboardUserReserveInfo?.find(item => String(item.id) === openReserveId)
 

@@ -32,7 +32,7 @@ const MortgageRentDetailTotal: FC<IProps> = ({ houseData, userId }) => {
                 redirect('/login')
             }, 3300);
         }
-        else if (result.message === "This house is already in favorites"){
+        else if (result.message === "This house is already in favorites") {
             toast.error('این خانه قبلا به علاقه مندی های شما افزوده شده است', {
                 position: 'top-center',
                 autoClose: 3000,
@@ -46,8 +46,47 @@ const MortgageRentDetailTotal: FC<IProps> = ({ houseData, userId }) => {
                 },
             });
         }
-        else{
+        else {
             toast.success('عملیات با موفقیت انجام شد', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+        }
+    }
+    const handleSharePage = async () => {
+        if (!navigator.share) {
+            toast.error('قابلیت به اشتراک گذاری در مرورگر شما وجود ندارد', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+            return
+        }
+        const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+        try {
+            await navigator.share({
+                title: houseData.title,
+                text: houseData.caption,
+                url: shareUrl,
+                
+            });
+        } catch {
+            toast.error('مشکلی در اشتراک گذاری به وجود آمده است', {
                 position: 'top-center',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -69,7 +108,7 @@ const MortgageRentDetailTotal: FC<IProps> = ({ houseData, userId }) => {
                         text-white w-[36px] h-[36px] flex items-center justify-center rounded-[12px]'>
                         <MdCompare />
                     </Link>
-                    <span className='dark:bg-[#393939] bg-[#999999] dark:text-[#AAAAAA]  hover:scale-[1.1] duration-300 cursor-pointer
+                    <span onClick={handleSharePage} className='dark:bg-[#393939] bg-[#999999] dark:text-[#AAAAAA]  hover:scale-[1.1] duration-300 cursor-pointer
                         text-white w-[36px] h-[36px] flex items-center justify-center rounded-[12px]'>
                         <IoShareSocialOutline />
                     </span>

@@ -6,10 +6,10 @@ import { MdHotTub } from 'react-icons/md';
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { GoStarFill } from "react-icons/go";
 import Image from 'next/image';
-import Link from 'next/link';
 import ReservePaymentDetail from '../ReservePaymentDetail/ReservePaymentDetail';
 import ReserveReserversLists from '../ReserveReserversLists/ReseveReserversLists';
 import { IDashboardUserReserve } from '@/core/types/Dashboard/IDashboard';
+import { toast } from 'react-toastify';
 interface IProps {
     closeHouseDetail: Dispatch<SetStateAction<boolean>>;
     houseDetail: IDashboardUserReserve
@@ -23,6 +23,45 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
     }
     const handleOpenReservesList = () => {
         setOpenReserversList(!openReserversList)
+    }
+    const handleSharePage = async () => {
+        if (!navigator.share) {
+            toast.error('قابلیت به اشتراک گذاری در مرورگر شما وجود ندارد', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+            return
+        }
+        const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+        try {
+            await navigator.share({
+                title: houseDetail.houseDetail.title,
+                text: houseDetail.houseDetail.caption,
+                url: shareUrl,
+
+            });
+        } catch {
+            toast.error('مشکلی در اشتراک گذاری به وجود آمده است', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+        }
     }
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
@@ -46,12 +85,12 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                             <div className='relative h-64 bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden'>
                                 <Image src={houseDetail.houseDetail.photos !== null && houseDetail.houseDetail.photos.length > 0 && houseDetail.houseDetail.photos[0].trim() !== '' ? houseDetail.houseDetail.photos[0] : "https://storage.c2.liara.space/sepehr-ac/uploads/1753995432907-white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg"} width={500} height={500} className='w-full h-full object-cover rounded-[12px]' alt='HouseImage' />
                                 <div className='absolute top-3 right-3 h-[40px] bg-[#7367FF] text-white flex flex-row gap-1.5 justify-center items-center px-3 py-1 rounded-[10px] text-sm font-medium'>
-                                    <GoStarFill/>
+                                    <GoStarFill />
                                     5 ستاره
                                 </div>
-                                <Link href={`/house-reserve/${houseDetail.houseId}`} className='absolute top-3 left-3 bg-[#8CFF45] cursor-pointer flex justify-center items-center text-black px-3 py-1 rounded-[12px] w-[40px] h-[40px] text-sm'>
-                                    <FaRegShareFromSquare size={18}/>
-                                </Link>
+                                <div onClick={handleSharePage} className='absolute top-3 left-3 bg-[#8CFF45] cursor-pointer flex justify-center items-center text-black px-3 py-1 rounded-[12px] w-[40px] h-[40px] text-sm'>
+                                    <FaRegShareFromSquare size={18} />
+                                </div>
                             </div>
 
                             <p className='text-[#AAAAAA] text-lg'>
@@ -122,12 +161,12 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
             </div>
             {openPayment && (
                 <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <ReservePaymentDetail closePayment={setOpenPayment} bookingId={houseDetail.id}/>
+                    <ReservePaymentDetail closePayment={setOpenPayment} bookingId={houseDetail.id} />
                 </div>
             )}
             {openReserversList && (
                 <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <ReserveReserversLists closeReserversLists={setOpenReserversList} reserversDetail={houseDetail}/>
+                    <ReserveReserversLists closeReserversLists={setOpenReserversList} reserversDetail={houseDetail} />
                 </div>
             )}
         </div>

@@ -1,14 +1,13 @@
 'use client'
-import React, { Dispatch, FC, SetStateAction, useState } from 'react'
-import { FaBed, FaCarSide } from 'react-icons/fa6';
-import { LiaTimesSolid } from 'react-icons/lia'
-import { MdHotTub } from 'react-icons/md';
-import { FaRegShareFromSquare } from "react-icons/fa6";
-import { GoStarFill } from "react-icons/go";
-import Image from 'next/image';
-import Link from 'next/link';
-import ReservePaymentDetail from '../ReservePaymentDetail/ReservePaymentDetail';
 import { IDashboardUserReserve } from '@/core/types/Dashboard/IDashboard';
+import Image from 'next/image';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { FaBed, FaCarSide, FaRegShareFromSquare } from 'react-icons/fa6';
+import { GoStarFill } from "react-icons/go";
+import { LiaTimesSolid } from 'react-icons/lia';
+import { MdHotTub } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import ReservePaymentDetail from '../ReservePaymentDetail/ReservePaymentDetail';
 import ReserveTravelerList from '../ReserveReserversLists/ReserveTravelerList/ReserveTravelerList';
 interface IProps {
     closeHouseDetail: Dispatch<SetStateAction<boolean>>;
@@ -23,6 +22,45 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
     }
     const handleOpenPayment = () => {
         setOpenPayment(!openPayment)
+    }
+    const handleSharePage = async () => {
+        if (!navigator.share) {
+            toast.error('قابلیت به اشتراک گذاری در مرورگر شما وجود ندارد', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+            return
+        }
+        const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+        try {
+            await navigator.share({
+                title: houseDetail.houseDetail.title,
+                text: houseDetail.houseDetail.caption,
+                url: shareUrl,
+
+            });
+        } catch {
+            toast.error('مشکلی در اشتراک گذاری به وجود آمده است', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+        }
     }
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
@@ -49,9 +87,9 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
                                     <GoStarFill />
                                     5 ستاره
                                 </div>
-                                <Link href={`/house-reserve/${houseDetail.houseId}`} className='absolute top-3 left-3 bg-[#8CFF45] cursor-pointer flex justify-center items-center text-black px-3 py-1 rounded-[12px] w-[40px] h-[40px] text-sm'>
+                                <div onClick={handleSharePage} className='absolute top-3 left-3 bg-[#8CFF45] cursor-pointer flex justify-center items-center text-black px-3 py-1 rounded-[12px] w-[40px] h-[40px] text-sm'>
                                     <FaRegShareFromSquare size={18} />
-                                </Link>
+                                </div>
                             </div>
 
                             <p className='text-[#AAAAAA] text-lg'>

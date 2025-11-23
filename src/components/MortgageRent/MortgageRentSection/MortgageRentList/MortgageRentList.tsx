@@ -43,7 +43,7 @@ const MortgageRentList: FC<IProps> = ({ houseData }) => {
                             <Image className='rounded-[16px] group-hover:border group-hover:border-[#66b436] dark:group-hover:border-[#8CFF45] transition-all duration-300 w-full h-full' src={houseData.photos !== null && houseData.photos.length > 0 && houseData.photos[0].trim() !== '' ? houseData.photos[0]:"https://storage.c2.liara.space/sepehr-ac/uploads/1753995432907-white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg"} fill alt='DefaultVillaPic' />
                         </div>
                         <div className='flex flex-col gap-5 justify-between'>
-                            <div className='flex flex-row text-[#FFFFFF] text-[14px] font-[500] items-center justify-center gap-1 rounded-[8px] bg-[#7569FF] shadow-[0px_8px_16px_rgba(115,103,255,0.2)] w-[82px] h-[28px]'>
+                            <div className='flex flex-row text-[#FFFFFF] text-[14px] font-[500] items-center justify-center gap-1 rounded-[8px] bg-[#7569FF] shadow-[0px_8px_16px_rgba(115,103,255,0.2)] min-w-[82px] w-fit px-1 h-[28px]'>
                                 <FaStar />
                                 {houseData.rate !== null ? houseData.rate : "0"} ستاره
                             </div>
