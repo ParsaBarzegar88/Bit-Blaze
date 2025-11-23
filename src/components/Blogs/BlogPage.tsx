@@ -9,11 +9,7 @@ interface IProps {
 }
 
 const BlogPage: FC<IProps> = async ({ Params }) => {
-  const BlogData = await GetAllBlogs(
-    Params?.page || '1',
-    Params?.limit || '8',
-    Params?.search || '',
-  )
+  const BlogData = await GetAllBlogs(Params)
 
   console.log('BlogData received:', BlogData);
 
