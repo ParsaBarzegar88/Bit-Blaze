@@ -6,6 +6,8 @@ import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import { BsChatDots } from "react-icons/bs";
 import ReserveChat from './ReserveChat/ReserveChat';
+import { MdCompare } from 'react-icons/md';
+import Link from 'next/link';
 
 interface IProps {
     Info: IHousesDetail
@@ -74,6 +76,9 @@ const TopOfDetail: FC<IProps> = ({ Info }) => {
                         </span>
                     </div>
                     <div className='w-1 h-4 rounded-2xl dark:bg-[#DDDDDD] text-black '></div>
+                    <Link href={`/compare?id=${Info.id}`} className='w-11 h-9 rounded-[12px] flex items-center hover:scale-110 cursor-pointer duration-300 justify-center px-3 dark:bg-[#393939] bg-[#dadadae9]'>
+                        <MdCompare size={18} className='dark:text-white text-black'/>
+                    </Link>
                     <div onClick={handleOpenChat} className='w-11 h-9 rounded-[12px] flex items-center hover:scale-110 cursor-pointer duration-300 justify-center px-3 dark:bg-[#393939] bg-[#dadadae9]'>
                         <BsChatDots size={18} className='dark:text-white text-black' />
                     </div>
