@@ -9,6 +9,7 @@ import ToggleLightAndDark from "../ToggleTheme/ToggoleTheme";
 import { IUserDetail } from "@/core/types/LandingPage/IUserDetail";
 import { useCookies } from "next-client-cookies";
 import jwt from 'jsonwebtoken'
+import { MdCompare } from "react-icons/md";
 interface IProps {
   userInfo?: IUserDetail
 }
@@ -19,12 +20,12 @@ const Header: FC<IProps> = ({ userInfo }) => {
   const [userRole, setUserRole] = useState<string>("")
   useEffect(() => {
     const accessToken = cookieStore.get('accessToken')
-    if(accessToken){
-      const decodeToken = jwt.decode(accessToken) as {role:string}
+    if (accessToken) {
+      const decodeToken = jwt.decode(accessToken) as { role: string }
       setUserRole(decodeToken.role)
     }
   }, [cookieStore])
-  
+
   const handleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -155,10 +156,13 @@ const Header: FC<IProps> = ({ userInfo }) => {
             <IoMenu className="w-full h-full" />
           </button>
         </div>
-        <div className="flex flex-row items-center justify-center gap-4">
+        <div className="flex flex-row items-center justify-center gap-3">
+          <Link href={'/compare'}>
+            <MdCompare size={18} className='text-black dark:text-[#ffffff] cursor-pointer' />
+          </Link>
           <ToggleLightAndDark />
           {userInfo && userInfo?.user.profilePicture !== null ? (
-            <Link href={`${userRole === 'seller' || userRole === 'admin'? '/seller/dashboard' : '/dashboard'}`}>
+            <Link href={`${userRole === 'seller' || userRole === 'admin' ? '/seller/dashboard' : '/dashboard'}`}>
               <Image src={userInfo?.user.profilePicture} alt="img" width={40} height={40} className="rounded-full ml-6 cursor-pointer" />
             </Link>
           ) : (

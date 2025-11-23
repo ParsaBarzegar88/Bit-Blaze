@@ -1,10 +1,12 @@
 'use client'
 import { addHouseToFavorite } from '@/core/api/MortgageRent/MortgageRentDetail/MortgageRentDetail';
 import { IHousesDetail } from '@/core/types/MortgageRent/IHousesDetail'
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { FC } from 'react'
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { IoLocationOutline, IoShareSocialOutline } from 'react-icons/io5'
+import { MdCompare } from 'react-icons/md';
 import { toast } from 'react-toastify';
 interface IProps {
     houseData: IHousesDetail;
@@ -63,6 +65,10 @@ const MortgageRentDetailTotal: FC<IProps> = ({ houseData, userId }) => {
         <div className='flex flex-col w-full gap-3 mt-5'>
             <div className='flex sm:flex-row-reverse flex-col items-start sm:gap-0 gap-3 sm:items-center w-full justify-between'>
                 <div className='flex flex-row gap-2'>
+                    <Link href={`/compare?id=${houseData.id}`} className='dark:bg-[#393939] bg-[#999999] dark:text-[#AAAAAA]  hover:scale-[1.1] duration-300 cursor-pointer
+                        text-white w-[36px] h-[36px] flex items-center justify-center rounded-[12px]'>
+                        <MdCompare />
+                    </Link>
                     <span className='dark:bg-[#393939] bg-[#999999] dark:text-[#AAAAAA]  hover:scale-[1.1] duration-300 cursor-pointer
                         text-white w-[36px] h-[36px] flex items-center justify-center rounded-[12px]'>
                         <IoShareSocialOutline />
