@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import { toast } from "react-toastify"
 import { IAddSaveSearch } from "@/core/types/saveSearch/ISaveSearch"
 import { AddSaveSearch } from '@/core/api/saveSearch/saveSearch'
@@ -11,7 +11,7 @@ interface AddSaveSearchModalProps {
   initialSearchQuery?: string
 }
 
-const AddSaveSearchModal: React.FC<AddSaveSearchModalProps> = ({ 
+const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({ 
   open, 
   onOpenChange,
   onSaveSuccess,
@@ -92,7 +92,7 @@ const AddSaveSearchModal: React.FC<AddSaveSearchModalProps> = ({
       <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl shadow-2xl w-full max-w-md mx-4 border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-            💾 ذخیره جستجو
+             ذخیره جستجو
           </h2>
           <button
             onClick={handleClose}
