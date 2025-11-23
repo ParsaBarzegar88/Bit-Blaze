@@ -1,14 +1,18 @@
 import DashboardCommentsManagementPageSection from '@/components/Dashboard/SellerDashboard/DashboardCommentsManagementPageSection/DashboardCommentsManagementPageSection';
 import { Metadata } from 'next';
-import React from 'react'
+import React, { FC } from 'react'
 
 export const metadata: Metadata = {
   title: "مدیریت کامنت ها",
 };
-const DashboardCommentsManagementPage = () => {
+interface IGetSearchParams {
+  searchParams?: { [key: string]: string }
+}
+const DashboardCommentsManagementPage:FC<IGetSearchParams> = async ({searchParams}) => {
+  const getAllSearchParams = await searchParams
   return (
     <>
-      <DashboardCommentsManagementPageSection/>
+      <DashboardCommentsManagementPageSection searchParams={getAllSearchParams}/>
     </>
   )
 }

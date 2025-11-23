@@ -29,16 +29,24 @@ const CommentFilterItem: FC<IProps> = ({ handleClose }) => {
             value: null
         },
         {
-            label: "تایید شده",
-            value: "confirmed"
+            label: "1",
+            value: "1"
         },
         {
-            label: "در حال انتظار",
-            value: "pending"
+            label: "2",
+            value: "2"
         },
         {
-            label: "تایید نشده",
-            value: "canceled"
+            label: "3",
+            value: "3"
+        },
+        {
+            label: "4",
+            value: "4"
+        },
+        {
+            label: "5",
+            value: "5"
         },
     ], [])
     const [openReserveType, setOpenReserveType] = useState<boolean>(false);
@@ -81,7 +89,7 @@ const CommentFilterItem: FC<IProps> = ({ handleClose }) => {
             <div className="w-full mt-1 mb-1 border-t border-[#b3b3b3] dark:border-white border-dashed transition-colors duration-300"></div>
             <div className='flex md:flex-row flex-col gap-3 w-full '>
                 <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
-                    <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>وضعیت رزرو : </legend>
+                    <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>امتیاز : </legend>
                     <Popover open={openReserveType} onOpenChange={setOpenReserveType}>
                         <PopoverTrigger asChild>
                             <div className='group'>
@@ -110,7 +118,7 @@ const CommentFilterItem: FC<IProps> = ({ handleClose }) => {
                                                     const selected = reserveType.find(item => item.label === currentValue)
                                                     if (selected) {
                                                         setSelectedReserveType(selected.label);
-                                                        updateSearchParams('reserveType', selected.value)
+                                                        updateSearchParams('rating', selected.value)
                                                     }
                                                     setOpenReserveType(false);
                                                 }}

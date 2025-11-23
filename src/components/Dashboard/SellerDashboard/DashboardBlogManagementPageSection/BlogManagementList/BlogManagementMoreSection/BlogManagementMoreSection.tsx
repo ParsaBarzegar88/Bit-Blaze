@@ -1,12 +1,8 @@
 'use client'
-import React, { FC, useState } from 'react'
-import { LiaTimesCircle } from "react-icons/lia";
-import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { IoIosAddCircleOutline } from "react-icons/io";
-import { RemoveFavoriteHouse } from '@/core/api/Dashboard/Favorite';
+import { FC, useState } from 'react';
+import { LiaTimesCircle } from "react-icons/lia";
 import { MdEdit } from "react-icons/md";
-import { IoDocumentTextOutline } from "react-icons/io5";
 import LogoutSection from './LogoutSection/LogoutSection';
 import UpdateBlog from './UpdateBlog/UpdateBlog';
 

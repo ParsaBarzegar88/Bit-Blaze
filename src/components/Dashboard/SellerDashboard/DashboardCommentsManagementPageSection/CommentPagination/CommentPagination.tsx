@@ -10,15 +10,15 @@ import {
 } from '@/components/ui/pagination';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { IUserReserves } from '@/core/types/Dashboard/IReserve';
+import { IComments } from '@/core/types/SellerDashboard/IComment';
 
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 5;
 
 interface IProps {
-    userReserveCount: IUserReserves
+    userCommentCount?: IComments
 }
-const CommentPagination: FC<IProps> = ({ userReserveCount }) => {
+const CommentPagination: FC<IProps> = ({ userCommentCount }) => {
 
 
     const router = useRouter();
@@ -27,7 +27,7 @@ const CommentPagination: FC<IProps> = ({ userReserveCount }) => {
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
 
-    const totalPages = Math.ceil(userReserveCount.totalCount / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(userCommentCount ? userCommentCount.totalCount / ITEMS_PER_PAGE : 1);
 
 
     const goToPage = (page: number) => {
