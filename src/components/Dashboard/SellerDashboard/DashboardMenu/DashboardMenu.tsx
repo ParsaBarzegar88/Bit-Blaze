@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AiOutlineLogin } from "react-icons/ai";
-import { BsChatLeftDots , BsChatDots} from "react-icons/bs";
+import { BsChatLeftDots, BsChatDots } from "react-icons/bs";
 import { FiHome, FiUser } from 'react-icons/fi';
 import { GrSettingsOption } from "react-icons/gr";
 import { HiClipboardDocumentList } from "react-icons/hi2";
 import { IoMdAddCircleOutline } from "react-icons/io";
-
+import { TbLogs } from "react-icons/tb";
 const DashboardMenu = () => {
     const pathName = usePathname()
     const [open, setOpen] = useState<boolean>(true)
@@ -74,6 +74,10 @@ const DashboardMenu = () => {
                         <Link href={'/seller/dashboard-chats'} className={`flex items-center ${pathName === '/seller/dashboard-chats' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <BsChatDots size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>گفتگو ها</span>
+                        </Link>
+                        <Link href={'/seller/dashboard-blog-managemnet'} className={`flex items-center ${pathName === '/seller/dashboard-blog-managemnet' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <TbLogs size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت مقالات</span>
                         </Link>
                     </div>
                 </div>
