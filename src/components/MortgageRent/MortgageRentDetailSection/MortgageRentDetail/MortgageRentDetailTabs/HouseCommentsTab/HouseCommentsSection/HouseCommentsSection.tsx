@@ -32,7 +32,7 @@ const HouseCommentsSection: FC<IProps> = ({ housesCommentsList }) => {
     };
   };
   return (
-    <div className={`flex flex-row justify-between max-w-[98%] mx-auto ${housesCommentsList.data.length ? "h-[350px]" : ""}  animate-fade mb-5`}>
+    <div className={`flex flex-row justify-between max-w-[98%] w-full mx-auto ${housesCommentsList.data.length ? "h-[350px]" : ""}  animate-fade mb-5`}>
       {housesCommentsList.data.length > 0 ? (
         <Swiper
         spaceBetween={20}
@@ -67,7 +67,7 @@ const HouseCommentsSection: FC<IProps> = ({ housesCommentsList }) => {
           },
         }}
         modules={[Autoplay, Pagination]}
-        className="mySwiper"
+        className="mySwiper w-full"
       >
         {housesCommentsList.data.map((comment, index) => {
           const commentWithUser = getCommentWithUser(comment, index);
