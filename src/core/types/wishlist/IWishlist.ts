@@ -6,16 +6,18 @@ export interface IWishlistItem {
     houseId: number;
     note: string;
     createdAt: string;
-    updatedAt: string;
     house: IHouseCompare[];
+
 }
 
 export interface IWishlist {
     data: IWishlistItem[];
     totalCount: number;
+
 }
 
 export interface IAddWishlist {
     houseId: string;
     note: string;
+    
 }

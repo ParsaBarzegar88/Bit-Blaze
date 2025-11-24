@@ -5,10 +5,6 @@ import { cookies } from "next/headers";
 export const getUserWishlist = async (searchParams?: { [key: string]: string }): Promise<IWishlist> => {
         const cookieStore = await cookies();
         const token = cookieStore.get("accessToken")?.value;
-        
-        if (!token) {
-            throw new Error("No access token found");
-        }
 
         const baseURL = process.env.API_BASE_URL;
         const page = searchParams?.page || '1';
@@ -20,10 +16,6 @@ export const getUserWishlist = async (searchParams?: { [key: string]: string }):
                 Authorization: `Bearer ${token}`
             },
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
 
         const data = await response.json();
         console.log('Wishlist API Response:', data); 
