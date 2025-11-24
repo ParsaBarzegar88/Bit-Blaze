@@ -91,3 +91,15 @@ export const getQuestions = async (houseId: string) => {
   })
   return result.json()
 };
+export const get3DPicture = async (id:string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const result = await fetch(`${baseURL}/api/visit-3ds/house/${id}` , {
+    headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${token}`
+    }
+  })
+  return result.json()
+}
