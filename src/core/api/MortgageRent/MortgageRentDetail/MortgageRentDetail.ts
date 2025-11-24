@@ -57,3 +57,57 @@ export const getSellerInfo = async (id:string) => {
     })
     return result.json()
 }
+export const sendQuestion = async (houseId: string, question: string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const result = await fetch(`${baseURL}/api/property-qa/question`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      houseId: houseId,
+      question: question,
+    }),
+  });
+  const response = await result.json();
+  return {
+    res: response,
+    ok: result.ok,
+  };
+};
+export const sendAnswer = async (questionId: string, answer: string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const result = await fetch(`${baseURL}/api/property-qa/answer`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      questionId: questionId,
+      answer: answer,
+    }),
+  });
+  const response = await result.json();
+  return {
+    res: response,
+    ok: result.ok,
+  };
+};
+export const getQuestions = async (houseId: string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const result = await fetch(`${baseURL}/api/property-qa/${houseId}` , {
+    headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${token}`
+    }
+  })
+  return result.json()
+};

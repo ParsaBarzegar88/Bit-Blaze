@@ -119,7 +119,7 @@ const MortgageRentDetailTotal: FC<IProps> = ({ houseData, userId }) => {
                 </div>
                 <h2 className='dark:text-white  text-black text-[28px] font-[600]'>{houseData.title}</h2>
             </div>
-            <div className='flex flex-row gap-2 dark:text-[#AAAAAA]'>
+            <div className='flex flex-row gap-2 dark:text-[#AAAAAA] mb-4'>
                 <IoLocationOutline size={20} />
                 <p>آدرس : {houseData.address}</p>
             </div>

@@ -25,11 +25,11 @@ const DetailContent: FC<IProps> = async ({ Info,housesComments , action }) => {
         console.log('No access token found');
     }
     return (
-        <div className='max-w-[100%] w-full flex flex-col-reverse lg:flex-row-reverse justify-between mt-10'>
-            <div className='w-full lg:w-[20%]'>
+        <div className='max-w-[100%] max-[1080px]:flex-col-reverse w-full flex flex-row-reverse justify-between mt-10'>
+            <div className='w-[20%] max-[1080px]:w-full'>
                 <ReserveHouse info={Info}/>
             </div>
-            <div className='w-full lg:w-[75%]'>
+            <div className='w-[75%] max-[1080px]:w-full'>
                 <HouseReserveDetailTabs houseData={Info} housesComments={housesComments} action={action} userId={userId} />
             </div>
         </div>

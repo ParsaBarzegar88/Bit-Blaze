@@ -17,8 +17,6 @@ export interface ISendCommentsResponse {
 }
 const HouseReserveDetailPage: FC<IProps> = ({params}) => {
 
-    console.log(params)
-
   return (
     <div>
        <HouseReserveDetail DetailId={params.id} action={SendCommentFetch} />
