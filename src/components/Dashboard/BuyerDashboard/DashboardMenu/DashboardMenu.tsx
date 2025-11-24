@@ -10,6 +10,7 @@ import { BsChatDots, BsCreditCard } from "react-icons/bs";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import DashboardWalletItem from './DashboardWalletItem/DashboardWalletItem';
+import { RiPushpinLine } from 'react-icons/ri';
 const DashboardMenu = () => {
     const pathName = usePathname()
     const [open, setOpen] = useState<boolean>(true)
@@ -55,6 +56,10 @@ const DashboardMenu = () => {
                         <Link href={'/dashboard-reserves'} className={`flex items-center ${pathName === '/dashboard-reserves' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <IoMdAddCircleOutline size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت رزروها</span>
+                        </Link>
+                        <Link href={'/dashboard-wishlist'} className={`flex items-center ${pathName === '/dashboard-wishlist' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <RiPushpinLine size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>لیست سنجاق ها</span>
                         </Link>
                         <Link href={'/dashboard-favorites'} className={`flex items-center ${pathName === '/dashboard-favorites' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <MdFavoriteBorder size={24} className='w-5 h-5' />
