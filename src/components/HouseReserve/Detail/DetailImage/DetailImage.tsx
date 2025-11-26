@@ -41,13 +41,12 @@ const DetailImage: FC<IProps> = ({ Info, get3DPic }) => {
             height="100%"
             width="100%"
             littlePlanet={false}
-            caption="عکس 360 درجه ملک"
             defaultZoomLvl={55}
             moveSpeed={1.5}
             navbar={[
               "fullscreen"
             ]}
-            loadingTxt="در حال بارگذاری عکس ..."
+            loadingTxt="Loading"
           />
         ) : (
           <Image
