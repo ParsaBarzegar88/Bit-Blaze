@@ -29,7 +29,6 @@ export const postNewPassword = async (
     });
 
     const data = await response.json();
-    console.log("step three", data)
     if (!response.ok) {
       return {
         message: data.message || "عملیات با موفقیت انجام نشد",
@@ -48,8 +47,7 @@ export const postNewPassword = async (
     return {
       message: data.message || "عمیلیات با موفقیت انجام شد",
     };
-  } catch (error) {
-    console.error("Error in PostUserEmail:", error);
+  } catch{
     return { message: "خطای شبکه رخ داده است",  };
   }
 };

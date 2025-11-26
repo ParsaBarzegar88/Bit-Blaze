@@ -1,11 +1,16 @@
+import BlogPage from '@/components/Blogs/BlogPage';
 import { Metadata } from 'next';
-import React from 'react'
+import React, { FC } from 'react'
+interface IGetSearchParams {
+  searchParams?: { [key: string]: string }
+}
 export const metadata: Metadata = {
   title: "مقالات ما",
 };
-const BlogsPage = () => {
+const BlogsPage:FC<IGetSearchParams> = async ({searchParams}) => {
+  const getSearchParams = await searchParams
   return (
-    <div>BlogsPage</div>
+    <BlogPage Params={getSearchParams} />
   )
 }
 

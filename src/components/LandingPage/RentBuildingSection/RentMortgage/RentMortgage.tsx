@@ -15,7 +15,7 @@ const RentMortgage = () => {
     const { data } = useSWR([activeTab], getHousesByRentAndMortgage)
     return (
         <div className='flex flex-col max-w-[98%] w-full m-auto gap-1 relative px-4 lg:px-0'>
-            <div className='flex flex-row gap-3 mx-auto lg:mx-0 text-[#8CFF45] items-center font-[500] text-[14px] lg:text-[16px] mt-24 lg:mt-24 mb-7'>
+            <div className='flex flex-row gap-3 mx-auto lg:mx-0 dark:fill-[#8CFF45] fill-[#58893a] dark:text-[#8CFF45] text-[#58893a] items-center font-[500] text-[14px] lg:text-[16px] mt-24 lg:mt-24 mb-7'>
                 مقصد رویا ها
                 <div className='hidden lg:flex'>
                     <ArrowTriangleGreenLeftSVG />
@@ -23,7 +23,7 @@ const RentMortgage = () => {
             </div>
             <div className='flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-0'>
                 <div className='flex flex-col lg:flex-row gap-5 items-center'>
-                    <h2 className="text-[#FFFFFF] text-[20px] lg:text-[26px] font-[500] text-center lg:text-right">
+                    <h2 className="dark:text-[#FFFFFF] text-black text-[20px] lg:text-[26px] font-[500] text-center lg:text-right">
                         <b className='text-[24px] lg:text-[30px]'>رهن و اجاره ملک</b> در دلتا
                     </h2>
                     <div className='w-[3px] h-4 rounded-[3px] bg-[#AAAAAA] hidden lg:block'></div>
@@ -48,7 +48,7 @@ const RentMortgage = () => {
                         </button>
                     </div>
                 </div>
-                <div className='border border-[#FFFFFF] text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#FFFFFF] hover:text-[#000000] transition-all duration-300'>
+                <div className='border dark:border-[#FFFFFF] border-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
                     مشاهده همه
                     <MdOutlineKeyboardArrowLeft />
                 </div>
@@ -99,7 +99,7 @@ const RentMortgage = () => {
                     })}
                 </Swiper>
             </div>
-            <div className="absolute right-[-109px] top-20 transform w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[50px] bg-[#7569FF]/15 rounded-full"></div>
+            <div className="absolute right-[-109px] top-20 transform w-[120px] h-[120px] lg:w-[218px] lg:h-[218px] blur-[50px] dark:bg-[#7569FF]/15 rounded-full"></div>
         </div>
     )
 }

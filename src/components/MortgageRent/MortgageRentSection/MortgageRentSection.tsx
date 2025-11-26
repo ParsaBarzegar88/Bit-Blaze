@@ -37,7 +37,7 @@ const MortgageRentSection: FC<IProps> = ({ houses }) => {
         <div className="flex flex-col mb-10 mt-8 w-full">
             <div className="flex flex-row justify-between gap-4 flex-wrap w-full">
                 {houses.totalCount === 0 ? (
-                    <h1 className="flex justify-center w-full text-white font-[600]">
+                    <h1 className="flex justify-center w-full text-black dark:text-white font-[600]">
                         درحال حاضر هیچ خانه‌ای مطابق با فیلتر وجود ندارد
                     </h1>
                 ) : (
@@ -60,8 +60,8 @@ const MortgageRentSection: FC<IProps> = ({ houses }) => {
                                 <button
                                     onClick={() => goToPage(page)}
                                     className={`px-3 py-1 cursor-pointer rounded-md w-[37px] h-[37px] text-white ${currentPage === page
-                                            ? 'bg-[#8CFF45] !text-black'
-                                            : 'bg-[#393939] hover:bg-[#4a4a4a]'
+                                            ? 'dark:bg-[#8CFF45] bg-[#66b436] text-white dark:!text-black'
+                                            : 'dark:bg-[#393939] bg-[#5f5f5f] hover:bg-[#4a4a4a] dark:hover:bg-[#4a4a4a]'
                                         }`}
                                 >
                                     {page}

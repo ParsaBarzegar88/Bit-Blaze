@@ -19,16 +19,17 @@ const BuySellBuildingList: FC<IProps> = ({ housesData }) => {
         <div className='w-full mt-5 group mx-auto'>
             <div className='flex flex-col relative'>
                 <div className='flex flex-row justify-between items-center relative'>
-                    <div className='bg-[#FFFFFF] transition-colors duration-300 group-hover:bg-[#2D2D2D] group-hover:text-[#FFFFFF] shadow-[0px_4px_12px_rgba(255,255,255,0.2)] z-[1] mr-3 translate-y-2 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
+                    <div className='bg-[#FFFFFF] text-black transition-colors duration-300 group-hover:bg-[#2D2D2D] group-hover:text-[#FFFFFF] shadow-[0px_4px_12px_rgba(255,255,255,0.2)] z-[1] mr-3 translate-y-2 flex flex-row gap-1.5 items-center justify-center rounded-[10px] w-[67px] h-[32px]'>
                         <div className='mt-1 font-[700] text-[16px]'>
-                            {housesData.rate}
+                            {housesData.rate ? housesData.rate : 0}
                         </div>
                         <FaStar />
                     </div>
-                    <FaArrowLeftLong className='w-[45px] h-[22px] rounded-[8px] bg-[#393939] text-[#FFFFFF] group-hover:bg-[#8CFF45] group-hover:text-[#363636] transition-all duration-300' size={25} />
+                    <FaArrowLeftLong className='w-[45px] h-[22px] rounded-[8px] bg-[#393939] text-[#FFFFFF] group-hover:bg-[#58893a] dark:group-hover:bg-[#8CFF45] group-hover:text-[#363636] transition-all duration-300' size={25} />
                 </div>
-                <div className='bg-[#393939] group-hover:bg-[#8CFF45] group-hover:after:shadow-[6px_10px_0_0_rgba(140,255,69,1)]
-                 group-hover:before:bg-[#8CFF45] before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
+                <div className='bg-[#393939] group-hover:bg-[#58893a] dark:group-hover:bg-[#8CFF45] 
+                group-hover:after:shadow-[6px_10px_0_0_rgba(88,137,58,1)] dark:group-hover:after:shadow-[6px_10px_0_0_rgba(140,255,69,1)]
+                 dark:group-hover:before:bg-[#8CFF45] group-hover:before:bg-[#58893a] before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative w-full h-[180px] sm:h-[200px] mt-3 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
                     before:bg-[#393939] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-10 before:rounded-tr-[17px] before:w-28 before:absolute before:-translate-y-10 before:top-0 before:right-0
@@ -37,7 +38,8 @@ const BuySellBuildingList: FC<IProps> = ({ housesData }) => {
 
                     <div className="absolute top-[-2.5rem] right-[5px] w-[5rem] h-[2rem] rounded-[14px] 
                         outline-[5px] outline-[#393939] 
-                        group-hover:outline-[#8CFF45] 
+                        dark:group-hover:outline-[#8CFF45] 
+                        group-hover:outline-[#58893a] 
                         transition-all duration-300
                         "></div>
                     <div className='bg-[#444444] mt-2.5 max-w-[90%] max-h-[90%] w-full h-full rounded-[20px] m-auto'>
@@ -76,15 +78,15 @@ const BuySellBuildingList: FC<IProps> = ({ housesData }) => {
                     </div>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
-                    <h3 className='text-[#FFFFFF] font-[500] text-[14px] sm:text-[16px] mt-5 mr-1'>{housesData.title}</h3>
+                    <h3 className='dark:text-[#FFFFFF] text-black font-[500] text-[14px] sm:text-[16px] mt-5 mr-1'>{housesData.title}</h3>
                 </div>
-                <div className='flex flex-row gap-2 text-[#AAAAAA] mt-1 items-center'>
+                <div className='flex flex-row gap-2 text-[#757575] dark:text-[#AAAAAA] mt-1 items-center'>
                     <CiLocationOn size={18} className='flex-shrink-0' />
                     <div className='mt-1 text-[12px] sm:text-[14px] truncate'>
                         {housesData.address}
                     </div>
                 </div>
-                <div className='flex flex-row flex-wrap justify-between text-[#AAAAAA] mt-1 items-center gap-2'>
+                <div className='flex flex-row flex-wrap justify-between text-[#757575] dark:text-[#AAAAAA] mt-1 items-center gap-2'>
                     <div className='flex flex-row gap-1 items-center font-[300] text-[12px] sm:text-[13px]'>
                         <FaBed className='text-[12px]' />
                         {housesData.rooms} خوابه
@@ -107,7 +109,7 @@ const BuySellBuildingList: FC<IProps> = ({ housesData }) => {
                         {housesData.yard_type}
                     </div>
                 </div>
-                <div className='bg-[#444444] group-hover:bg-[#8CFF45] transition-all duration-300 group-hover:text-[#363636] text-[#AAAAAA] text-[14px] sm:text-[16px] mt-3 w-full p-2 rounded-[12px]'>
+                <div className='bg-[#444444] group-hover:bg-[#58893a] dark:group-hover:bg-[#8CFF45] transition-all duration-300 group-hover:text-[#363636] text-[#AAAAAA] text-[14px] sm:text-[16px] mt-3 w-full p-2 rounded-[12px]'>
                     <div className='flex flex-row justify-between p-1'>
                         <p>قیمت خرید:</p>
                         <div className='flex flex-row text-[#FFFFFF] group-hover:text-[#363636] transition-all duration-300'>

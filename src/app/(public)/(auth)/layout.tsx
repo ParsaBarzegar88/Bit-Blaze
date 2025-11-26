@@ -15,7 +15,7 @@ const AuthLayout: FC<IProps> = ({ children }) => {
         {children}
         <ToastContainer
           position="top-right"
-          autoClose={3000}
+          autoClose={2800}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

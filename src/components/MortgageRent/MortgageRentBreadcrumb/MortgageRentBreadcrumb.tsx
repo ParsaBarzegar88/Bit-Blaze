@@ -12,11 +12,11 @@ const MortgageRentBreadcrumb = () => {
     <Breadcrumb dir='rtl'>
       <BreadcrumbList>
         <BreadcrumbItem >
-          <BreadcrumbLink className='hover:text-[#8CFF45] text-[#AAAAAA]' href="/">خانه</BreadcrumbLink>
+          <BreadcrumbLink className='dark:hover:text-[#8CFF45] hover:text-[#4f9623] dark:text-[#AAAAAA] text-black' href="/">خانه</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator className='rotate-180 text-[#AAAAAA]' />
         <BreadcrumbItem>
-          <BreadcrumbPage className='text-[#8CFF45]'>رهن و اجاره</BreadcrumbPage>
+          <BreadcrumbPage className='dark:text-[#8CFF45] text-[#4f9623]'>رهن و اجاره</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

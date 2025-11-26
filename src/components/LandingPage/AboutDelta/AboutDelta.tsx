@@ -12,38 +12,38 @@ import MedalSVG from '../landingPageSVG/medalSVG'
 import HomeLoveSVG from '../landingPageSVG/homeLoveSVG'
 const AboutDelta = () => {
   return (
-    <div className='flex flex-col mt-16 max-w-[100%] z-[10] w-full m-auto justify-center items-center gap-5 relative bg-[#232323] rounded-bl-[64px] rounded-br-[64px]'>
-      <div className='flex flex-row gap-3 text-[#8CFF45] items-center font-[500] text-[16px] mx-auto'>
+    <div className='flex flex-col mt-16 max-w-[100%] z-[10] w-full m-auto justify-center items-center gap-5 relative bg-[#c0c0c0] dark:bg-[#232323] rounded-bl-[64px] rounded-br-[64px]'>
+      <div className='flex flex-row gap-3 fill-[#58893a] dark:fill-[#8CFF45] text-[#58893a] dark:text-[#8CFF45] items-center font-[500] mt-5 text-[16px] mx-auto'>
         <ArrowTriangleGreenRightSVG/>
         درباره ما
         <ArrowTriangleGreenLeftSVG/>
       </div>
-      <h2 className="text-[#FFFFFF] text-[26px] font-[500]">
+      <h2 className="dark:text-[#FFFFFF] text-black text-[26px] font-[500]">
         <b className='text-[30px]'>دلتا رو بیشتر بشناس !</b>
       </h2>
-      <p className="text-[#FFFFFF] text-[16px] font-[400]">
+      <p className="dark:text-[#FFFFFF] text-black text-[16px] font-[400]">
         تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی دارد تا بتواند در تمام لحظات کنار شما باشد .
       </p>
       <div className='flex flex-row flex-wrap gap-10 justify-center mt-8 w-full mb-5'>
         <div className='flex flex-col w-fit max-[450px]:w-full max-[450px]:items-center gap-10'>
-          <div className='bg-[#393939] max-[450px]:w-full w-[450px] 
+          <div className='dark:bg-[#393939] bg-white max-[450px]:w-full w-[450px] 
                 before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[150px] mt-3 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#393939] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#393939] before:bg-[#FFFFFF] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-32 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
-            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#393939]  transition-all duration-300"></div>
-            <div className='bg-[#444444] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
+                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] dark:after:shadow-[5px_10px_0_0_rgba(57,57,57,1)] after:shadow-[5px_10px_0_0_rgba(255,255,255,1)]'>
+            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#FFFFFF] dark:outline-[#393939]  transition-all duration-300"></div>
+            <div className='dark:bg-[#444444] bg-[#bebebe] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
                   before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[129px] rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#444444] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#444444] before:bg-[#bebebe]  before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-28 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(68,68,68,1)]'>
-              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#444444] transition-all duration-300"></div>
+                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(190,190,190,1)]  dark:after:shadow-[6px_10px_0_0_rgba(68,68,68,1)]'>
+              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#bebebe] dark:outline-[#444444] transition-all duration-300"></div>
               <div className='relative overflow-hidden'>
-                <div className='flex flex-col mr-3 text-[#FFFFFF] gap-2'>
+                <div className='flex flex-col mr-3 text-[#000000] dark:text-[#FFFFFF] gap-2'>
                   <div className='bg-[#FFFFFF] w-[46px] h-[46px] shadow-[0px_6px_20px_rgba(255,255,255,0.12)] rounded-2xl flex justify-center items-center z-[5]'>
                     <HomeLoveSVG/>
                   </div>
@@ -56,24 +56,24 @@ const AboutDelta = () => {
               </div>
             </div>
           </div>
-          <div className='bg-[#393939] max-[450px]:w-full w-[450px] 
+          <div className='dark:bg-[#393939] bg-white max-[450px]:w-full w-[450px] 
                 before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[150px] mt-3 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#393939] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#393939] before:bg-white before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-32 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
-            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#393939]  transition-all duration-300"></div>
-            <div className='bg-[#232323] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
+                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(255,255,255,1)] dark:after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
+            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#ffffff] dark:outline-[#393939]  transition-all duration-300"></div>
+            <div className='dark:bg-[#232323] bg-[#9b9b9b] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
                   before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[129px] rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#232323] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#232323] before:bg-[#9b9b9b] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-28 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(35,35,35,1)]'>
-              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#232323] transition-all duration-300"></div>
+                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(155,155,155,1)] dark:after:shadow-[6px_10px_0_0_rgba(35,35,35,1)]'>
+              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#9b9b9b] dark:outline-[#232323] transition-all duration-300"></div>
               <div className='relative overflow-hidden'>
-                <div className='flex flex-col mr-3 text-[#FFFFFF] gap-2'>
+                <div className='flex flex-col mr-3 text-black dark:text-[#FFFFFF] gap-2'>
                   <div className='bg-[#FFFFFF] w-[46px] h-[46px] shadow-[0px_6px_20px_rgba(255,255,255,0.12)] rounded-2xl flex justify-center items-center z-[5]'>
                     <MedalSVG/>
                   </div>
@@ -111,24 +111,24 @@ const AboutDelta = () => {
           </div>
         </div>
         <div className='flex flex-col w-fit max-[450px]:w-full max-[450px]:items-center gap-10'>
-          <div className='bg-[#393939] max-[450px]:w-full w-[450px] 
+          <div className='dark:bg-[#393939] bg-white max-[450px]:w-full w-[450px] 
                 before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[150px] mt-3 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#393939] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#393939] before:bg-[#FFFFFF] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-32 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
-            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#393939]  transition-all duration-300"></div>
-            <div className='bg-[#232323] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
+                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(255,255,255,1)] dark:after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
+            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#ffffff] dark:outline-[#393939]  transition-all duration-300"></div>
+            <div className='dark:bg-[#232323] bg-[#9b9b9b] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
                   before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[129px] rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#232323] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#232323] before:bg-[#9b9b9b] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-28 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(35,35,35,1)]'>
-              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#232323] transition-all duration-300"></div>
+                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(155,155,155,1)] dark:after:shadow-[6px_10px_0_0_rgba(35,35,35,1)]'>
+              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#9b9b9b] dark:outline-[#232323] transition-all duration-300"></div>
               <div className='relative overflow-hidden'>
-                <div className='flex flex-col mr-3 text-[#FFFFFF] gap-2'>
+                <div className='flex flex-col mr-3 text-black dark:text-[#FFFFFF] gap-2'>
                   <div className='bg-[#FFFFFF] w-[46px] h-[46px] shadow-[0px_6px_20px_rgba(255,255,255,0.12)] rounded-2xl flex justify-center items-center z-[5]'>
                     <SupportSVG/>
                   </div>
@@ -141,24 +141,24 @@ const AboutDelta = () => {
               </div>
             </div>
           </div>
-          <div className='bg-[#393939] max-[450px]:w-full w-[450px] 
+          <div className='dark:bg-[#393939] bg-white max-[450px]:w-full w-[450px] 
                 before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[150px] mt-3 rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#393939] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#393939] before:bg-white before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-32 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
-            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#393939]  transition-all duration-300"></div>
-            <div className='bg-[#444444] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
+                    after:transform-[rotate(23deg)] after:top-[-1.08rem] after:right-[7.5rem] after:shadow-[5px_10px_0_0_rgba(255,255,255,1)]  dark:after:shadow-[5px_10px_0_0_rgba(57,57,57,1)]'>
+            <div className="absolute top-[-1.5rem] right-[5px] w-[5.77rem] h-[2rem] rounded-[14px] outline-[5px] dark:outline-[#393939] outline-white  transition-all duration-300"></div>
+            <div className='dark:bg-[#444444] bg-[#bebebe] max-[450px]:w-[95%] w-[434px] mt-3 mr-2
                   before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 
                  transition-all duration-300 relative  h-[129px] rounded-tl-[24px] rounded-bl-[24px] rounded-br-[24px]
-                    before:bg-[#444444] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
+                    dark:before:bg-[#444444] before:bg-[#bebebe] before:[clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)] 
                     before:h-6 before:rounded-tr-[17px] before:w-28 before:absolute before:-translate-y-6 before:top-0 before:right-0
                     after:absolute after:bg-transparent after:w-5 after:h-5 after:rounded-br-[60px] 
-                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(68,68,68,1)]'>
-              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#444444] transition-all duration-300"></div>
+                    after:transform-[rotate(23deg)] after:top-[-1.05rem] after:right-[6.5rem] after:shadow-[6px_10px_0_0_rgba(190,190,190,1)] dark:after:shadow-[6px_10px_0_0_rgba(68,68,68,1)]'>
+              <div className="absolute top-[-1.5rem] right-[5px] w-[5.05rem] h-[2rem] rounded-[14px] outline-[5px] outline-[#bebebe] dark:outline-[#444444] transition-all duration-300"></div>
               <div className='relative overflow-hidden'>
-                <div className='flex flex-col mr-3 text-[#FFFFFF] gap-2'>
+                <div className='flex flex-col mr-3 text-black dark:text-[#FFFFFF] gap-2'>
                   <div className='bg-[#FFFFFF] w-[46px] h-[46px] shadow-[0px_6px_20px_rgba(255,255,255,0.12)] rounded-2xl flex justify-center items-center z-[5]'>
                     <SmileStickerSVG/>
                   </div>

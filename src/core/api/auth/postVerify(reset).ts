@@ -30,7 +30,6 @@ export const postVerify = async (
     });
 
     const data = await response.json();
-    console.log("step two", data)
     if (!response.ok) {
       return {
         message: data.message || "عملیات با موفقیت انجام نشد",
@@ -49,8 +48,7 @@ export const postVerify = async (
       message: data.message || "کد با موفقیت ارسال شد",
       resetCode: resetCode
     };
-  } catch (error) {
-    console.error("Error in PostUserEmail:", error);
+  } catch{
     return { message: "خطای شبکه رخ داده است", };
   }
 };

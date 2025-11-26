@@ -46,8 +46,7 @@ export const UserVerifyNumber = async (
       message: data.message || "تأیید با موفقیت انجام شد",
       userId: data.userId || "",
     };
-  } catch (error) {
-    console.error("Error in UserVerifyNumber:", error);
+  } catch{
     return { message: "خطای شبکه رخ داده است", userId: "" };
   }
 };

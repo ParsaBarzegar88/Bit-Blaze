@@ -29,7 +29,6 @@ export const PostEmail = async (
     });
 
     const data = await response.json();
-    console.log("step one", data)
     if (!response.ok) {
       return {
         message: data.message || "عملیات با موفقیت انجام نشد",
@@ -51,8 +50,7 @@ export const PostEmail = async (
       email: email,
       error: ""
     };
-  } catch (error) {
-    console.error("Error in PostUserEmail:", error);
+  } catch {
     return { message: "خطای شبکه رخ داده است",  };
   }
 };

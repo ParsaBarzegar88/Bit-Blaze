@@ -34,7 +34,6 @@ export const PostUserEmail = async (
     });
 
     const data = await response.json();
-    console.log("step one", data)
     if (!response.ok) {
       return {
         message: data.message || "عملیات با موفقیت انجام نشد",
