@@ -1,10 +1,11 @@
-"use server"
+"use server";
 import { IUpdateHouse } from "@/core/types/UpdateHouse/IUpdateHouse";
 import { cookies } from "next/headers";
 
-
-export const UpdateAHouse = async (HouseId: string = "" , houseData: IUpdateHouse) => {
-  console.log("api", houseData)
+export const UpdateAHouse = async (
+  HouseId: string = "",
+  houseData: IUpdateHouse
+) => {
   const cookieStore = await cookies();
   const token = cookieStore.get("accessToken")?.value;
   const baseURL = process.env.API_BASE_URL;
@@ -45,7 +46,26 @@ export const UpdateAHouse = async (HouseId: string = "" , houseData: IUpdateHous
   const response = await res.json();
 
   return {
-    response:response,
+    response: response,
+    ok: res.ok,
+  };
+};
+export const upload3DImage = async (formData: FormData) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const res = await fetch(`${baseURL}/api/visit-3ds/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  const response = await res.json();
+
+  return {
+    response: response,
     ok:res.ok
   };
 };

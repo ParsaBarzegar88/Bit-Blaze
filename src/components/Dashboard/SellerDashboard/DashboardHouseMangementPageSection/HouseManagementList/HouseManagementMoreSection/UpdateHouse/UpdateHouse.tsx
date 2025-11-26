@@ -2,7 +2,7 @@
 import { getHousesReserveDetail } from '@/core/api/HouseReserve/Detail/Detail';
 import { IUpdateHouse } from '@/core/types/UpdateHouse/IUpdateHouse';
 import { IHousesDetail } from '@/core/types/HouseReserveDetail/IHousesDetail';
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useCallback } from 'react'
 import { UpdateAHouse } from '@/core/api/SellerDashboard/UpdateHouse/UpdateHouse';
 import { IoClose } from "react-icons/io5";
 import { useRouter } from "next/navigation";
@@ -38,12 +38,10 @@ const UpdateHouse: FC<IProps> = ({ Id, onClose }) => {
     });
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchHouseData = async () => {
+    const fetchHouseData =useCallback(async () => {
         try {
-            console.log(Id)
             const getHouseInfo = await getHousesReserveDetail(Id);
             setHouseInfo(getHouseInfo);
-            console.log("", getHouseInfo)
             if (getHouseInfo) {
                 setFormData({
                     title: getHouseInfo.title || '',
@@ -61,11 +59,11 @@ const UpdateHouse: FC<IProps> = ({ Id, onClose }) => {
         } catch (error) {
             console.error('Error fetching house data:', error);
         }
-    };
+    } , [Id]);
 
     useEffect(() => {
         fetchHouseData();
-    }, [Id]);
+    }, [Id , fetchHouseData]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -101,7 +99,6 @@ const UpdateHouse: FC<IProps> = ({ Id, onClose }) => {
             };
 
             const response = await UpdateAHouse(Id, submitData);
-            console.log('Update response:', response);
             
             if (response.ok) {
                 toast.success('اطلاعات با موفقیت به روز شد', {

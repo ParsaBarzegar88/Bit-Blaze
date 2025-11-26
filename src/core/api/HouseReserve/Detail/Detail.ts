@@ -91,3 +91,31 @@ export const getQuestions = async (houseId: string) => {
   })
   return result.json()
 };
+export const get3DPicture = async (id:string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const result = await fetch(`${baseURL}/api/visit-3ds/house/${id}` , {
+    headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${token}`
+    }
+  })
+  return result.json()
+}
+export const delete3DImage = async (id:string) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const baseURL = process.env.API_BASE_URL;
+  const result = await fetch(`${baseURL}/api/visit-3ds/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const response = await result.json();
+  return {
+    res: response,
+    ok: result.ok,
+  };
+};
