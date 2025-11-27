@@ -21,7 +21,6 @@ const HouseReserve: FC<IProps> = async ({ sortingData }) => {
     sortingData?.location,
   )
 
-
   return (
     <div className='max-w-[96%] w-full ml-auto mr-auto m-15'>
       <HouseBreadcrumb />

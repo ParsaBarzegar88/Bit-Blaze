@@ -83,7 +83,7 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
       <MapContainer
         center={location.lat && location.lng ? [Number(location.lat), Number(location.lng)] : [35.6892, 51.3890]}
         zoom={12}
-        className="w-full h-full rounded-[40px] shadow-inner"
+        className="w-full h-full rounded-[40px] shadow-inner z-[10]"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -92,7 +92,7 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
 
         {location.lat && location.lng ? (
           <Marker position={[Number(location.lat), Number(location.lng)]}>
-            <Popup className="p-4 rounded-xl bg-green-100 border-green-300">
+            <Popup className="p-4 rounded-xl bg-green-100 border-green-300 ">
               <div className="text-right font-vazir text-sm">
                 <h3 className="font-bold text-green-600 mb-2">خونه انتخاب شده!</h3>
                 <p className="text-gray-700">نقشه روی این خونه زوم شد</p>
