@@ -30,7 +30,7 @@ export interface IHousesData{
     bookings:number;
     favoriteId:number | string | null;
     isFavorite:boolean;
-
+    message?:string
 }
 export interface IHouses{
     houses:IHousesData[];

@@ -1,7 +1,5 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import React, { FC, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import {
   Command,
   CommandEmpty,
@@ -15,14 +13,17 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Check, ChevronDown } from "lucide-react";
-import { IoLocationOutline, IoFilterOutline } from "react-icons/io5";
+import { DeleteSaveSearch, getSaveSearch } from "@/core/api/saveSearch/saveSearch";
 import { IHouses } from "@/core/types/LandingPage/IHouses";
-import { AddSaveSearch, DeleteSaveSearch, getSaveSearch } from "@/core/api/saveSearch/saveSearch";
 import { ISaveSearchItem } from "@/core/types/saveSearch/ISaveSearch";
-import { toast } from "react-toastify";
+import { Check, ChevronDown } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FC, useEffect, useState } from "react";
 import { BsSave } from "react-icons/bs";
+import { IoFilterOutline, IoLocationOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 import AddSaveSearchModal from "./addSaveSearch/AddSaveSearchModal";
+import AiHelp from "./AiHelp/AiHelp";
 
 type Province = string;
 type SortOption = { label: string; value: string };
@@ -59,7 +60,7 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
   );
   const [search, setSearch] = useState<string>(searchParams.get("search") || "");
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-
+  const [aiModal, setAiModal] = useState<boolean>(false)
   const updateSearchParams = (key: string, value: string | null) => {
     const params = new URLSearchParams(searchParams)
     if (value === null || value === "همه" || value === "") {
@@ -72,7 +73,6 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
 
   const HandleSaveSearch = async () => {
     const response = await getSaveSearch()
-    console.log("savesearch", response)
     setSaveSearch(response)
   }
 
@@ -82,7 +82,6 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
 
   const HandleDeleteSaveSearch = async (id: string) => {
     const response = await DeleteSaveSearch(id);
-    console.log("delete", response)
     if (response.message === 'Saved search deleted successfully') {
       toast.success('سرچ ذخیره شده با موفقیت حذف شد', {
         position: "top-center",
@@ -117,15 +116,17 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
   const handleSaveSuccess = () => {
     HandleSaveSearch()
   }
-
+  const handleOpenAiModal = () => {
+    setAiModal(!aiModal)
+  }
   useEffect(() => {
     HandleSaveSearch()
   }, [])
 
   return (
     <div className="m-auto w-full z-[9] mt-4">
-      <div className="flex flex-col max-md:flex-col md:flex-row justify-center md:justify-between w-full items-end gap-4 lg:gap-5 p-3 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl lg:rounded-4xl bg-[#e9e9e9] dark:bg-[#303030]">
-        <div className="flex flex-col max-md:flex-col md:flex-row gap-3 sm:gap-4 lg:gap-5 w-full items-start">
+      <div className="flex flex-col max-md:flex-col max-[1500px]:flex-wrap md:flex-row justify-center md:justify-between w-full items-end gap-4 lg:gap-5 p-3 sm:p-4 lg:p-5 rounded-2xl sm:rounded-3xl lg:rounded-4xl bg-[#e9e9e9] dark:bg-[#303030]">
+        <div className="flex flex-col max-md:flex-col flex-wrap  md:flex-row gap-3 sm:gap-4 lg:gap-5 w-full items-end">
           <div className="w-full md:w-[200px] lg:w-[220px]">
             <Popover open={openProvince} onOpenChange={setOpenProvince}>
               <PopoverTrigger asChild>
@@ -280,9 +281,6 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
           {search ? (
             <div className="w-full md:w-auto flex items-end">
               <div className="group">
-                <p className='dark:group-hover:text-[#FFFFFF] group-hover:text-[#363636] dark:text-[#AAAAAA] text-[#000000] font-[400] text-xs sm:text-[13px] mb-1 invisible'>
-                  ذخیره جستجو
-                </p>
                 <div
                   onClick={() => setModalOpen(true)}
                   className="w-10 h-10 bg-blue-500 hover:bg-blue-600 rounded-2xl flex items-center justify-center cursor-pointer transition-colors duration-200 group-hover:scale-105"
@@ -293,6 +291,12 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
               </div>
             </div>
           ) : null}
+          <div onClick={handleOpenAiModal} className="flex w-full md:w-auto sm:mt-0 whitespace-nowrap">
+            <div className="bg-[#10a37f] flex cursor-pointer flex-row-reverse gap-2 items-center p-2 sm:p-4 rounded-xl sm:rounded-2xl w-full justify-center md:justify-start">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#000000" strokeWidth="1.5" viewBox="-0.17090198558635983 0.482230148717937 41.14235318283891 40.0339509076386"><text x="-9999" y="-9999">ChatGPT</text><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835A9.964 9.964 0 0 0 18.306.5a10.079 10.079 0 0 0-9.614 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.516 3.35 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813zM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496zm-16.106-6.88a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.01L7.04 23.856a7.504 7.504 0 0 1-2.743-10.237zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .113-.01l8.052 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.65-1.132zm3.35-5.043a7.395 7.395 0 0 0-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zM16.071 18l4.33-2.501 4.332 2.5v5l-4.331 2.5-4.331-2.5V18z" fill="#000000" /></svg>
+              <p className="text-black text-sm sm:text-base">جستجوی هوشمند</p>
+            </div>
+          </div>
         </div>
 
         <div className="flex w-full md:w-auto mt-3 sm:mt-0 whitespace-nowrap">
@@ -310,6 +314,11 @@ const FilterHouse: FC<IProps> = ({ totalCount }) => {
         onSaveSuccess={handleSaveSuccess}
         initialSearchQuery={search}
       />
+      {aiModal && (
+        <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+          <AiHelp onClose={setAiModal} />
+        </div>
+      )}
     </div>
   )
 }
