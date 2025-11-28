@@ -63,6 +63,14 @@ const DashboardMenu = () => {
                             <BsChatLeftDots size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت نظرات</span>
                         </Link>
+                        <Link href={'/seller/dashboard-blog-managemnet'} className={`flex items-center ${pathName === '/seller/dashboard-blog-managemnet' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <TbLogs size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت مقالات</span>
+                        </Link>
+                        <Link href={'/seller/dashboard-tour-managemnet'} className={`flex items-center ${pathName === '/seller/dashboard-tour-managemnet' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
+                            <TbLogs size={24} className='w-5 h-5' />
+                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت تور ها</span>
+                        </Link>
                         <Link href={'/seller/dashboard-announcements'} className={`flex items-center ${pathName === '/seller/dashboard-announcements' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bell-dot min-w-5 min-h-5 h-5 w-5" aria-hidden="true">
                                 <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
@@ -74,10 +82,6 @@ const DashboardMenu = () => {
                         <Link href={'/seller/dashboard-chats'} className={`flex items-center ${pathName === '/seller/dashboard-chats' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
                             <BsChatDots size={24} className='w-5 h-5' />
                             <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>گفتگو ها</span>
-                        </Link>
-                        <Link href={'/seller/dashboard-blog-managemnet'} className={`flex items-center ${pathName === '/seller/dashboard-blog-managemnet' ? 'bg-[#E0E0E0] dark:bg-[#a08cff]' : ""} ${open === true ? 'w-full ' : "w-fit pl-2"} pr-2 px-3 py-2 flex-row gap-1.5 dark:text-white  text-black transition-colors hover:bg-[#E0E0E0] dark:hover:bg-[#a08cff] rounded-[8px] cursor-pointer`}>
-                            <TbLogs size={24} className='w-5 h-5' />
-                            <span className={`text-black mt-0.5 font-[400] dark:text-white ${open === true ? "" : 'hidden'}`}>مدیریت مقالات</span>
                         </Link>
                     </div>
                 </div>

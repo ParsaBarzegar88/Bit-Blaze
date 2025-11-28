@@ -5,7 +5,7 @@ import { GetAllBlogs } from '@/core/api/Blogs/Blog';
 import BlogSection from './BlogSection/BlogSection';
 
 interface IProps {
-  Params: { [key: string]: string }
+  Params?: { [key: string]: string }
 }
 
 const BlogPage: FC<IProps> = async ({ Params }) => {
