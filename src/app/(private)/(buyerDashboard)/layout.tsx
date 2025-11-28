@@ -1,18 +1,10 @@
-import localFont from 'next/font/local'
-import "./globals.css";
+import DashboardMenu from '@/components/Dashboard/BuyerDashboard/DashboardMenu/DashboardMenu';
+import DashboardHeader from '@/components/Dashboard/DashboardHeader/DashboardHeader';
+import { PeydaFanum } from '@/utils/fonts';
 import TokenRefresher from '@/utils/refreshToken';
 import { CookiesProvider } from 'next-client-cookies/server';
-import DashboardHeader from '@/components/Dashboard/DashboardHeader/DashboardHeader';
+import "./globals.css";
 import ToggleDarkAndLightProvider from './ThemeProvider';
-import DashboardMenu from '@/components/Dashboard/BuyerDashboard/DashboardMenu/DashboardMenu';
-export const PeydaFanum = localFont({
-  src: [
-    {
-      path: "../../../assets/Fonts/IRANSansXFaNum-Medium.ttf",
-      weight: "500"
-    }
-  ]
-})
 export default async function RootLayout({
   children,
 }: Readonly<{
