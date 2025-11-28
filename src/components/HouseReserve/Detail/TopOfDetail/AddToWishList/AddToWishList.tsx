@@ -1,7 +1,7 @@
-import { addToWishlist } from '@/core/api/wishlist/wishlist'
+import { addToWishlist } from '@/core/api/wishlist/wishlist';
 import { IAddWishlist } from '@/core/types/wishlist/IWishlist';
-import React, { FC, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import React, { FC, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IProps {
     open: boolean;

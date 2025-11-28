@@ -2,7 +2,7 @@
 import { getReservePayment } from '@/core/api/Dashboard/Reserve';
 import { IUserPayments } from '@/core/types/Dashboard/IPayment';
 import { formatToPersianDate } from '@/utils/date';
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { LiaTimesSolid } from 'react-icons/lia';
 
 interface IProps {

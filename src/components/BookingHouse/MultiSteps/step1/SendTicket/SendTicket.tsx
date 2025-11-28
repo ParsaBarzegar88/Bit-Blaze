@@ -16,8 +16,8 @@ const SendTicket = () => {
         const parsedCookie = JSON.parse(bookCookie);
         setShareMobile(parsedCookie.shareMobile || "");
         setShareEmail(parsedCookie.shareEmail || "");
-      } catch (error) {
-        console.error("Error parsing book cookie:", error);
+      } catch {
+        console.error("Error parsing book cookie:");
       }
     }
   }, [cookie]);
