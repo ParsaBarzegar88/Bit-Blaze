@@ -1,9 +1,9 @@
 "use client"
 import { GetBlogById, UpdateBlogs } from '@/core/api/Blogs/Blog';
-import { IBlogItem, IUpdateBlog } from '@/core/types/Blogs/IBlogs';
-import React, { FC, useState, useEffect } from 'react'
-import { IoClose } from "react-icons/io5";
+import { IUpdateBlog } from '@/core/types/Blogs/IBlogs';
 import { useRouter } from "next/navigation";
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
 
 const blogCategories = [
@@ -19,7 +19,6 @@ interface IProps {
 }
 
 const UpdateBlog: FC<IProps> = ({ Id, onClose }) => {
-    const [blogInfo, setBlogInfo] = useState<IBlogItem>();
     const router = useRouter();
     const [formData, setFormData] = useState({
         title: '',
@@ -30,11 +29,9 @@ const UpdateBlog: FC<IProps> = ({ Id, onClose }) => {
     });
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchBlogData = async () => {
+    const fetchBlogData =useCallback(async () => {
         try {
-            console.log('Blog ID:', Id);
             const getBlogInfo = await GetBlogById(Id);
-            setBlogInfo(getBlogInfo);
             if (getBlogInfo) {
                 setFormData({
                     title: getBlogInfo.title || '',
@@ -44,8 +41,7 @@ const UpdateBlog: FC<IProps> = ({ Id, onClose }) => {
                     category_id: getBlogInfo.category_id?.toString() || ''
                 });
             }
-        } catch (error) {
-            console.error('Error fetching blog data:', error);
+        } catch{
             toast.error("خطا در دریافت اطلاعات بلاگ", {
                 position: "top-center",
                 autoClose: 2400,
@@ -55,11 +51,11 @@ const UpdateBlog: FC<IProps> = ({ Id, onClose }) => {
                 style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
             });
         }
-    };
+    } , [Id]);
 
     useEffect(() => {
         fetchBlogData();
-    }, [Id]);
+    }, [Id , fetchBlogData]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;

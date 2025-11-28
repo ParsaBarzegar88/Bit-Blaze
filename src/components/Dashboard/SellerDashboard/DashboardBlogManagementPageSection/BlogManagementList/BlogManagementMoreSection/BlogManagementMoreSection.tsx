@@ -1,5 +1,4 @@
 'use client'
-import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 import { LiaTimesCircle } from "react-icons/lia";
 import { MdEdit } from "react-icons/md";
@@ -19,7 +18,6 @@ const BlogManagementMoreSection: FC<IProps> = ({ BlogId }) => {
     const handleOpenModal = () => {
         setModal(!modal)
     }
-    const router = useRouter()
 
     return (
         <>

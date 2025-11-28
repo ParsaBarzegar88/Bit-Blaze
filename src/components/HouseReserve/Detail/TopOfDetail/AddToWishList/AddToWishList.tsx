@@ -35,9 +35,6 @@ const AddToWishList: FC<IProps> = ({
 
         try {
             const response = await addToWishlist(formData)
-            console.log("اصلاعات فورم" , formData)
-            console.log(response.ok)
-
             if (response.ok) {
                 toast.success(" یادداشت با موفقیت ذخیره شد", {
                     position: "top-center",
@@ -49,8 +46,8 @@ const AddToWishList: FC<IProps> = ({
             } else {
                 throw new Error(response.response?.message || "خطا در ذخیره جستجو")
             }
-        } catch (error: any) {
-            toast.error(error.message || "مشکلی در ذخیره یادداشت به وجود آمده است", {
+        } catch {
+            toast.error("مشکلی در ذخیره یادداشت به وجود آمده است", {
                 position: "top-center",
                 autoClose: 2400,
                 style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },

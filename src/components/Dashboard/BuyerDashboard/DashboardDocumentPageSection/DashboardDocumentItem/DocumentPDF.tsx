@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { IUserDetail } from "@/core/types/Dashboard/IDashboard";
 import { IHousesDetail } from "@/core/types/HouseReserveDetail/IHousesDetail";
 import {
@@ -114,6 +115,7 @@ const DocumentPdf:FC<DocumentPdfProps> = ({houseDetail, userDetail, today, buyer
                         <Text style={{ fontSize: 14, marginBottom: 5 }}>امضای فروشنده</Text>
                         <Text>
                             <Image
+                                
                                 style={styles.signatureImage}
                                 src={"/assets/Dashboard/fakeSig.jpg"}
                             />

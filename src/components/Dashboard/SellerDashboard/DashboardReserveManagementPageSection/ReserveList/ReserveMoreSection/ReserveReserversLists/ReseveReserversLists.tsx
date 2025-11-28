@@ -3,7 +3,6 @@ import { IUserReserve } from '@/core/types/Dashboard/IReserve';
 import { formatToPersianDate } from '@/utils/date';
 import React, { Dispatch, FC, SetStateAction, useState } from 'react'
 import { LiaTimesSolid } from 'react-icons/lia';
-import ReserveTravelerList from './ReserveTravelerList/ReserveTravelerList';
 
 interface IProps {
   closeReserversLists: Dispatch<SetStateAction<boolean>>;
@@ -48,11 +47,6 @@ const ReserveReserversLists: FC<IProps> = ({ closeReserversLists, reserversDetai
           </div>
         </div>
       </div>
-      {openTravelersList && (
-        <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-          <ReserveTravelerList closeTravelersList={setOpenTravelersList} travelersDetail={reserversDetail} />
-        </div>
-      )}
     </div>
   )
 }

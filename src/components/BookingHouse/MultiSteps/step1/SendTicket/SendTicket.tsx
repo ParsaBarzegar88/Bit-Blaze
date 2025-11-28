@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { IBookingData } from "@/core/types/bookingHouse/IBookingHouse";
+import { useCookies } from "next-client-cookies";
+import { useEffect, useState } from "react";
 import { FiUsers } from "react-icons/fi";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
-import { useCookies } from "next-client-cookies";
 import { toast, ToastContainer } from "react-toastify";
-import { IBookingData, IPersonalInfo } from "@/core/types/bookingHouse/IBookingHouse";
 
 const SendTicket = () => {
   const cookie = useCookies();
   const [shareMobile, setShareMobile] = useState("");
   const [shareEmail, setShareEmail] = useState("");
-  const [shareMobileEmail, setShareMobileEmail] = useState<IBookingData[]>([]);
   useEffect(() => {
     const bookCookie = cookie.get("book");
     if (bookCookie) {
@@ -17,7 +16,6 @@ const SendTicket = () => {
         const parsedCookie = JSON.parse(bookCookie);
         setShareMobile(parsedCookie.shareMobile || "");
         setShareEmail(parsedCookie.shareEmail || "");
-        setShareMobileEmail(parsedCookie.personalInfo || []);
       } catch (error) {
         console.error("Error parsing book cookie:", error);
       }
@@ -27,7 +25,7 @@ const SendTicket = () => {
   
   useEffect(() => {
     const bookCookie = cookie.get("book");
-    let bookData: IBookingData = bookCookie ? JSON.parse(bookCookie) : {};
+    const bookData: IBookingData = bookCookie ? JSON.parse(bookCookie) : {};
 
     const updatedBookData = {
       ...bookData,
