@@ -10,7 +10,8 @@ import { MdCompare } from 'react-icons/md';
 import Link from 'next/link';
 import { RiPushpinLine } from "react-icons/ri";
 import AddToWishList from './AddToWishList/AddToWishList';
-
+import { useCookies } from 'next-client-cookies';
+import { useRouter } from 'next/navigation';
 interface IProps {
     Info: IHousesDetail
 }
@@ -19,8 +20,30 @@ const TopOfDetail: FC<IProps> = ({ Info }) => {
     const [openChat, setOpenChat] = useState<boolean>(false)
     const [modal, setModal] = useState<boolean>(false)
     const [houseId, setHouseId] = useState<string>("")
+    const cookieStore = useCookies()
+    const router = useRouter()
     const handleOpenChat = () => {
-        setOpenChat(!openChat)
+        const accessToken = cookieStore.get('accessToken')
+        if (accessToken) {
+            setOpenChat(!openChat)
+        } else {
+            toast.error('ابتدا وارد حساب کاربری خود شوید', {
+                position: 'top-center',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+            setTimeout(() => {
+                router.push('/login')
+            }, 2800);
+        }
     }
     const HandleShowWishList = (houseId: string) => {
         setModal(!modal)

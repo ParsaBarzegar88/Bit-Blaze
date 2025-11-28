@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import jwt from 'jsonwebtoken'
 
 interface IProps {
   action: (prevState: ILoginResponse,
@@ -27,7 +28,6 @@ const LoginForm: FC<IProps> = ({ action }) => {
   const [state, formAction] = useActionState(action, initialState);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false)
-
 
   useEffect(() => {
     if (state.error) {
@@ -59,9 +59,16 @@ const LoginForm: FC<IProps> = ({ action }) => {
         },
       });
       setTimeout(() => {
-
-        router.push("/");
-      }, 3000)
+        if (state.accessToken) {
+          const decodeToken = jwt.decode(state.accessToken) as { role: string }
+          if (decodeToken.role === 'admin' || decodeToken.role === "seller") {
+            router.push("/seller/dashboard");
+          }
+          else {
+            router.push("/dashboard");
+          }
+        }
+      }, 2800)
     }
   }, [state, router]);;
 

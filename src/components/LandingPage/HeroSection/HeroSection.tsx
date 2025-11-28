@@ -18,7 +18,7 @@ const HeroSection = () => {
           className="object-cover"
         />
       </div>
-      <div className={`absolute max-[500px]:w-[300px] max-[500px]:bottom-0 max-[500px]:h-[370px] w-[500px] h-[500px]  md:w-[500px] md:h-[600px] lg:w-[754px] lg:h-[678px] bottom-0 left-1 max-md:-z-0  md:left-1/2 transform -translate-x-1/4  z-[1]`}>
+      <div className={`absolute max-[500px]:hidden max-[500px]:bottom-0 max-[500px]:h-[370px] w-[500px] h-[500px]  md:w-[500px] md:h-[600px] lg:w-[754px] lg:h-[678px] bottom-0 left-1 max-md:-z-0  md:left-1/2 transform -translate-x-1/4  z-[1]`}>
         <Image
           priority
           fill
@@ -27,8 +27,8 @@ const HeroSection = () => {
           alt="BuildingBannerImage"
         />
       </div>
-      <div className="relative flex flex-col text-white w-full">
-        <div className="flex flex-row justify-center mt-32">
+      <div className="relative flex flex-col max-[500px]:justify-center text-white w-full">
+        <div className="flex flex-row justify-center max-[500px]:mt-10 mt-32">
           <TheDeltaSVG />
         </div>
         <div className="flex flex-col mt-0  lg:mt-32">
@@ -84,10 +84,10 @@ const HeroSection = () => {
                 </div>
               </div>
             </div>
-            <div className="flex max-[500px]:-mt-[55px] max-[500px]:mr-5 flex-col md:justify-center gap-6 md:gap-10 order-3 z-[20] w-[40%] items-center">
+            <div className="flex max-[500px]:justify-center max-[500px]:w-full flex-col md:justify-center gap-6 md:gap-10 order-3 z-[20] w-[40%] items-center">
               <div className="text-[16px] md:text-[14px] font-[400] text-center lg:text-right">
                 <p className="flex flex-row gap-2 items-center justify-center lg:justify-start">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="max-[500px]:hidden" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 0L7.62054 4.37946L12 6L7.62054 7.62054L6 12L4.37946 7.62054L0 6L4.37946 4.37946L6 0Z" fill="white" />
                   </svg>
                   رزور ، رهن ، اجاره و حتی خرید و فروش ملک مورد <br />

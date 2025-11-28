@@ -5,13 +5,11 @@ import { GetAllBlogs } from '@/core/api/Blogs/Blog';
 import BlogSection from './BlogSection/BlogSection';
 
 interface IProps {
-  Params: { [key: string]: string }
+  Params?: { [key: string]: string }
 }
 
 const BlogPage: FC<IProps> = async ({ Params }) => {
   const BlogData = await GetAllBlogs(Params)
-
-  console.log('BlogData received:', BlogData);
 
   return (
     <div className='max-w-[96%] w-full ml-auto mr-auto m-15'>

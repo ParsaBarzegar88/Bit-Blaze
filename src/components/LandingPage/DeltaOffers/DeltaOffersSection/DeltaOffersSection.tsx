@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 import ClockSVG from '../../landingPageSVG/clockSVG';
 import ArrowTriangleGreenLeftSVG from '../../landingPageSVG/arrowTriangleGreenLeftSVG';
 import { IHouses } from '@/core/types/LandingPage/IHouses';
+import Link from 'next/link';
 
 interface IProps{
     houses:IHouses;
@@ -49,10 +50,10 @@ const DeltaOffersSection:FC<IProps> = ({houses}) => {
                                 <h2 className='font-[200] text-[24px] lg:text-[32px] text-black dark:text-[#FFFFFF] text-center lg:text-right'>
                                     <b className='font-[700] text-[24px] lg:text-[32px]'>پیشنهاد های ویژه</b> دلتا
                                 </h2>
-                                <div className='border dark:border-[#FFFFFF] border-black text-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
+                                <Link href={"/house-reserve"} className='border dark:border-[#FFFFFF] border-black text-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
                                     مشاهده همه
                                     <MdOutlineKeyboardArrowLeft />
-                                </div>
+                                </Link>
                             </div>
                             <div className='flex flex-row justify-between max-w-[98%] h-[500px] animate-fade w-full'>
                                 <Swiper

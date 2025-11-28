@@ -111,7 +111,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
         handleClose(false);
     };
 
-    const handleThumbMove = (clientX: number) => {
+    const handleThumbMove =useCallback((clientX: number) => {
         if (!sliderRef.current || !activeThumb) return;
 
         const slider = sliderRef.current;
@@ -126,7 +126,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
             const newMax = Math.max(newValue, minPrice + 100000);
             setMaxPrice(Math.min(10000000, newMax));
         }
-    };
+    } , [maxPrice,minPrice,activeThumb]);
 
     const handleMouseDown = (thumb: 'min' | 'max') => (e: React.MouseEvent) => {
         e.preventDefault();
@@ -177,7 +177,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
             document.removeEventListener('touchmove', handleTouchMove);
             document.removeEventListener('touchend', handleTouchEnd);
         };
-    }, [activeThumb]);
+    }, [activeThumb , handleThumbMove]);
 
     useEffect(() => {
         const resType = searchParams.get('transaction_type');
@@ -209,7 +209,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
             </div>
             <div className="w-full mt-1 mb-1 border-t border-[#b3b3b3] dark:border-white border-dashed transition-colors duration-300"></div>
             <div className='flex md:flex-row flex-col gap-3 w-full'>
-                <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full'>
+                <fieldset className='border border-[#AAAAAA] rounded-[12px] w-full h-fit'>
                     <legend className='pr-1.5 pl-1.5 mr-1.5 text-[13px] text-[#AAAAAA]'>وضعیت رزرو:</legend>
                     <Popover open={openReserveType} onOpenChange={setOpenReserveType}>
                         <PopoverTrigger asChild>

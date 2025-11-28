@@ -1,0 +1,76 @@
+'use client'
+import { FC } from 'react';
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationNext,
+    PaginationPrevious
+} from '@/components/ui/pagination';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ITours } from '@/core/types/Tours/ITours';
+
+const ITEMS_PER_PAGE = 6;
+
+interface IProps {
+    userSellerTourInfo: ITours
+}
+
+const TourManagementPagination: FC<IProps> = ({ userSellerTourInfo }) => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const currentPage = parseInt(searchParams?.get('page') || '1', 10);
+    
+    const totalCount = userSellerTourInfo.totalCount || 0;
+    const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
+
+    const goToPage = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            const newParams = new URLSearchParams(searchParams?.toString() || '');
+            newParams.set('page', page.toString());
+            router.push(`?${newParams.toString()}`);
+        }
+    };
+
+    if (totalPages <= 1) {
+        return null;
+    }
+
+    return (
+        <Pagination dir="ltr" className='mt-10'>
+            <PaginationContent>
+                <PaginationItem>
+                    <PaginationPrevious
+                        onClick={() => goToPage(currentPage - 1)}
+                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                </PaginationItem>
+                
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <PaginationItem key={page}>
+                        <button
+                            onClick={() => goToPage(page)}
+                            className={`px-3 py-1 cursor-pointer rounded-md w-[37px] h-[37px] text-white ${
+                                currentPage === page
+                                    ? 'dark:bg-[#8CFF45] bg-[#66b436] text-white dark:!text-black'
+                                    : 'dark:bg-[#393939] bg-[#5f5f5f] hover:bg-[#4a4a4a] dark:hover:bg-[#4a4a4a]'
+                            }`}
+                        >
+                            {page}
+                        </button>
+                    </PaginationItem>
+                ))}
+                
+                <PaginationItem>
+                    <PaginationNext
+                        onClick={() => goToPage(currentPage + 1)}
+                        className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                </PaginationItem>
+            </PaginationContent>
+        </Pagination>
+    )
+}
+
+export default TourManagementPagination

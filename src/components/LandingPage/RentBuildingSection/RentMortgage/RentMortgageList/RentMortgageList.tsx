@@ -1,6 +1,7 @@
 'use client'
 import { IHousesData } from '@/core/types/LandingPage/IHouses';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaBed, FaCarSide } from "react-icons/fa";
@@ -39,8 +40,8 @@ const RentMortgageList: FC<IProps> = ({ housesData, type }) => {
                         </div>
                         <FaStar />
                     </div>
-                    <FaArrowLeftLong className='w-[45px] h-[22px] rounded-[8px] bg-[#393939] ] text-[#FFFFFF] dark:group-hover:bg-[#8CFF45]
-                     group-hover:text-[#363636] group-hover:bg-[#58893a] transition-all duration-300' size={25} />
+                    <Link href={`/mortgage-rent/${housesData.id}`}><FaArrowLeftLong className='w-[45px] h-[22px] rounded-[8px] bg-[#393939] ] text-[#FFFFFF] dark:group-hover:bg-[#8CFF45]
+                     group-hover:text-[#363636] group-hover:bg-[#58893a] transition-all duration-300' size={25} /></Link>
                 </div>
                 <div className='bg-[#393939] group-hover:bg-[#58893a] dark:group-hover:bg-[#8CFF45] dark:group-hover:after:shadow-[6px_10px_0_0_rgba(140,255,69,1)]
                  dark:group-hover:before:bg-[#8CFF45] group-hover:before:bg-[#58893a] group-hover:after:shadow-[6px_10px_0_0_rgba(88,137,58,1)] before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 

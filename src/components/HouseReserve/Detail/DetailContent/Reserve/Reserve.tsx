@@ -12,6 +12,7 @@ import { LucideCircleDollarSign } from "lucide-react";
 import { IHousesDetail } from "@/core/types/HouseReserveDetail/IHousesDetail";
 import { useCookies } from 'next-client-cookies';
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 const DatePicker = dynamic(() => import("react-multi-date-picker"), {
   ssr: false,
 });
@@ -52,8 +53,28 @@ const ReserveHouse: FC<IProps> = ({ info }) => {
       selectedReturnDay,
       guestCount
     }
-    cookieStore.set('book', JSON.stringify(data))
-    redirect('/booking-house')
+    const accessToken = cookieStore.get('accessToken')
+    if (accessToken) {
+      cookieStore.set('book', JSON.stringify(data))
+      redirect('/booking-house')
+    } else {
+      toast.error('ابتدا وارد حساب کاربری خود شوید', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          fontFamily: 'IRANSansXFaNum',
+          textAlign: 'right',
+        },
+      });
+      setTimeout(() => {
+        redirect('/login')
+      }, 2800);
+    }
   }
   return (
     <div id="house-date" className="flex flex-col items-center px-4 max-w-[100%] w-full  bg-[#fcfcfc] dark:bg-[#393939] dark:shadow-none shadow-[0_0px_16px_rgba(0,0,0,0.2)] rounded-4xl border dark:border-[#565656] border-none">

@@ -37,7 +37,6 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
     if (typeof window !== 'undefined') {
       const setupLeaflet = async () => {
         const L = await import('leaflet');
-        console.log("alllocation", houseLocations)
         delete (L.Icon.Default.prototype as any)._getIconUrl;
         L.Icon.Default.mergeOptions({
           iconRetinaUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNSAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIuNSIgY3k9IjEyLjUiIHI9IjEyLjUiIGZpbGw9IiMyNzUzRkYiLz4KPHBhdGggZD0iTTEyLjUgNkwxOCAxMi41SDE3VjE5SDE0VjE1SDExVjE5SDhWMTIuNUg3TDEyLjU2IDZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=',
@@ -83,7 +82,7 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
       <MapContainer
         center={location.lat && location.lng ? [Number(location.lat), Number(location.lng)] : [35.6892, 51.3890]}
         zoom={12}
-        className="w-full h-full rounded-[40px] shadow-inner"
+        className="w-full h-full rounded-[40px] shadow-inner z-[10]"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -92,7 +91,7 @@ const HouseLocation: FC<IProps> = ({ houseLocations }) => {
 
         {location.lat && location.lng ? (
           <Marker position={[Number(location.lat), Number(location.lng)]}>
-            <Popup className="p-4 rounded-xl bg-green-100 border-green-300">
+            <Popup className="p-4 rounded-xl bg-green-100 border-green-300 ">
               <div className="text-right font-vazir text-sm">
                 <h3 className="font-bold text-green-600 mb-2">خونه انتخاب شده!</h3>
                 <p className="text-gray-700">نقشه روی این خونه زوم شد</p>

@@ -1,22 +1,22 @@
 "use client";
 
-import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
+import { sendBookingHouse, SendNotification } from "@/core/api/BookingHouse/bookingHouse";
+import { IBookingData } from "@/core/types/bookingHouse/IBookingHouse";
+import jwt from 'jsonwebtoken';
+import { useCookies } from "next-client-cookies";
+import { redirect } from "next/navigation";
+import React, { FC, useCallback, useMemo, useState } from "react";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { FaBuilding, FaChevronLeft, FaChevronRight, FaUsers } from "react-icons/fa6";
+import { HiOutlineDocumentCheck } from "react-icons/hi2";
+import { IoTicketOutline } from "react-icons/io5";
+import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
+import { toast, ToastContainer } from "react-toastify";
 import StepOne from "./step1/StepOne";
 import StepTwo from "./step2/StepTwo";
 import StepThree from "./step3/StepThree";
 import StepFour from "./step4/StepFour";
 import StepFive from "./step5/StepFive";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { FaBuilding, FaUsers } from "react-icons/fa6";
-import { HiOutlineDocumentCheck } from "react-icons/hi2";
-import { FaMoneyBillWave } from "react-icons/fa";
-import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
-import { IoTicketOutline } from "react-icons/io5";
-import { IBookingData } from "@/core/types/bookingHouse/IBookingHouse";
-import { toast, ToastContainer } from "react-toastify";
-import { sendBookingHouse } from "@/core/api/BookingHouse/bookingHouse";
-import { redirect } from "next/navigation";
-import { useCookies } from "next-client-cookies";
 interface IProps {
   houseData: IBookingData;
 }
@@ -67,7 +67,6 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
   const nextStep = useCallback(async () => {
     const bookData = cookieStore.get('book')
     const parseBookData = bookData ? JSON.parse(bookData) : null;
-    console.log(parseBookData)
     if (step === "two") {
       if (
         !parseBookData?.personalInfo ||
@@ -92,12 +91,29 @@ const MultiSteps: FC<IProps> = ({ houseData }) => {
         redirect("/login");
       }
       else {
-        setStep("five");
+        const accessToken = cookieStore.get('accessToken')
+        if (accessToken) {
+          const decodeToken = jwt.decode(accessToken) as { id: string }
+          const data = {
+            room: Math.floor(100 + Math.random() * 900).toString(),
+            notification: {
+              userId: decodeToken.id,
+              title: `رزرو خانه`,
+              message: `شما خانه ${parseBookData.info.title} را رزرو کرده اید`,
+              type: "reserve",
+              data: { offerId: 2 }
+            }
+          }
+          const sendNotificationToUser = await SendNotification(data)
+          if (sendNotificationToUser.message === 'Notification sent and saved successfully') {
+            setStep("five");
+          }
+        }
       }
     } else if (!isLastStep) {
       setStep(steps[currentStepIndex + 1].id);
     }
-  }, [step, steps, houseData, currentStepIndex, isLastStep]);
+  }, [step, steps, currentStepIndex, isLastStep, cookieStore]);
 
   const prevStep = useCallback(() => {
     if (!isFirstStep) {

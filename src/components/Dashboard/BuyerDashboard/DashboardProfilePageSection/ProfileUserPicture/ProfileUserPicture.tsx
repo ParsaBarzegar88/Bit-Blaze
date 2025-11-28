@@ -33,10 +33,10 @@ const ProfileUserPicture:FC<IProps> = ({userInfo}) => {
                             />
                         ) : ""}
                         <div onClick={handleOpenSelectedPicture} className='absolute px-1 py-1 top-2 cursor-pointer right-0 border-2 rounded-full border-white bg-[#8CFF45] flex justify-center items-center'>
-                            <IoIosCamera size={20} />
+                            <IoIosCamera className='text-black' size={20} />
                         </div>
                         <div className='absolute px-1 py-1 bottom-2 cursor-pointer right-0 border-2 rounded-full border-white bg-[#FF5555] flex justify-center items-center'>
-                            <FaRegTimesCircle size={20} />
+                            <FaRegTimesCircle className='text-black' size={20} />
                         </div>
                     </div>
                 </div>

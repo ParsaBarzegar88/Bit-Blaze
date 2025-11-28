@@ -13,7 +13,7 @@ export const getAllPayments = async (searchParams: SearchParam = {}) => {
   const res = await fetch(
     `${baseURL}/api/payments?${searchParams.reserveType ? `status=${searchParams.reserveType}&` : ""
     }page=${searchParams.page ? searchParams.page : 1
-    }&limit=10&sort=createdAt&order=ASC`,
+    }&limit=9&sort=createdAt&order=ASC`,
     {
       headers: {
         "Content-Type": "application/json",

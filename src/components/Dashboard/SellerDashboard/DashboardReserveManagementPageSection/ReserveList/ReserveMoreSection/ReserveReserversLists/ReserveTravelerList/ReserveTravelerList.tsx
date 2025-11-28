@@ -1,13 +1,15 @@
+
 import { IUserReserve } from '@/core/types/Dashboard/IReserve';
 import { Dispatch, FC, SetStateAction } from 'react';
 import { IoIosSend } from "react-icons/io";
 import { LiaTimesSolid } from 'react-icons/lia';
 
 interface IProps {
+    setOpenChat: Dispatch<SetStateAction<boolean>>;
     closeTravelersList: Dispatch<SetStateAction<boolean>>;
     travelersDetail: IUserReserve;
 }
-const ReserveTravelerList: FC<IProps> = ({ closeTravelersList, travelersDetail }) => {
+const ReserveTravelerList: FC<IProps> = ({ setOpenChat, closeTravelersList, travelersDetail }) => {
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
             <div className='relative bg-white dark:bg-[#363636] border border-gray-300 dark:border-gray-700 rounded-3xl shadow-2xl w-full max-w-2xl mx-4 
@@ -52,7 +54,7 @@ const ReserveTravelerList: FC<IProps> = ({ closeTravelersList, travelersDetail }
                                 {item.nationalId}
                             </div>
                             <div className="col-span-1 text-center items-center mx-auto font-[400] text-gray-700 dark:text-white text-[16px] pr-2">
-                                <IoIosSend className='text-[#8CFF45] cursor-pointer' size={30}/>
+                                <IoIosSend onClick={() => setOpenChat(true)} className='text-[#8CFF45] cursor-pointer' size={30} />
                             </div>
                         </div>
                     ))}

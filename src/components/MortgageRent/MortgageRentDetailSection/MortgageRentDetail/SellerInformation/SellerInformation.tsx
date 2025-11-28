@@ -6,14 +6,39 @@ import { HiOutlineCurrencyDollar } from 'react-icons/hi';
 import { BsChatRightTextFill } from "react-icons/bs";
 import { IHousesDetail } from '@/core/types/MortgageRent/IHousesDetail';
 import MortgageRentChat from './MortgageRentChat/MortgageRentChat';
+import { useCookies } from 'next-client-cookies';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 interface IProps {
     sellerInfo: IHousesDetail;
 }
-const SellerInformation:FC<IProps> = ({sellerInfo}) => {
+const SellerInformation: FC<IProps> = ({ sellerInfo }) => {
     const [openChat, setOpenChat] = useState<boolean>(false)
-    const handleOpenChat = () =>{
-        setOpenChat(!openChat)
+    const cookieStore = useCookies()
+    const router = useRouter()
+    const handleOpenChat = () => {
+        const accessToken = cookieStore.get('accessToken')
+        if (accessToken) {
+            setOpenChat(!openChat)
+        } else {
+            toast.error('ابتدا وارد حساب کاربری خود شوید', {
+                position: 'top-center',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
+            });
+            setTimeout(() => {
+                router.push('/login')
+            }, 2800);
+        }
     }
     return (
         <>
@@ -72,7 +97,7 @@ const SellerInformation:FC<IProps> = ({sellerInfo}) => {
             </div>
             {openChat && (
                 <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <MortgageRentChat onClose={setOpenChat} sellerInfo={sellerInfo}/>
+                    <MortgageRentChat onClose={setOpenChat} sellerInfo={sellerInfo} />
                 </div>
             )}
         </>
