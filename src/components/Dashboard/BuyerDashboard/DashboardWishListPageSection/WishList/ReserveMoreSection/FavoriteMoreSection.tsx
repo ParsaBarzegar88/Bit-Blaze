@@ -8,7 +8,6 @@ import Link from 'next/link';
 
 interface IProps {
     reserveId:string;
-    // houseId: string;
 }
 const FavoriteMoreSection: FC<IProps> = ({ reserveId  }) => {
     const router = useRouter()
