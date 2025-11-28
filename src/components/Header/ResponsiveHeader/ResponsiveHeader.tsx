@@ -95,6 +95,30 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             </div>
             <div className="relative group">
               <Link
+                href="/tours"
+                className={`font-[500] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
+                  pathName === "/tours" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
+                }`}
+                onClick={handleClose}
+              >
+                تور ها
+                <svg
+                className={`${pathName === "/tours" ? "dark:stroke-[#8CFF45] stroke-[#6fc539] duration-300" : "dark:group-hover:stroke-[#8CFF45] group-hover:stroke-[#6fc539]  duration-300 stroke-[#565656] dark:stroke-[#AAAAAA]"}`}
+                  width="10"
+                  height="7"
+                  viewBox="0 0 10 7"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1L5 5L9 1"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </Link>
+            </div>
+            <div className="relative group">
+              <Link
                 href="/about"
                 className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
                   pathName === "/about" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
