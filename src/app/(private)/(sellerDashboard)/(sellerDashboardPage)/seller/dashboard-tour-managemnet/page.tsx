@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "مدیریت تور ها",
 };
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 
 const TourPage:FC<IGetSearchParams> = async ({searchParams}) => {

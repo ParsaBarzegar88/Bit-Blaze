@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "مدیریت املاک",
 };
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 const DashboardHouseMangementPage:FC<IGetSearchParams> = async ({searchParams}) => {
   const getAllSearchParams = await searchParams

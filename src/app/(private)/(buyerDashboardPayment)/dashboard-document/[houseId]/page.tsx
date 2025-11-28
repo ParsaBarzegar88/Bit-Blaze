@@ -1,21 +1,15 @@
 import DashboardDocumentPageSection from '@/components/Dashboard/BuyerDashboard/DashboardDocumentPageSection/DashboardDocumentPageSection'
 import { Metadata } from 'next';
-import React, { FC } from 'react'
+import React from 'react'
 
 export const metadata: Metadata = {
   title: "قولنامه",
 };
-interface IProps{
-  params: {
-        houseId:string;
-    }
+export default async function DashboardDocumentPage({
+  params,
+}: {
+  params: Promise<{ houseId: string }>
+}) {
+  const { houseId } = await params
+  return <DashboardDocumentPageSection houseId={houseId} />
 }
-const DashboardDocumentPage:FC<IProps> = ({params}) => {
-  return (
-    <>
-        <DashboardDocumentPageSection houseId={params.houseId}/>
-    </>
-  )
-}
-
-export default DashboardDocumentPage

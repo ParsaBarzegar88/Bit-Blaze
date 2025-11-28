@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "مدیریت کامنت ها",
 };
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 const DashboardCommentsManagementPage:FC<IGetSearchParams> = async ({searchParams}) => {
   const getAllSearchParams = await searchParams

@@ -1,21 +1,19 @@
 import DashboardAddPaymentPageSection from '@/components/Dashboard/BuyerDashboard/DashboardAddPaymentPageSection/DashboardAddPaymentPageSection';
 import { Metadata } from 'next';
-import React, { FC } from 'react'
+import React from 'react'
 
 export const metadata: Metadata = {
   title: "پرداخت",
 };
-interface IProps{
-  params: {
-        bookingId:string;
-    }
-}
-const DashboardPaymentPage:FC<IProps> = ({params}) => {
+export default async function DashboardPaymentPage({
+  params,
+}: {
+  params: Promise<{ bookingId: string }>
+}) {
+  const { bookingId } = await params
   return (
     <>
-      <DashboardAddPaymentPageSection bookingId={params.bookingId}/>
+      <DashboardAddPaymentPageSection bookingId={bookingId}/>
     </>
   )
 }
-
-export default DashboardPaymentPage
