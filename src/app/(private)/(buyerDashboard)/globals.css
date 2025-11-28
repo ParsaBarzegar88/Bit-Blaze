@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tailwindcss-animated";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
