@@ -4,7 +4,7 @@ import React, { FC } from 'react'
 import { ToastContainer } from 'react-toastify';
 
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 export const metadata: Metadata = {
   title: "تور ها",

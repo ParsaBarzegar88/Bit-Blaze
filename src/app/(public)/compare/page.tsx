@@ -7,7 +7,7 @@ export const metadata:Metadata = {
 }
 
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 const HouseComparePage:FC<IGetSearchParams> = async ({searchParams}) => {
   const getAllSearchParams = await searchParams

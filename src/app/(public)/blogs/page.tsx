@@ -2,7 +2,7 @@ import BlogPage from '@/components/Blogs/BlogPage';
 import { Metadata } from 'next';
 import React, { FC } from 'react'
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 export const metadata: Metadata = {
   title: "مقالات ما",

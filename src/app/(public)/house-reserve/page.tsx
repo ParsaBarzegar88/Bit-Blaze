@@ -2,7 +2,7 @@ import HouseReserve from '@/components/HouseReserve/HouseReserve'
 import { Metadata } from 'next';
 import React, { FC } from 'react'
 interface IGetSearchParams {
-  searchParams?: { [key: string]: string }
+  searchParams?: Promise<{ [key: string]: string }>
 }
 export const metadata: Metadata = {
   title: "رزرو خانه",
