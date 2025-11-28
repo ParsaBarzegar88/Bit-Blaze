@@ -1,7 +1,12 @@
-import localFont from 'next/font/local'
+import localFont from "next/font/local";
+
 export const PeydaFanum = localFont({
-  src: '../assets/fonts/IRANSansXFaNum-Medium.ttf',
-  weight: '500',
-  variable: '--font-peyda',
-  display: 'swap',
-})
+  src: [
+    {
+      path: "../../public/fonts/IRANSansXFaNum-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-peydafanum",
+});
