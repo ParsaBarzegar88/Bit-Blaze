@@ -1,7 +1,7 @@
-import { addToWishlist } from '@/core/api/wishlist/wishlist'
+import { addToWishlist } from '@/core/api/wishlist/wishlist';
 import { IAddWishlist } from '@/core/types/wishlist/IWishlist';
-import React, { FC, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import React, { FC, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IProps {
     open: boolean;
@@ -49,8 +49,8 @@ const AddToWishList: FC<IProps> = ({
             } else {
                 throw new Error(response.response?.message || "خطا در ذخیره جستجو")
             }
-        } catch (error: any) {
-            toast.error(error.message || "مشکلی در ذخیره یادداشت به وجود آمده است", {
+        } catch {
+            toast.error("مشکلی در ذخیره یادداشت به وجود آمده است", {
                 position: "top-center",
                 autoClose: 2400,
                 style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },

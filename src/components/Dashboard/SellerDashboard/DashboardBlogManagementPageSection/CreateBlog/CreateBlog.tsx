@@ -1,9 +1,9 @@
 "use client"
 import { CreateBlogs } from '@/core/api/Blogs/Blog';
-import { IBlogItem, ICreateBlog } from '@/core/types/Blogs/IBlogs';
-import React, { FC, useState } from 'react'
-import { IoClose } from "react-icons/io5";
+import { ICreateBlog } from '@/core/types/Blogs/IBlogs';
 import { useRouter } from "next/navigation";
+import React, { FC, useState } from 'react';
+import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
 
 const blogCategories = [

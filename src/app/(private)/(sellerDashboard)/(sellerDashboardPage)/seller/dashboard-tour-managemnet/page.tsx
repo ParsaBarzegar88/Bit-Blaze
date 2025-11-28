@@ -1,4 +1,5 @@
 import DashboardTourPageSection from '@/components/Dashboard/SellerDashboard/DashboardTourPageSection/DashboardTourPageSection'
+import { Metadata } from 'next';
 import React, { FC } from 'react'
 
 

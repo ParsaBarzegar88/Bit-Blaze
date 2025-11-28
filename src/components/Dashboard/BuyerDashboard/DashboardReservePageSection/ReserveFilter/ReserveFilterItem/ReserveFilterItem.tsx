@@ -12,17 +12,9 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { Check, ChevronDown } from 'lucide-react';
-import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Dispatch, FC, SetStateAction, useEffect, useMemo, useState } from 'react';
-import DateObject from "react-date-object";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
+import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
 import { LiaTimesSolid } from "react-icons/lia";
-import { LuCalendarClock } from "react-icons/lu";
-const DatePicker = dynamic(() => import("react-multi-date-picker"), {
-    ssr: false,
-});
 interface IProps {
     handleClose: Dispatch<SetStateAction<boolean>>;
 }
@@ -30,25 +22,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
     const searchParams = useSearchParams()
     const router = useRouter()
     const pathName = usePathname()
-    const houseType = useMemo(() => [
-        {
-            label: "همه",
-            value: null
-        },
-        {
-            label: "آپارتمان",
-            value: "apartment"
-        },
-        {
-            label: "ویلا",
-            value: "villa"
-        },
-        {
-            label: "روستایی",
-            value: "house"
-        },
-    ], [])
-
+    
     const reserveType = useMemo(() => [
         {
             label: "همه",
@@ -67,13 +41,7 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
             value: "canceled"
         },
     ], [])
-    const [selectedDepartureDay, setSelectedDepartureDay] = useState<DateObject | null>(null);
-    const [selectedReturnDay, setSelectedReturnDay] = useState<DateObject | null>(null);
-    const [openHouseType, setOpenHouseType] = useState<boolean>(false);
     const [openReserveType, setOpenReserveType] = useState<boolean>(false);
-    const [selectedHouseType, setSelectedHouseType] = useState(
-        houseType.find((item) => item.value === searchParams.get('propertyType'))?.label || 'همه'
-    );
     const [selectedReserveType, setSelectedReserveType] = useState(
         reserveType.find((item) => item.value === searchParams.get('propertyType'))?.label || 'همه'
     );
@@ -88,31 +56,10 @@ const ReserveFilterItem: FC<IProps> = ({ handleClose }) => {
         router.push(`?${params.toString()}`)
     }
     const clearAllFilters = () => {
-        setSelectedDepartureDay(null)
-        setSelectedReturnDay(null)
-        setSelectedHouseType('همه')
         setSelectedReserveType('همه')
         router.push(pathName)
     }
-    useEffect(() => {
-        const departure = searchParams.get('departureDay')
-        if (departure) {
-            const date = new DateObject(new Date(departure)).convert(persian, persian_fa)
-            setSelectedDepartureDay(date)
-        }
-        const returnD = searchParams.get('returnDay')
-        if (returnD) {
-            const date = new DateObject(new Date(returnD)).convert(persian, persian_fa)
-            setSelectedReturnDay(date)
-        }
-        const propType = searchParams.get('transactionType')
-        const house = houseType.find(h => h.value === propType)
-        setSelectedHouseType(house?.label || 'همه')
-        const resType = searchParams.get('reserveType')
-        const reserve = reserveType.find(r => r.value === resType)
-        setSelectedReserveType(reserve?.label || 'همه')
-
-    }, [searchParams, houseType, reserveType])
+    
     return (
         <div className='fixed left-[50%] top-[50%] z-50 w-full max-w-2xl translate-x-[-50%] translate-y-[-50%] border bg-background p-6 shadow-lg duration-200 
     data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 

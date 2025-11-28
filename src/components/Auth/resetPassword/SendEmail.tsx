@@ -1,17 +1,16 @@
 "use client"
-import React, { FC, useActionState, useEffect } from 'react'
-import LeftSide from '../leftSide/leftSide'
-import Image from 'next/image'
-import UserWhiteSVG from '../authSVG/userWhiteSVG'
-import UserwPlusSVG from '../authSVG/userwPlusSVG'
-import LinearRSVG from '../authSVG/linearRSVG'
-import LinearLSVG from '../authSVG/linearLSVG'
-import { useAuth } from '@/context/AuthContext'
-import { useRouter } from 'next/navigation'
-import ButtonSubmit from '../register/ButtonSubmit'
 import { IResetPasswordResponse } from '@/app/(public)/(auth)/resetPassword/page'
-import { toast } from 'react-toastify'
+import { useAuth } from '@/context/AuthContext'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { FC, useActionState, useEffect } from 'react'
 import { BsPersonPlus } from 'react-icons/bs'
+import { toast } from 'react-toastify'
+import LinearLSVG from '../authSVG/linearLSVG'
+import LinearRSVG from '../authSVG/linearRSVG'
+import UserWhiteSVG from '../authSVG/userWhiteSVG'
+import LeftSide from '../leftSide/leftSide'
+import ButtonSubmit from '../register/ButtonSubmit'
 interface IProps {
     action: (prevState: IResetPasswordResponse,
         formData: FormData

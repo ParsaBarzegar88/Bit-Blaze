@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react'
+import { FC } from 'react';
 
 import {
     Pagination,
@@ -8,9 +8,8 @@ import {
     PaginationNext,
     PaginationPrevious
 } from '@/components/ui/pagination';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { IUserFavorites } from '@/core/types/Dashboard/IFavorite';
 import { IWishlist } from '@/core/types/wishlist/IWishlist';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ITEMS_PER_PAGE = 5;
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { IUserDetail } from "@/core/types/Dashboard/IDashboard";
 import { IHousesDetail } from "@/core/types/HouseReserveDetail/IHousesDetail";
 import {

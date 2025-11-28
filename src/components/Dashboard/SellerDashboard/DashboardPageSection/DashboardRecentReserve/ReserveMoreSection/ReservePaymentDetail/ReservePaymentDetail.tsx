@@ -1,8 +1,8 @@
 'use client'
 import { getReservePayment } from '@/core/api/Dashboard/Reserve';
-import { IPayments } from '@/core/types/Dashboard/IPayment';
+import { IUserPayments } from '@/core/types/Dashboard/IPayment';
 import { formatToPersianDate } from '@/utils/date';
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { LiaTimesSolid } from 'react-icons/lia';
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
     bookingId: number;
 }
 const ReservePaymentDetail: FC<IProps> = ({ closePayment, bookingId }) => {
-    const [userPaymentsInfo, setUserPaymentsInfo] = useState<IPayments>()
+    const [userPaymentsInfo, setUserPaymentsInfo] = useState<IUserPayments>()
     useEffect(() => {
         const fetchPayments = async () => {
             const getUserPayments = await getReservePayment()

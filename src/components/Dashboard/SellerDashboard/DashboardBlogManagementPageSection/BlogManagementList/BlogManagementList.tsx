@@ -1,10 +1,10 @@
 'use client'
-import Image from 'next/image'
-import React, { FC, useState } from 'react'
-import { IoIosMore } from 'react-icons/io'
+import { IBlogs } from '@/core/types/Blogs/IBlogs'
 import { formatToPersianDate } from '@/utils/date'
+import Image from 'next/image'
+import { FC, useState } from 'react'
+import { IoIosMore } from 'react-icons/io'
 import HouseManagementMoreSection from './BlogManagementMoreSection/BlogManagementMoreSection'
-import { IBlogItem, IBlogs, } from '@/core/types/Blogs/IBlogs'
 
 interface IProps {
     userSellerBlogInfo: IBlogs ;

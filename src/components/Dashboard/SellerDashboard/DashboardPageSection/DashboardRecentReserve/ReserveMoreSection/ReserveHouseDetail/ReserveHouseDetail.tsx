@@ -17,15 +17,11 @@ interface IProps {
 const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
     const [openPayment, setOpenPayment] = useState<boolean>(false)
     const [openReserversList, setOpenReserversList] = useState<boolean>(false)
-    const [openChat, setOpenChat] = useState<boolean>(false)
     const handleOpenPayment = () => {
         setOpenPayment(!openPayment)
     }
     const handleOpenReservesList = () => {
         setOpenReserversList(!openReserversList)
-    }
-    const handleOpenChat = () => {
-        setOpenChat(!openChat)
     }
     const handleSharePage = async () => {
         if (!navigator.share) {
