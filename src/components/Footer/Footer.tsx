@@ -30,40 +30,40 @@ interface IProps {
 const Footer: FC<IProps> = ({ action }) => {
   const initialState: IFooterResponse = { error: "", success: false };
   const [state, formAction, pending] = useActionState(action, initialState);
-  // useEffect(() => {
-  //   if (state.error) {
-  //     toast.error(state.error, {
-  //       position: "top-right",
-  //       autoClose: 2000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       style: {
-  //         fontFamily: "IRANSansXFaNum",
-  //         textAlign: "right",
-  //       },
-  //     });
-  //   } else if (state.success) {
-  //     toast.success("عملیات با موفقیت انجام شد", {
-  //       position: "top-right",
-  //       autoClose: 2000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       style: {
-  //         fontFamily: "IRANSansXFaNum",
-  //         textAlign: "right",
-  //       },
-  //     });
-  //   }
-  // }, [state]);
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.error, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          fontFamily: "IRANSansXFaNum",
+          textAlign: "right",
+        },
+      });
+    } else if (state.success) {
+      toast.success("عملیات با موفقیت انجام شد", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          fontFamily: "IRANSansXFaNum",
+          textAlign: "right",
+        },
+      });
+    }
+  }, [state]);
   return (
     <>
-      {/* <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={2800}
         hideProgressBar={false}
@@ -74,7 +74,7 @@ const Footer: FC<IProps> = ({ action }) => {
         draggable
         pauseOnHover
         theme="colored"
-      /> */}
+      />
       <div className="max-w-[98%] w-full mx-auto px-2 sm:px-4">
         <div className="items-end w-full flex justify-end">
           <TheDeltaRealEstatementSVG />

@@ -1,9 +1,9 @@
 'use client'
-import Image from 'next/image'
-import React, { FC, useState } from 'react'
 import { DeleteWishlist } from '@/core/api/wishlist/wishlist'
-import { toast } from 'react-toastify'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { FC } from 'react'
+import { toast } from 'react-toastify'
 
 interface IHouse {
     id: string;
@@ -31,16 +31,10 @@ interface IWishlist {
 
 interface IProps {
     userWishListInfo: IWishlist;
-    searchParams?: { [key: string]: string }
 }
 
-const WishList: FC<IProps> = ({ userWishListInfo, searchParams = {} }) => {
-    const [openWishListId, setOpenWishListId] = useState<string | null>(null)
+const WishList: FC<IProps> = ({ userWishListInfo }) => {
     const router = useRouter()
-
-    console.log('Wishlist data:', userWishListInfo)
-    console.log('First item:', userWishListInfo?.data?.[0])
-    console.log('First item house:', userWishListInfo?.data?.[0]?.house)
 
     const handleDeleteWishList = async (userId: number, houseId: number) => {
         const response = await DeleteWishlist(userId, houseId);

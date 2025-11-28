@@ -10,8 +10,6 @@ interface IProps {
 const ToursPageSection: FC<IProps> = async ({ searchParams }) => {
     const TourData = await GetTourList(searchParams)
     
-    console.log('TourData received:', TourData);
-    
     return (
         <div className='max-w-[96%] w-full ml-auto mr-auto m-15'>
             <ToursBreadcrumb />

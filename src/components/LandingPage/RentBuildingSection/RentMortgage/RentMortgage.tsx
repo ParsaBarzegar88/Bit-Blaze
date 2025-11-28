@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import useSWR from 'swr'
 import ArrowTriangleGreenLeftSVG from '../../landingPageSVG/arrowTriangleGreenLeftSVG'
 import RentMortgageList from './RentMortgageList/RentMortgageList'
+import Link from 'next/link'
 const RentMortgage = () => {
     const [activeTab, setActiveTab] = useState<string>('rental');
     const { data } = useSWR([activeTab], getHousesByRentAndMortgage)
@@ -48,10 +49,10 @@ const RentMortgage = () => {
                         </button>
                     </div>
                 </div>
-                <div className='border dark:border-[#FFFFFF] border-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
+                <Link href={'/mortgage-rent'} className='border dark:border-[#FFFFFF] border-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
                     مشاهده همه
                     <MdOutlineKeyboardArrowLeft />
-                </div>
+                </Link>
             </div>
             <div className='flex flex-row justify-between max-w-[98%] h-[500px] animate-fade mb-5'>
                 <Swiper

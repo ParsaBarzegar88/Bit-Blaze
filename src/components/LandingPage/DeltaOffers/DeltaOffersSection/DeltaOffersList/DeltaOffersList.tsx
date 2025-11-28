@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { IHousesData } from '@/core/types/LandingPage/IHouses';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface IProps {
     houseData: IHousesData
@@ -38,7 +39,7 @@ const DeltaOffersList: FC<IProps> = ({ houseData }) => {
                         </div>
                         <FaStar />
                     </div>
-                    <FaArrowLeftLong className='w-[45px] h-[22px] rounded-[8px] bg-[#393939] text-[#FFFFFF] group-hover:bg-[#58893a] dark:group-hover:bg-[#8CFF45] group-hover:text-[#363636] transition-all duration-300' size={25} />
+                    <Link href={`/house-reserve/${houseData.id}`}><FaArrowLeftLong className='w-[45px] h-[22px] cursor-pointer rounded-[8px] bg-[#393939] text-[#FFFFFF] group-hover:bg-[#58893a] dark:group-hover:bg-[#8CFF45] group-hover:text-[#363636] transition-all duration-300' size={25} /></Link>
                 </div>
                 <div className='bg-[#393939] dark:group-hover:bg-[#8CFF45] group-hover:bg-[#58893a] dark:group-hover:after:shadow-[6px_10px_0_0_rgba(140,255,69,1)]
                 group-hover:after:shadow-[6px_10px_0_0_rgba(88,137,58,1)] group-hover:before:bg-[#58893a] dark:group-hover:before:bg-[#8CFF45] before:transition-colors before:duration-300 after:duration-300 after:transition-shadow 

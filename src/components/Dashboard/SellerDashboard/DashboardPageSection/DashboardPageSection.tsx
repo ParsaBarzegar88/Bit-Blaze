@@ -14,6 +14,12 @@ const DashboardPageSection = async () => {
   let userId: string | undefined;
   const accessToken = cookieStore.get('accessToken')?.value
   const dashboardSummery = await getDashboardSummery()
+  let userInfo
+  if (accessToken) {
+    const findUserId = jwt.decode(accessToken) as { id: string };
+    userId = findUserId.id;
+    userInfo = await getUserDetail(String(userId))
+  }
   const dashboardUserReserve = await getAllUserReserveDashboard(String(userId))
   const housesDetail = await dashboardUserReserve.bookings?.map((item: IReserveManagement) => getHousesReserveDetail(String(item.houseId)))
   let enrichedData
@@ -23,12 +29,6 @@ const DashboardPageSection = async () => {
       ...reserve,
       houseDetail: houseDetailPromise[index],
     }))
-  }
-  let userInfo
-  if (accessToken) {
-    const findUserId = jwt.decode(accessToken) as { id: string };
-    userId = findUserId.id;
-    userInfo = await getUserDetail(String(userId))
   }
   return (
     <div className='flex flex-col w-full gap-3 h-full overflow-x-auto bg-none shadow-none'>

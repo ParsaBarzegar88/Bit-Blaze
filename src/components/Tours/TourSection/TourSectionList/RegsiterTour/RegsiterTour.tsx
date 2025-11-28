@@ -1,8 +1,7 @@
 "use client"
 import { RegisterTour } from '@/core/api/Tours/Tours';
 import { IRegisterTour } from '@/core/types/Tours/ITours';
-import { redirect } from 'next/navigation';
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 interface IProps {
@@ -61,8 +60,8 @@ const RegsiterTour: FC<IProps> = ({
             } else {
                 throw new Error(response.response?.message || "خطا در ثبت نام ")
             }
-        } catch (error: any) {
-            toast.error(error.message || "مشکلی در  ثبت نام به وجود آمده است", {
+        } catch  {
+            toast.error("مشکلی در  ثبت نام به وجود آمده است", {
                 position: "top-center",
                 autoClose: 2400,
                 style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },

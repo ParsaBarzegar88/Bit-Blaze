@@ -92,7 +92,7 @@ const FormComment: FC<IProps> = ({ action, houseData, userId, housesComments }) 
     return (
         <form className='flex flex-col gap-3 md:gap-5 w-full' action={formAction}>
             <input type="hidden" name="houseId" value={houseData.id} />
-            <input type="hidden" name="userId" value={userId} />
+            <input type="hidden" name="userId" value={userId || 0} />
             {param.get('parentId') ? (
                 <input type="hidden" name="parentId" value={String(param.get('parentId'))} />
             ) : ""}

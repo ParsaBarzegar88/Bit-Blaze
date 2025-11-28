@@ -9,7 +9,6 @@ import StepOne from './stepOne/stepOne';
 import StepTwo from './CreateTour/stepTwo/stepTwo';
 import StepThree from './CreateTour/stepThree/stepThree';
 import StepFour from './CreateTour/stepFour/stepFour';
-import StepFive from './stepFive/stepFive';
 
 interface IProps {
   onClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -62,7 +61,7 @@ const CreateTourModal: FC<IProps> = ({ onClose }) => {
     try {
       const submitData: ICreateTour = {
         ...formData,
-        photos: formData.photos,
+        photos: [],
         userId: 12345
       };
       console.log("all data", submitData)
@@ -133,21 +132,8 @@ const CreateTourModal: FC<IProps> = ({ onClose }) => {
         label: "برنامه‌ریزی",
         component: <StepFour formData={formData} setFormData={setFormData} />,
       },
-      {
-        id: "five",
-        label: "آپلود عکس",
-        component: (
-          <StepFive
-            formData={formData} 
-            setFormData={setFormData} 
-            onClose={() => onClose(false)}
-            onSubmit={handleCreateTour}
-            isLoading={isLoading}
-          />
-        ),
-      },
     ],
-    [formData, selectedLocation, isLoading] 
+    [formData, selectedLocation] 
   );
 
   const nextStep = () => {

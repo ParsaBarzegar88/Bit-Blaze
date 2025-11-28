@@ -39,13 +39,13 @@ const TourSectionList: FC<IProps> = ({ tour }) => {
                 className='flex-[1_1_calc(33.333%-1rem)] min-w-[300px] max-w-[400px] bg-white dark:bg-[#404040] rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600 hover:translate-y-[-4px] cursor-pointer'
             >
                 <div className='relative w-full h-48 rounded-xl overflow-hidden mb-4'>
-                    {tour.photos[2] ? (
+                    {tour.photos[0] ? (
                         <Image
-                            src={tour.photos[2]}
+                            src={tour.photos[0]}
                             alt={tour.title}
                             width={200}
                             height={200}
-                            className='object-cover'
+                            className='object-cover w-full'
                         />
                     ) : (
                         <div className='w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center'>

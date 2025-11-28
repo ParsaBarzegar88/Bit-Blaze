@@ -27,8 +27,8 @@ const TourSection: FC<IProps> = ({ TourData }) => {
     const router = useRouter();
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-    const totalPages = Math.ceil(TourData?.totalCount / ITEMS_PER_PAGE);
-
+    const totalPages = Math.ceil(TourData.totalCount / ITEMS_PER_PAGE);
+    console.log(TourData.totalCount)
     const goToPage = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             const newParams = new URLSearchParams(searchParams);
@@ -37,7 +37,7 @@ const TourSection: FC<IProps> = ({ TourData }) => {
         }
     };
 
-
+    console.log(TourData.tours)
     const updateSearchParams = (key: string, value: string | null) => {
         const params = new URLSearchParams(searchParams)
         if (value === null || value === "همه" || value === "") {

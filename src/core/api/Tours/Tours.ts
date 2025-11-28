@@ -1,5 +1,5 @@
 "use server"
-import { ICreateTour, IRegisterTour, ITours, IToursItem, IUpdateTour } from "@/core/types/Tours/ITours";
+import { ICreateTour, IRegisterTour, ITours, IUpdateTour } from "@/core/types/Tours/ITours";
 import { cookies } from "next/headers";
 
 export const GetTourList = async (searchParams?: { [key: string]: string }): Promise<ITours> => { 
@@ -33,24 +33,24 @@ export const GetTourList = async (searchParams?: { [key: string]: string }): Pro
     return data;
 }
 
-export const GetUserTourList = async (searchParams?: { [key: string]: string }): Promise<IToursItem> => {
-        const cookieStore = await cookies();
-        const token = cookieStore.get("accessToken")?.value;
+// export const GetUserTourList = async (searchParams?: { [key: string]: string }): Promise<IToursItem> => {
+//         const cookieStore = await cookies();
+//         const token = cookieStore.get("accessToken")?.value;
 
-        const baseURL = process.env.API_BASE_URL;
-        const page = searchParams?.page || '1';
-        const limit = '4';
+//         const baseURL = process.env.API_BASE_URL;
+//         const page = searchParams?.page || '1';
+//         const limit = '4';
         
-        const response = await fetch(`${baseURL}/api/tour/user/my-registers?page=1&limit=10`, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-        });
+//         const response = await fetch(`${baseURL}/api/tour/user/my-registers?page=1&limit=10`, {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 Authorization: `Bearer ${token}`
+//             },
+//         });
 
-        const data = await response.json();
-        return data;
-}
+//         const data = await response.json();
+//         return data;
+// }
 
 export const GetTourById = async (id: string) => {
         const cookieStore = await cookies();

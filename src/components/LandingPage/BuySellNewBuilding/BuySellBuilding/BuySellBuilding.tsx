@@ -9,6 +9,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import BuySellBuildingList from './BuySellBuildingList/BuySellBuildingList';
 import ArrowTriangleGreenLeftSVG from '../../landingPageSVG/arrowTriangleGreenLeftSVG';
 import { IHouses } from '@/core/types/LandingPage/IHouses';
+import Link from 'next/link';
 
 interface IProps{
     house:IHouses;
@@ -28,10 +29,10 @@ const BuySellBuilding:FC<IProps> = ({house}) => {
                         <b className='text-[24px] lg:text-[30px]'>خرید و فروش ملک</b> در دلتا
                     </h2>
                 </div>
-                <div className='border dark:border-[#FFFFFF] border-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
+                <Link href={`/house-reserve`} className='border dark:border-[#FFFFFF] border-black dark:text-[#FFFFFF] rounded-[12px] items-center justify-center gap-1 flex flex-row w-[130px] h-[36px] cursor-pointer hover:bg-[#000000] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#000000] transition-all duration-300'>
                     مشاهده همه
                     <MdOutlineKeyboardArrowLeft />
-                </div>
+                </Link>
             </div>
             <div className='flex flex-row justify-between max-w-[98%] h-[500px] animate-fade mb-5 w-full'>
                 <Swiper

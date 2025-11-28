@@ -119,17 +119,6 @@ const ResponsiveHeader: FC<IProps> = ({ open, setOpen }) => {
             </div>
             <div className="relative group">
               <Link
-                href="/about"
-                className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
-                  pathName === "/about" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""
-                }`}
-                onClick={handleClose}
-              >
-                درباره دلتا
-              </Link>
-            </div>
-            <div className="relative group">
-              <Link
                 href="/blogs"
                 className={`font-[500] dark:group-hover:text-[#8CFF45] group-hover:text-[#6fc539] duration-300 text-[16px] flex flex-row items-center gap-2 transition-colors ${
                   pathName === "/blogs" ? "dark:text-[#8CFF45] text-[#6fc539]" : ""

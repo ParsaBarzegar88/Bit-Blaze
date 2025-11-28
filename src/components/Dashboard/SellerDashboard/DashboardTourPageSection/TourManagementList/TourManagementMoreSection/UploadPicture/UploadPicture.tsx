@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import { UploadPhotosForTour } from '@/core/api/Tours/Tours';
+import { useRouter } from 'next/navigation';
 
 interface IProps {
     Id: string;
@@ -12,6 +13,7 @@ interface IProps {
 }
 
 const UploadPicture: FC<IProps> = ({ Id, onClose }) => {
+    const router = useRouter()
     const [pictureFiles, setPictureFiles] = useState<File[]>([]);
     const [picturePreviews, setPicturePreviews] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -59,8 +61,6 @@ const UploadPicture: FC<IProps> = ({ Id, onClose }) => {
                 formData.append('photos', file);
             });
             const response = await UploadPhotosForTour(Id, formData);
-            console.log(response.ok)
-            console.log(response.response)
             if (response.ok) {
                 toast.success('عکس‌ها با موفقیت آپلود شدند', {
                     position: "top-center",
@@ -70,6 +70,7 @@ const UploadPicture: FC<IProps> = ({ Id, onClose }) => {
                 onClose(false);
                 setPictureFiles([]);
                 setPicturePreviews([]);
+                router.refresh()
             } else {
                 toast.error("مشکلی در آپلود عکس‌ها به وجود آمده است", {
                     position: "top-center",
@@ -77,8 +78,7 @@ const UploadPicture: FC<IProps> = ({ Id, onClose }) => {
                     style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
                 });
             }
-        } catch (error) {
-            console.error('Error uploading photos:', error);
+        } catch {
             toast.error("خطا در سرور", {
                 position: "top-center",
                 autoClose: 2400,

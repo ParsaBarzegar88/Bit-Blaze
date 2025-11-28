@@ -154,7 +154,6 @@ ${JSON.stringify(AllHouses, null, 2)}
     useEffect(() => {
         fetchAllHouses()
     }, [fetchAllHouses])
-    console.log(AiResult)
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
             <div className='relative bg-white dark:bg-[#363636] border border-gray-300 dark:border-gray-700 rounded-3xl shadow-2xl w-full max-w-3xl mx-4 flex flex-col max-h-[90vh] overflow-y-auto'>

@@ -4,6 +4,7 @@ import { IoIosMore } from 'react-icons/io'
 import { ITours, IToursItem } from '@/core/types/Tours/ITours'
 import { formatToPersianDate } from '@/utils/date'
 import TourManagementMoreSection from './TourManagementMoreSection/TourManagementMoreSection'
+import Image from 'next/image'
 
 interface IProps {
     userSellerTourInfo: ITours;
@@ -70,7 +71,9 @@ const TourManagementList: FC<IProps> = ({ userSellerTourInfo, searchParams = {} 
                             >
                                 <div className="col-span-1 text-right rounded-[12px] w-full h-[107px] line-clamp-1 overflow-hidden">
                                     {tour.photos && tour.photos.length > 0 && tour.photos[0]?.trim() !== '' ? (
-                                        <img 
+                                        <Image
+                                            width={200} 
+                                            height={200}
                                             src={tour.photos[0]} 
                                             alt={tour.title}
                                             className='w-full h-full object-cover rounded-[12px]' 

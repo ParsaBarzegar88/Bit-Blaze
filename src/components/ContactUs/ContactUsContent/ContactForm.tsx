@@ -19,12 +19,16 @@ const ContactForm: FC<IProps> = ({ action }) => {
         if (state.error) {
             toast.error(state.error, {
                 position: 'top-center',
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             });
         }
         else if (state.success) {
@@ -36,6 +40,10 @@ const ContactForm: FC<IProps> = ({ action }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                style: {
+                    fontFamily: 'IRANSansXFaNum',
+                    textAlign: 'right',
+                },
             });
         }
     }, [state]);

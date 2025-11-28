@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { ICreateTour } from '@/core/types/Tours/ITours'
 import dynamic from "next/dynamic";

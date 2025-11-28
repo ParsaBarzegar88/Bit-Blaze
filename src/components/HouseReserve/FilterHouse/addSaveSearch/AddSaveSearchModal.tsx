@@ -3,6 +3,7 @@ import React, { useState, useEffect, FC } from 'react'
 import { toast } from "react-toastify"
 import { IAddSaveSearch } from "@/core/types/saveSearch/ISaveSearch"
 import { AddSaveSearch } from '@/core/api/saveSearch/saveSearch'
+import { useRouter } from 'next/navigation'
 
 interface AddSaveSearchModalProps {
   open: boolean
@@ -11,8 +12,8 @@ interface AddSaveSearchModalProps {
   initialSearchQuery?: string
 }
 
-const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({ 
-  open, 
+const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
+  open,
   onOpenChange,
   onSaveSuccess,
   initialSearchQuery = ""
@@ -21,8 +22,8 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
   const [formData, setFormData] = useState<IAddSaveSearch>({
     searchQuery: initialSearchQuery,
     note: ""
-  })
-
+  }) 
+  const router = useRouter()
   useEffect(() => {
     if (open) {
       setFormData({
@@ -34,7 +35,7 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!formData.searchQuery.trim()) {
       toast.error("لطفا عبارت جستجو را وارد کنید", {
         position: "top-center",
@@ -44,11 +45,9 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
     }
 
     setLoading(true)
-    
+
     try {
       const response = await AddSaveSearch(formData)
-      console.log(response.ok)
-      
       if (response.ok) {
         toast.success("جستجو با موفقیت ذخیره شد", {
           position: "top-center",
@@ -58,11 +57,19 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
         setFormData({ searchQuery: "", note: "" })
         onOpenChange(false)
         onSaveSuccess?.()
-      } else {
-        throw new Error(response.response?.message || "خطا در ذخیره جستجو")
       }
-    } catch (error: any) {
-      toast.error(error.message || "مشکلی در ذخیره جستجو به وجود آمده است", {
+      if (response.response?.message === "Invalid token") {
+        toast.error("برای انجام این عملیات وارد حساب کاربری خود شوید", {
+          position: "top-center",
+          autoClose: 2400,
+          style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
+        })
+        setTimeout(() => {
+          router.push('/login')
+        }, 2800);
+      }
+    } catch {
+      toast.error("مشکلی در ذخیره جستجو به وجود آمده است", {
         position: "top-center",
         autoClose: 2400,
         style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
@@ -92,7 +99,7 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
       <div className="bg-white dark:bg-[#1e1e1e] rounded-2xl shadow-2xl w-full max-w-md mx-4 border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-             ذخیره جستجو
+            ذخیره جستجو
           </h2>
           <button
             onClick={handleClose}
@@ -122,7 +129,7 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
               disabled={loading}
             />
           </div>
-          
+
           <div className="space-y-3">
             <label htmlFor="note" className="block text-sm font-medium text-gray-700 dark:text-gray-300 text-right">
               یادداشت (اختیاری)
@@ -141,7 +148,7 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
               disabled={loading}
             />
           </div>
-          
+
           <div className="flex gap-3 justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
             <button
               type="button"
@@ -154,8 +161,8 @@ const AddSaveSearchModal: FC<AddSaveSearchModalProps> = ({
             >
               انصراف
             </button>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={loading || !formData.searchQuery.trim()}
               className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg
                        transition-colors disabled:opacity-50 disabled:cursor-not-allowed

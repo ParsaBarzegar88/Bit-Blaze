@@ -13,9 +13,7 @@ const ProfileUserInformation: FC<IProps> = ({ userInfo, userId }) => {
     const [LastName, setLastName] = useState<string>(userInfo.user?.lastName || '')
     const router = useRouter()
     const handleUpdateProfileInfo = async () => {
-        console.log(String(userId), FirstName, LastName, userInfo.user.email, userInfo.user.phoneNumber)
         const res = await UpdateProfileInformation(String(userId), FirstName, LastName , userInfo.user.email, userInfo.user.phoneNumber)
-        console.log(res)
         if (res.ok) {
             toast.success('اطلاعات شما با موفقیت بروزرسانی شد', {
                 position: 'top-center',

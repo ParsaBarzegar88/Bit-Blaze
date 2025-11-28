@@ -99,7 +99,7 @@ const Header: FC<IProps> = ({ userInfo }) => {
             <div className="relative h-full group">
               <Link
                 href="/tours"
-                className={`font-[500] text-[16px] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a]  duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/blogs" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
+                className={`font-[500] text-[16px] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a]  duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/tours" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
                   }`}
               >
                 تور ها
@@ -118,18 +118,6 @@ const Header: FC<IProps> = ({ userInfo }) => {
                 </svg>
               </Link>
               {pathName === "/tours" && (
-                <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
-              )}
-            </div>
-            <div className="relative h-full group">
-              <Link
-                href="/about"
-                className={`font-[500] text-[16px] dark:group-hover:text-[#8CFF45] group-hover:text-[#58893a]  duration-300 h-full flex flex-row items-center gap-2 transition-colors ${pathName === "/about" ? "dark:text-[#8CFF45] text-[#58893a]" : ""
-                  }`}
-              >
-                درباره دلتا
-              </Link>
-              {pathName === "/about" && (
                 <span className="absolute w-full m-0 bottom-0 rounded-t-[12px] h-1 bg-[#58893a] dark:bg-[#8CFF45]"></span>
               )}
             </div>

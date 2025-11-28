@@ -93,7 +93,7 @@ const SelectedProfilePicture: FC<IProps> = ({ closeSelectedPicture }) => {
           حذف تصویر
         </button>
         <label
-          className="px-3 py-2 rounded-[12px] bg-[#8CFF45] cursor-pointer"
+          className="px-3 py-2 rounded-[12px] bg-[#8CFF45] cursor-pointer text-black"
           onClick={() => {
             if (previewUrl) {
               handleSendImage();

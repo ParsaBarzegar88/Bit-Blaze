@@ -1,7 +1,7 @@
 "use client"
 import { GetTourById, UpdateTours } from '@/core/api/Tours/Tours';
 import { IUpdateTour } from '@/core/types/Tours/ITours';
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useCallback } from 'react'
 import { IoClose } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { toast } from 'react-toastify';
@@ -26,7 +26,6 @@ interface IProps {
 }
 
 const UpdateTour: FC<IProps> = ({ Id, onClose }) => {
-    const [tourInfo, setTourInfo] = useState<IUpdateTour>();
     const router = useRouter();
     const [formData, setFormData] = useState({
         title: '',
@@ -38,10 +37,9 @@ const UpdateTour: FC<IProps> = ({ Id, onClose }) => {
     });
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchTourData = async () => {
+    const fetchTourData = useCallback(async () => {
         try {
             const getTourInfo = await GetTourById(Id);
-            setTourInfo(getTourInfo);
             if (getTourInfo) {
                 setFormData({
                     title: getTourInfo.title || '',
@@ -52,8 +50,7 @@ const UpdateTour: FC<IProps> = ({ Id, onClose }) => {
                     facilities: getTourInfo.facilities || []
                 });
             }
-        } catch (error) {
-            console.error('Error fetching tour data:', error);
+        } catch {
             toast.error("خطا در دریافت اطلاعات تور", {
                 position: "top-center",
                 autoClose: 2400,
@@ -63,11 +60,11 @@ const UpdateTour: FC<IProps> = ({ Id, onClose }) => {
                 style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
             });
         }
-    };
+    }, [Id]);
 
     useEffect(() => {
         fetchTourData();
-    }, [Id]);
+    }, [Id, fetchTourData]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -113,8 +110,7 @@ const UpdateTour: FC<IProps> = ({ Id, onClose }) => {
                     style: { fontFamily: "IRANSansXFaNum", direction: "rtl" },
                 });
             }
-        } catch (error) {
-            console.error('Error updating tour:', error);
+        } catch {
             toast.error("خطا در سرور", {
                 position: "top-center",
                 autoClose: 2400,

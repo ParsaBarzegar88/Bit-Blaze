@@ -6,7 +6,9 @@ import ToggleLightAndDark from '@/components/ToggleTheme/ToggoleTheme'
 import Image from 'next/image';
 import { IUserDetail } from '@/core/types/Dashboard/IDashboard';
 import { usePathname } from 'next/navigation';
-import DashboardItemSubMenu from './DashboardItemSubMenu/DashboardItemSubMenu';
+import { IoMenu } from 'react-icons/io5';
+import ResponsiveHeaderBuyer from '../../BuyerDashboard/DashboardMenu/ResponsiveHeaderBuyer/ResponsiveHeaderBuyer';
+import ResponsiveHeaderSeller from '../../SellerDashboard/DashboardMenu/ResponsiveHeaderSeller/ResponsiveHeaderSeller';
 
 interface IProps {
     userInfo: IUserDetail
@@ -14,6 +16,7 @@ interface IProps {
 const DashboardItems: FC<IProps> = ({ userInfo }) => {
     const pathName = usePathname()
     const [openSubMenu, setOpenSubMenu] = useState(false)
+    const [openMenu, setOpenMenu] = useState<boolean>(false)
     const getPath = () => {
         if (pathName === '/seller/dashboard') return 'داشبورد'
         if (pathName === '/dashboard') return 'داشبورد'
@@ -33,9 +36,19 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
     const handleOpenSubMenu = () => {
         setOpenSubMenu(!openSubMenu)
     }
+    const handleOpenMenu = () => {
+        setOpenMenu(!openMenu)
+    }
     return (
         <div className='flex flex-row justify-between max-w-[96%] mx-auto w-full relative items-center'>
-            <h2 className='tracking-[0.2em] max-[800px]:text-[17px] font-[800] text-[25px] dark:text-white text-black'>
+            <h2 className='tracking-[0.2em] max-[800px]:text-[17px] font-[800] text-[25px] dark:text-white text-black flex flex-row gap-1.5 items-center'>
+                <button
+                    className="lg:hidden flex w-8 mr-3 h-full items-center justify-center text-[#565656] dark:text-[#AAAAAA] cursor-pointer"
+                    onClick={handleOpenMenu}
+                    aria-label={openMenu ? "بستن منو" : "باز کردن منو"}
+                >
+                    <IoMenu className="w-full h-full" />
+                </button>
                 {getPath()}
             </h2>
             <div className='flex flex-row gap-2 items-center '>
@@ -51,9 +64,14 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
                     <MdOutlineKeyboardArrowDown className={`${openSubMenu === true ? 'rotate-[180deg]' : "rotate-[0deg] transition-all"} transition-all`} size={18} />
                 </div>
             </div>
-            {openSubMenu === true ? (
-                    <DashboardItemSubMenu />
-            ) : ""}
+            {pathName.startsWith('/seller') ? (
+                <ResponsiveHeaderSeller open={openMenu} setOpen={setOpenMenu} />
+
+            ) : (
+                <ResponsiveHeaderBuyer open={openMenu} setOpen={setOpenMenu} />
+
+            )}
+
         </div>
     )
 }

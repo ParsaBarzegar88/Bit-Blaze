@@ -1,5 +1,3 @@
-// LogoutSection.tsx
-import { DeleteHouseBySeller } from "@/core/api/SellerDashboard/MyHouse";
 import { DeleteTourById } from "@/core/api/Tours/Tours";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

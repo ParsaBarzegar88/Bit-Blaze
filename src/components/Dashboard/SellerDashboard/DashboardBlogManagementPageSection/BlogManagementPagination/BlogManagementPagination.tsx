@@ -11,7 +11,7 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import { IBlogs } from '@/core/types/Blogs/IBlogs';
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 4;
 
 interface IProps {
     userSellerBlogInfo: IBlogs

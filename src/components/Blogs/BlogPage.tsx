@@ -11,8 +11,6 @@ interface IProps {
 const BlogPage: FC<IProps> = async ({ Params }) => {
   const BlogData = await GetAllBlogs(Params)
 
-  console.log('BlogData received:', BlogData);
-
   return (
     <div className='max-w-[96%] w-full ml-auto mr-auto m-15'>
       <BlogsBreadcrumb />

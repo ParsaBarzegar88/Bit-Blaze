@@ -80,7 +80,7 @@ export interface ICreateTour {
     userId: number,
     title: string,
     address: string,
-     photos: File[],
+     photos: File[] | null,
     description: string,
     tag: string,
     price: string,

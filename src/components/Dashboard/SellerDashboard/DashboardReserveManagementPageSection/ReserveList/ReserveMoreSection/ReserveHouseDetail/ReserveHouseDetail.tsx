@@ -9,6 +9,7 @@ import { MdHotTub } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import ReservePaymentDetail from '../ReservePaymentDetail/ReservePaymentDetail';
 import ReserveTravelerList from '../ReserveReserversLists/ReserveTravelerList/ReserveTravelerList';
+import ReserveHouseChat from './ReserveHouseChat/ReserveHouseChat';
 interface IProps {
     closeHouseDetail: Dispatch<SetStateAction<boolean>>;
     houseDetail: IDashboardUserReserve
@@ -17,6 +18,7 @@ interface IProps {
 const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
     const [openPayment, setOpenPayment] = useState<boolean>(false)
     const [openTravelersList, setOpenTravelersList] = useState<boolean>(false)
+    const [openChat, setOpenChat] = useState<boolean>(false)
     const handleOpenTravelersList = () => {
         setOpenTravelersList(!openTravelersList)
     }
@@ -168,7 +170,12 @@ const ReserveHouseDetail: FC<IProps> = ({ closeHouseDetail, houseDetail }) => {
             )}
             {openTravelersList && (
                 <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
-                    <ReserveTravelerList closeTravelersList={setOpenTravelersList} travelersDetail={houseDetail} />
+                    <ReserveTravelerList setOpenChat={setOpenChat} closeTravelersList={setOpenTravelersList} travelersDetail={houseDetail} />
+                </div>
+            )}
+            {openChat && (
+                <div className='fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
+                    <ReserveHouseChat onClose={setOpenChat} sellerInfo={houseDetail.houseDetail} />
                 </div>
             )}
         </div>
