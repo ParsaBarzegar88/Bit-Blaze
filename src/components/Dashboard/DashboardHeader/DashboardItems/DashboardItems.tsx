@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { IoMenu } from 'react-icons/io5';
 import ResponsiveHeaderBuyer from '../../BuyerDashboard/DashboardMenu/ResponsiveHeaderBuyer/ResponsiveHeaderBuyer';
 import ResponsiveHeaderSeller from '../../SellerDashboard/DashboardMenu/ResponsiveHeaderSeller/ResponsiveHeaderSeller';
+import DashboardItemSubMenu from './DashboardItemSubMenu/DashboardItemSubMenu';
 
 interface IProps {
     userInfo: IUserDetail
@@ -74,7 +75,9 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
                 <ResponsiveHeaderBuyer open={openMenu} setOpen={setOpenMenu} />
 
             )}
-
+            {openSubMenu === true ? (
+                <DashboardItemSubMenu />
+            ) : ""}
         </div>
     )
 }
