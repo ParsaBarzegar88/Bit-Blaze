@@ -81,7 +81,7 @@ const LoginForm: FC<IProps> = ({ action }) => {
       style={{ padding: "0" }}
       className="flex flex-col sm:flex-row-reverse items-center gap-2 sm:gap-4 md:gap-30 justify-center w-full max-w-full sm:max-w-[1376px] m-auto px-2 sm:px-4 py-4">
       <LeftSide />
-      <div className="w-full max-w-[590.75px] min-h-[200px] sm:min-h-[300px] md:min-h-[600px] h-auto overflow-hidden flex flex-col">
+      <div className="w-full max-w-[590.75px] min-h-[200px] sm:min-h-[300px] max-[1400px]:p-1.5 md:min-h-[600px] h-auto overflow-hidden flex flex-col">
         <div className="flex flex-col gap-3 sm:gap-5">
           <h1 className="text-2xl md:text-[32px] font-[300] whitespace-nowrap text-center md:text-right dark:text-white text-black">
             به خانواده دلتا ، خوش برگشتی !
@@ -145,12 +145,12 @@ const LoginForm: FC<IProps> = ({ action }) => {
                 {showPassword ? (<FiEye onClick={togglePassword} className='dark:text-[#AAAAAA] cursor-pointer absolute top-1 left-4 text-black h-5 w-5' />) : (<FiEyeOff onClick={togglePassword} className='dark:text-[#AAAAAA]cursor-pointer absolute top-1 left-4 text-white h-5 w-5' />)}
               </fieldset>
             </div>
-            <div className='flex flex-row-reverse justify-between w-full'>
+            <div className='flex flex-col-reverse sm:flex-row-reverse items-center justify-between w-full'>
               <Link href={"/resetPassword"} className="flex justify-end gap-2 sm:gap-3 ml-5 sm:ml-10 items-center dark:text-white text-black">
                 رمز عبور خود را فراموش کردم
                 <FaArrowLeftLong className='dark:text-white text-black' />
               </Link>
-              <Link href={"/register"} className="flex justify-end gap-2 sm:gap-3 mr-5 sm:mr-10 items-center dark:text-white text-black">
+              <Link href={"/register"} className="flex justify-end gap-2 sm:gap-3  sm:mr-10 items-center dark:text-white text-black">
                 حساب کاربری ندارید ؟
               </Link>
             </div>

@@ -9,7 +9,7 @@ interface IProps {
 }
 const HouseFeatureTab: FC<IProps> = ({ houseData }) => {
     return (
-        <div className='flex flex-row gap-4'>
+        <div className='flex flex-row gap-4 md:mx-0 md:justify-start justify-center mx-auto flex-wrap'>
             <div className='flex flex-col h-fit dark:bg-[#3F3F3F] gap-3 p-2 items-center rounded-[16px] dark:shadow-none shadow-[0px_0px_16px_rgba(0,0,0,0.27)]'>
                 <FaBed size={20} className='dark:text-white text-black'/>
                 <span className='dark:bg-[#7569FF] bg-[#897eff] w-fit rounded-[10px] text-white py-2 px-8'>{houseData.rooms} خوابه</span>

@@ -112,7 +112,7 @@ const VerifyForm: FC<IProps> = ({ action }) => {
             style={{ padding: "0" }}
             className='flex flex-col sm:flex-row-reverse items-center gap-2 sm:gap-4 md:gap-30 justify-center w-full max-w-full sm:max-w-[1376px] m-auto px-2 sm:px-4 py-4'>
             <LeftSide />
-            <div className="w-full max-w-[590.75px] min-h-[200px] sm:min-h-[300px] md:min-h-[600px] h-auto overflow-hidden flex flex-col">
+            <div className="w-full max-w-[590.75px] min-h-[200px] max-[1400px]:p-1.5 sm:min-h-[300px] md:min-h-[600px] h-auto overflow-hidden flex flex-col">
                 <div className="flex flex-col gap-3 sm:gap-5">
                     <h1 className="text-2xl md:text-[32px] font-[300] whitespace-nowrap text-center md:text-right dark:text-white text-black">
                         به خانواده دلتا ، خوش برگشتی !
