@@ -32,6 +32,9 @@ const DashboardItems: FC<IProps> = ({ userInfo }) => {
         if (pathName === '/seller/dashboard-comments-management') return 'مدیریت نظرات'
         if (pathName === '/dashboard-announcements') return 'اعلان ها'
         if (pathName === '/seller/dashboard-announcements') return 'اعلان ها'
+        if (pathName === '/seller/dashboard-chats') return 'گفتگو ها'
+        if (pathName === '/dashboard-chats') return 'گفتگو ها'
+        if (pathName === '/seller/dashboard-tour-managemnet') return 'مدیریت تور ها'
     }
     const handleOpenSubMenu = () => {
         setOpenSubMenu(!openSubMenu)

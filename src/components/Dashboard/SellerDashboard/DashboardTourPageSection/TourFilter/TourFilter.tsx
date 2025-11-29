@@ -24,7 +24,7 @@ const TourFilter = () => {
   }
   return (
     <div className='flex max-[800px]:flex-col flex-row w-full items-center justify-between'>
-      <div className='dark:text-white text-black text-[20px] w-fit'>لیست املاک من</div>
+      <div className='dark:text-white text-black text-[20px] w-fit'>لیست تور ها</div>
       <div className='flex max-[800px]:flex-col flex-row gap-5 justify-end max-w-[500px] w-full'>
         <div className='flex gap-3 flex-row max-[800px]:flex-col w-full items-center justify-between'>
           <div className='flex flex-row max-[800px]:flex-col max-[800px]:justify-center max-[800px]:items-center gap-5 justify-end max-w-[500px] w-full'>
